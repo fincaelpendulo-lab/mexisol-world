@@ -71,6 +71,14 @@ Then put the Worker's URL in `formEndpoint` in `src/data/site.json`.
 
 In GoHighLevel, a free **Contact Tag** trigger (tag `website-registration` added) can send you an internal email or WhatsApp alert for each new registration.
 
+## Hosting on Hostinger
+
+The site can also be deployed from this repo with Hostinger's website builder:
+
+- Environment variable: `BASE_PATH` = `/`
+- Build command: `npm run build`, output folder: `dist`, Node 22
+- `public/.htaccess` gives clean URLs (`/about` serves `about.html`), forces HTTPS and the bare domain, sends security headers and sets caching.
+
 ## Launch checklist
 
 The site is hidden from search engines until launch (`"launched": false` in `src/data/site.json`, which writes `noindex` on every page and `Disallow: /` in robots.txt).
