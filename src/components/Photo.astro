@@ -29,7 +29,7 @@ if (!usable.length || (!widths && usable[usable.length - 1] < Math.min(src.width
   sizes={sizes}
   quality={45}
   loading={priority ? 'eager' : 'lazy'}
-  decoding={priority ? 'sync' : 'async'}
+  decoding="async"
   fetchpriority={priority ? 'high' : 'auto'}
   class={className}
   style={style}
