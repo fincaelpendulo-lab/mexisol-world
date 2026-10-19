@@ -17,29 +17,29 @@ const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
 const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat' };
 
 const spaces = [
-  { img: 'guests-gathered-inside-the-osho-hut', alt: 'Guests gathered inside the Osho Hut, a round stone room with arched windows', name: 'The Osho Hut', text: 'The spiritual heart of the Finca. A round stone house with a palm roof, where every ceremony happens with live music. It also hosts meditation, yoga, concerts and long dinners.' },
-  { img: 'onyx-pillars-of-the-oracle-glowing', alt: 'The onyx pillars of the Oracle glowing at dusk', name: 'The Oracle', text: 'Sixteen pillars of Jalisco onyx, each carved with a rune. Bring a question and choose a column. We also use it for outdoor yoga, meditation and closing dinners.' },
-  { img: 'rider-on-a-chestnut-horse-looking', alt: 'A rider on a chestnut horse looking over green hills', name: 'The horses', text: 'Nine horses, five of them born on the Finca. Trail rides into the hills, equine therapy, and lessons in how to care for them. No experience needed.' },
-  { img: 'lake-avalon-with-its-palapa-and', alt: 'Lake Avalón with its palapa and stone terrace', name: 'Lake Avalón', text: 'Koi, turtles and a palapa by the water. Loungers in the sun, a long table for dinners, and a trail around the shore for evening walks.' },
+  { img: 'guests-gathered-inside-the-osho-hut', alt: 'A facilitator serving guests seated inside the Osho Hut', name: 'The Osho Hut', text: 'The spiritual heart of the Finca. A round stone house with a palm roof, where every ceremony happens with live music. It also hosts meditation, yoga, concerts and long dinners.' },
+  { img: 'onyx-pillars-of-the-oracle-glowing', alt: "Yoga on the Oracle's stone circle, between its pillars", name: 'The Oracle', text: 'Sixteen pillars of Jalisco onyx, each carved with a rune. Bring a question and choose a column. We also use it for outdoor yoga, meditation and closing dinners.' },
+  { img: 'rider-on-a-chestnut-horse-looking', alt: 'A smiling rider on a dark horse', name: 'The horses', text: 'Nine horses, five of them born on the Finca. Trail rides into the hills, equine therapy, and lessons in how to care for them. No experience needed.' },
+  { img: 'lake-avalon-with-its-palapa-and', alt: 'The palapa and outdoor tables beside Lake Avalón', name: 'Lake Avalón', text: 'Koi, turtles and a palapa by the water. Loungers in the sun, a long table for dinners, and a trail around the shore for evening walks.' },
   { img: 'wooden-patio-with-tile-roofs-and', alt: 'Wooden patio with tile roofs and tree-trunk pillars', name: "The Lord's Atrium", text: 'A 30-ton root with a meditating Jesus at its front, set in the centre of the atrium. Come here to meditate, to connect, and to feel the spirit of the Finca.' },
-  { img: 'pool-in-front-of-the-brick', alt: 'The pool in front of the brick tower, surrounded by cactus and trees', name: 'The pool', text: 'Kept at a comfortable temperature all year and wrapped in green. Made for the slow afternoons between ceremonies.' },
+  { img: 'pool-in-front-of-the-brick', alt: 'The long pool with cypress trees and brick buildings behind', name: 'The pool', text: 'Kept at a comfortable temperature all year and wrapped in green. Made for the slow afternoons between ceremonies.' },
   { img: 'ambu-terrace-a-covered-terrace-with', alt: 'Ambu Terrace, a covered terrace with wooden pillars facing the agave fields', name: 'Ambu Terrace', text: 'A wide covered terrace looking out over the agave fields, with room for up to 200 people. Where we gather for music, celebrations and pizza from the wood oven.' },
 ];
 const more = [
   { img: 'painted-temazcal-dome-behind-the-cold', alt: 'The painted temazcal dome behind the cold-water tubs', name: 'Temazcal', text: 'The traditional sweat lodge, heated with volcanic stones, with cold-water tubs outside for the contrast.' },
   { img: 'sammasati-with-a-jacuzzi-and-long', alt: 'Sammasati, with a jacuzzi and long wooden tables under string lights', name: 'Sammasati', text: 'The gathering place at the center of the Finca: a wooden table for 25, a jacuzzi for 8 and a fire pit.' },
-  { img: 'inside-the-gaia-greenhouse-full-of', alt: 'Inside the Gaia greenhouse, full of ferns and hanging plants', name: 'Gaia greenhouse', text: 'Herbs, vegetables, fruit and medicinal plants grown with the seasons. What it harvests ends up on your plate.' },
-  { img: 'guests-painting-and-working-with-clay', alt: 'Guests painting at long wooden tables in the art workshop', name: 'Art workshop', text: 'Five pottery wheels, paints, canvases and craft supplies, for when you want to work with your hands.' },
+  { img: 'inside-the-gaia-greenhouse-full-of', alt: 'The Gaia greenhouse, a long wooden table among hanging plants', name: 'Gaia greenhouse', text: 'Herbs, vegetables, fruit and medicinal plants grown with the seasons. What it harvests ends up on your plate.' },
+  { img: 'guests-painting-and-working-with-clay', alt: 'Guests painting at colourful tables in the art workshop', name: 'Art workshop', text: 'Five pottery wheels, paints, canvases and craft supplies, for when you want to work with your hands.' },
   { img: 'massage-table-made-up-with-white', alt: 'A massage table made up with white towels in the spa', name: 'Spa', text: 'A massage room and a treatment room, with two therapists offering massages and facials.' },
   { img: 'gym-with-a-pilates-reformer-bikes', alt: 'The gym with a Pilates reformer, bikes and a treadmill', name: 'Gym', text: 'Free weights, a Pilates reformer, bikes and a treadmill, plus ping pong and billiards in the lounge.' },
   { img: 'wolf-on-wooden-platform', alt: "One of the Finca's two wolves standing on a wooden platform", name: 'The wolves', text: 'Two wolf brothers, rescued when their old caretakers could no longer keep them. Guests can meet them in guided, respectful visits.' },
-  { img: 'hormiguero-a-palm-roofed-building-among', alt: 'The Hormiguero, a palm-roofed building among banana trees', name: 'The Hormiguero', text: 'A two-story house built by volunteers among banana trees, with a shared kitchen and a fire pit. Sleeps up to 20.' },
+  { img: 'hormiguero-a-palm-roofed-building-among', alt: 'The Hormiguero, a cone-shaped palapa among banana trees', name: 'The Hormiguero', text: 'A two-story house built by volunteers among banana trees, with a shared kitchen and a fire pit. Sleeps up to 20.' },
 ];
 const week = [
   { img: 'guests-sitting-on-yoga-mats-under', alt: 'Guests sitting on yoga mats under the palapa by the lake', cap: 'Morning practice by the lake' },
   { img: 'smoke-and-light-over-a-flower', alt: 'Smoke and light over a flower altar inside the Osho Hut', cap: 'Ceremony in the Osho Hut' },
   { img: 'fire-circle-at-night-with-guests', alt: 'A guest standing inside a ring of fire, the group seated around', cap: 'The fire circle' },
-  { img: 'guests-sharing-a-candlelit-dinner-at', alt: 'Guests sharing a candlelit dinner at a long wooden table', cap: 'Dinner together' },
+  { img: 'guests-sharing-a-candlelit-dinner-at', alt: 'Guests sharing dinner at a long table in warm light', cap: 'Dinner together' },
 ];
 const roomTypes = [
   { img: 'beds-in-the-open-loft-of', alt: 'Beds in the open loft of the Hormiguero', name: 'Shared dorm', price: price.dorm, names: 'The Hormiguero', text: 'Shared with up to three other guests in the house volunteers built among the banana trees. Good if you are coming on your own and want company.' },
@@ -58,7 +58,7 @@ const galleries = [
     { img: 'maguey-a-green-room-with-a', alt: 'Maguey bedroom with green walls', cap: 'Maguey' },
     { img: 'lobo-bedroom-with-a-yellow-woven', alt: 'Lobo bedroom with a yellow woven bedspread', cap: 'Lobo' },
     { img: 'loba-bedroom-with-a-wagon-wheel', alt: 'Loba bedroom with a wagon-wheel headboard', cap: 'Loba' },
-    { img: 'oeste-bedroom-with-two-single-beds', alt: 'Oeste bedroom with two single beds', cap: 'Oeste' },
+    { img: 'oeste-bedroom-with-two-single-beds', alt: 'Oeste bedroom with a purple bed and a large window', cap: 'Oeste' },
     { img: 'cactus-bedroom-with-a-sitting-area', alt: 'Cactus bedroom with a sitting area', cap: 'Cactus' },
   ] },
   { title: 'Shared dorm', note: 'The Hormiguero: a loft upstairs, bunks downstairs and a shared kitchen.', min: 200, ratio: '3-4', items: [
@@ -105,9 +105,9 @@ const events = retreats.finca.map((r) => event({
   <SectionIntro eyebrow="The land">Four hectares of countryside about an hour from Guadalajara airport, with more than fifteen spaces built by hand since 2017. Horses in the fields, agave on the hills, and a lake that catches the sunset. Every MexiSol retreat in Mexico happens here.</SectionIntro>
 
   <div class="photo-row" style="--min:220px;--h:380px">
-    <Photo name="guests-sitting-and-swimming-at-lake" alt="Guests sitting and swimming at Lake Avalón" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="guests-painting-and-working-with-clay" alt="Guests painting and working with clay in the art workshop" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="guests-setting-out-on-a-horseback" alt="Guests setting out on a horseback ride" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-sitting-and-swimming-at-lake" alt="Three women sitting in a circle by the lake" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-painting-and-working-with-clay" alt="Guests painting at colourful tables in the art workshop" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-setting-out-on-a-horseback" alt="Three riders setting out in front of the brick building" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
     <Photo name="fire-circle-at-night-with-guests" alt="A fire circle at night with guests seated around it" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
   </div>
 
