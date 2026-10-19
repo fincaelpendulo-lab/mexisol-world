@@ -225,3 +225,30 @@ strong, b, th { font-weight: 400; color: var(--ink); }
 /* Bright photos: the same photo-overlay token applied twice, so white text keeps 4.5:1. */
 .wash-strong::before { content: ""; position: absolute; inset: 0; background: var(--photo-overlay); }
 .wash-strong > * { position: relative; }
+
+/* Background drone/garden video (see VideoBand and HeroSplit) */
+.video-band video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-band .photo-band__wash { z-index: 1; }
+.video-band__toggle { position: absolute; z-index: 2; right: clamp(16px, 4vw, 48px); top: var(--space-5); width: 44px; height: 44px; display: inline-grid; place-items: center; background: transparent; color: var(--white); border: 1px solid var(--white); cursor: pointer; }
+.video-band__toggle .i-play { display: none; }
+.video-band__toggle[aria-pressed="true"] .i-play { display: inline; }
+.video-band__toggle[aria-pressed="true"] .i-pause { display: none; }
+.ms-hero__photo video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Watch section: heading above, video wide */
+.watch { display: flex; flex-direction: column; gap: var(--space-7); }
+.watch__text { display: flex; flex-direction: column; gap: var(--space-5); max-width: var(--measure); }
+.watch .yt { width: 100%; }
+
+/* Team portraits */
+.team-card__photo { object-position: center 20%; }
+
+/* Simple motion. Only for elements below the fold, never with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-in { opacity: 1; transform: none; }
+  .tile img, .photo-row img, .fig img, .stack > picture img, .ms-guide__photo img, .yt img { transition: transform 0.8s ease; }
+  .tile:hover img, .photo-row > picture:hover img, .fig:hover img, .yt:hover img { transform: scale(1.03); }
+  .tile, .photo-row > picture, .fig, .yt { overflow: hidden; }
+  .ms-btn { transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+}

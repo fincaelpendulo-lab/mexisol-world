@@ -232,6 +232,20 @@
     if (p && p.catch) p.catch(function () { /* autoplay blocked: the photo stays */ });
   });
 
+  /* ---------- Reveal on scroll ---------- */
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var targets = document.querySelectorAll('main > section, main > .photo-row, main > div:not(.ms-hero), .ms-guide, .ms-intro');
+    var revealer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); revealer.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(targets, function (el) {
+      // Anything already on screen stays as it is, so the first view never flickers.
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add('reveal');
+      revealer.observe(el);
+    });
+  }
+
   /* ---------- Registration form ---------- */
   var form = document.querySelector('[data-register-form]');
   if (form) {

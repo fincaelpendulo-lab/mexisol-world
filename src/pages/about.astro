@@ -4,14 +4,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSplit from '../components/HeroSplit.astro';
 import GuideSplit from '../components/GuideSplit.astro';
 import YouTube from '../components/YouTube.astro';
+import Photo from '../components/Photo.astro';
 import site from '../data/site.json';
 import retreats from '../data/retreats.json';
 import { href } from '../lib/url';
 
 const team = [
-  { role: 'Shaman', name: 'Humberto', text: 'Born in Tepatitlán. He left a contracting business in California to train in Perú, near Pucallpa, through long master plant dietas. He has led ceremonies on several continents and leads our ayahuasca retreats, singing through the night with the musicians.', link: { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') } },
-  { role: 'Medicine woman', name: 'Krista', text: 'Born in Mexico City. An engineer by training, she spent more than twenty years running a high school before the medicine changed her path. She learned to work with mushrooms in Oaxaca and leads our psilocybin retreats.', link: { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') } },
-  { role: 'Finca El Péndulo', name: 'Marina', text: 'She founded the Finca in 2017 after years of meditation practice, and has kept building it ever since: more than fifteen spaces on four hectares. She looks after the place, and the community that keeps it running.', link: { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') } },
+  { img: 'staff-humberto', alt: 'Humberto, who leads the ayahuasca retreats', role: 'Shaman', name: 'Humberto', text: 'Born in Tepatitlán. He left a contracting business in California to train in Perú, near Pucallpa, through long master plant dietas. He has led ceremonies on several continents and leads our ayahuasca retreats, singing through the night with the musicians.', link: { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') } },
+  { img: 'staff-krista', alt: 'Krista with a drum in the Osho Hut', role: 'Medicine woman', name: 'Krista', text: 'Born in Mexico City. An engineer by training, she spent more than twenty years running a high school before the medicine changed her path. She learned to work with mushrooms in Oaxaca and leads our psilocybin retreats.', link: { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') } },
+  { img: 'staff-marina', alt: 'Marina, founder of Finca El Péndulo', role: 'Finca El Péndulo', name: 'Marina', text: 'She founded the Finca in 2017 after years of meditation practice, and has kept building it ever since: more than fifteen spaces on four hectares. She looks after the place, and the community that keeps it running.', link: { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') } },
 ];
 const follow = [
   { kind: 'Instagram', title: '@mexisol.world', text: 'Dates, moments from the Finca and news from the road.', href: site.instagram, track: 'outbound' },
@@ -68,8 +69,9 @@ const follow = [
       <h2 class="t-heading" style="margin-bottom:var(--space-8)">The people who hold the space</h2>
       <div class="grid" style="--min:280px">
         {team.map((t) => (
-          <div class="rule-top stack" style="--stack:var(--space-3)">
-            <p class="label label--tight">{t.role}</p>
+          <div class="stack team-card" style="--stack:var(--space-3)">
+            <Photo name={t.img} alt={t.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+            <p class="label label--tight" style="margin-top:var(--space-4)">{t.role}</p>
             <h3 class="t-title">{t.name}</h3>
             <p class="muted">{t.text}</p>
             <p><a href={t.link.href}>{t.link.label}</a></p>
@@ -81,14 +83,14 @@ const follow = [
   </section>
 
   <section id="watch" class="section deep">
-    <div class="wrap grid" style="--min:300px;align-items:center">
-      <div class="stack">
+    <div class="wrap watch">
+      <div class="watch__text">
         <p class="label">Finca El Péndulo on YouTube</p>
         <h2 class="t-heading">Welcome to MexiSol World</h2>
         <p>A short welcome to the new chapter, from the land where it all started.</p>
         <p><a href={site.youtube.url} data-track="outbound">Watch Welcome to MexiSol World on YouTube</a></p>
       </div>
-      <YouTube poster="aerial-lake-avalon" title="Welcome to MexiSol World" />
+      <YouTube poster="mexisol-community-welcome" title="Welcome to MexiSol World" />
     </div>
   </section>
 

@@ -45,21 +45,22 @@ const faq = [
   schema={[faqPage(faq)]}
 >
   <HeroSplit
-    image="guests-stretching-between-the-onyx-columns"
-    imageAlt="Guests stretching between the onyx columns of the Oracle"
+    image="dancing-in-red-poncho"
+    imageAlt="A guest in a red poncho dancing in the garden at Finca El Péndulo"
+    video="/video/home-dance.mp4"
     eyebrow="Ayahuasca and psilocybin retreats"
     title="Sit with the medicine. We hold the space."
     cta={{ label: 'See 2027 dates', href: '#next' }}
     images={[
-      { name: 'three-guests-talking-in-front-of', alt: 'Three guests talking in front of the agave field' },
-      { name: 'guest-with-a-white-horse', alt: 'A guest with a white horse' },
+      { name: 'guest-in-embroidered-blouse', alt: 'A guest in an embroidered blouse smiling during a ceremony', position: 'center 25%' },
+      { name: 'elder-and-guest-embrace', alt: 'An elder and a guest embracing', position: 'center 30%' },
     ]}
   >Week-long retreats at Finca El Péndulo, our home in the highlands of Jalisco, and international retreats with partners around the world. Groups of up to 15, experienced guides, and a conversation with you before anything is confirmed.</HeroSplit>
 
   <div class="photo-row home-strip" style="--min:220px;--h:380px">
     <Photo name="guest-dancing-freely-on-the-esplanade" alt="A guest dancing freely on the esplanade" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} style="object-position:center 30%" />
-    <Photo name="circle-gathered-under-the-palapa-by" alt="A circle gathered under the palapa by the lake" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="group-meditation-in-the-osho-hut" alt="Group meditation in the Osho Hut" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="fire-circle-dancer" alt="A guest standing inside the fire circle at night" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="osho-hut-ceremony-circle" alt="Mats laid in a circle for ceremony inside the Osho Hut" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
     <Photo name="two-guests-laughing-in-the-cold" alt="Two guests laughing in the cold-plunge tubs" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
   </div>
 
@@ -73,7 +74,7 @@ const faq = [
 
   <div class="photo-row" style="--min:320px">
     <a href={href('/finca-el-pendulo')} class="tile">
-      <Photo name="three-guests-talking-in-front-of" alt="Three guests talking in front of the agave field" sizes="(max-width: 760px) 100vw, 50vw" />
+      <Photo name="yoga-by-the-agave-field" alt="Two guests stretching under a palapa beside the agave field" sizes="(max-width: 760px) 100vw, 50vw" />
       <div class="tile__wash wash-strong">
         <p class="label">At the Finca</p>
         <h2 class="t-heading tile__title">Finca El Péndulo, Jalisco</h2>
@@ -98,7 +99,7 @@ const faq = [
       </div>
       <div class="grid" style="--min:320px">
         <article class="stack">
-          <Photo name="smudging-with-copal-before-ceremony-flowers" alt="Smudging with copal before ceremony, flowers on the altar" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1024]} class="ratio-4-3" />
+          <Photo name="osho-hut-altar-candles-flowers" alt="The ceremony altar in the Osho Hut, with candles and purple flowers" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
           <p class="label label--tight">01 / Ayahuasca</p>
           <h2 class="t-heading">Ayahuasca</h2>
           <p>A brew of the ayahuasca vine and the chacruna leaf, used in ceremony across the Amazon for generations. Ours is prepared in Pucallpa.</p>
@@ -184,14 +185,14 @@ const faq = [
   </section>
 
   <section id="watch" class="section deep">
-    <div class="wrap grid" style="--min:300px;align-items:center">
-      <div class="stack">
+    <div class="wrap watch">
+      <div class="watch__text">
         <p class="label">Watch</p>
         <h2 class="t-heading">Welcome to MexiSol World</h2>
         <p>A new chapter for the Finca El Péndulo community. Same land, same people, and retreats, ceremonies and music that now travel beyond Mexico.</p>
         <p><a href="https://www.youtube.com/watch?v=20fXazwvuN4" data-track="outbound">Watch Welcome to MexiSol World on YouTube</a></p>
       </div>
-      <YouTube poster="aerial-lake-avalon" title="Welcome to MexiSol World" />
+      <YouTube poster="mexisol-community-welcome" title="Welcome to MexiSol World" />
     </div>
   </section>
 
@@ -200,7 +201,7 @@ const faq = [
   <div class="photo-row" style="--min:240px;--h:420px">
     <Photo name="group-meditation-in-the-osho-hut" alt="Group meditation inside the Osho Hut" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
     <Photo name="palapa-and-dock-over-lake-avalon" alt="Palapa and dock over Lake Avalón" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
-    <Photo name="guest-with-a-white-horse" alt="A guest with a white horse" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="riders-by-the-palapa" alt="Guests on horseback riding past a palapa" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
   </div>
   <div class="center" style="padding:var(--space-7) clamp(24px, 4vw, 48px) var(--space-9)">
     <Button href={href('/finca-el-pendulo')}>Explore the Finca and its retreats</Button>
@@ -212,18 +213,21 @@ const faq = [
 
   <section id="team" class="section" style="padding-top:var(--space-8)">
     <div class="wrap grid" style="--min:240px;--gap:var(--space-7)">
-      <div class="rule-top stack" style="--stack:var(--space-2)">
-        <p class="label label--tight">Shaman</p>
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-humberto" alt="Humberto, who leads the ayahuasca retreats" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Shaman</p>
         <h3 class="t-title">Humberto</h3>
         <p class="muted">Leads our ayahuasca retreats.</p>
       </div>
-      <div class="rule-top stack" style="--stack:var(--space-2)">
-        <p class="label label--tight">Medicine woman</p>
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-krista" alt="Krista with a drum in the Osho Hut" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Medicine woman</p>
         <h3 class="t-title">Krista</h3>
         <p class="muted">Leads our psilocybin retreats.</p>
       </div>
-      <div class="rule-top stack" style="--stack:var(--space-2)">
-        <p class="label label--tight">Finca El Péndulo</p>
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-marina" alt="Marina, founder of Finca El Péndulo" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Finca El Péndulo</p>
         <h3 class="t-title">Marina</h3>
         <p class="muted">Keeps the land and the people who run it.</p>
       </div>
