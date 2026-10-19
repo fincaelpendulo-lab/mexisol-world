@@ -1,0 +1,94 @@
+---
+// Medical information (canvas: Medical.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { href } from '../lib/url';
+---
+<BaseLayout
+  title="Medical Screening for Ayahuasca and Psilocybin | MexiSol World"
+  description="Who should not take ayahuasca, psilocybin or Satori, which medications interact, and how our health screening works before any retreat is confirmed."
+  path="/medical"
+  current="resources"
+  ogImage="medical"
+  breadcrumbs={[{ name: 'Medical information', path: '/medical' }]}
+>
+  <section class="section" style="padding-bottom:var(--space-8);border-bottom:1px solid var(--hairline)">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Resources</p>
+      <h1 class="t-display" style="margin-bottom:var(--space-5)">Medical information</h1>
+      <p class="t-lead" style="max-width:var(--measure)">These medicines are powerful and not right for every body. Read this before you book, and be honest with us on the call.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">How screening works</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Nothing is confirmed until we review your health</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">When you register, we ask about your medical history, every medication, supplement and herb you take, and any recent use of other substances. We go over it with you on a call.</p>
+        <p class="muted" style="margin-bottom:var(--space-4)">Some conditions mean the retreat is not safe for you. Others only need clearance from your own doctor, or a change in which medicines you take part in.</p>
+        <p>Never stop a prescribed medication on your own. Any change should be planned with the doctor who prescribed it.</p>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">The ayahuasca retreat may not be safe if you have</h2>
+        <ul class="rule-list">
+          <li>Epilepsy or a seizure disorder</li>
+          <li>Schizophrenia, psychosis, bipolar or a dissociative disorder</li>
+          <li>Serious heart disease, a past heart attack, stents, arrhythmia or a pacemaker</li>
+          <li>Severe liver disease</li>
+          <li>A past stroke, brain bleed, aneurysm or blood clot</li>
+          <li>Active dependence on alcohol, benzodiazepines or opioids</li>
+          <li>An active eating disorder that involves purging, or a past tear in the esophagus</li>
+          <li>An organ transplant or immune-suppressing medication</li>
+          <li>Chemotherapy or radiation in the past four weeks</li>
+          <li>Current or past use of growth hormone (HGH)</li>
+          <li>A pregnancy, or you are breastfeeding</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">By medicine</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">What each one asks of you</h2>
+      <div class="grid" style="--min:240px;--gap:var(--space-7)">
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Ayahuasca and Satori</h3><p>Ayahuasca contains MAOIs, which can react dangerously with many medicines and supplements. Satori works in a similar way, so the same review applies to both.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Psilocybin</h3><p>Gentler on the body, but serious liver disease is still a reason not to attend. Satori is part of this retreat too, so the medication review applies.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Kambo</h3><p>Not for anyone on medication for low blood pressure, with Addison's disease, or who has taken Bufo in the past eight weeks.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Bufo</h3><p>Optional, at extra cost, and offered only after the team agrees you are ready. Everything on the list above applies.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Medications</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Tell us about everything you take</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Some medicines are fine to keep taking. Many are not. The groups below are the most common problems. The list is not complete, which is why we ask for everything.</p>
+        <p class="muted">Cannabis can blunt the experience, so we ask you to stop it before you come.</p>
+      </div>
+      <ul class="rule-list">
+        <li>Antidepressants, including all SSRIs, SNRIs, tricyclics and MAOIs</li>
+        <li>Benzodiazepines, sleeping pills and many antipsychotics</li>
+        <li>ADHD stimulants and weight-loss drugs</li>
+        <li>Opioid painkillers and tramadol</li>
+        <li>Migraine triptans, some antihistamines and decongestants, cough syrup with dextromethorphan</li>
+        <li>Herbs and supplements: St. John's Wort, 5-HTP, kava, kratom, ginseng, rhodiola, ephedra, yohimbe</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gutter center" style="padding-bottom:var(--space-9)">
+    <div class="measure rule-top rule-top--soft" style="padding-top:var(--space-8)">
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Not sure about something?</h2>
+      <p class="muted" style="margin-bottom:var(--space-7)">Ask us before you book. We would rather talk it through than have you arrive unsure.</p>
+      <div class="cluster">
+        <Button href={href('/#register')} data-track="register">Register and book a call</Button>
+        <Button href={href('/prepare')}>Prepare and travel</Button>
+      </div>
+      <p class="t-caption muted" style="margin-top:var(--space-6)">This page is general information, not medical advice.</p>
+    </div>
+  </section>
+</BaseLayout>

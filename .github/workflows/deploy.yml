@@ -1,21 +1,55 @@
-name: Build and deploy
+name: Check, build and deploy
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check:
+    name: Lint, links and Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npm run lint
+      - name: Build at the domain root
+        run: npm run build
+      - name: Broken link check (fails on any broken internal link or placeholder)
+        run: node scripts/check-links.mjs dist /
+      - name: Lighthouse CI budget (mobile)
+        run: npx lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
   build:
+    name: Build for GitHub Pages
+    needs: [secrets, check]
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,15 +61,21 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Served from https://fincaelpendulo-lab.github.io/mexisol-world until mexisol.world is connected.
+          # /mexisol-world while served from fincaelpendulo-lab.github.io; "/" once mexisol.world is connected.
           BASE_PATH: ${{ vars.BASE_PATH || '/mexisol-world' }}
+      - name: Link check at the deployed base path
+        run: node scripts/check-links.mjs dist "${{ vars.BASE_PATH || '/mexisol-world' }}"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

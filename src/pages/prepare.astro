@@ -1,0 +1,101 @@
+---
+// Prepare and travel (canvas: Prepare.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GuideSplit from '../components/GuideSplit.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import rooms from '../data/rooms.json';
+import { href } from '../lib/url';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+---
+<BaseLayout
+  title="How to Prepare for Your Retreat and Get to the Finca | MexiSol World"
+  description="What to know before an ayahuasca or psilocybin retreat in Mexico: health and medications, the diet, what to pack, and how to get from Guadalajara airport."
+  path="/prepare"
+  current="resources"
+  ogImage="prepare"
+  breadcrumbs={[{ name: 'Prepare and travel', path: '/prepare' }]}
+>
+  <div class="photo-band" style="--h:520px">
+    <Photo name="agave-field-and-palapa-cabins-under" alt="Agave field and palapa cabins under clouds" priority />
+    <div class="photo-band__wash">
+      <p class="label">Before you come</p>
+      <h1 class="t-display">Prepare and travel</h1>
+      <p class="t-subtitle" style="max-width:760px">What to know about your health, your body and getting to the Finca.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Your health</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Safety comes first</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">These medicines are strong, and they do not suit everyone. Before we confirm your place, we review your health history and every medication and supplement you take.</p>
+        <p class="muted">Antidepressants such as SSRIs, many psychiatric drugs, some cold and allergy medicines, and herbs like St. John's Wort or kratom can react badly with ayahuasca and Satori. If you need to stop something, do it only with your doctor's guidance, and tell us early.</p>
+        <p style="margin-top:var(--space-5)"><a href={href('/medical')}>Read the full medical information</a></p>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Talk to us first if you have</h2>
+        <ul class="rule-list">
+          <li>Epilepsy or a history of seizures</li>
+          <li>Schizophrenia, psychosis or bipolar disorder</li>
+          <li>Serious heart disease, a pacemaker or arrhythmia</li>
+          <li>Severe liver disease</li>
+          <li>A past stroke, aneurysm or blood clot</li>
+          <li>Dependence on alcohol, benzodiazepines or opioids</li>
+          <li>A pregnancy, or you are breastfeeding</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <GuideSplit eyebrow="The weeks before" title="Eat clean. Look inward." image="lavender-path-with-the-greenhouse-behind" imageAlt="Lavender path with the greenhouse behind" reverse>
+    <p>In the two weeks before, skip red meat, processed food, refined sugar and alcohol, and cut back on caffeine. Stop cannabis. Spend less time on screens and more time walking, writing and sleeping. Come with a loose intention, or none at all. The medicine rarely follows a plan.</p>
+  </GuideSplit>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">What to pack</h2>
+        <ul class="rule-list">
+          <li>Layers: days are warm, nights are cool</li>
+          <li>Comfortable, loose clothes for ceremony</li>
+          <li>Swimsuit, hat, sunglasses, sunscreen</li>
+          <li>A journal</li>
+          <li>Sleep mask, earplugs or headphones</li>
+          <li>Cash in USD or MXN for extras</li>
+        </ul>
+        <p class="t-caption muted" style="margin-top:var(--space-4)">Towels and linens are provided. We send the full list after you book.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">After</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Give it a few days</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Go easy on yourself when you get home. Rest, eat simply, spend time outside and hold off on big decisions. Share the experience only with people who can listen well.</p>
+        <p class="muted">We stay in touch after the retreat, and the group usually does too.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Getting here</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Fly into Guadalajara</h2>
+      <p style="max-width:var(--measure);margin-bottom:var(--space-8)">The Finca is about an hour east of Guadalajara International Airport (GDL), outside Tepatitlán de Morelos. Flights are not included.</p>
+      <div class="grid" style="--min:260px;--gap:var(--space-7)">
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Our pickup</h3><p>A member of our staff meets you at the airport. {usd(rooms.airportPickup.oneWayUsd)} one way, {usd(rooms.airportPickup.roundTripUsd)} round trip. You get their name and photo before you fly.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">By bus</h3><p>Taxi to the Nueva Central Camionera, bus to Tepatitlán every 30 minutes, then a short taxi to the Finca. About two hours and under $30 USD.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">By car</h3><p>Search "Finca El Péndulo" on <a href="https://maps.app.goo.gl/icPCz4ojjqUjLsNR6">Google Maps</a>. Toll road most of the way. Camino al Saucillo 861, Tepatitlán de Morelos, Jalisco.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <p class="label" style="margin-bottom:var(--space-5)">Ready?</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-7)">Pick your retreat</h2>
+    <div class="cluster">
+      <Button href={href('/ayahuasca-retreat')}>Ayahuasca retreat</Button>
+      <Button href={href('/psilocybin-retreat')}>Psilocybin retreat</Button>
+    </div>
+  </section>
+</BaseLayout>

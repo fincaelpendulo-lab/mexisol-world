@@ -1,0 +1,8 @@
+# Use gitleaks' default rules. The Turnstile *site* key is public by design
+# (it is printed in every page), so it is allowed here. Secret keys are not.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Public values"
+regexes = ['''0x4AAAAAAFcEbJ_lazXp8ZNc''']

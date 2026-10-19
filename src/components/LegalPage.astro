@@ -1,0 +1,29 @@
+---
+// Layout for Privacy and Terms: draft notice, title, long-form text.
+interface Props { title: string; updated: string; }
+const { title, updated } = Astro.props;
+---
+<section class="section legal">
+  <div class="legal__body">
+    <p class="legal__draft" role="note"><strong>DRAFT – needs legal review.</strong> This text has not been reviewed by a lawyer yet and may change.</p>
+    <p class="label" style="margin-bottom:var(--space-5)">Legal</p>
+    <h1 class="t-display" style="margin-bottom:var(--space-5)">{title}</h1>
+    <p class="muted" style="margin-bottom:var(--space-8)">Last updated {updated}</p>
+    <slot />
+  </div>
+</section>
+
+<style is:global>
+  .legal__body { max-width: var(--measure); margin: 0 auto; }
+  .legal__draft { padding: var(--space-4) var(--space-5); background: var(--brand-ochre); color: var(--on-ochre); margin-bottom: var(--space-8); }
+  .legal__draft strong { font-weight: 400; font-family: var(--font-display); }
+  .legal h2 { font: var(--text-title); margin: var(--space-8) 0 var(--space-4); }
+  .legal h3 { font: var(--text-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--label-ink); margin: var(--space-6) 0 var(--space-3); }
+  .legal p, .legal li { color: var(--ink-muted); }
+  .legal p + p { margin-top: var(--space-4); }
+  .legal ul { padding-left: var(--space-5); margin: var(--space-3) 0; }
+  .legal li + li { margin-top: var(--space-2); }
+  .legal table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; display: block; overflow-x: auto; }
+  .legal th, .legal td { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-4) var(--space-3) 0; border-bottom: 1px solid var(--hairline); font: var(--text-caption); color: var(--ink-muted); }
+  .legal th { color: var(--ink); font-weight: 400; }
+</style>

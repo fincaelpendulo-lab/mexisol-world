@@ -1,0 +1,118 @@
+---
+// Shared body of the Ayahuasca and Psilocybin pages (canvas: Ayahuasca.dc.html, Psilocybin.dc.html).
+import HeroSplit from './HeroSplit.astro';
+import SectionIntro from './SectionIntro.astro';
+import GuideSplit from './GuideSplit.astro';
+import Photo from './Photo.astro';
+import Button from './Button.astro';
+import retreats from '../data/retreats.json';
+import rooms from '../data/rooms.json';
+import { dateRange } from '../lib/dates';
+import { href } from '../lib/url';
+
+interface Img { name: string; alt: string; position?: string; }
+interface Props {
+  medicine: 'ayahuasca' | 'psilocybin';
+  title: string;
+  hero: Img;
+  heroThumbs: Img[];
+  heroText: string;
+  intro: string;
+  medicineText: string[];
+  included: string[];
+  optional: string;
+  strip?: Img[];
+  days: { title: string; text: string }[];
+  guide: { eyebrow: string; name: string; image: Img; text: string };
+  datesTitle: string;
+}
+const p = Astro.props;
+const dates = retreats.finca.filter((r) => r.medicine === p.medicine);
+const booking = dates.find((r) => r.bookingUrl)?.bookingUrl;
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+---
+<HeroSplit image={p.hero.name} imageAlt={p.hero.alt} eyebrow="Finca El Péndulo · 7 days, 6 nights" title={p.title} cta={{ label: 'See dates', href: '#dates' }} images={p.heroThumbs}>{p.heroText}</HeroSplit>
+
+<SectionIntro eyebrow="What to expect">{p.intro}</SectionIntro>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap grid">
+    <div class="stack" style="--stack:var(--space-4)">
+      <h2 class="t-heading" style="margin-bottom:var(--space-2)">The medicine</h2>
+      {p.medicineText.map((t) => <p class="muted">{t}</p>)}
+    </div>
+    <div>
+      <h2 class="label" style="margin-bottom:var(--space-5)">What's included</h2>
+      <ul class="rule-list">
+        {p.included.map((i) => <li>{i}</li>)}
+        <li class="muted">{p.optional}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{p.strip && (
+  <div class="photo-row" style="--min:220px;--h:420px">
+    {p.strip.map((s) => <Photo name={s.name} alt={s.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1000]} style={s.position ? `object-position:${s.position}` : undefined} />)}
+  </div>
+)}
+
+<section class="section deep">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:var(--space-5)">The week</p>
+    <h2 class="t-heading" style="margin-bottom:var(--space-8)">Seven days at the Finca</h2>
+    <ol class="grid days" style="--min:260px;--gap:var(--space-6) var(--space-7)">
+      {p.days.map((d, i) => (
+        <li class="rule-top">
+          <p class="label label--tight" style="margin-bottom:var(--space-2)">Day {i + 1}</p>
+          <h3 class="t-title" style="margin-bottom:var(--space-2)">{d.title}</h3>
+          <p>{d.text}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="t-caption" style="margin-top:var(--space-7)">The schedule moves with the group. Every ceremony is optional.</p>
+  </div>
+</section>
+
+<GuideSplit eyebrow={p.guide.eyebrow} title={p.guide.name} image={p.guide.image.name} imageAlt={p.guide.image.alt}>
+  <p>{p.guide.text}</p>
+</GuideSplit>
+
+<section id="dates" class="section">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:var(--space-5)">{retreats.year} dates</p>
+    <h2 class="t-heading" style="margin-bottom:var(--space-7)">{p.datesTitle}</h2>
+    <ul class="grid grid--fill date-cards" style="--min:240px;--gap:var(--space-3)">
+      {dates.map((r) => (
+        <li>
+          <a class="date-card" href={r.bookingUrl || '#register'} data-track={r.bookingUrl ? 'booking' : undefined}>
+            <span class="t-date">{dateRange(r.start, r.end)}</span>
+            <span class="date-card__cta">Register<span class="visually-hidden"> for {dateRange(r.start, r.end)}</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="grid rule-top rule-top--soft" style="--min:200px;--gap:var(--space-5);margin-top:var(--space-8);padding-top:var(--space-6)">
+      {rooms.rooms.map((r) => (
+        <div><p class="t-title" style="margin-bottom:var(--space-2)">{r.name}</p><p class="t-date muted">{usd(r.priceUsd)}</p></div>
+      ))}
+    </div>
+    <p style="margin-top:var(--space-4)"><a href={href('/finca-el-pendulo#rooms')}>See the rooms</a></p>
+  </div>
+</section>
+
+<section id="register" class="section deep center">
+  <p class="label" style="margin-bottom:var(--space-5)">Ready to talk?</p>
+  <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Start with a call</h2>
+  <p class="measure" style="margin-bottom:var(--space-7)">We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.</p>
+  <div class="cluster">
+    <Button href={booking || href('/#register')} variant="on-photo" data-track={booking ? 'booking' : 'register'}>Book your place</Button>
+    <Button href={href('/prepare')} variant="on-photo">How to prepare</Button>
+  </div>
+</section>
+
+<style is:global>
+  .days, .date-cards { list-style: none; margin: 0; padding: 0; }
+  .deep .days .label { color: var(--brand-ochre); }
+  .date-cards .date-card { height: 100%; }
+</style>

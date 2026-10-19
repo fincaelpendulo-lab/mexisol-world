@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RetreatPage from '../components/RetreatPage.astro';
+---
+<BaseLayout
+  title="Ayahuasca Retreat in Mexico, 7 Days in Jalisco | MexiSol World"
+  description="Seven days at Finca El Péndulo near Guadalajara: two ayahuasca ceremonies and one with Satori, led by Humberto. Up to 15 guests, from $1,850 USD."
+  path="/ayahuasca-retreat"
+  current="resources"
+  ogImage="ayahuasca"
+  breadcrumbs={[{ name: 'Ayahuasca retreat', path: '/ayahuasca-retreat' }]}
+>
+  <RetreatPage
+    medicine="ayahuasca"
+    title="Ayahuasca retreat"
+    hero={{ name: 'guide-preparing-copal-before-ceremony', alt: 'A guide preparing copal before ceremony' }}
+    heroThumbs={[
+      { name: 'group-meditation-in-the-osho-hut', alt: 'Group meditation in the Osho Hut' },
+      { name: 'altar-with-a-mother-earth-figure', alt: 'Altar with a Mother Earth figure, clay vessels and flowers' },
+    ]}
+    heroText="Three night ceremonies in the Osho Hut, two with ayahuasca and one with Satori, led by Humberto with live music. Up to 15 guests. From $1,850 USD, all-inclusive."
+    intro="Ayahuasca has a way of removing the stories you tell yourself. Some nights bring visions, some bring tears, some bring nothing but a long wait. All of them teach something."
+    medicineText={[
+      'A brew of the ayahuasca vine and the chacruna leaf, used in ceremony across the Amazon for generations. Ours is prepared in Pucallpa.',
+      'It is demanding on the body. Purging is common and part of the process. A ceremony lasts most of the night. You choose a mattress, the lights go down, cups are served one by one, and after a while the songs begin. Servers bring water, tissues and a steady arm to the bathroom.',
+      'The third ceremony is with Satori, a sacred brew prepared in Mexico that works in a similar way.',
+    ]}
+    included={[
+      '2 ayahuasca ceremonies and 1 Satori ceremony',
+      '2 Kambo sessions',
+      'Hapé and cacao ceremonies',
+      'Sananga, chilcuague and other plant remedies',
+      'Temazcal and fire circle',
+      'Group and one-on-one integration',
+      'Hike to Cerro La Campana, horses, pool and lake',
+      'Six nights and all meals',
+    ]}
+    optional="Optional, extra cost: Bufo, massages"
+    days={[
+      { title: 'Arrival', text: 'Check in, walk the land, meet the group over dinner.' },
+      { title: 'Opening', text: 'Intentions with Humberto, morning Kambo, quiet afternoon. First ayahuasca ceremony at night.' },
+      { title: 'Satori', text: 'Rest and journaling. Satori ceremony.' },
+      { title: 'Going deeper', text: 'Second Kambo, optional yoga or breathwork, one-on-one time. Second ayahuasca ceremony.' },
+      { title: 'Fire', text: 'Optional Bufo. Group integration with Humberto. Fire circle at night.' },
+      { title: 'Closing', text: 'Sunrise hike to Cerro La Campana, temazcal, cacao in the Osho Hut, closing dinner at the Oracle.' },
+      { title: 'Departure', text: 'Breakfast, goodbyes, ride to the airport.' },
+    ]}
+    guide={{
+      eyebrow: 'Your shaman',
+      name: 'Humberto',
+      image: { name: 'smudging-with-copal-before-ceremony-flowers', alt: 'Smudging with copal before ceremony, flowers on the altar' },
+      text: 'Born in Tepatitlán, a few minutes from the Finca. He trained in Perú through long master plant dietas and has led ceremonies on several continents. He opens every ceremony, sings through the night with the musicians, and is there the next morning to talk it through.',
+    }}
+    datesTitle="Ayahuasca at the Finca"
+  />
+</BaseLayout>

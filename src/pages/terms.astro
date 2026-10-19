@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import site from '../data/site.json';
+import { href } from '../lib/url';
+---
+<BaseLayout
+  title="Terms and Conditions | MexiSol World"
+  description="The terms for using mexisol.world and booking a MexiSol World retreat: screening, bookings and payments, cancellations, your health and our responsibilities."
+  path="/terms"
+  breadcrumbs={[{ name: 'Terms and conditions', path: '/terms' }]}
+>
+  <LegalPage title="Terms and conditions" updated="October 2026">
+    <p>These terms apply to mexisol.world and to retreats run by MexiSol World at {site.address.name}, {site.address.locality}, {site.address.region}, and abroad. By using the site or booking a retreat, you agree to them. Each retreat may also have its own written agreement, which takes priority where the two differ.</p>
+
+    <h2>The website</h2>
+    <p>The information on this site is general. Retreat dates, programs and prices may change, and the confirmation we send you is what counts. The texts, photos, videos and logos belong to MexiSol World or are used with permission. Do not copy them for commercial use without asking us.</p>
+    <p>Nothing on this site is medical, psychological or legal advice. Read our <a href={href('/medical')}>medical information</a> and talk to your doctor before deciding to attend.</p>
+
+    <h2>Registering is not booking</h2>
+    <p>Sending the registration form does not reserve a place or create any payment obligation. A place is confirmed only after a screening call, our written confirmation and the payment of the deposit stated in that confirmation.</p>
+
+    <h2>Screening and your health</h2>
+    <ul>
+      <li>You agree to tell us the truth, fully, about your physical and mental health, medications, supplements and recent substance use, and to update us if anything changes before the retreat.</li>
+      <li>We may decline or cancel a booking if we believe a retreat is not safe for you. If we cancel for this reason before the retreat, we refund what you paid, minus any non-refundable costs already explained in your confirmation.</li>
+      <li>Never stop a prescribed medication without the guidance of the doctor who prescribed it.</li>
+      <li>Every ceremony and activity is voluntary. You can decline any of them at any time.</li>
+    </ul>
+
+    <h2>Payments and cancellations</h2>
+    <p>Prices are per person in US dollars unless stated otherwise. The deposit, payment schedule, cancellation deadlines and refund amounts for your retreat are set out in your booking confirmation or retreat agreement. If you cannot attend, tell us as soon as possible.</p>
+    <p>If we have to cancel or move a retreat for reasons within our control, you may choose a full refund or a place on another date. For events outside anyone's control, such as natural disasters or government restrictions, we will offer another date and work with you in good faith.</p>
+
+    <h2>At the retreat</h2>
+    <ul>
+      <li>Follow the instructions of the facilitators and staff, especially during ceremonies.</li>
+      <li>Do not bring alcohol, drugs or medicines that were not disclosed during screening.</li>
+      <li>Respect the other guests, the staff, the animals and the land. We may ask anyone who puts themselves or others at risk to leave, without a refund for the unused days.</li>
+      <li>Do not take photos or video of other guests without their consent.</li>
+    </ul>
+
+    <h2>Risks and responsibility</h2>
+    <p>Plant medicine ceremonies, Kambo, Bufo, temazcal, horse riding, hiking and swimming carry physical and emotional risks. You take part knowing these risks and having disclosed your health honestly. We take reasonable care with trained staff and screening. To the extent the law allows, MexiSol World is not responsible for harm caused by information you withheld, by not following staff instructions, or by events outside our control. Nothing in these terms limits rights you have under Mexican consumer protection law.</p>
+
+    <h2>Travel</h2>
+    <p>Flights, travel insurance, visas and travel to and from the Finca are your responsibility unless your confirmation says otherwise. We recommend travel insurance that covers cancellation and medical care.</p>
+
+    <h2>Privacy</h2>
+    <p>How we handle your personal data is explained in our <a href={href('/privacy')}>privacy policy</a>.</p>
+
+    <h2>Law and disputes</h2>
+    <p>These terms are governed by the laws of Mexico. We will try to solve any disagreement by talking first. If that fails, the courts of Jalisco, Mexico, will have jurisdiction, without prejudice to your rights as a consumer.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </LegalPage>
+</BaseLayout>

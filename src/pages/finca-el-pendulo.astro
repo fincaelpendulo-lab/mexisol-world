@@ -1,0 +1,299 @@
+---
+// Finca El Péndulo retreats (canvas: Finca.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import VideoBand from '../components/VideoBand.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import site from '../data/site.json';
+import retreats from '../data/retreats.json';
+import rooms from '../data/rooms.json';
+import { dateRange } from '../lib/dates';
+import { href, absolute } from '../lib/url';
+import { event, fincaLocation, fincaPlace } from '../lib/schema';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
+const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat' };
+
+const spaces = [
+  { img: 'guests-gathered-inside-the-osho-hut', alt: 'Guests gathered inside the Osho Hut, a round stone room with arched windows', name: 'The Osho Hut', text: 'The spiritual heart of the Finca. A round stone house with a palm roof, where every ceremony happens with live music. It also hosts meditation, yoga, concerts and long dinners.' },
+  { img: 'onyx-pillars-of-the-oracle-glowing', alt: 'The onyx pillars of the Oracle glowing at dusk', name: 'The Oracle', text: 'Sixteen pillars of Jalisco onyx, each carved with a rune. Bring a question and choose a column. We also use it for outdoor yoga, meditation and closing dinners.' },
+  { img: 'rider-on-a-chestnut-horse-looking', alt: 'A rider on a chestnut horse looking over green hills', name: 'The horses', text: 'Nine horses, five of them born on the Finca. Trail rides into the hills, equine therapy, and lessons in how to care for them. No experience needed.' },
+  { img: 'lake-avalon-with-its-palapa-and', alt: 'Lake Avalón with its palapa and stone terrace', name: 'Lake Avalón', text: 'Koi, turtles and a palapa by the water. Loungers in the sun, a long table for dinners, and a trail around the shore for evening walks.' },
+  { img: 'wooden-patio-with-tile-roofs-and', alt: 'Wooden patio with tile roofs and tree-trunk pillars', name: "The Lord's Atrium", text: 'A 30-ton root with a meditating Jesus at its front, set in the centre of the atrium. Come here to meditate, to connect, and to feel the spirit of the Finca.' },
+  { img: 'pool-in-front-of-the-brick', alt: 'The pool in front of the brick tower, surrounded by cactus and trees', name: 'The pool', text: 'Kept at a comfortable temperature all year and wrapped in green. Made for the slow afternoons between ceremonies.' },
+  { img: 'ambu-terrace-a-covered-terrace-with', alt: 'Ambu Terrace, a covered terrace with wooden pillars facing the agave fields', name: 'Ambu Terrace', text: 'A wide covered terrace looking out over the agave fields, with room for up to 200 people. Where we gather for music, celebrations and pizza from the wood oven.' },
+];
+const more = [
+  { img: 'painted-temazcal-dome-behind-the-cold', alt: 'The painted temazcal dome behind the cold-water tubs', name: 'Temazcal', text: 'The traditional sweat lodge, heated with volcanic stones, with cold-water tubs outside for the contrast.' },
+  { img: 'sammasati-with-a-jacuzzi-and-long', alt: 'Sammasati, with a jacuzzi and long wooden tables under string lights', name: 'Sammasati', text: 'The gathering place at the center of the Finca: a wooden table for 25, a jacuzzi for 8 and a fire pit.' },
+  { img: 'inside-the-gaia-greenhouse-full-of', alt: 'Inside the Gaia greenhouse, full of ferns and hanging plants', name: 'Gaia greenhouse', text: 'Herbs, vegetables, fruit and medicinal plants grown with the seasons. What it harvests ends up on your plate.' },
+  { img: 'guests-painting-and-working-with-clay', alt: 'Guests painting at long wooden tables in the art workshop', name: 'Art workshop', text: 'Five pottery wheels, paints, canvases and craft supplies, for when you want to work with your hands.' },
+  { img: 'massage-table-made-up-with-white', alt: 'A massage table made up with white towels in the spa', name: 'Spa', text: 'A massage room and a treatment room, with two therapists offering massages and facials.' },
+  { img: 'gym-with-a-pilates-reformer-bikes', alt: 'The gym with a Pilates reformer, bikes and a treadmill', name: 'Gym', text: 'Free weights, a Pilates reformer, bikes and a treadmill, plus ping pong and billiards in the lounge.' },
+  { img: 'wolf-on-wooden-platform', alt: "One of the Finca's two wolves standing on a wooden platform", name: 'The wolves', text: 'Two wolf brothers, rescued when their old caretakers could no longer keep them. Guests can meet them in guided, respectful visits.' },
+  { img: 'hormiguero-a-palm-roofed-building-among', alt: 'The Hormiguero, a palm-roofed building among banana trees', name: 'The Hormiguero', text: 'A two-story house built by volunteers among banana trees, with a shared kitchen and a fire pit. Sleeps up to 20.' },
+];
+const week = [
+  { img: 'guests-sitting-on-yoga-mats-under', alt: 'Guests sitting on yoga mats under the palapa by the lake', cap: 'Morning practice by the lake' },
+  { img: 'smoke-and-light-over-a-flower', alt: 'Smoke and light over a flower altar inside the Osho Hut', cap: 'Ceremony in the Osho Hut' },
+  { img: 'fire-circle-at-night-with-guests', alt: 'A guest standing inside a ring of fire, the group seated around', cap: 'The fire circle' },
+  { img: 'guests-sharing-a-candlelit-dinner-at', alt: 'Guests sharing a candlelit dinner at a long wooden table', cap: 'Dinner together' },
+];
+const roomTypes = [
+  { img: 'beds-in-the-open-loft-of', alt: 'Beds in the open loft of the Hormiguero', name: 'Shared dorm', price: price.dorm, names: 'The Hormiguero', text: 'Shared with up to three other guests in the house volunteers built among the banana trees. Good if you are coming on your own and want company.' },
+  { img: 'guest-room-under-a-palapa-roof', alt: 'Guest room under a palapa roof', name: 'Semi-private villa', price: price['semi-private'], names: 'Agua · Aire · Tierra · Fuego', text: 'One or two guests. Shared bathroom, privacy curtains, east-facing for sunrise and the horses.' },
+  { img: 'maguey-a-green-room-with-a', alt: 'Maguey, a green room with a double bed and a private bathroom', name: 'Private room', price: price.private, names: 'Agave · Maguey · Lobo · Loba · Oeste · Cactus', text: 'Two or three guests, with a private bathroom.' },
+  { img: 'tilopa-a-deep-blue-room-with', alt: 'Tilopa, a deep blue room with a log bed and a window onto the agave', name: 'Deluxe room', price: price.deluxe, names: 'Tilopa · Jumanji', text: 'For couples. Queen bed, a sofa bed for a third guest, and a private bathroom with a jacuzzi tub. There are only two.' },
+];
+const galleries = [
+  { title: 'Deluxe rooms', note: 'Tilopa and Jumanji, the two most private rooms on the land.', min: 260, ratio: '4-3', items: [
+    { img: 'tilopa-a-deep-blue-room-with', alt: 'Tilopa bedroom', cap: 'Tilopa' },
+    { img: 'corner-jacuzzi-in-the-tilopa-bathroom', alt: 'Corner jacuzzi in the Tilopa bathroom', cap: 'Tilopa · Jacuzzi' },
+    { img: 'jumanji-a-green-room-with-a', alt: 'Jumanji, a green room with a palm roof and a sofa bed', cap: 'Jumanji' },
+  ] },
+  { title: 'Private rooms', note: 'Six rooms, each decorated its own way, all with a private bathroom.', min: 180, ratio: '4-3', items: [
+    { img: 'agave-bedroom-with-woven-baskets-on', alt: 'Agave bedroom with woven baskets on a turquoise wall', cap: 'Agave' },
+    { img: 'maguey-a-green-room-with-a', alt: 'Maguey bedroom with green walls', cap: 'Maguey' },
+    { img: 'lobo-bedroom-with-a-yellow-woven', alt: 'Lobo bedroom with a yellow woven bedspread', cap: 'Lobo' },
+    { img: 'loba-bedroom-with-a-wagon-wheel', alt: 'Loba bedroom with a wagon-wheel headboard', cap: 'Loba' },
+    { img: 'oeste-bedroom-with-two-single-beds', alt: 'Oeste bedroom with two single beds', cap: 'Oeste' },
+    { img: 'cactus-bedroom-with-a-sitting-area', alt: 'Cactus bedroom with a sitting area', cap: 'Cactus' },
+  ] },
+  { title: 'Shared dorm', note: 'The Hormiguero: a loft upstairs, bunks downstairs and a shared kitchen.', min: 200, ratio: '3-4', items: [
+    { img: 'hormiguero-from-outside-a-round-house', alt: 'The Hormiguero from outside, a round house with a palm roof', cap: 'The Hormiguero' },
+    { img: 'beds-in-the-open-loft-of', alt: 'Beds in the upstairs loft', cap: 'Upstairs loft' },
+    { img: 'wooden-bunk-beds-downstairs', alt: 'Wooden bunk beds downstairs', cap: 'Bunks downstairs' },
+  ] },
+];
+
+const offers = rooms.rooms.map((r) => ({ name: r.name, priceUsd: r.priceUsd }));
+const events = retreats.finca.map((r) => event({
+  name: `${r.title} at Finca El Péndulo`,
+  start: r.start,
+  end: r.end,
+  description: r.medicine === 'familia-sagrada'
+    ? 'A Holy Week retreat at Finca El Péndulo, Jalisco.'
+    : `Seven days, six nights, all-inclusive. Three ceremonies: two with ${r.medicine} and one with Satori. Up to 15 guests.`,
+  url: absolute(medicinePage[r.medicine] ?? '/finca-el-pendulo'),
+  location: fincaLocation,
+  prices: r.noPrice ? undefined : offers,
+  bookingUrl: r.bookingUrl,
+}));
+---
+<BaseLayout
+  title="Retreats at Finca El Péndulo, Jalisco | MexiSol World"
+  description="Twelve ayahuasca and psilocybin retreats in 2027 at Finca El Péndulo, near Guadalajara. Rooms from $1,850 USD, all-inclusive, up to 15 guests."
+  path="/finca-el-pendulo"
+  current="finca"
+  ogImage="finca"
+  breadcrumbs={[{ name: 'Finca El Péndulo retreats', path: '/finca-el-pendulo' }]}
+  schema={[fincaPlace, ...events]}
+>
+  <VideoBand poster="aerial-agave-rows-and-cabins" alt="Aerial view of the agave rows and palapa cabins at Finca El Péndulo" mp4="/video/finca-aerial.mp4" webm="/video/finca-aerial.webm">
+    <p class="t-title">Tepatitlán de Morelos, Jalisco</p>
+    <p class="t-date">{retreats.finca.length} retreats in {retreats.year}</p>
+    <h1 class="t-display">Finca El Péndulo</h1>
+    <p class="t-subtitle" style="max-width:760px">Our home in the highlands of Jalisco</p>
+    <div class="cluster" style="margin-top:var(--space-6)">
+      <Button href="#dates" variant="on-photo">See {retreats.year} dates</Button>
+      <Button href="#spaces" variant="on-photo">The spaces</Button>
+    </div>
+  </VideoBand>
+
+  <SectionIntro eyebrow="The land">Four hectares of countryside about an hour from Guadalajara airport, with more than fifteen spaces built by hand since 2017. Horses in the fields, agave on the hills, and a lake that catches the sunset. Every MexiSol retreat in Mexico happens here.</SectionIntro>
+
+  <div class="photo-row" style="--min:220px;--h:380px">
+    <Photo name="guests-sitting-and-swimming-at-lake" alt="Guests sitting and swimming at Lake Avalón" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-painting-and-working-with-clay" alt="Guests painting and working with clay in the art workshop" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-setting-out-on-a-horseback" alt="Guests setting out on a horseback ride" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="fire-circle-at-night-with-guests" alt="A fire circle at night with guests seated around it" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+  </div>
+
+  <section id="story" class="section">
+    <div class="wrap grid" style="align-items:center">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Eight years in the making</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Built by hand, one space at a time</h2>
+        <p class="muted" style="margin-bottom:var(--space-6)">Marina founded the Finca in 2017, starting with the stables and the old tower. Ceremonies began a year later, and people found their way here by word of mouth. The land has been under construction ever since, much of it with the help of volunteers from the community that lives here.</p>
+        <dl class="timeline">
+          <div><dt class="t-title">2017</dt><dd class="muted">Marina founds Finca El Péndulo. The stables and the tower come first.</dd></div>
+          <div><dt class="t-title">2018</dt><dd class="muted">The first plant medicine ceremonies.</dd></div>
+          <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut goes up. More than 1,000 ceremonies have been held in it since.</dd></div>
+          <div><dt class="t-title">Today</dt><dd class="muted">More than fifteen spaces, nine horses and a community that keeps building.</dd></div>
+        </dl>
+      </div>
+      <div class="pair">
+        <Photo name="osho-hut-under-construction-its-palm" alt="The Osho Hut under construction, its palm roof half laid" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+        <Photo name="mare-and-her-foal-grazing-beside" alt="A mare and her foal grazing beside the Finca dogs" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-band" style="--h:520px">
+    <Photo name="aerial-lake-avalon" alt="Aerial view of Lake Avalón with its central palapa and stone paths" />
+    <div class="photo-band__wash">
+      <p class="t-title">Four hectares, fifteen spaces</p>
+      <p class="t-display" style="max-width:900px">Room to slow down</p>
+    </div>
+  </div>
+
+  <section id="spaces" class="section" style="padding-bottom:var(--space-8)">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">The spaces</p>
+      <div class="split-head">
+        <h2 class="t-heading">Built for ceremony, and for the days in between</h2>
+        <p class="muted" style="max-width:400px">Seven places you will get to know during your week.</p>
+      </div>
+      <div class="grid grid--fill" style="--min:260px;--gap:var(--space-7) var(--space-3)">
+        {spaces.map((s, i) => (
+          <div class="stack" style="--stack:var(--space-3)">
+            <Photo name={s.img} alt={s.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5" />
+            <h3 class="label label--tight" style="margin-top:var(--space-4)">{String(i + 1).padStart(2, '0')} / {s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+        <div class="card deep also">
+          <p class="label label--tight">Also on the land</p>
+          <p class="t-title">Temazcal, Sammasati, the Gaia greenhouse, an art studio, spa, gym, a rose garden and two rescued wolves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">More of the Finca</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">Places to rest, make and recover</h2>
+      <div class="grid grid--fill" style="--min:240px;--gap:var(--space-6) var(--space-3)">
+        {more.map((s) => (
+          <div class="stack" style="--stack:var(--space-3)">
+            <Photo name={s.img} alt={s.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-3-2" />
+            <h3 class="t-title" style="margin-top:var(--space-4)">{s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Life at the Finca</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">What a week here looks like</h2>
+      <div class="photo-row" style="--min:220px;--h:360px">
+        {week.map((w) => (
+          <figure class="fig">
+            <Photo name={w.img} alt={w.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} />
+            <figcaption class="label label--tight">{w.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid" style="align-items:center">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">The table</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Food that helps the work</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Everything is cooked on site from whole ingredients, many grown in the Gaia greenhouse or on farms nearby. Mostly plant-based, buffet style, three meals a day and two on ceremony days.</p>
+        <p class="muted">No alcohol, no refined sugar, no processed food. Vegan, gluten-free and other diets are covered: tell us when you book.</p>
+      </div>
+      <div class="pair">
+        <Photo name="candlelit-dinner-at-the-greenhouse-table" alt="Candlelit dinner at the greenhouse table" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+        <Photo name="inside-the-gaia-greenhouse-full-of" alt="Inside the Gaia greenhouse" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+      </div>
+    </div>
+  </section>
+
+  <section id="rooms" class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Rooms and prices</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Every room has a name</h2>
+      <p class="muted" style="max-width:var(--measure);margin-bottom:var(--space-7)">One price covers the whole retreat: ceremonies, meals, activities and your bed. Sharing a room with a friend or partner gets you a discount.</p>
+      <div class="grid" style="--min:240px;--gap:var(--space-7) var(--space-3);margin-bottom:var(--space-9)">
+        {roomTypes.map((r) => (
+          <div class="stack" style="--stack:var(--space-3)">
+            <Photo name={r.img} alt={r.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-3" />
+            <h3 class="t-title" style="margin-top:var(--space-4)">{r.name}</h3>
+            <p class="t-date">{usd(r.price)}</p>
+            <p class="label label--tight">{r.names}</p>
+            <p class="muted">{r.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="stack" style="--stack:var(--space-8)">
+        {galleries.map((g) => (
+          <div class="rule-top rule-top--soft stack" style="padding-top:var(--space-6)">
+            <div class="split-head" style="margin:0;align-items:baseline">
+              <h3 class="t-title">{g.title}</h3>
+              <p class="muted" style="max-width:520px">{g.note}</p>
+            </div>
+            <div class="grid grid--fill" style={`--min:${g.min}px;--gap:var(--space-5) var(--space-3)`}>
+              {g.items.map((it) => (
+                <figure class="fig fig--ink">
+                  <Photo name={it.img} alt={it.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class={`ratio-${g.ratio}`} />
+                  <figcaption class="label label--tight">{it.cap}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="t-caption muted" style="margin-top:var(--space-7)">Airport pickup from Guadalajara: {usd(rooms.airportPickup.oneWayUsd)} one way, {usd(rooms.airportPickup.roundTripUsd)} round trip. Flights not included.</p>
+    </div>
+  </section>
+
+  <section id="dates" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">{retreats.year} at Finca El Péndulo</p>
+      <div class="split-head">
+        <h2 class="t-heading">Retreats at the Finca</h2>
+        <p class="muted" style="max-width:440px">Seven days, six nights, all-inclusive. Up to 15 guests. From {usd(price.dorm)} depending on your room.</p>
+      </div>
+      <ul class="rule-list date-table">
+        {retreats.finca.map((r) => (
+          <li>
+            <p class="t-date date-table__date">{dateRange(r.start, r.end, true)}</p>
+            {medicinePage[r.medicine]
+              ? <a class="t-title date-table__title" href={href(medicinePage[r.medicine])}>{r.title}</a>
+              : <p class="t-title date-table__title">{r.title}</p>}
+            <p class="t-caption muted date-table__note">{r.guide}</p>
+            <a href={r.bookingUrl || href('/#register')} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Register for the ${r.title}, ${dateRange(r.start, r.end)}`}>Register</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap grid" style="align-items:end">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Getting here</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">One hour from Guadalajara</h2>
+        <p style="margin-bottom:var(--space-4)">Fly into Guadalajara (GDL). We can pick you up at the airport for {usd(rooms.airportPickup.oneWayUsd)} one way or {usd(rooms.airportPickup.roundTripUsd)} round trip.</p>
+        <p>Want to visit outside a retreat? The Finca also welcomes guests for quiet stays.</p>
+      </div>
+      <div class="cluster">
+        <Button href={href('/prepare')} variant="on-photo">Prepare and travel</Button>
+        <Button href={site.cloudbeds} variant="on-photo" data-track="booking">Book a stay at the Finca</Button>
+        <Button href="https://fincaelpendulo.com.mx" variant="on-photo">Visit fincaelpendulo.com.mx</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .also { justify-content: flex-end; aspect-ratio: 4 / 5; }
+  .date-table > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-6); padding: var(--space-5) 0; }
+  .date-table__date { flex: 0 0 200px; }
+  .date-table__title { flex: 1 1 260px; color: var(--ink); text-decoration: none; }
+  a.date-table__title:hover { color: var(--accent-text); }
+  .date-table__note { flex: 0 1 200px; }
+  @media (max-width: 760px) {
+    .date-table__date { flex-basis: 100%; }
+    .also { aspect-ratio: auto; }
+  }
+</style>

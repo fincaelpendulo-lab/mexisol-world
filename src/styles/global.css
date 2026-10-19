@@ -203,3 +203,21 @@ h1, h2, h3, p { margin: 0; }
 
 /* Standalone links get a 44px tap target; links inside running text keep their line height. */
 p > a:only-child, div > a:only-child, li > a:only-child { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* Shared page pieces */
+.ratio-4-3 { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.ratio-3-4 { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.ratio-4-5 { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.ratio-3-2 { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.split-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-5); margin-bottom: var(--space-7); }
+.fig { margin: 0; }
+.fig figcaption { margin-top: var(--space-4); }
+.deep .fig figcaption { color: var(--on-deep); }
+.fig--ink figcaption { margin-top: var(--space-3); }
+
+.timeline { margin: 0; border-top: 1px solid var(--ink); }
+.timeline > div { display: flex; gap: var(--space-5); padding: var(--space-4) 0; border-bottom: 1px solid var(--hairline); }
+.timeline dt { flex: 0 0 88px; }
+.timeline dd { margin: 0; }
+strong, b, th { font-weight: 400; color: var(--ink); }

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RetreatPage from '../components/RetreatPage.astro';
+---
+<BaseLayout
+  title="Psilocybin Retreat in Jalisco, Mexico, 7 Days | MexiSol World"
+  description="A seven-day psilocybin mushroom retreat near Guadalajara, led by Krista: two ceremonies plus one with Satori. Up to 15 guests, from $1,850 USD."
+  path="/psilocybin-retreat"
+  current="resources"
+  ogImage="psilocybin"
+  breadcrumbs={[{ name: 'Psilocybin retreat', path: '/psilocybin-retreat' }]}
+>
+  <RetreatPage
+    medicine="psilocybin"
+    title="Psilocybin retreat"
+    hero={{ name: 'circle-gathered-under-the-palapa-by', alt: 'A circle gathered under the palapa by the lake' }}
+    heroThumbs={[
+      { name: 'guests-stretching-between-the-onyx-columns', alt: 'Guests stretching between the onyx columns of the Oracle' },
+      { name: 'group-meditation-in-the-osho-hut', alt: 'Group meditation in the Osho Hut' },
+    ]}
+    heroText="Three ceremonies, two with sacred mushrooms and one with Satori, led by Krista with music, meditation and movement. Up to 15 guests. From $1,850 USD, all-inclusive."
+    intro="Mushrooms tend to open things gently, then all at once. Many people find them easier on the body than ayahuasca. Few find them easy on the heart, and that is the point."
+    medicineText={[
+      'Psilocybin mushrooms have been used in ceremony in Mexico for centuries, especially in the mountains of Oaxaca. Ours are sourced in Mexico.',
+      'Before each ceremony you sit with Krista and decide your dose together. The room is lighter than an ayahuasca night: music, open space, room to move or lie still. Purging is less common.',
+      'The third ceremony is with Satori, a sacred brew prepared in Mexico, close to ayahuasca in how it works.',
+    ]}
+    included={[
+      '2 psilocybin ceremonies and 1 Satori ceremony',
+      'Hapé and cacao ceremonies',
+      'Voice activation',
+      'Equine therapy and Osho meditations',
+      'Temazcal and fire circle',
+      'Group and one-on-one integration',
+      'Sunrise hike, pool and lake',
+      'Six nights and all meals',
+    ]}
+    optional="Optional, extra cost: massages"
+    strip={[
+      { name: 'guest-dancing-freely-on-the-esplanade', alt: 'A guest dancing freely on the esplanade', position: 'center 30%' },
+      { name: 'guest-with-a-white-horse', alt: 'A guest with a white horse' },
+      { name: 'elder-dancing-barefoot-among-a-seated', alt: 'An elder dancing barefoot among a seated circle', position: 'center 30%' },
+    ]}
+    days={[
+      { title: 'Arrival', text: 'Check in, walk the land, meet the group over dinner.' },
+      { title: 'Opening', text: 'Meet Krista, Hapé, breathwork. First psilocybin ceremony.' },
+      { title: 'Satori', text: 'Osho meditation, time with the horses. Satori ceremony.' },
+      { title: 'Going deeper', text: 'Free morning. Second psilocybin ceremony, bonfire after.' },
+      { title: 'Voice and fire', text: 'Voice activation, group integration, fire circle at night.' },
+      { title: 'Closing', text: 'Sunrise hike, temazcal, cacao in the Osho Hut, closing dinner at the Oracle.' },
+      { title: 'Departure', text: 'Breakfast, goodbyes, ride to the airport.' },
+    ]}
+    guide={{
+      eyebrow: 'Your guide',
+      name: 'Krista',
+      image: { name: 'three-guests-talking-in-front-of', alt: 'Three women talking in front of the agave field' },
+      text: 'Born in Mexico City. An engineer by training and a school principal for more than twenty years, she came to the Finca as a volunteer and stayed. She learned to work with mushrooms in Oaxaca. Her ceremonies are calm, practical and warm.',
+    }}
+    datesTitle="Psilocybin at the Finca"
+  />
+</BaseLayout>

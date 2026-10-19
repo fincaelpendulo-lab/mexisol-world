@@ -1,0 +1,80 @@
+---
+// International retreats (canvas: International.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import site from '../data/site.json';
+import retreats from '../data/retreats.json';
+import { dateRange } from '../lib/dates';
+import { href, absolute } from '../lib/url';
+import { event, fincaLocation, placeIn } from '../lib/schema';
+
+const year = retreats.year;
+const events = retreats.international.map((r) => event({
+  name: r.location.startsWith('Finca') || r.location === 'Europe' ? r.title : `${r.title}, ${r.location}`,
+  start: r.start,
+  end: r.end,
+  description: [r.subtitle, r.description].filter(Boolean).join(' ') || `${r.title} with MexiSol World.`,
+  url: absolute('/international-retreats'),
+  location: r.location.startsWith('Finca') ? fincaLocation : placeIn(r.id === 'europe' ? 'Alicante, Spain' : r.location, r.country),
+  prices: r.priceUsd ? [{ name: r.title, priceUsd: r.priceUsd }] : undefined,
+  bookingUrl: r.bookingUrl,
+}));
+---
+<BaseLayout
+  title="International Plant Medicine Retreats 2027 | MexiSol World"
+  description="Ceremonies and retreats with MexiSol World in Perú, India, the United States and Europe in 2027, led by the same team that hosts at Finca El Péndulo."
+  path="/international-retreats"
+  current="international"
+  ogImage="international"
+  breadcrumbs={[{ name: 'International retreats', path: '/international-retreats' }]}
+  schema={events}
+>
+  <div class="photo-band" style="--h:600px">
+    <Photo name="facilitator-leading-a-group-dance-between" alt="A facilitator leading a group dance between the onyx columns" priority />
+    <div class="photo-band__wash">
+      <p class="label">{year} International</p>
+      <h1 class="t-display">Retreats worldwide</h1>
+      <p class="t-subtitle" style="max-width:760px">The same team and the same care, away from home</p>
+    </div>
+  </div>
+
+  <SectionIntro eyebrow="On the road">Through the year we take the medicine, the music and the ceremonies to partners in other countries. Each gathering has its own format, price and booking page. Every guest still talks with us before confirming.</SectionIntro>
+
+  <section class="gutter" style="padding-bottom:var(--space-9)">
+    <ul class="wrap rule-list intl-list">
+      {retreats.international.map((r) => (
+        <li>
+          <div class="intl-list__text">
+            <p class="t-title">{r.location}</p>
+            <p class="t-date muted" style="margin-bottom:var(--space-3)">{dateRange(r.start, r.end)}, {year}</p>
+            <h2 class="t-heading">{r.title}</h2>
+            {r.subtitle && <p class="t-subtitle muted">{r.subtitle}</p>}
+            {r.description && <p class="muted" style="max-width:var(--measure);margin-top:var(--space-3)">{r.description}</p>}
+          </div>
+          <Button href={r.bookingUrl || href('/#register')} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Register for ${r.title}, ${r.location}, ${dateRange(r.start, r.end)}`}>Register</Button>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap grid" style="align-items:end">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Want a week at home?</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Come to the Finca</h2>
+        <p>Our seven-day ayahuasca and psilocybin retreats run nearly every month at Finca El Péndulo in Jalisco.</p>
+      </div>
+      <div class="cluster">
+        <Button href={href('/finca-el-pendulo')} variant="on-photo">Finca El Péndulo retreats</Button>
+        <Button href={site.instagram} variant="on-photo" data-track="outbound">Follow @mexisol.world on Instagram</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .intl-list > li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-5) var(--space-8); padding: var(--space-7) 0; }
+  .intl-list__text { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+</style>

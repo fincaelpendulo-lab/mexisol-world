@@ -206,6 +206,32 @@
     });
   });
 
+  /* ---------- Background drone video (wide screens only) ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-video-band]'), function (band) {
+    var conn = navigator.connection || {};
+    if (!window.matchMedia('(min-width: 761px)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || conn.saveData) return;
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+    v.setAttribute('aria-hidden', 'true');
+    v.preload = 'auto';
+    var webm = band.getAttribute('data-webm');
+    if (webm) { var s1 = document.createElement('source'); s1.src = webm; s1.type = 'video/webm'; v.appendChild(s1); }
+    var s2 = document.createElement('source'); s2.src = band.getAttribute('data-mp4'); s2.type = 'video/mp4'; v.appendChild(s2);
+    var pic = band.querySelector('picture, img');
+    pic.insertAdjacentElement('afterend', v);
+    var btn = band.querySelector('[data-video-toggle]');
+    btn.hidden = false;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.addEventListener('click', function () {
+      var paused = btn.getAttribute('aria-pressed') === 'true';
+      if (paused) { v.play(); btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Pause the background video'); }
+      else { v.pause(); btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Play the background video'); }
+    });
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay blocked: the photo stays */ });
+  });
+
   /* ---------- Registration form ---------- */
   var form = document.querySelector('[data-register-form]');
   if (form) {

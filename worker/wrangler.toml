@@ -1,0 +1,10 @@
+# Cloudflare Worker that receives the registration form.
+# Secrets (set once, never committed):
+#   npx wrangler secret put TURNSTILE_SECRET
+#   npx wrangler secret put GHL_WEBHOOK_URL
+name = "mexisol-form"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://mexisol.world,https://www.mexisol.world,https://fincaelpendulo-lab.github.io,http://localhost:4321,http://localhost:4322"

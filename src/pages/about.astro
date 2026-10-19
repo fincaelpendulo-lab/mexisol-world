@@ -1,0 +1,118 @@
+---
+// About us (canvas: About.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSplit from '../components/HeroSplit.astro';
+import GuideSplit from '../components/GuideSplit.astro';
+import YouTube from '../components/YouTube.astro';
+import site from '../data/site.json';
+import retreats from '../data/retreats.json';
+import { href } from '../lib/url';
+
+const team = [
+  { role: 'Shaman', name: 'Humberto', text: 'Born in Tepatitlán. He left a contracting business in California to train in Perú, near Pucallpa, through long master plant dietas. He has led ceremonies on several continents and leads our ayahuasca retreats, singing through the night with the musicians.', link: { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') } },
+  { role: 'Medicine woman', name: 'Krista', text: 'Born in Mexico City. An engineer by training, she spent more than twenty years running a high school before the medicine changed her path. She learned to work with mushrooms in Oaxaca and leads our psilocybin retreats.', link: { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') } },
+  { role: 'Finca El Péndulo', name: 'Marina', text: 'She founded the Finca in 2017 after years of meditation practice, and has kept building it ever since: more than fifteen spaces on four hectares. She looks after the place, and the community that keeps it running.', link: { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') } },
+];
+const follow = [
+  { kind: 'Instagram', title: '@mexisol.world', text: 'Dates, moments from the Finca and news from the road.', href: site.instagram, track: 'outbound' },
+  { kind: 'YouTube', title: 'Finca El Péndulo', text: 'Videos from the land, the ceremonies and the music.', href: site.youtube.url, track: 'outbound' },
+  { kind: 'Visit', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. Twelve retreats in ${retreats.year}.`, href: href('/finca-el-pendulo') },
+];
+---
+<BaseLayout
+  title="About MexiSol World: Our Story and Team in Jalisco"
+  description="MexiSol World grew around Finca El Péndulo in Tepatitlán, Jalisco. Meet Humberto, Krista and Marina, and see how a piece of land became a community."
+  path="/about"
+  current="about"
+  ogImage="about"
+  breadcrumbs={[{ name: 'About us', path: '/about' }]}
+>
+  <HeroSplit
+    image="three-guests-talking-in-front-of"
+    imageAlt="Three guests talking in front of the agave field"
+    eyebrow="About us"
+    title="It started with one piece of land"
+    cta={{ label: 'Watch the video', href: '#watch' }}
+    images={[
+      { name: 'group-meditation-in-the-osho-hut', alt: 'Group meditation in the Osho Hut' },
+      { name: 'facilitator-leading-a-group-dance-between', alt: 'A facilitator leading a group dance between the onyx columns' },
+    ]}
+  >MexiSol World is the community that grew around Finca El Péndulo: a woman who built a home for this work, a shaman who came back to the town he was born in, and the people who keep returning.</HeroSplit>
+
+  <section id="story" class="section">
+    <div class="wrap grid">
+      <div class="stack" style="--stack:var(--space-4)">
+        <p class="label">Our story</p>
+        <h2 class="t-heading" style="margin-top:var(--space-5)">From the Finca to the world</h2>
+        <p class="muted">Marina founded Finca El Péndulo in 2017, after years of meditation practice. She started with the stables and an old tower. A year later the first ceremonies were held on the land, and people began arriving by word of mouth. In 2019 the Osho Hut went up, and it has held more than 1,000 ceremonies since.</p>
+        <p class="muted">Humberto, born a few minutes away in Tepatitlán, came home after years of training with plant medicine in Perú and now leads our ayahuasca ceremonies. Krista arrived as a volunteer and stayed to lead the psilocybin work. Year after year, people came from all over the world to sit in the Osho Hut, walk the agave fields and go home a little lighter.</p>
+        <p class="muted">In 2026 that community took a new name, MexiSol World, and a wider plan: keep holding retreats at home, and bring the ceremonies, the music and the gatherings to people beyond Mexico.</p>
+      </div>
+      <dl class="timeline timeline--wide">
+        <div><dt class="t-title">2017</dt><dd class="muted">Marina founds Finca El Péndulo outside Tepatitlán.</dd></div>
+        <div><dt class="t-title">2018</dt><dd class="muted">The first plant medicine ceremonies on the land.</dd></div>
+        <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut is built. More than 1,000 ceremonies have been held in it since.</dd></div>
+        <div><dt class="t-title">2026</dt><dd class="muted">The community becomes MexiSol World.</dd></div>
+        <div><dt class="t-title">2027</dt><dd class="muted">Twelve retreats at the Finca and international retreats worldwide.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <GuideSplit eyebrow="What we believe" title="Nothing to fix. Only something to remember." image="two-guests-resting-by-the-hummingbird" imageAlt="Two guests resting by the hummingbird window in the Osho Hut" reverse>
+    <p>We do not promise miracles. We offer a safe room, people who know what they are doing, and medicines that have been used with care for generations. What you find there is yours.</p>
+  </GuideSplit>
+
+  <section id="team" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Our team</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">The people who hold the space</h2>
+      <div class="grid" style="--min:280px">
+        {team.map((t) => (
+          <div class="rule-top stack" style="--stack:var(--space-3)">
+            <p class="label label--tight">{t.role}</p>
+            <h3 class="t-title">{t.name}</h3>
+            <p class="muted">{t.text}</p>
+            <p><a href={t.link.href}>{t.link.label}</a></p>
+          </div>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:var(--space-7)">Beside them: musicians, servers, cooks and the local staff who keep the Finca running.</p>
+    </div>
+  </section>
+
+  <section id="watch" class="section deep">
+    <div class="wrap grid" style="--min:300px;align-items:center">
+      <div class="stack">
+        <p class="label">Finca El Péndulo on YouTube</p>
+        <h2 class="t-heading">Welcome to MexiSol World</h2>
+        <p>A short welcome to the new chapter, from the land where it all started.</p>
+        <p><a href={site.youtube.url} data-track="outbound">Watch Welcome to MexiSol World on YouTube</a></p>
+      </div>
+      <YouTube poster="aerial-lake-avalon" title="Welcome to MexiSol World" />
+    </div>
+  </section>
+
+  <section id="follow" class="section">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Follow us</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Stay close between retreats</h2>
+      <div class="grid" style="--min:260px;--gap:var(--space-3)">
+        {follow.map((f) => (
+          <a class="follow-card" href={f.href} data-track={f.track}>
+            <span class="label label--tight">{f.kind}</span>
+            <span class="t-title">{f.title}</span>
+            <span class="muted">{f.text}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .timeline--wide > div { padding: var(--space-5) 0; }
+  .timeline--wide dt { flex-basis: 96px; }
+  .follow-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-7); border: 1px solid var(--ink); text-decoration: none; color: var(--ink); }
+  .follow-card:hover { background: var(--ink); color: var(--surface); }
+  .follow-card:hover .label, .follow-card:hover .muted { color: var(--surface); }
+</style>
