@@ -252,8 +252,15 @@
     function loadTurnstile() {
       if (turnstileLoaded || !form.querySelector('.cf-turnstile')) return;
       turnstileLoaded = true;
+      // Explicit rendering: the script loads late, so Turnstile would not find the widget by itself.
+      window.mexisolTurnstile = function () {
+        var box = form.querySelector('.cf-turnstile');
+        if (box && !box.hasChildNodes()) {
+          window.turnstile.render(box, { sitekey: box.getAttribute('data-sitekey'), size: 'flexible', theme: 'light' });
+        }
+      };
       var t = document.createElement('script');
-      t.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      t.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=mexisolTurnstile';
       t.async = true;
       document.head.appendChild(t);
     }
