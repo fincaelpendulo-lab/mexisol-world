@@ -1,0 +1,36 @@
+---
+// Design system HeroSplit: tall photo, overlapping card with the page's h1, two detail photos.
+import Photo from './Photo.astro';
+import Button from './Button.astro';
+
+interface Thumb { name: string; alt: string; position?: string; }
+interface Props {
+  image: string;
+  imageAlt: string;
+  eyebrow?: string;
+  title: string;
+  cta?: { label: string; href: string };
+  images?: Thumb[];
+}
+const { image, imageAlt, eyebrow, title, cta, images = [] } = Astro.props;
+---
+<section class="ms-hero">
+  <div class="ms-hero__photo">
+    <Photo name={image} alt={imageAlt} priority sizes="(max-width: 760px) 100vw, 58vw" />
+  </div>
+  <div class="ms-hero__side">
+    <div class="ms-hero__card">
+      {eyebrow && <p class="label">{eyebrow}</p>}
+      <h1 class="ms-hero__title">{title}</h1>
+      <p class="ms-hero__body"><slot /></p>
+      {cta && <Button href={cta.href} variant="secondary">{cta.label}</Button>}
+    </div>
+    {images.length > 0 && (
+      <div class="ms-hero__thumbs">
+        {images.map((im) => (
+          <Photo name={im.name} alt={im.alt} sizes="(max-width: 760px) 50vw, 20vw" widths={[400, 640, 900]} style={im.position ? `object-position:${im.position}` : undefined} />
+        ))}
+      </div>
+    )}
+  </div>
+</section>

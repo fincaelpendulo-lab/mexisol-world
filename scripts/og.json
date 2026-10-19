@@ -1,0 +1,10 @@
+{
+  "home": { "photo": "src/assets/photos/guests-stretching-between-the-onyx-columns.jpg" },
+  "finca": { "photo": "src/assets/photos/pool-main-palapa-and-white-tower.jpg" },
+  "international": { "photo": "src/assets/photos/facilitator-leading-a-group-dance-between.jpg" },
+  "ayahuasca": { "photo": "src/assets/photos/guide-preparing-copal-before-ceremony.jpg", "position": "top" },
+  "psilocybin": { "photo": "src/assets/photos/circle-gathered-under-the-palapa-by.jpg" },
+  "prepare": { "photo": "src/assets/photos/agave-field-and-palapa-cabins-under.jpg" },
+  "medical": { "photo": "src/assets/photos/lavender-path-with-the-greenhouse-behind.jpg" },
+  "about": { "photo": "src/assets/photos/three-guests-talking-in-front-of.jpg" }
+}

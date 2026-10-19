@@ -1,0 +1,13 @@
+---
+// Click-to-load YouTube facade. Shows a local photo and a play button; the
+// youtube-nocookie player loads only after a click (and consent for video).
+import Photo from './Photo.astro';
+import site from '../data/site.json';
+
+interface Props { poster: string; title: string; }
+const { poster, title } = Astro.props;
+---
+<a href={site.youtube.url} class="yt" data-youtube={site.youtube.id} data-title={title} aria-label={`Play the video ${title}`}>
+  <Photo name={poster} alt="" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} />
+  <span class="yt__play"><svg aria-hidden="true" width="88" height="88" viewBox="0 0 88 88" fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="44" cy="44" r="42"></circle><path d="M36 29v30l24-15z" fill="#ffffff"></path></svg></span>
+</a>

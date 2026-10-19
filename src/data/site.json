@@ -1,0 +1,30 @@
+{
+  "name": "MexiSol World",
+  "url": "https://mexisol.world",
+  "launched": false,
+  "email": "mexisol.world@gmail.com",
+  "whatsapp": {
+    "display": "+52 378 790 0992",
+    "number": "523787900992",
+    "message": "Hi MexiSol, I'd like to know more about your retreats"
+  },
+  "instagram": "https://www.instagram.com/mexisol.world/",
+  "youtube": {
+    "id": "20fXazwvuN4",
+    "url": "https://www.youtube.com/watch?v=20fXazwvuN4"
+  },
+  "cloudbeds": "https://us2.cloudbeds.com/reservation/1BtVyc",
+  "address": {
+    "name": "Finca El Péndulo",
+    "street": "Camino al Saucillo 861",
+    "postalCode": "47600",
+    "locality": "Tepatitlán de Morelos",
+    "region": "Jalisco",
+    "country": "MX",
+    "countryName": "México"
+  },
+  "geo": { "latitude": null, "longitude": null },
+  "ga4Id": "",
+  "turnstileSiteKey": "0x4AAAAAAFcEbJ_lazXp8ZNc",
+  "formEndpoint": ""
+}

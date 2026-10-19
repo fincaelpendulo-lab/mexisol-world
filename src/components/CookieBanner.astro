@@ -1,0 +1,47 @@
+---
+// Cookie consent. Nothing that sets cookies (Google Analytics, YouTube) loads
+// until the visitor allows it. public/js/site.js stores the choice.
+import { href } from '../lib/url';
+---
+<section class="cookie" data-cookie-banner hidden aria-labelledby="cookie-title" role="region">
+  <div class="cookie__inner">
+    <div class="cookie__text">
+      <h2 id="cookie-title" class="t-title">Cookies</h2>
+      <p>We use cookies to count visits and see which pages help people, and YouTube sets its own when you play our video. Nothing loads until you choose. <a href={href('/privacy#cookies')}>Read our privacy policy</a>.</p>
+    </div>
+    <form class="cookie__options" data-cookie-options hidden>
+      <fieldset>
+        <legend class="label label--tight">Choose what to allow</legend>
+        <label class="cookie__check"><input type="checkbox" checked disabled /> <span><strong class="cookie__name">Essential</strong> Remembers this choice. Always on.</span></label>
+        <label class="cookie__check"><input type="checkbox" name="analytics" /> <span><strong class="cookie__name">Analytics</strong> Google Analytics, to count visits and clicks.</span></label>
+        <label class="cookie__check"><input type="checkbox" name="media" /> <span><strong class="cookie__name">Video</strong> YouTube, to play the video on our pages.</span></label>
+      </fieldset>
+    </form>
+    <div class="cookie__actions">
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="reject">Reject</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="customize" aria-expanded="false">Customize</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="save" hidden>Save choices</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="accept">Accept all</button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; background: var(--surface); color: var(--ink); border-top: 1px solid var(--ink); max-height: 90vh; overflow-y: auto; }
+  .cookie[hidden] { display: none; }
+  .cookie__inner { max-width: var(--content-max); margin: 0 auto; padding: var(--space-6) clamp(16px, 4vw, 48px); display: grid; grid-template-columns: 1fr auto; gap: var(--space-5) var(--space-7); align-items: end; }
+  .cookie__text p { margin-top: var(--space-3); max-width: var(--measure); }
+  .cookie__options { grid-column: 1 / -1; }
+  .cookie__options[hidden] { display: none; }
+  .cookie__options fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  .cookie__options legend { margin-bottom: var(--space-3); }
+  .cookie__check { display: flex; gap: var(--space-3); align-items: flex-start; min-height: 44px; }
+  .cookie__check input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--brand-forest); flex: none; }
+  .cookie__name { font-weight: 400; font-family: var(--font-display); margin-right: var(--space-2); }
+  .cookie__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: flex-end; }
+  @media (max-width: 760px) {
+    .cookie__inner { grid-template-columns: 1fr; }
+    .cookie__actions { justify-content: stretch; }
+    .cookie__actions .ms-btn { flex: 1 1 140px; }
+  }
+</style>

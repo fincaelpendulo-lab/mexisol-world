@@ -1,0 +1,75 @@
+body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font-text); }
+.ms-section-pad { padding: var(--space-9) var(--space-7); }
+
+/* Button */
+.ms-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); border: 1px solid transparent; border-radius: var(--radius-none); padding: var(--space-4) var(--space-5); text-decoration: none; cursor: pointer; }
+.ms-btn--primary { background: var(--button-bg); border-color: var(--button-bg); color: var(--on-button); }
+.ms-btn--primary:hover { background: var(--surface-deep); border-color: var(--surface-deep); color: var(--on-deep); }
+.ms-btn--secondary { background: transparent; border-color: var(--ink); color: var(--ink); }
+.ms-btn--secondary:hover { background: var(--ink); color: var(--surface); }
+.ms-btn--on-photo { background: transparent; border-color: var(--white); color: var(--white); }
+.ms-btn--sm { padding: var(--space-2) var(--space-4); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+.ms-btn:focus-visible, .ms-header__link:focus-visible, .ms-offerings__item:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* Eyebrow */
+.ms-eyebrow { margin: 0 0 var(--space-5); color: var(--label-ink); text-transform: uppercase; }
+
+/* SiteHeader */
+.ms-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-6); height: var(--header-height); padding: 0 var(--space-7); background: var(--surface); border-bottom: 1px solid var(--hairline); box-sizing: border-box; }
+.ms-header__nav { display: flex; gap: var(--space-6); }
+.ms-header__link { color: var(--ink); text-decoration: none; text-transform: uppercase; }
+.ms-header__link:hover { color: var(--accent-text); }
+.ms-header__tagline { margin: 0; color: var(--ink); text-transform: uppercase; text-align: center; }
+.ms-header__cta { justify-self: end; }
+
+/* HeroSplit */
+.ms-hero { display: grid; grid-template-columns: 7fr 5fr; background: var(--surface); }
+.ms-hero__photo { min-height: 640px; }
+.ms-hero__photo img, .ms-hero__thumbs img, .ms-offerings__item img, .ms-guide__photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-none); }
+.ms-hero__side { display: flex; flex-direction: column; gap: var(--space-5); padding: var(--space-9) var(--space-7) var(--space-7) 0; }
+.ms-hero__card { position: relative; margin-left: calc(-1 * var(--space-10)); padding: var(--space-7); background: var(--surface); }
+.ms-hero__seal { position: absolute; top: calc(-1 * var(--space-7)); right: calc(-1 * var(--space-5)); }
+.ms-hero__title { margin: 0 0 var(--space-5); color: var(--ink); }
+.ms-hero__body { margin: 0 0 var(--space-6); color: var(--ink); }
+.ms-hero__body p { margin: 0 0 var(--space-4); }
+.ms-hero__thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); flex: 1; min-height: 220px; }
+
+/* SectionIntro */
+.ms-intro { padding: var(--space-9) var(--space-7) var(--space-8); text-align: center; background: var(--surface); }
+.ms-intro__lead { max-width: var(--measure); margin: 0 auto; color: var(--ink); }
+
+/* OfferingGrid */
+.ms-offerings { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); background: var(--surface); }
+.ms-offerings__item { display: block; color: inherit; text-decoration: none; }
+.ms-offerings__item img { aspect-ratio: 5 / 6; height: auto; }
+.ms-offerings__caption { margin: var(--space-4) var(--space-5) 0; color: var(--ink); text-transform: uppercase; }
+.ms-offerings__item:hover .ms-offerings__caption { color: var(--accent-text); }
+
+/* GuideSplit */
+.ms-guide { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; padding-left: var(--space-10); background: var(--surface); }
+.ms-guide--reverse { padding-left: 0; padding-right: var(--space-10); }
+.ms-guide--reverse .ms-guide__photo { order: -1; }
+.ms-guide__text { padding: var(--space-9) 0; }
+.ms-guide__title { margin: 0 0 var(--space-5); color: var(--ink); text-transform: uppercase; }
+.ms-guide__body { color: var(--ink); max-width: 520px; }
+.ms-guide__photo { align-self: stretch; min-height: 480px; }
+
+/* Seal */
+.ms-seal { position: relative; display: inline-block; flex: none; }
+.ms-seal svg { display: block; }
+.ms-seal__text { font-family: var(--font-text); font-size: 9px; letter-spacing: 0.12em; fill: var(--ink); }
+.ms-seal__mark { position: absolute; inset: 31%; background: var(--ink); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; }
+
+@media (max-width: 760px) {
+  .ms-header { grid-template-columns: 1fr auto; padding: 0 var(--space-5); }
+  .ms-header__nav, .ms-header__tagline { display: none; }
+  .ms-hero, .ms-guide { grid-template-columns: 1fr; padding: 0; }
+  .ms-hero__photo { min-height: 360px; }
+  .ms-hero__side { padding: 0 var(--space-5) var(--space-7); }
+  .ms-hero__card { margin: calc(-1 * var(--space-8)) 0 0; padding: var(--space-6) var(--space-5); }
+  .ms-hero__seal { display: none; }
+  .ms-offerings { grid-template-columns: 1fr; }
+  .ms-intro { padding: var(--space-8) var(--space-5); }
+  .ms-guide__text { padding: var(--space-8) var(--space-5) 0; }
+  .ms-guide__photo { min-height: 360px; }
+}

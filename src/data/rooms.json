@@ -1,0 +1,11 @@
+{
+  "currency": "USD",
+  "note": "Price per person for a seven-day, six-night retreat at the Finca, all-inclusive.",
+  "rooms": [
+    { "id": "dorm", "name": "Shared dorm", "priceUsd": 1850 },
+    { "id": "semi-private", "name": "Semi-private villa", "priceUsd": 2300 },
+    { "id": "private", "name": "Private room", "priceUsd": 2650 },
+    { "id": "deluxe", "name": "Deluxe room", "priceUsd": 2775 }
+  ],
+  "airportPickup": { "oneWayUsd": 60, "roundTripUsd": 110 }
+}

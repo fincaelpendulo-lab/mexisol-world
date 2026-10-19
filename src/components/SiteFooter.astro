@@ -1,0 +1,87 @@
+---
+// Shared footer (canvas: Footer.dc.html).
+import { Image } from 'astro:assets';
+import lockup from '../assets/brand/lockup-white.png';
+import site from '../data/site.json';
+import { href, whatsappUrl } from '../lib/url';
+
+const year = new Date().getFullYear();
+const columns = [
+  { title: 'Retreats', links: [
+    { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') },
+    { label: 'International', href: href('/international-retreats') },
+    { label: 'Register', href: href('/#register'), track: 'register' },
+  ] },
+  { title: 'Resources', links: [
+    { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') },
+    { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') },
+    { label: 'Prepare and travel', href: href('/prepare') },
+    { label: 'Medical information', href: href('/medical') },
+  ] },
+  { title: 'About us', links: [
+    { label: 'Our story', href: href('/about#story') },
+    { label: 'Our team', href: href('/about#team') },
+    { label: 'Instagram @mexisol.world', href: site.instagram, track: 'outbound' },
+    { label: 'Finca El Péndulo on YouTube', href: site.youtube.url, track: 'outbound' },
+  ] },
+];
+---
+<footer class="site-footer deep">
+  <div class="site-footer__top wrap">
+    <div class="site-footer__brand">
+      <a href={href('/')} aria-label="MexiSol World home"><Image src={lockup} alt="" width={180} height={114} densities={[1, 2]} /></a>
+      <p class="t-caption">Ayahuasca and psilocybin retreats at Finca El Péndulo, Jalisco, and retreats worldwide.</p>
+    </div>
+    <div class="site-footer__cols">
+      {columns.map((col) => (
+        <div class="site-footer__col">
+          <h2 class="label">{col.title}</h2>
+          <ul>
+            {col.links.map((l) => <li><a href={l.href} data-track={l.track}>{l.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+      <div class="site-footer__col">
+        <h2 class="label">Contact</h2>
+        <ul>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a></li>
+          <li><p class="t-caption">{site.address.name}, {site.address.street},<br />{site.address.locality}, {site.address.region}</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer__bottom wrap">
+    <p class="t-caption">© {year} MexiSol World. Every guest is screened before confirming. Our retreats are not a substitute for medical or psychological care.</p>
+    <ul class="site-footer__legal">
+      <li><a href={href('/privacy')}>Privacy</a></li>
+      <li><a href={href('/terms')}>Terms</a></li>
+      <li><button type="button" class="site-footer__cookie" data-cookie-settings>Cookie settings</button></li>
+    </ul>
+  </div>
+</footer>
+
+<style is:global>
+  .site-footer { padding: var(--space-9) clamp(24px, 4vw, 48px) var(--space-7); }
+  .site-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-8); }
+  .site-footer__brand { display: flex; flex-direction: column; gap: var(--space-5); max-width: 280px; }
+  .site-footer__brand img { width: 180px; height: auto; }
+  .site-footer__cols { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+  .site-footer__col h2 { margin: 0 0 var(--space-4); }
+  .site-footer__col ul, .site-footer__legal { list-style: none; margin: 0; padding: 0; }
+  .site-footer__col li { min-height: 44px; display: flex; align-items: center; }
+  .site-footer .site-footer__col a, .site-footer .site-footer__legal a { font: var(--text-body); color: var(--on-deep); }
+  .site-footer .site-footer__col a:hover, .site-footer .site-footer__legal a:hover { color: var(--brand-ochre); }
+  .site-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-9); padding-top: var(--space-5); border-top: 1px solid rgba(255, 255, 255, 0.32); }
+  .site-footer__bottom > p { flex: 1 1 420px; }
+  .site-footer__legal { display: flex; flex-wrap: wrap; gap: 0 var(--space-5); }
+  .site-footer__legal li { min-height: 44px; display: flex; align-items: center; }
+  .site-footer__cookie { padding: 0; border: 0; background: none; font: var(--text-body); color: var(--on-deep); text-decoration: underline; cursor: pointer; min-height: 44px; }
+  .site-footer__cookie:hover { color: var(--brand-ochre); }
+  @media (max-width: 760px) {
+    .site-footer { padding-top: var(--space-8); }
+    .site-footer__cols { gap: var(--space-6) var(--space-7); }
+    .site-footer__col { flex: 1 1 200px; }
+    .site-footer__bottom { margin-top: var(--space-8); }
+  }
+</style>

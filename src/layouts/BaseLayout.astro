@@ -1,0 +1,131 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import calSans from '../assets/fonts/CalSans-Regular.woff2?url';
+import tenorSans from '../assets/fonts/TenorSans-Regular.woff2?url';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import site from '../data/site.json';
+import { absolute, href, whatsappUrl } from '../lib/url';
+
+interface Crumb { name: string; path: string; }
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  current?: 'home' | 'resources' | 'finca' | 'international' | 'about' | 'none';
+  ogImage?: string;
+  breadcrumbs?: Crumb[];
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const { title, description, path, current = 'none', ogImage = 'home', breadcrumbs, schema = [], noindex = false } = Astro.props;
+const canonical = absolute(path);
+const ogUrl = `${site.url}/og/${ogImage}.jpg`;
+const hideFromSearch = noindex || !site.launched;
+
+const organization = {
+  '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
+  name: site.name,
+  url: `${site.url}/`,
+  logo: `${site.url}/icons/icon-512.png`,
+  email: site.email,
+  telephone: site.whatsapp.display.replace(/\s/g, ''),
+  sameAs: [site.instagram, site.youtube.url],
+};
+const graph: Record<string, unknown>[] = [organization, ...schema];
+if (breadcrumbs?.length) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [{ name: 'MexiSol World', path: '/' }, ...breadcrumbs].map((c, i) => ({
+      '@type': 'ListItem', position: i + 1, name: c.name, item: absolute(c.path),
+    })),
+  });
+}
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+
+const connect = ["'self'", 'https://challenges.cloudflare.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://www.googletagmanager.com'];
+if (site.formEndpoint) connect.push(new URL(site.formEndpoint).origin);
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://i.ytimg.com https://*.google-analytics.com https://www.googletagmanager.com",
+  "font-src 'self'",
+  `connect-src ${connect.join(' ')}`,
+  'frame-src https://www.youtube-nocookie.com https://challenges.cloudflare.com',
+  "media-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  `form-action 'self'${site.formEndpoint ? ` ${new URL(site.formEndpoint).origin}` : ''}`,
+  'upgrade-insecure-requests',
+].join('; ');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content={csp} />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
+  <script is:inline src={`${base}/js/boot.js`}></script>
+  <link rel="preload" href={tenorSans} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={calSans} as="font" type="font/woff2" crossorigin />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MexiSol World" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogUrl} />
+
+  <link rel="icon" href={`${base}/favicon.ico`} sizes="32x32" />
+  <link rel="icon" href={`${base}/icons/icon.svg`} type="image/svg+xml" />
+  <link rel="apple-touch-icon" href={`${base}/icons/apple-touch-icon.png`} />
+  <link rel="manifest" href={`${base}/site.webmanifest`} />
+  <meta name="theme-color" content="#314a34" />
+
+  <script type="application/ld+json" set:html={jsonLd} />
+</head>
+<body data-ga={site.ga4Id || undefined} data-base={base}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <SiteHeader current={current} />
+  <main id="main" tabindex="-1">
+    <slot />
+  </main>
+  <SiteFooter />
+  <a href={whatsappUrl} class="wa-float" data-track="whatsapp" aria-label="Message us on WhatsApp">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2L9 9.5z"></path></svg>
+    <span>WhatsApp</span>
+  </a>
+  <CookieBanner />
+  <script is:inline src={`${base}/js/site.js`} defer></script>
+</body>
+</html>
+
+<style is:global>
+  main:focus { outline: none; }
+  .wa-float { display: none; }
+  @media (max-width: 760px) {
+    .wa-float { position: fixed; right: var(--space-4); bottom: var(--space-4); z-index: 40; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-4); background: var(--button-bg); color: var(--on-button); border: 1px solid var(--white); font: var(--text-button); letter-spacing: 0.04em; text-decoration: none; }
+    .wa-float:hover { color: var(--on-button); background: var(--black); }
+    body.menu-open .wa-float, body.banner-open .wa-float { display: none; }
+    .site-footer { padding-bottom: calc(var(--space-7) + 64px); }
+  }
+  .no-js [data-cookie-settings] { display: none; }
+</style>

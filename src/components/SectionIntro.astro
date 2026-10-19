@@ -1,0 +1,9 @@
+---
+// Design system SectionIntro: centred label and lead paragraph.
+interface Props { eyebrow?: string; id?: string; }
+const { eyebrow, id } = Astro.props;
+---
+<section class="ms-intro" id={id}>
+  {eyebrow && <p class="label">{eyebrow}</p>}
+  <p class="ms-intro__lead"><slot /></p>
+</section>

@@ -1,0 +1,16 @@
+---
+// Design system Seal: text around a ring with the chakana mark in the centre.
+import mark from '../assets/brand/mark.png';
+
+interface Props { size?: number; text?: string; label?: string; }
+const { size = 128, text = 'MEXISOL · WORLD · RETREATS · ', label = 'MexiSol World retreats' } = Astro.props;
+const r = 40;
+const id = `seal-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class="ms-seal" style={`width:${size}px;height:${size}px`} role="img" aria-label={label}>
+  <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
+    <defs><path id={id} d={`M50,50 m-${r},0 a${r},${r} 0 1,1 ${2 * r},0 a${r},${r} 0 1,1 -${2 * r},0`} /></defs>
+    <text class="ms-seal__text"><textPath href={`#${id}`} textLength={String(Math.round(2 * Math.PI * r) - 2)}>{text.toUpperCase()}</textPath></text>
+  </svg>
+  <span class="ms-seal__mark" style={`--mark:url(${mark.src})`}></span>
+</div>

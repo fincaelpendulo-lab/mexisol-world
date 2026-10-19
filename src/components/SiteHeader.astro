@@ -1,0 +1,124 @@
+---
+// Shared header (canvas: Header.dc.html). Below 1080px the links move into an
+// accessible menu panel; public/js/site.js wires up the toggle and dropdowns.
+import { Image } from 'astro:assets';
+import lockup from '../assets/brand/lockup-color.png';
+import Button from './Button.astro';
+import site from '../data/site.json';
+import { href, whatsappUrl } from '../lib/url';
+
+interface Props { current?: 'home' | 'resources' | 'finca' | 'international' | 'about' | 'none'; }
+const { current = 'none' } = Astro.props;
+
+const resources = [
+  { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') },
+  { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') },
+  { label: 'Prepare and travel', href: href('/prepare') },
+  { label: 'Medical information', href: href('/medical') },
+];
+const about = [
+  { label: 'Our story', href: href('/about#story') },
+  { label: 'Our team', href: href('/about#team') },
+  { label: 'Finca El Péndulo on YouTube', href: site.youtube.url },
+  { label: 'Instagram @mexisol.world', href: site.instagram },
+];
+const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
+---
+<header class="site-header" data-header>
+  <div class="site-header__bar">
+    <a href={href('/')} class="site-header__logo" aria-label="MexiSol World home">
+      <Image src={lockup} alt="" width={82} height={52} densities={[1, 2, 3]} loading="eager" />
+    </a>
+
+    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path class="menu-toggle__open" d="M2 6h18M2 11h18M2 16h18"></path><path class="menu-toggle__close" d="M4 4l14 14M18 4L4 18"></path></svg>
+      <span class="menu-toggle__label">Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main" data-menu>
+      <ul class="site-nav__list">
+        <li><a href={href('/')} class:list={['site-nav__link', isCurrent('home')]} aria-current={current === 'home' ? 'page' : undefined}>MexiSol</a></li>
+        <li class="site-nav__item--menu" data-dropdown>
+          <button type="button" class:list={['site-nav__link', isCurrent('resources')]} aria-expanded="false" aria-controls="menu-resources">Resources <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1.5 3.5 5 7l3.5-3.5"></path></svg></button>
+          <ul id="menu-resources" class="site-nav__sub">
+            {resources.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </li>
+        <li><a href={href('/finca-el-pendulo')} class:list={['site-nav__link', isCurrent('finca')]} aria-current={current === 'finca' ? 'page' : undefined}>Finca El Péndulo retreats</a></li>
+        <li><a href={href('/international-retreats')} class:list={['site-nav__link', isCurrent('international')]} aria-current={current === 'international' ? 'page' : undefined}>International retreats</a></li>
+        <li class="site-nav__item--menu site-nav__item--end" data-dropdown>
+          <button type="button" class:list={['site-nav__link', isCurrent('about')]} aria-expanded="false" aria-controls="menu-about">About us <svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1.5 3.5 5 7l3.5-3.5"></path></svg></button>
+          <ul id="menu-about" class="site-nav__sub">
+            {about.map((l) => <li><a href={l.href} data-track={l.href.startsWith('http') ? 'outbound' : undefined}>{l.label}</a></li>)}
+          </ul>
+        </li>
+      </ul>
+      <div class="site-nav__contact">
+        <a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </nav>
+
+    <Button href={href('/#register')} variant="primary" size="sm" class="site-header__cta" data-track="register">Register</Button>
+  </div>
+</header>
+
+<style is:global>
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--surface); color: var(--ink); border-bottom: 1px solid var(--hairline); }
+  .site-header__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-6); min-height: var(--header-height); padding: var(--space-3) clamp(16px, 4vw, 48px); }
+  .site-header__logo { display: block; flex: none; }
+  .site-header__logo img { display: block; height: 52px; width: auto; }
+  .site-nav__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 var(--space-6); list-style: none; margin: 0; padding: 0; }
+  .site-nav__link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; border: 0; background: transparent; font: var(--text-nav); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; cursor: pointer; }
+  .site-nav__link:hover { color: var(--accent-text); }
+  .site-nav__link.is-current { box-shadow: inset 0 -1px 0 var(--ink); }
+  .site-nav__item--menu { position: relative; }
+  .site-nav__sub { list-style: none; margin: 0; padding: var(--space-3) 0; position: absolute; top: 100%; left: -20px; min-width: 260px; background: var(--surface); border: 1px solid var(--hairline); z-index: 60; display: none; }
+  .site-nav__item--end .site-nav__sub { left: auto; right: -20px; }
+  .site-nav__sub a { display: block; padding: 12px 20px; font: var(--text-body); color: var(--ink); text-decoration: none; }
+  .site-nav__sub a:hover { color: var(--accent-text); }
+  .site-nav__item--menu:hover .site-nav__sub,
+  .site-nav__item--menu:focus-within .site-nav__sub,
+  .site-nav__item--menu.is-open .site-nav__sub { display: block; }
+  .js .site-nav__item--menu:not(.is-open):not(:hover) .site-nav__sub { display: none; }
+  .site-nav__item--menu.is-open svg { transform: rotate(180deg); }
+  .site-nav__contact { display: none; }
+  .menu-toggle { display: none; }
+
+  @media (min-width: 1080px) {
+    .site-nav { flex: 1 1 auto; }
+  }
+
+  @media (max-width: 1079px) {
+    .site-header__bar { flex-wrap: nowrap; }
+    .site-header__logo { margin-right: auto; }
+    .site-header__cta { order: 2; }
+    .menu-toggle { order: 3; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; min-width: 44px; padding: 0 var(--space-3); border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font: var(--text-nav); letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+    .menu-toggle__close { display: none; }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__open { display: none; }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__close { display: inline; }
+    .site-nav { position: fixed; inset: var(--menu-top, 81px) 0 0 0; z-index: 49; overflow-y: auto; background: var(--surface); padding: var(--space-5) clamp(16px, 4vw, 48px) var(--space-8); border-top: 1px solid var(--hairline); display: none; }
+    .site-header.is-open .site-nav { display: block; }
+    .site-nav__list { display: block; }
+    .site-nav__list > li { border-bottom: 1px solid var(--hairline); }
+    .site-nav__link { width: 100%; justify-content: space-between; min-height: 56px; font-size: 15px; }
+    .site-nav__link.is-current { box-shadow: none; text-decoration: underline; text-underline-offset: 6px; }
+    .site-nav__sub, .site-nav__item--end .site-nav__sub { position: static; min-width: 0; border: 0; padding: 0 0 var(--space-3); }
+    .site-nav__item--menu:hover .site-nav__sub, .site-nav__item--menu:focus-within .site-nav__sub { display: none; }
+    .site-nav__item--menu.is-open .site-nav__sub { display: block; }
+    .site-nav__sub a { padding: 12px 0 12px var(--space-4); min-height: 44px; }
+    .site-nav__contact { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+    .site-nav__contact a { font: var(--text-body); min-height: 44px; display: flex; align-items: center; }
+    /* Without JavaScript the menu is shown open, below the bar. */
+    .no-js .menu-toggle { display: none; }
+    .no-js .site-header__bar { flex-wrap: wrap; }
+    .no-js .site-nav { display: block; position: static; order: 4; flex-basis: 100%; padding: 0; border: 0; }
+    .no-js .site-nav__sub { display: block; }
+    .no-js .site-header { position: static; }
+  }
+  @media (max-width: 360px) {
+    .menu-toggle__label { display: none; }
+    .site-header__logo img { height: 44px; }
+  }
+  body.menu-open { overflow: hidden; }
+</style>

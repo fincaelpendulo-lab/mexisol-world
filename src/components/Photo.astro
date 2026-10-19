@@ -1,0 +1,36 @@
+---
+// Responsive photo: AVIF and WebP at several widths, with width and height set.
+// The first photo on a page passes priority so it loads eagerly.
+import { Picture } from 'astro:assets';
+import { photo } from '../lib/photos';
+
+interface Props {
+  name: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  style?: string;
+  priority?: boolean;
+  widths?: number[];
+}
+
+const { name, alt, sizes = '100vw', class: className, style, priority = false, widths } = Astro.props;
+const src = photo(name);
+const candidates = widths ?? [480, 800, 1200, 1600];
+const usable = candidates.filter((w) => w <= src.width);
+if (!usable.length || (!widths && usable[usable.length - 1] < Math.min(src.width, 1600))) usable.push(Math.min(src.width, 1600));
+---
+<Picture
+  src={src}
+  alt={alt}
+  formats={['avif', 'webp']}
+  fallbackFormat="jpg"
+  widths={[...new Set(usable)]}
+  sizes={sizes}
+  quality={45}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding={priority ? 'sync' : 'async'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  class={className}
+  style={style}
+/>

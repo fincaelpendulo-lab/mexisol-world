@@ -1,0 +1,291 @@
+---
+// Landing page (canvas: Main.dc.html).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSplit from '../components/HeroSplit.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import GuideSplit from '../components/GuideSplit.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import Seal from '../components/Seal.astro';
+import YouTube from '../components/YouTube.astro';
+import RegisterForm from '../components/RegisterForm.astro';
+import { Image } from 'astro:assets';
+import lockup from '../assets/brand/lockup-color.png';
+import retreats from '../data/retreats.json';
+import { dateRange } from '../lib/dates';
+import { href } from '../lib/url';
+import { faqPage } from '../lib/schema';
+
+const fincaNext = retreats.finca.slice(0, 4).map((r) => ({
+  date: dateRange(r.start, r.end, true),
+  title: r.title,
+  href: href(r.medicine === 'ayahuasca' ? '/ayahuasca-retreat' : r.medicine === 'psilocybin' ? '/psilocybin-retreat' : '/finca-el-pendulo#dates'),
+}));
+const intlNext = retreats.international.slice(0, 4).map((r) => ({
+  date: dateRange(r.start, r.end, true),
+  title: r.id === 'tarapoto' ? 'Master plant dieta, Tarapoto' : r.location.startsWith('Finca') ? `${r.title}, Finca El Péndulo` : r.location,
+}));
+const booking = retreats.finca.filter((r) => r.bookingUrl);
+
+const faq = [
+  { q: 'Do I need experience with plant medicine?', a: 'No. Many of our guests have never sat in ceremony. The master plant dieta abroad is the exception, and is meant for people who have.' },
+  { q: 'Ayahuasca or psilocybin?', a: 'Ayahuasca is more physical and usually longer. Psilocybin is gentler on the body. Both can be hard emotionally. Tell us what brings you and we will help you choose.' },
+  { q: 'Do I have to take every medicine?', a: 'No. Everything besides the main medicine is optional, and you can sit out any ceremony.' },
+  { q: 'How big are the groups?', a: 'Up to 15 guests, with several servers in every ceremony.' },
+  { q: 'Is it safe to travel to the Finca?', a: 'It sits in a quiet ranching town an hour from Guadalajara by toll road, on private land with security and staff on site.' },
+  { q: 'Can I come with a friend or partner?', a: 'Yes, and sharing a room lowers the price for both of you.' },
+];
+---
+<BaseLayout
+  title="Ayahuasca and Psilocybin Retreats in Mexico | MexiSol World"
+  description="Seven-day ayahuasca and psilocybin retreats at Finca El Péndulo in Jalisco, an hour from Guadalajara. Up to 15 guests, experienced guides, a call first."
+  path="/"
+  current="home"
+  ogImage="home"
+  schema={[faqPage(faq)]}
+>
+  <HeroSplit
+    image="guests-stretching-between-the-onyx-columns"
+    imageAlt="Guests stretching between the onyx columns of the Oracle"
+    eyebrow="Ayahuasca and psilocybin retreats"
+    title="Sit with the medicine. We hold the space."
+    cta={{ label: 'See 2027 dates', href: '#next' }}
+    images={[
+      { name: 'three-guests-talking-in-front-of', alt: 'Three guests talking in front of the agave field' },
+      { name: 'guest-with-a-white-horse', alt: 'A guest with a white horse' },
+    ]}
+  >Week-long retreats at Finca El Péndulo, our home in the highlands of Jalisco, and international retreats with partners around the world. Groups of up to 15, experienced guides, and a conversation with you before anything is confirmed.</HeroSplit>
+
+  <div class="photo-row home-strip" style="--min:220px;--h:380px">
+    <Photo name="guest-dancing-freely-on-the-esplanade" alt="A guest dancing freely on the esplanade" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} style="object-position:center 30%" />
+    <Photo name="circle-gathered-under-the-palapa-by" alt="A circle gathered under the palapa by the lake" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="group-meditation-in-the-osho-hut" alt="Group meditation in the Osho Hut" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="two-guests-laughing-in-the-cold" alt="Two guests laughing in the cold-plunge tubs" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+  </div>
+
+  <section id="about" class="section center home-about">
+    <Image src={lockup} alt="MexiSol World" width={200} height={127} densities={[1, 2]} class="home-about__logo" />
+    <p class="label">Who we are</p>
+    <p class="t-lead measure">We don't think you are broken. We think most people need a safe room, good company and a few quiet days to hear themselves again.</p>
+    <p class="measure muted">MexiSol World is a small team of guides, musicians and staff based at Finca El Péndulo, in Tepatitlán, Jalisco. We hold ayahuasca and psilocybin retreats there through the year, and we travel with the medicine to retreats around the world. No belief system, no dogma. People of every background come, many of them skeptical.</p>
+    <p><a href={href('/about#story')}>Read our story</a></p>
+  </section>
+
+  <div class="photo-row" style="--min:320px">
+    <a href={href('/finca-el-pendulo')} class="tile">
+      <Photo name="three-guests-talking-in-front-of" alt="Three guests talking in front of the agave field" sizes="(max-width: 760px) 100vw, 50vw" />
+      <div class="tile__wash">
+        <p class="label">At the Finca</p>
+        <h2 class="t-heading tile__title">Finca El Péndulo, Jalisco</h2>
+        <p style="max-width:460px">Our home. Seven-day ayahuasca and psilocybin retreats nearly every month of 2027.</p>
+      </div>
+    </a>
+    <a href={href('/international-retreats')} class="tile">
+      <Photo name="facilitator-leading-a-group-dance-between" alt="A facilitator leading a group dance between the onyx columns" sizes="(max-width: 760px) 100vw, 50vw" />
+      <div class="tile__wash">
+        <p class="label">International</p>
+        <h2 class="t-heading tile__title">Retreats worldwide</h2>
+        <p style="max-width:460px">Retreats, ceremonies and gatherings with partners in other countries, with the same team and the same care.</p>
+      </div>
+    </a>
+  </div>
+
+  <section id="medicine" class="section">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:var(--space-8)">
+        <p class="label" style="margin-bottom:var(--space-5)">The medicine</p>
+        <p class="t-lead measure">Every retreat is built around one main medicine. Each includes three ceremonies: two with that medicine and one with Satori.</p>
+      </div>
+      <div class="grid" style="--min:320px">
+        <article class="stack">
+          <Photo name="smudging-with-copal-before-ceremony-flowers" alt="Smudging with copal before ceremony, flowers on the altar" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1024]} class="ratio-4-3" />
+          <p class="label label--tight">01 / Ayahuasca</p>
+          <h2 class="t-heading">Ayahuasca</h2>
+          <p>A brew of the ayahuasca vine and the chacruna leaf, used in ceremony across the Amazon for generations. Ours is prepared in Pucallpa.</p>
+          <p class="muted">Ceremonies happen at night in the Osho Hut, led by Humberto with live medicine songs. It asks a lot of the body. Purging is common, and so are long, quiet hours. Servers stay in the room the whole night.</p>
+          <ul class="rule-list rule-list--soft">
+            <li>2 ayahuasca ceremonies and 1 Satori ceremony</li>
+            <li>2 Kambo sessions, Hapé and cacao</li>
+            <li>Optional Bufo, at extra cost</li>
+            <li>Temazcal, fire circle and a sunrise hike</li>
+            <li>Six nights, all meals, group and one-on-one integration</li>
+          </ul>
+          <div><Button href={href('/ayahuasca-retreat')}>The ayahuasca retreat</Button></div>
+        </article>
+        <article class="stack">
+          <Photo name="circle-gathered-under-the-palapa-by" alt="A circle gathered under the palapa by the lake" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <p class="label label--tight">02 / Psilocybin</p>
+          <h2 class="t-heading">Psilocybin</h2>
+          <p>Sacred mushrooms, with a long ceremonial history in Mexico, especially in Oaxaca. Ours are sourced in Mexico.</p>
+          <p class="muted">Easier on the body than ayahuasca, and often lighter in mood, though not always. Krista leads these retreats with music, meditation and movement. You decide your dose with her beforehand.</p>
+          <ul class="rule-list rule-list--soft">
+            <li>2 psilocybin ceremonies and 1 Satori ceremony</li>
+            <li>Hapé, cacao and voice activation</li>
+            <li>Equine therapy and Osho meditations</li>
+            <li>Temazcal, fire circle and a sunrise hike</li>
+            <li>Six nights, all meals, group and one-on-one integration</li>
+          </ul>
+          <div><Button href={href('/psilocybin-retreat')}>The psilocybin retreat</Button></div>
+        </article>
+      </div>
+
+      <div class="rule-top rule-top--soft" style="margin-top:var(--space-9);padding-top:var(--space-8)">
+        <p class="label" style="margin-bottom:var(--space-5)">Alongside the main medicine</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-7)">Four more you may meet</h2>
+        <div class="grid" style="--min:240px;--gap:var(--space-3)">
+          <div class="card deep">
+            <p class="label label--tight">Both retreats</p>
+            <h3 class="t-title">Satori</h3>
+            <p>A sacred brew prepared in Mexico, close to ayahuasca in how it works and how it feels. It is one of the three main ceremonies in every retreat.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Ayahuasca retreat</p>
+            <h3 class="t-title">Kambo</h3>
+            <p class="muted">The secretion of an Amazonian tree frog, applied to small points on the skin. Short, intense and physical. Used to cleanse the body before ceremony.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Both retreats</p>
+            <h3 class="t-title">Hapé</h3>
+            <p class="muted">A fine snuff of tobacco and plant ash, blown gently into the nose. It quiets the mind and grounds you. Ours is made by the Kuntanawa people of Brazil.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Optional, extra cost</p>
+            <h3 class="t-title">Bufo</h3>
+            <p class="muted">5-MeO-DMT from the Sonoran Desert toad, collected without harming the animals. A brief, very strong experience, offered only to guests who are ready for it.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="measure center muted" style="margin-top:var(--space-8)">Every medicine besides the main one is optional. No experience needed. Not sure which retreat fits you? That is what the first call is for.</p>
+    </div>
+  </section>
+
+  <section id="next" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Coming up in 2027</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Next retreats</h2>
+      <div class="grid" style="--min:320px">
+        <div>
+          <h3 class="t-title" style="margin-bottom:var(--space-4)">At Finca El Péndulo</h3>
+          <div class="rule-list" style="padding:0">
+            {fincaNext.map((r) => <a class="date-row" href={r.href}><span class="t-date">{r.date}</span><span>{r.title}</span></a>)}
+          </div>
+          <p style="margin-top:var(--space-5)"><a href={href('/finca-el-pendulo#dates')}>All {retreats.finca.length} retreats at the Finca</a></p>
+        </div>
+        <div>
+          <h3 class="t-title" style="margin-bottom:var(--space-4)">International</h3>
+          <div class="rule-list" style="padding:0">
+            {intlNext.map((r) => <a class="date-row" href={href('/international-retreats')}><span class="t-date">{r.date}</span><span>{r.title}</span></a>)}
+          </div>
+          <p style="margin-top:var(--space-5)"><a href={href('/international-retreats')}>All international retreats</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="watch" class="section deep">
+    <div class="wrap grid" style="--min:300px;align-items:center">
+      <div class="stack">
+        <p class="label">Watch</p>
+        <h2 class="t-heading">Welcome to MexiSol World</h2>
+        <p>A new chapter for the Finca El Péndulo community. Same land, same people, and retreats, ceremonies and music that now travel beyond Mexico.</p>
+        <p><a href="https://www.youtube.com/watch?v=20fXazwvuN4" data-track="outbound">Watch Welcome to MexiSol World on YouTube</a></p>
+      </div>
+      <YouTube poster="aerial-lake-avalon" title="Welcome to MexiSol World" />
+    </div>
+  </section>
+
+  <SectionIntro eyebrow="Our home" id="finca">Finca El Péndulo is four hectares of countryside outside Tepatitlán, about an hour from Guadalajara airport. Horses in the fields, agave on the hills, and a lake that catches the sunset.</SectionIntro>
+
+  <div class="photo-row" style="--min:240px;--h:420px">
+    <Photo name="group-meditation-in-the-osho-hut" alt="Group meditation inside the Osho Hut" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
+    <Photo name="palapa-and-dock-over-lake-avalon" alt="Palapa and dock over Lake Avalón" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="guest-with-a-white-horse" alt="A guest with a white horse" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+  <div class="center" style="padding:var(--space-7) clamp(24px, 4vw, 48px) var(--space-9)">
+    <Button href={href('/finca-el-pendulo')}>Explore the Finca and its retreats</Button>
+  </div>
+
+  <GuideSplit eyebrow="Our team" title="The people who hold the space" image="two-guests-resting-by-the-hummingbird" imageAlt="Two guests resting by the hummingbird window in the Osho Hut" reverse>
+    <p>A small team, with musicians, servers and local staff beside them. You will meet all of them on the first day, and most of them before you arrive.</p>
+  </GuideSplit>
+
+  <section id="team" class="section" style="padding-top:var(--space-8)">
+    <div class="wrap grid" style="--min:240px;--gap:var(--space-7)">
+      <div class="rule-top stack" style="--stack:var(--space-2)">
+        <p class="label label--tight">Shaman</p>
+        <h3 class="t-title">Humberto</h3>
+        <p class="muted">Leads our ayahuasca retreats.</p>
+      </div>
+      <div class="rule-top stack" style="--stack:var(--space-2)">
+        <p class="label label--tight">Medicine woman</p>
+        <h3 class="t-title">Krista</h3>
+        <p class="muted">Leads our psilocybin retreats.</p>
+      </div>
+      <div class="rule-top stack" style="--stack:var(--space-2)">
+        <p class="label label--tight">Finca El Péndulo</p>
+        <h3 class="t-title">Marina</h3>
+        <p class="muted">Keeps the land and the people who run it.</p>
+      </div>
+      <div style="display:flex;align-items:flex-end;padding-top:var(--space-5)">
+        <a href={href('/about#team')}>Meet the team</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">How it works</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">From first call to first ceremony</h2>
+      <ol class="grid steps" style="--min:220px;--gap:var(--space-7)">
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">01</p><h3 class="t-title">Pick a date</h3><p>Choose a retreat at the Finca or abroad and send us the form below.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Talk with us</h3><p>A call about your health, your medications and why you want to come. Some medications, including antidepressants, do not mix with this work. We review every one before confirming.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">03</p><h3 class="t-title">Prepare</h3><p>Eat clean, cut back on screens, come with few expectations. We send a guide and a packing list.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">04</p><h3 class="t-title">Arrive</h3><p>We pick you up in Guadalajara if you like. By dinner you will know the land and the group.</p></li>
+      </ol>
+      <p class="cluster" style="margin-top:var(--space-8);gap:var(--space-6)"><a href={href('/prepare')}>Prepare and travel guide</a><a href={href('/medical')}>Medical information</a></p>
+    </div>
+  </section>
+
+  <section id="faq" class="section faq">
+    <div class="measure">
+      <p class="label center" style="margin-bottom:var(--space-5)">Good to know</p>
+      <h2 class="t-heading center" style="margin-bottom:var(--space-7)">Questions people ask</h2>
+      {faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section id="register" class="section section--top-rule">
+    <div class="wrap register">
+      <div class="register__intro stack">
+        <p class="label">Register</p>
+        <h2 class="t-heading">Save your place</h2>
+        <p class="muted">Tell us which retreat you have in mind. We will write back to set up a call. Nothing is confirmed, and nothing is charged, until we have talked.</p>
+        {booking.length > 0 && (
+          <div class="stack" style="--stack:var(--space-2)">
+            <p class="t-caption muted">Already decided? Book directly:</p>
+            {booking.map((r) => <a href={r.bookingUrl} data-track="booking">{r.title}, {dateRange(r.start, r.end)}</a>)}
+          </div>
+        )}
+        <div style="margin-top:var(--space-6)"><Seal size={120} /></div>
+      </div>
+      <RegisterForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .home-about > * + * { margin-top: var(--space-5); }
+  .home-about .label { margin-top: var(--space-7); }
+  .home-about__logo { width: 200px; height: auto; margin: 0 auto; }
+  .ratio-4-3 { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .register { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+  .register__intro { flex: 1 1 360px; min-width: 0; }
+  .home-strip { padding-top: var(--space-3); }
+</style>

@@ -1,0 +1,25 @@
+---
+// Design system GuideSplit: capitalised statement beside a photo.
+import Photo from './Photo.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+  reverse?: boolean;
+  position?: string;
+  id?: string;
+}
+const { eyebrow, title, image, imageAlt, reverse = false, position, id } = Astro.props;
+---
+<section class:list={['ms-guide', reverse && 'ms-guide--reverse']} id={id}>
+  <div class="ms-guide__text">
+    {eyebrow && <p class="label">{eyebrow}</p>}
+    <h2 class="ms-guide__title">{title}</h2>
+    <div class="ms-guide__body"><slot /></div>
+  </div>
+  <div class="ms-guide__photo">
+    <Photo name={image} alt={imageAlt} sizes="(max-width: 760px) 100vw, 50vw" style={position ? `object-position:${position}` : undefined} />
+  </div>
+</section>

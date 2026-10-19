@@ -1,0 +1,16 @@
+---
+// Design system Button. One primary per view; everything else is secondary or on-photo.
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'on-photo';
+  size?: 'sm' | 'md';
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: unknown;
+}
+const { href, variant = 'secondary', size = 'md', type = 'button', class: className, ...rest } = Astro.props;
+const cls = ['ms-btn', `ms-btn--${variant}`, size === 'sm' && 'ms-btn--sm', className].filter(Boolean).join(' ');
+---
+{href
+  ? <a href={href} class={cls} {...rest}><slot /></a>
+  : <button type={type} class={cls} {...rest}><slot /></button>}

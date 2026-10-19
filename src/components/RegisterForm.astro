@@ -1,0 +1,66 @@
+---
+// Registration form. Posts to the Cloudflare Worker in worker/, which checks
+// Turnstile and the fields again, then hands the lead to GoHighLevel.
+import Button from './Button.astro';
+import site from '../data/site.json';
+import retreats from '../data/retreats.json';
+import { dateRange } from '../lib/dates';
+import { whatsappUrl } from '../lib/url';
+
+const finca = retreats.finca.map((r) => `${r.title.replace(/ retreat$/, '')}, ${dateRange(r.start, r.end)}`);
+const intl = retreats.international.map((r) => `${r.location === 'Europe' ? r.title : r.location.startsWith('Finca') ? r.title : r.location}, ${dateRange(r.start, r.end)}`);
+---
+<form class="register-form" action={site.formEndpoint || '#'} method="post" data-register-form data-whatsapp={whatsappUrl}>
+  <div class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1"></div>
+
+  <div class="field">
+    <label for="f-name">Full name</label>
+    <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="120" aria-describedby="f-name-error" data-validate />
+    <p id="f-name-error" class="field__error"></p>
+  </div>
+  <div class="register-form__pair">
+    <div class="field">
+      <label for="f-email">Email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="f-email-error" data-validate />
+      <p id="f-email-error" class="field__error"></p>
+    </div>
+    <div class="field">
+      <label for="f-phone">WhatsApp</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" pattern="\+?[0-9\s().\-]{7,20}" aria-describedby="f-phone-hint f-phone-error" data-validate />
+      <p id="f-phone-hint" class="t-caption muted">With country code. Optional.</p>
+      <p id="f-phone-error" class="field__error"></p>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-retreat">Retreat</label>
+    <select id="f-retreat" name="retreat">
+      <optgroup label="At Finca El Péndulo">
+        {finca.map((o) => <option>{o}</option>)}
+      </optgroup>
+      <optgroup label="International">
+        {intl.map((o) => <option>{o}</option>)}
+      </optgroup>
+      <option>Not sure yet</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="f-notes">What brings you here?</label>
+    <textarea id="f-notes" name="message" rows="4" maxlength="2000"></textarea>
+  </div>
+
+  <div class="hp" aria-hidden="true">
+    <label for="f-website">Leave this field empty</label>
+    <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="_started" value="" />
+  {site.turnstileSiteKey && <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-theme="light" data-size="flexible"></div>}
+
+  <div><Button type="submit" variant="primary">Request a place</Button></div>
+  <p class="t-caption muted">We use your details only to contact you about retreats. See our <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/privacy`}>privacy policy</a>.</p>
+</form>
+
+<style is:global>
+  .register-form { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-5); }
+  .register-form__pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: var(--space-5); }
+  .cf-turnstile { min-height: 65px; }
+</style>
