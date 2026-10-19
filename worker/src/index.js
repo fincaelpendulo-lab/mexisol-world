@@ -83,7 +83,8 @@ export default {
         email: lead.email,
         ...(lead.phone ? { phone: lead.phone } : {}),
         source: 'mexisol.world registration form',
-        tags: ['website-registration'],
+        // Tag per retreat so contacts can be filtered (e.g. "retiro: Ayahuasca, January 16-22").
+        tags: ['website-registration', ...(lead.retreat ? [`retiro: ${lead.retreat}`] : [])],
       }),
     }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     const contactId = upsert?.contact?.id;

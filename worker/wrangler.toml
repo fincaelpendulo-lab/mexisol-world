@@ -10,3 +10,6 @@ compatibility_date = "2026-09-01"
 # GoHighLevel location (sub-account) ID. Not secret: it only says which account to write to.
 GHL_LOCATION_ID = "1GTkgzMK72UpOBKUvrNi"
 ALLOWED_ORIGINS = "https://mexisol.world,https://www.mexisol.world,https://fincaelpendulo-lab.github.io,http://localhost:4321,http://localhost:4322"
+
+[observability]
+enabled = true
