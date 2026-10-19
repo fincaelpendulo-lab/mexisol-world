@@ -16,6 +16,27 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[0-9\s().-]{7,20}$/;
 const MIN_SECONDS = 3;
 
+// Custom fields for the retreat and the message. Found by name, created if missing,
+// and remembered while the Worker stays warm.
+const FIELDS = { retreat: { name: 'Retiro de interés', dataType: 'TEXT' }, message: { name: 'Mensaje del sitio web', dataType: 'LARGE_TEXT' } };
+let fieldIds = null;
+async function ensureFields(env) {
+  if (fieldIds) return fieldIds;
+  const base = `${GHL}/locations/${env.GHL_LOCATION_ID}/customFields`;
+  const list = await fetch(base, { headers: GHL_HEADERS(env.GHL_TOKEN) }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  if (!list) return null;
+  const ids = {};
+  for (const [key, def] of Object.entries(FIELDS)) {
+    const found = (list.customFields || []).find((f) => f.name.toLowerCase() === def.name.toLowerCase());
+    if (found) { ids[key] = found.id; continue; }
+    const made = await fetch(base, { method: 'POST', headers: GHL_HEADERS(env.GHL_TOKEN), body: JSON.stringify({ ...def, model: 'contact' }) })
+      .then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    if (made?.customField?.id) ids[key] = made.customField.id;
+  }
+  fieldIds = ids;
+  return ids;
+}
+
 function cors(origin, allowed) {
   const ok = allowed.includes(origin);
   return {
@@ -72,6 +93,11 @@ export default {
     if (!check.success) return reply({ ok: false, error: 'captcha' }, 403, headers);
 
     const [firstName, ...rest] = lead.name.split(/\s+/);
+    const ids = (await ensureFields(env)) || {};
+    const customFields = [
+      ...(ids.retreat && lead.retreat ? [{ id: ids.retreat, field_value: lead.retreat }] : []),
+      ...(ids.message && lead.message ? [{ id: ids.message, field_value: lead.message }] : []),
+    ];
     const upsert = await fetch(`${GHL}/contacts/upsert`, {
       method: 'POST',
       headers: GHL_HEADERS(env.GHL_TOKEN),
@@ -83,6 +109,7 @@ export default {
         email: lead.email,
         ...(lead.phone ? { phone: lead.phone } : {}),
         source: 'mexisol.world registration form',
+        ...(customFields.length ? { customFields } : {}),
         // Tag per retreat so contacts can be filtered (e.g. "retiro: Ayahuasca, January 16-22").
         tags: ['website-registration', ...(lead.retreat ? [`retiro: ${lead.retreat}`] : [])],
       }),
