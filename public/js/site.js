@@ -19,7 +19,7 @@
   var toggle = document.querySelector('[data-menu-toggle]');
   var menu = document.querySelector('[data-menu]');
   var dropdowns = Array.prototype.slice.call(document.querySelectorAll('[data-dropdown]'));
-  var mobileQuery = window.matchMedia('(max-width: 1079px)');
+  var mobileQuery = window.matchMedia('(max-width: 1239px)');
 
   function setDropdown(li, open) {
     li.classList.toggle('is-open', open);
