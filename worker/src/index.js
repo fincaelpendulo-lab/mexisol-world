@@ -1,6 +1,16 @@
 // Receives the MexiSol World registration form, checks it again on the server
-// (fields, honeypot, time to submit, Cloudflare Turnstile) and forwards the lead
-// to a GoHighLevel inbound webhook. Secrets live in Cloudflare, never in the repo.
+// (fields, honeypot, time to submit, Cloudflare Turnstile) and saves the lead in
+// GoHighLevel through its API (no premium workflow trigger needed): the contact is
+// created or updated with the tag "website-registration", and the retreat and
+// message are added as a note. Secrets live in Cloudflare, never in the repo.
+
+const GHL = 'https://services.leadconnectorhq.com';
+const GHL_HEADERS = (token) => ({
+  Authorization: `Bearer ${token}`,
+  Version: '2021-07-28',
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+});
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[0-9\s().-]{7,20}$/;
@@ -62,19 +72,36 @@ export default {
     if (!check.success) return reply({ ok: false, error: 'captcha' }, 403, headers);
 
     const [firstName, ...rest] = lead.name.split(/\s+/);
-    const res = await fetch(env.GHL_WEBHOOK_URL, {
+    const upsert = await fetch(`${GHL}/contacts/upsert`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: GHL_HEADERS(env.GHL_TOKEN),
       body: JSON.stringify({
-        ...lead,
-        first_name: firstName,
-        last_name: rest.join(' '),
+        locationId: env.GHL_LOCATION_ID,
+        firstName,
+        lastName: rest.join(' '),
+        name: lead.name,
+        email: lead.email,
+        ...(lead.phone ? { phone: lead.phone } : {}),
         source: 'mexisol.world registration form',
-        submitted_at: new Date().toISOString(),
-        page: request.headers.get('Referer') || '',
+        tags: ['website-registration'],
       }),
+    }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    const contactId = upsert?.contact?.id;
+    if (!contactId) return reply({ ok: false, error: 'crm' }, 502, headers);
+
+    const note = [
+      `Website registration (${new Date().toISOString().slice(0, 10)})`,
+      `Retreat: ${lead.retreat || 'not chosen'}`,
+      `WhatsApp: ${lead.phone || 'not given'}`,
+      '',
+      lead.message || '(no message)',
+    ].join('\n');
+    // The contact is already saved; a failed note should not show the visitor an error.
+    await fetch(`${GHL}/contacts/${contactId}/notes`, {
+      method: 'POST',
+      headers: GHL_HEADERS(env.GHL_TOKEN),
+      body: JSON.stringify({ body: note }),
     }).catch(() => null);
-    if (!res || !res.ok) return reply({ ok: false, error: 'crm' }, 502, headers);
 
     return reply({ ok: true }, 200, headers);
   },

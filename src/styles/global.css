@@ -221,3 +221,7 @@ p > a:only-child, div > a:only-child, li > a:only-child { display: inline-flex; 
 .timeline dt { flex: 0 0 88px; }
 .timeline dd { margin: 0; }
 strong, b, th { font-weight: 400; color: var(--ink); }
+
+/* Bright photos: the same photo-overlay token applied twice, so white text keeps 4.5:1. */
+.wash-strong::before { content: ""; position: absolute; inset: 0; background: var(--photo-overlay); }
+.wash-strong > * { position: relative; }

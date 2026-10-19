@@ -1,7 +1,8 @@
 # Cloudflare Worker that receives the registration form.
 # Secrets (set once, never committed):
-#   npx wrangler secret put TURNSTILE_SECRET
-#   npx wrangler secret put GHL_WEBHOOK_URL
+#   npx wrangler secret put TURNSTILE_SECRET   (Cloudflare › Turnstile › MexiSol form)
+#   npx wrangler secret put GHL_TOKEN          (GoHighLevel › Settings › Private Integrations)
+#   npx wrangler secret put GHL_LOCATION_ID    (GoHighLevel › Settings › Business Profile)
 name = "mexisol-form"
 main = "src/index.js"
 compatibility_date = "2026-09-01"

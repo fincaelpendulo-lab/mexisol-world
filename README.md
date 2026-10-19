@@ -57,17 +57,20 @@ Pull requests run steps 1 and 2 without deploying. GitHub Pages has no per-PR pr
 
 ## Registration form
 
-The form posts to a Cloudflare Worker in `worker/`, which checks the fields, the honeypot, the time to submit and Cloudflare Turnstile, then sends the lead to a GoHighLevel inbound webhook. Secrets never go in this repo:
+The form posts to a Cloudflare Worker in `worker/`, which checks the fields, the honeypot, the time to submit and Cloudflare Turnstile, then creates or updates the contact in GoHighLevel through its API, with the tag `website-registration` and a note holding the retreat and message. This uses no premium workflow trigger. Secrets never go in this repo:
 
 ```bash
 cd worker
 npx wrangler login
 npx wrangler secret put TURNSTILE_SECRET
-npx wrangler secret put GHL_WEBHOOK_URL
+npx wrangler secret put GHL_TOKEN
+npx wrangler secret put GHL_LOCATION_ID
 npx wrangler deploy
 ```
 
 Then put the Worker's URL in `formEndpoint` in `src/data/site.json`.
+
+In GoHighLevel, a free **Contact Tag** trigger (tag `website-registration` added) can send you an internal email or WhatsApp alert for each new registration.
 
 ## Launch checklist
 

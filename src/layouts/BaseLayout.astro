@@ -47,7 +47,7 @@ if (breadcrumbs?.length) {
 }
 const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 
-const connect = ["'self'", 'https://challenges.cloudflare.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://www.googletagmanager.com'];
+const connect = ["'self'", 'https://challenges.cloudflare.com', 'https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'];
 if (site.formEndpoint) connect.push(new URL(site.formEndpoint).origin);
 const csp = [
   "default-src 'self'",
