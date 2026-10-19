@@ -1,0 +1,26 @@
+name: Lighthouse
+
+# Not part of every deploy (it takes several minutes). Runs on pull requests,
+# every Monday, and on demand from the Actions tab ("Run workflow").
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 14 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse budget (mobile)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx lhci autorun

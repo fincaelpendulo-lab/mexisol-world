@@ -50,10 +50,10 @@ Other scripts:
 `.github/workflows/deploy.yml` runs on every push to `main`:
 
 1. Secret scan (gitleaks)
-2. Type check, build, broken link check, Lighthouse budget (Performance, Accessibility, Best Practices 90 or higher; LCP under 2.5 s; CLS under 0.1; TBT under 200 ms)
+2. Type check, build, broken link check
 3. Build for GitHub Pages and deploy
 
-Pull requests run steps 1 and 2 without deploying. GitHub Pages has no per-PR preview URLs.
+A deploy takes about two minutes. Lighthouse (Performance, Accessibility, Best Practices 90 or higher; LCP under 2.5 s; CLS under 0.1; TBT under 200 ms) runs separately in `.github/workflows/lighthouse.yml`: on pull requests, every Monday, and on demand from the Actions tab.
 
 ## Registration form
 

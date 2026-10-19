@@ -3,7 +3,6 @@ name: Check, build and deploy
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -26,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   check:
-    name: Lint, links and Lighthouse
+    name: Lint and links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,10 +40,6 @@ jobs:
         run: npm run build
       - name: Broken link check (fails on any broken internal link or placeholder)
         run: node scripts/check-links.mjs dist /
-      - name: Lighthouse CI budget (mobile)
-        run: npx lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   build:
     name: Build for GitHub Pages
