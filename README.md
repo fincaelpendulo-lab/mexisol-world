@@ -64,7 +64,6 @@ cd worker
 npx wrangler login
 npx wrangler secret put TURNSTILE_SECRET
 npx wrangler secret put GHL_TOKEN
-npx wrangler secret put GHL_LOCATION_ID
 npx wrangler deploy
 ```
 

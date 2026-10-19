@@ -2,10 +2,11 @@
 # Secrets (set once, never committed):
 #   npx wrangler secret put TURNSTILE_SECRET   (Cloudflare › Turnstile › MexiSol form)
 #   npx wrangler secret put GHL_TOKEN          (GoHighLevel › Settings › Private Integrations)
-#   npx wrangler secret put GHL_LOCATION_ID    (GoHighLevel › Settings › Business Profile)
 name = "mexisol-form"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
 
 [vars]
+# GoHighLevel location (sub-account) ID. Not secret: it only says which account to write to.
+GHL_LOCATION_ID = "1GTkgzMK72UpOBKUvrNi"
 ALLOWED_ORIGINS = "https://mexisol.world,https://www.mexisol.world,https://fincaelpendulo-lab.github.io,http://localhost:4321,http://localhost:4322"
