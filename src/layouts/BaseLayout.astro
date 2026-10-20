@@ -64,6 +64,8 @@ const csp = [
   'upgrade-insecure-requests',
 ].join('; ');
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Changes on every build, so browsers fetch the new scripts after each publish.
+const v = Date.now().toString(36);
 ---
 <!doctype html>
 <html lang="en" class="no-js">
@@ -76,7 +78,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
-  <script is:inline src={`${base}/js/boot.js`}></script>
+  <script is:inline src={`${base}/js/boot.js?v=${v}`}></script>
   <link rel="preload" href={tenorSans} as="font" type="font/woff2" crossorigin />
   <link rel="preload" href={calSans} as="font" type="font/woff2" crossorigin />
 
@@ -114,7 +116,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <span>WhatsApp</span>
   </a>
   <CookieBanner />
-  <script is:inline src={`${base}/js/site.js`} defer></script>
+  <script is:inline src={`${base}/js/site.js?v=${v}`} defer></script>
 </body>
 </html>
 
