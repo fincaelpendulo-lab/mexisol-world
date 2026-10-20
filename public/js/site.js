@@ -220,6 +220,28 @@
     if (p && p.catch) p.catch(function () { /* autoplay blocked: the photo stays */ });
   });
 
+  /* ---------- Hero slideshow ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.ms-hero__photo'), function (box) {
+    var slides = box.querySelectorAll('.hero-slide');
+    var btn = box.querySelector('[data-slides-toggle]');
+    if (slides.length < 2 || !btn || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    var playing = true;
+    btn.hidden = false;
+    btn.setAttribute('aria-pressed', 'false');
+    var timer = window.setInterval(function () {
+      if (!playing || document.hidden) return;
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }, 5000);
+    btn.addEventListener('click', function () {
+      playing = !playing;
+      btn.setAttribute('aria-pressed', playing ? 'false' : 'true');
+      btn.setAttribute('aria-label', playing ? 'Pause the slideshow' : 'Play the slideshow');
+    });
+  });
+
   /* ---------- Reveal on scroll ---------- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var pending = [];

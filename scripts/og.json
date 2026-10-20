@@ -1,18 +1,18 @@
 {
   "home": {
-    "photo": "src/assets/photos/aerial-lake-and-palapa.jpg"
+    "photo": "src/assets/photos/web-osho-hut-mandala-circle.jpg"
   },
   "finca": {
     "photo": "src/assets/photos/pool-main-palapa-and-white-tower.jpg"
   },
   "international": {
-    "photo": "src/assets/photos/facilitator-leading-a-group-dance-between.jpg"
+    "photo": "src/assets/photos/web-glacier-group.jpg"
   },
   "ayahuasca": {
-    "photo": "src/assets/photos/aya-ceremony-circle-flowers.jpg"
+    "photo": "src/assets/photos/web-lords-atrium-gathering.jpg"
   },
   "psilocybin": {
-    "photo": "src/assets/photos/psi-osho-hut-circle.jpg"
+    "photo": "src/assets/photos/web-meditation-with-jesus-statue.jpg"
   },
   "prepare": {
     "photo": "src/assets/photos/agave-field-and-palapa-cabins-under.jpg"
@@ -21,6 +21,6 @@
     "photo": "src/assets/photos/lavender-path-with-the-greenhouse-behind.jpg"
   },
   "about": {
-    "photo": "src/assets/photos/three-guests-talking-in-front-of.jpg"
+    "photo": "src/assets/photos/web-three-women-agave.jpg"
   }
 }
