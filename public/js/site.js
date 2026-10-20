@@ -231,8 +231,10 @@
     btn.setAttribute('aria-pressed', 'false');
     var timer = window.setInterval(function () {
       if (!playing || document.hidden) return;
+      var next = (i + 1) % slides.length;
+      if (!slides[next].complete) return; // wait until the next photo has loaded
       slides[i].classList.remove('is-active');
-      i = (i + 1) % slides.length;
+      i = next;
       slides[i].classList.add('is-active');
     }, 5000);
     btn.addEventListener('click', function () {
