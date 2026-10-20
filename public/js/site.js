@@ -233,17 +233,29 @@
   });
 
   /* ---------- Reveal on scroll ---------- */
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var targets = document.querySelectorAll('main > section, main > .photo-row, main > div:not(.ms-hero), .ms-guide, .ms-intro');
-    var revealer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); revealer.unobserve(en.target); } });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    Array.prototype.forEach.call(targets, function (el) {
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var pending = [];
+    Array.prototype.forEach.call(document.querySelectorAll('main > section, main > .photo-row, main > div:not(.ms-hero), .ms-guide, .ms-intro'), function (el) {
       // Anything already on screen stays as it is, so the first view never flickers.
       if (el.getBoundingClientRect().top < window.innerHeight) return;
       el.classList.add('reveal');
-      revealer.observe(el);
+      pending.push(el);
     });
+    var ticking = false;
+    var check = function () {
+      ticking = false;
+      var limit = window.innerHeight * 0.92;
+      pending = pending.filter(function (el) {
+        if (el.getBoundingClientRect().top < limit) { el.classList.add('is-in'); return false; }
+        return true;
+      });
+      if (!pending.length) window.removeEventListener('scroll', onScroll);
+    };
+    var onScroll = function () { if (!ticking) { ticking = true; window.requestAnimationFrame(check); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    // Safety net: never leave content hidden, whatever happens.
+    window.setTimeout(function () { pending.forEach(function (el) { el.classList.add('is-in'); }); pending = []; }, 6000);
   }
 
   /* ---------- Registration form ---------- */
