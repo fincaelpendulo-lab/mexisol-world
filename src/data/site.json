@@ -1,7 +1,7 @@
 {
   "name": "MexiSol World",
   "url": "https://mexisol.world",
-  "launched": false,
+  "launched": true,
   "email": "mexisol.world@gmail.com",
   "whatsapp": {
     "display": "+52 378 790 0992",

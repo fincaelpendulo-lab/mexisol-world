@@ -24,7 +24,8 @@ interface Props {
 const { title, description, path, current = 'none', ogImage = 'home', breadcrumbs, schema = [], noindex = false } = Astro.props;
 const canonical = absolute(path);
 const ogUrl = `${site.url}/og/${ogImage}.jpg`;
-const hideFromSearch = noindex || !site.launched;
+// The GitHub Pages copy (served under /mexisol-world) stays hidden so it never competes with mexisol.world.
+const hideFromSearch = noindex || !site.launched || import.meta.env.BASE_URL.replace(/\/$/, '') !== '';
 
 const organization = {
   '@type': 'Organization',
