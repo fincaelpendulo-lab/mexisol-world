@@ -254,8 +254,8 @@
     var onScroll = function () { if (!ticking) { ticking = true; window.requestAnimationFrame(check); } };
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    // Safety net: never leave content hidden, whatever happens.
-    window.setTimeout(function () { pending.forEach(function (el) { el.classList.add('is-in'); }); pending = []; }, 6000);
+    // Safety net: re-check every second in case a scroll event is missed, so nothing stays hidden.
+    var timer = window.setInterval(function () { check(); if (!pending.length) window.clearInterval(timer); }, 1000);
   }
 
   /* ---------- Registration form ---------- */
