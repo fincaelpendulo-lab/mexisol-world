@@ -45,23 +45,22 @@ const faq = [
   schema={[faqPage(faq)]}
 >
   <HeroSplit
-    image="aerial-lake-and-palapa"
-    imageAlt="Aerial view of Lake Avalón and its palapa at Finca El Péndulo"
-    video="/video/home-aerial.mp4"
+    image="home-hero-aerial-agave"
+    imageAlt="Aerial view of the blue agave fields and palapa cabins of Finca El Péndulo"
     eyebrow="Ayahuasca and psilocybin retreats"
     title="Sit with the medicine. We hold the space."
     cta={{ label: 'See 2027 dates', href: '#next' }}
     images={[
-      { name: 'osho-hut-altar-candles-flowers', alt: 'The ceremony altar in the Osho Hut, with candles and purple flowers' },
-      { name: 'white-horse-by-the-pond', alt: 'A white horse grazing beside the pond and bougainvillea' },
+      { name: 'home-altar-goddess-flowers', alt: 'An altar with a goddess figure, clay vessels and red flowers' },
+      { name: 'home-white-horse-pond', alt: 'A white horse grazing beside the pond' },
     ]}
   >Week-long retreats at Finca El Péndulo, our home in the highlands of Jalisco, and international retreats with partners around the world. Groups of up to 15, experienced guides, and a conversation with you before anything is confirmed.</HeroSplit>
 
   <div class="photo-row home-strip" style="--min:220px;--h:380px">
-    <Photo name="flower-mandala" alt="A mandala of flowers and leaves laid on the ground for ceremony" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="osho-hut-ceremony-circle" alt="Mats laid in a circle for ceremony inside the Osho Hut" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="riders-by-the-palapa" alt="A group on horseback riding past a palapa" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
-    <Photo name="cempasuchil-and-crafts" alt="Cempasúchil flowers, pumpkins and crafts on a sarape" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="home-greenhouse-roof" alt="Hanging ferns under the wooden roof of the greenhouse" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="home-lagoon-aerial" alt="The lagoon with its palapa and stone paths" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="home-flower-mandala-ceremony" alt="A mandala of flowers and leaves laid out for ceremony" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="home-agave-rows" alt="Rows of blue agave at plant height" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
   </div>
 
   <section id="about" class="section center home-about">
@@ -74,7 +73,7 @@ const faq = [
 
   <div class="photo-row" style="--min:320px">
     <a href={href('/finca-el-pendulo')} class="tile">
-      <Photo name="aerial-palapa-cabins-and-gardens" alt="Aerial view of the palapa cabins and gardens of Finca El Péndulo" sizes="(max-width: 760px) 100vw, 50vw" />
+      <Photo name="home-long-palapa-agave" alt="A long palapa building surrounded by agave" sizes="(max-width: 760px) 100vw, 50vw" />
       <div class="tile__wash wash-strong">
         <p class="label">At the Finca</p>
         <h2 class="t-heading tile__title">Finca El Péndulo, Jalisco</h2>
@@ -82,7 +81,7 @@ const faq = [
       </div>
     </a>
     <a href={href('/international-retreats')} class="tile">
-      <Photo name="facilitator-leading-a-group-dance-between" alt="A facilitator leading a group dance between the onyx columns" sizes="(max-width: 760px) 100vw, 50vw" />
+      <Photo name="home-music-under-ojos-de-dios" alt="Live music under hanging ojos de dios in the garden" sizes="(max-width: 760px) 100vw, 50vw" />
       <div class="tile__wash wash-strong">
         <p class="label">International</p>
         <h2 class="t-heading tile__title">Retreats worldwide</h2>
@@ -99,7 +98,7 @@ const faq = [
       </div>
       <div class="grid" style="--min:320px">
         <article class="stack">
-          <Photo name="altar-with-a-mother-earth-figure" alt="Altar with a Mother Earth figure, clay vessels and flowers" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <Photo name="home-ceremony-blue-light" alt="A group seated in ceremony under blue light" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
           <p class="label label--tight">01 / Ayahuasca</p>
           <h2 class="t-heading">Ayahuasca</h2>
           <p>A brew of the ayahuasca vine and the chacruna leaf, used in ceremony across the Amazon for generations. Ours is prepared in Pucallpa.</p>
@@ -114,7 +113,7 @@ const faq = [
           <div><Button href={href('/ayahuasca-retreat')}>The ayahuasca retreat</Button></div>
         </article>
         <article class="stack">
-          <Photo name="psi-yoga-at-the-oracle" alt="A group practising yoga among the pillars of the Oracle" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <Photo name="home-circle-lakeside-palapa" alt="A circle gathered under the palapa by the lake" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
           <p class="label label--tight">02 / Psilocybin</p>
           <h2 class="t-heading">Psilocybin</h2>
           <p>Sacred mushrooms, with a long ceremonial history in Mexico, especially in Oaxaca. Ours are sourced in Mexico.</p>
@@ -199,15 +198,15 @@ const faq = [
   <SectionIntro eyebrow="Our home" id="finca">Finca El Péndulo is four hectares of countryside outside Tepatitlán, about an hour from Guadalajara airport. Horses in the fields, agave on the hills, and a lake that catches the sunset.</SectionIntro>
 
   <div class="photo-row" style="--min:240px;--h:420px">
-    <Photo name="group-meditation-in-the-osho-hut" alt="Group meditation inside the Osho Hut" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
-    <Photo name="palapa-and-dock-over-lake-avalon" alt="Palapa and dock over Lake Avalón" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
-    <Photo name="pool-main-palapa-and-white-tower" alt="The pool, main palapa and white tower at Finca El Péndulo" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="home-greenhouse-table" alt="The greenhouse, with a long table among the plants" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
+    <Photo name="home-pool-tower-reflection" alt="The pool in front of the main palapa and the white tower" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="home-riders-garden" alt="A group riding horses through the garden" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
   </div>
   <div class="center" style="padding:var(--space-7) clamp(24px, 4vw, 48px) var(--space-9)">
     <Button href={href('/finca-el-pendulo')}>Explore the Finca and its retreats</Button>
   </div>
 
-  <GuideSplit eyebrow="Our team" title="The people who hold the space" image="group-photo-at-night" imageAlt="The retreat group together at night on the esplanade" reverse>
+  <GuideSplit eyebrow="Our team" title="The people who hold the space" image="mexisol-community-welcome" imageAlt="The MexiSol World team and guests waving in front of the Osho Hut" reverse>
     <p>A small team, with musicians, servers and local staff beside them. You will meet all of them on the first day, and most of them before you arrive.</p>
   </GuideSplit>
 

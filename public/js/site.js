@@ -85,18 +85,7 @@
   }
 
   /* ---------- Analytics (GA4, only after consent) ---------- */
-  var gaId = body.getAttribute('data-ga');
-  var gaLoaded = false;
-  function loadAnalytics() {
-    if (!gaId || gaLoaded) return;
-    gaLoaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
-    document.head.appendChild(s);
-    window.gtag('js', new Date());
-    window.gtag('config', gaId, { anonymize_ip: true });
-  }
+  // The Google tag itself loads in <head> (see boot.js); here we only send events.
   function track(name, params) {
     if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
   }
@@ -124,7 +113,6 @@
       ad_user_data: 'denied',
       ad_personalization: 'denied',
     });
-    if (c.analytics) loadAnalytics();
   }
   function showBanner(customize) {
     if (!banner) return;

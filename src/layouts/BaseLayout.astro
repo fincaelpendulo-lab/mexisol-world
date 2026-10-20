@@ -71,6 +71,9 @@ const v = Date.now().toString(36);
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8" />
+  <!-- Google tag (gtag.js). boot.js runs first: it sets Consent Mode v2 to "denied" and configures the tag, so nothing is stored until the visitor accepts cookies. -->
+  <script is:inline src={`${base}/js/boot.js?v=${v}`} data-ga={site.ga4Id || undefined}></script>
+  {site.ga4Id && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content={csp} />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -78,7 +81,6 @@ const v = Date.now().toString(36);
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
-  <script is:inline src={`${base}/js/boot.js?v=${v}`}></script>
   <link rel="preload" href={tenorSans} as="font" type="font/woff2" crossorigin />
   <link rel="preload" href={calSans} as="font" type="font/woff2" crossorigin />
 
