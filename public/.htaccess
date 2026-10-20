@@ -20,6 +20,9 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [R=301,L]
 
+  # /sitemap.xml serves the sitemap index (the name most tools expect).
+  RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L]
+
   # Clean URLs: /about serves about.html.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
