@@ -53,7 +53,7 @@ const dialogId = `rooms-${type}`;
   .gallery__bar { display: flex; align-items: center; gap: var(--space-5); padding: var(--space-3) var(--space-5); }
   .gallery__title { color: var(--white); margin-right: auto; }
   .gallery__stage { margin: 0; min-height: 0; display: grid; place-items: center; padding: 0 var(--space-5); touch-action: pan-y; }
-  .gallery__stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .gallery__stage img { width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 150px); object-fit: contain; }
   .gallery__nav { display: flex; justify-content: center; gap: var(--space-5); padding: var(--space-4); }
   .gallery__btn { width: 48px; height: 48px; display: inline-grid; place-items: center; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; }
   .gallery__btn:hover { background: var(--white); color: var(--black); }
