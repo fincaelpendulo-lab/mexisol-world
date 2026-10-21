@@ -1,0 +1,61 @@
+---
+// One room type: cover photo, price, text and a "See photos" button that opens a
+// full-screen carousel of src/assets/rooms/<type>/ (arrows, swipe, keyboard, Esc).
+import type { ImageMetadata } from 'astro';
+import { Picture, getImage } from 'astro:assets';
+
+interface Props { type: 'dorm' | 'villa' | 'private' | 'deluxe'; name: string; price: string; text: string; }
+const { type, name, price, text } = Astro.props;
+
+const all = import.meta.glob<{ default: ImageMetadata }>('/src/assets/rooms/*/*.jpg', { eager: true });
+const files = Object.entries(all).filter(([p]) => p.includes(`/rooms/${type}/`)).sort(([a], [b]) => a.localeCompare(b));
+const roomName = (p: string) => {
+  const slug = p.split('/').pop()!.replace(/^\d+-|\.jpg$/g, '');
+  return slug === 'hormiguero' ? 'The Hormiguero' : slug.charAt(0).toUpperCase() + slug.slice(1);
+};
+const slides = await Promise.all(files.map(async ([p, m], i) => {
+  const img = await getImage({ src: m.default, width: Math.min(m.default.width, 1600), format: 'webp', quality: 70 });
+  return { src: img.src, w: img.attributes.width ?? m.default.width, h: img.attributes.height ?? m.default.height, alt: `${roomName(p)}, photo ${i + 1} of ${files.length}` };
+}));
+const cover = files[0][1].default;
+const dialogId = `rooms-${type}`;
+---
+<div class="stack room-card" style="--stack:var(--space-3)">
+  <button type="button" class="room-card__cover" data-gallery-open={dialogId} aria-label={`See photos of the ${name.toLowerCase()}`}>
+    <Picture src={cover} alt="" formats={['avif', 'webp']} widths={[400, 640, 900]} sizes="(max-width: 760px) 100vw, 25vw" quality={55} loading="lazy" class="ratio-4-3" />
+  </button>
+  <h3 class="t-title" style="margin-top:var(--space-4)">{name}</h3>
+  <p class="t-date">{price} <span class="t-caption muted">per person</span></p>
+  <p class="muted">{text}</p>
+  <div><button type="button" class="ms-btn ms-btn--secondary ms-btn--sm" data-gallery-open={dialogId}>See photos ({slides.length})</button></div>
+</div>
+
+<dialog id={dialogId} class="gallery" aria-label={`${name}: photos`} data-gallery={JSON.stringify(slides)}>
+  <div class="gallery__bar">
+    <p class="label label--tight gallery__title">{name}</p>
+    <p class="t-caption gallery__count" aria-live="polite"></p>
+    <button type="button" class="gallery__btn" data-gallery-close aria-label="Close photos">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l12 12M16 4L4 16"></path></svg>
+    </button>
+  </div>
+  <figure class="gallery__stage"><img alt="" decoding="async" /></figure>
+  <div class="gallery__nav">
+    <button type="button" class="gallery__btn" data-gallery-prev aria-label="Previous photo"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12.5 4 6.5 10l6 6"></path></svg></button>
+    <button type="button" class="gallery__btn" data-gallery-next aria-label="Next photo"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 4l6 6-6 6"></path></svg></button>
+  </div>
+</dialog>
+
+<style is:global>
+  .room-card__cover { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .gallery { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--black); color: var(--white); }
+  .gallery::backdrop { background: rgba(0, 0, 0, 0.9); }
+  .gallery[open] { display: grid; grid-template-rows: auto 1fr auto; }
+  .gallery__bar { display: flex; align-items: center; gap: var(--space-5); padding: var(--space-3) var(--space-5); }
+  .gallery__title { color: var(--white); margin-right: auto; }
+  .gallery__stage { margin: 0; min-height: 0; display: grid; place-items: center; padding: 0 var(--space-5); touch-action: pan-y; }
+  .gallery__stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .gallery__nav { display: flex; justify-content: center; gap: var(--space-5); padding: var(--space-4); }
+  .gallery__btn { width: 48px; height: 48px; display: inline-grid; place-items: center; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; }
+  .gallery__btn:hover { background: var(--white); color: var(--black); }
+  .gallery :focus-visible { outline-color: var(--white); }
+</style>

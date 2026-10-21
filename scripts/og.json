@@ -24,6 +24,9 @@
     "photo": "src/assets/photos/web-three-women-agave.jpg"
   },
   "sitka": {
-    "photo": "src/assets/photos/sitka-hero-stone-circle.jpg"
+    "photo": "src/assets/photos/sitka-hero-pool.jpg"
+  },
+  "women": {
+    "photo": "src/assets/photos/women-fire-circle-night.jpg"
   }
 }

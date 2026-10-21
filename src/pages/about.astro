@@ -17,7 +17,7 @@ const team = [
 const follow = [
   { kind: 'Instagram', title: '@mexisol.world', text: 'Dates, moments from the Finca and news from the road.', href: site.instagram, track: 'outbound' },
   { kind: 'YouTube', title: 'Finca El Péndulo', text: 'Videos from the land, the ceremonies and the music.', href: site.youtube.channel, track: 'outbound' },
-  { kind: 'Visit', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. ${retreats.finca.length} retreats in ${retreats.year}.`, href: href('/finca-el-pendulo') },
+  { kind: 'Visit', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. ${retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length} retreats in ${retreats.year}.`, href: href('/finca-el-pendulo') },
 ];
 ---
 <BaseLayout
@@ -54,7 +54,7 @@ const follow = [
         <div><dt class="t-title">2018</dt><dd class="muted">The first plant medicine ceremonies on the land.</dd></div>
         <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut is built. More than 500 people have come to our retreats since.</dd></div>
         <div><dt class="t-title">2026</dt><dd class="muted">The community becomes MexiSol World.</dd></div>
-        <div><dt class="t-title">2027</dt><dd class="muted">{retreats.finca.length} retreats at the Finca and international retreats worldwide.</dd></div>
+        <div><dt class="t-title">2027</dt><dd class="muted">{retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length} retreats at the Finca and international retreats worldwide.</dd></div>
       </dl>
     </div>
   </section>

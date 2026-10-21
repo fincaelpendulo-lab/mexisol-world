@@ -5,7 +5,6 @@ import HeroSplit from '../components/HeroSplit.astro';
 import SectionIntro from '../components/SectionIntro.astro';
 import Photo from '../components/Photo.astro';
 import Button from '../components/Button.astro';
-import BookingTerms from '../components/BookingTerms.astro';
 import retreats from '../data/retreats.json';
 import { registerHref } from '../lib/url';
 import { event, fincaLocation } from '../lib/schema';
@@ -52,8 +51,8 @@ const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
   schema={schema}
 >
   <HeroSplit
-    image="sitka-hero-stone-circle"
-    imageAlt="Yoga on the stone circle among the onyx pillars of the Oracle"
+    image="sitka-hero-pool"
+    imageAlt="The pool in front of the main palapa and the white tower, under a blue sky"
     eyebrow="January 12-16, 2027 · Tepatitlán, Mexico"
     title="Sitka & Sol Wellness Retreat"
     cta={{ label: 'Reserve your spot', href: registerHref('sitka-sol') }}
@@ -114,7 +113,7 @@ const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
       <div class="grid" style="--min:260px;--gap:var(--space-7)">
         {guides.map((g) => (
           <div class="stack team-card" style="--stack:var(--space-3)">
-            <Photo name={g.img} alt={g.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[300, 470]} class="ratio-4-5 team-card__photo" />
+            <Photo name={g.img} alt={g.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
             <h3 class="t-title" style="margin-top:var(--space-4)">{g.name}</h3>
             <p class="muted">{g.text}</p>
           </div>
@@ -125,11 +124,8 @@ const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
 
   <section class="section section--top-rule" id="prices">
     <div class="wrap">
-      <p class="label" style="margin-bottom:var(--space-5)">Recharge your liver, revitalize your life</p>
-      <div class="split-head">
-        <h2 class="t-heading">Deep liver cleanse</h2>
-        <p class="muted" style="max-width:440px">Release what you've been carrying physically, emotionally, mentally, and energetically. Make space for something new.</p>
-      </div>
+      <p class="label" style="margin-bottom:var(--space-5)">Rooms and prices</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">Choose your room</h2>
       <div class="grid" style="--min:220px;--gap:var(--space-7) var(--space-5)">
         {rooms.map((x) => (
           <div class="rule-top stack" style="--stack:var(--space-2)">
@@ -140,14 +136,8 @@ const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
           </div>
         ))}
       </div>
-      <div class="pair" style="margin-top:var(--space-8)">
-        <Photo name="sitka-room-green" alt="A guest room with green walls and a double bed" sizes="(max-width: 760px) 50vw, 33vw" widths={[400, 800, 1200]} class="ratio-4-3" />
-        <Photo name="sitka-jacuzzi-pergola" alt="The jacuzzi under a wooden pergola among palms" sizes="(max-width: 760px) 50vw, 33vw" widths={[400, 800, 1200]} class="ratio-4-3" />
-      </div>
     </div>
   </section>
-
-  <BookingTerms />
 
   <section class="section deep center">
     <p class="label" style="margin-bottom:var(--space-5)">Sitka & Sol</p>

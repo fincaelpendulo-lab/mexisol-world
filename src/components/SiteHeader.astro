@@ -57,11 +57,11 @@ const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
       <div class="site-nav__contact">
         <a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a>
         <a href={`mailto:${site.email}`}>{site.email}</a>
-        <a href={es} hreflang="es" lang="es">Leer en español (traducción automática)</a>
+        <a href={es} hreflang="es" lang="es" data-lang-toggle data-lang-long>Leer en español (traducción automática)</a>
       </div>
     </nav>
 
-    <a href={es} class="site-header__lang" hreflang="es" lang="es" data-track="translate" aria-label="Leer esta página en español (traducción automática)">ES</a>
+    <a href={es} class="site-header__lang" hreflang="es" lang="es" data-track="translate" data-lang-toggle aria-label="Leer esta página en español (traducción automática)">ES</a>
     <Button href={href('/#register')} variant="primary" size="sm" class="site-header__cta" data-track="register">Register</Button>
   </div>
 </header>

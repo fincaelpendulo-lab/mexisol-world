@@ -4,11 +4,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionIntro from '../components/SectionIntro.astro';
 import VideoBand from '../components/VideoBand.astro';
 import Photo from '../components/Photo.astro';
+import RoomCard from '../components/RoomCard.astro';
 import Button from '../components/Button.astro';
 import site from '../data/site.json';
 import retreats from '../data/retreats.json';
 import rooms from '../data/rooms.json';
-import { dateRange } from '../lib/dates';
+import { dateRange, retreatDates } from '../lib/dates';
 import { href, absolute, registerHref } from '../lib/url';
 import BookingTerms from '../components/BookingTerms.astro';
 import Reviews from '../components/Reviews.astro';
@@ -17,7 +18,8 @@ import { event, fincaLocation, fincaPlace } from '../lib/schema';
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
-const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat' };
+const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat', women: '/womens-retreat' };
+const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
 
 const spaces = [
   { img: 'guests-gathered-inside-the-osho-hut', alt: 'A facilitator serving guests seated inside the Osho Hut', name: 'The Osho Hut', text: 'The spiritual heart of the Finca. A round stone house with a palm roof, where every ceremony happens with live music. It also hosts meditation, yoga, concerts and long dinners.' },
@@ -45,30 +47,10 @@ const week = [
   { img: 'guests-sharing-a-candlelit-dinner-at', alt: 'Guests sharing dinner at a long table in warm light', cap: 'Dinner together' },
 ];
 const roomTypes = [
-  { img: 'beds-in-the-open-loft-of', alt: 'Beds in the open loft of the Hormiguero', name: 'Shared dorm', price: price.dorm, names: 'The Hormiguero', text: 'Shared with up to three other guests in the house volunteers built among the banana trees. Good if you are coming on your own and want company.' },
-  { img: 'guest-room-under-a-palapa-roof', alt: 'Guest room under a palapa roof', name: 'Semi-private villa', price: price['semi-private'], names: 'Agua · Aire · Tierra · Fuego', text: 'One or two guests. Shared bathroom, privacy curtains, east-facing for sunrise and the horses.' },
-  { img: 'maguey-a-green-room-with-a', alt: 'Maguey, a green room with a double bed and a private bathroom', name: 'Private room', price: price.private, names: 'Agave · Maguey · Lobo · Loba · Oeste · Cactus', text: 'One or two guests, with a private bathroom.' },
-  { img: 'tilopa-a-deep-blue-room-with', alt: 'Tilopa, a deep blue room with a log bed and a window onto the agave', name: 'Deluxe room', price: price.deluxe, names: 'Tilopa · Jumanji', text: 'The only rooms with their own jacuzzi. Queen bed, a sofa bed for a third guest and a private bathroom. There are only two.' },
-];
-const galleries = [
-  { title: 'Deluxe rooms', note: 'Tilopa and Jumanji, the only rooms with their own jacuzzi.', min: 260, ratio: '4-3', items: [
-    { img: 'tilopa-a-deep-blue-room-with', alt: 'Tilopa bedroom', cap: 'Tilopa' },
-    { img: 'corner-jacuzzi-in-the-tilopa-bathroom', alt: 'Corner jacuzzi in the Tilopa bathroom', cap: 'Tilopa · Jacuzzi' },
-    { img: 'jumanji-a-green-room-with-a', alt: 'Jumanji, a green room with a palm roof and a sofa bed', cap: 'Jumanji' },
-  ] },
-  { title: 'Private rooms', note: 'Six rooms, each decorated its own way, all with a private bathroom.', min: 180, ratio: '4-3', items: [
-    { img: 'agave-bedroom-with-woven-baskets-on', alt: 'Agave bedroom with woven baskets on a turquoise wall', cap: 'Agave' },
-    { img: 'maguey-a-green-room-with-a', alt: 'Maguey bedroom with green walls', cap: 'Maguey' },
-    { img: 'lobo-bedroom-with-a-yellow-woven', alt: 'Lobo bedroom with a yellow woven bedspread', cap: 'Lobo' },
-    { img: 'loba-bedroom-with-a-wagon-wheel', alt: 'Loba bedroom with a wagon-wheel headboard', cap: 'Loba' },
-    { img: 'oeste-bedroom-with-two-single-beds', alt: 'Oeste bedroom with a purple bed and a large window', cap: 'Oeste' },
-    { img: 'cactus-bedroom-with-a-sitting-area', alt: 'Cactus bedroom with a sitting area', cap: 'Cactus' },
-  ] },
-  { title: 'Shared dorm', note: 'The Hormiguero: a loft upstairs, bunks downstairs and a shared kitchen.', min: 200, ratio: '3-4', items: [
-    { img: 'hormiguero-from-outside-a-round-house', alt: 'The Hormiguero from outside, a round house with a palm roof', cap: 'The Hormiguero' },
-    { img: 'beds-in-the-open-loft-of', alt: 'Beds in the upstairs loft', cap: 'Upstairs loft' },
-    { img: 'wooden-bunk-beds-downstairs', alt: 'Wooden bunk beds downstairs', cap: 'Bunks downstairs' },
-  ] },
+  { type: 'dorm' as const, name: 'Shared dorm', price: price.dorm, text: 'Shared with up to three other guests in the house volunteers built among the banana trees. Good if you are coming on your own and want company.' },
+  { type: 'villa' as const, name: 'Semi-private villa', price: price['semi-private'], text: 'One or two guests. Shared bathroom, privacy curtains, east-facing for sunrise and the horses.' },
+  { type: 'private' as const, name: 'Private room', price: price.private, text: 'One or two guests, with a private bathroom.' },
+  { type: 'deluxe' as const, name: 'Deluxe room', price: price.deluxe, text: 'The only rooms with their own jacuzzi. Queen bed, a sofa bed for a third guest and a private bathroom. There are only two.' },
 ];
 
 const offers = rooms.rooms.map((r) => ({ name: r.name, priceUsd: r.priceUsd }));
@@ -78,6 +60,8 @@ const events = retreats.finca.map((r) => event({
   end: r.end,
   description: r.medicine === 'familia-sagrada'
     ? 'A Holy Week retreat at Finca El Péndulo, Jalisco, with the Medicine and Music Festival.'
+    : r.medicine === 'women'
+    ? "A women's retreat with Araisis at Finca El Péndulo: two ceremonies with sacred mushrooms, music, cacao, kambo, voice activation, astrology workshops and temazcal."
     : r.medicine === 'wellness'
     ? 'Sitka & Sol Wellness Retreat with Sitka Healing House: a five-day liver cleanse, movement, meditation and live music at Finca El Péndulo.'
     : `Seven days, six nights, all-inclusive. Three ceremonies: two with ${r.medicine} and one with Satori. Up to 15 guests.`,
@@ -98,7 +82,7 @@ const events = retreats.finca.map((r) => event({
 >
   <VideoBand poster="aerial-agave-rows-and-cabins" alt="Aerial view of the agave rows and palapa cabins at Finca El Péndulo" mp4="/video/finca-aerial.mp4" webm="/video/finca-aerial.webm">
     <p class="t-title">Tepatitlán de Morelos, Jalisco</p>
-    <p class="t-date">{retreats.finca.length} retreats in {retreats.year}</p>
+    <p class="t-date">{inYear} retreats in {retreats.year}</p>
     <h1 class="t-display">Finca El Péndulo</h1>
     <p class="t-subtitle" style="max-width:760px">Our home in the highlands of Jalisco</p>
     <div class="cluster" style="margin-top:var(--space-6)">
@@ -219,33 +203,7 @@ const events = retreats.finca.map((r) => event({
       <h2 class="t-heading" style="margin-bottom:var(--space-5)">Every room has a name</h2>
       <p class="muted" style="max-width:var(--measure);margin-bottom:var(--space-7)">One price covers the whole retreat: ceremonies, meals, activities and your bed. Prices are per person. Share a room with a friend or partner and each of you gets 10% off.</p>
       <div class="grid" style="--min:240px;--gap:var(--space-7) var(--space-3);margin-bottom:var(--space-9)">
-        {roomTypes.map((r) => (
-          <div class="stack" style="--stack:var(--space-3)">
-            <Photo name={r.img} alt={r.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-3" />
-            <h3 class="t-title" style="margin-top:var(--space-4)">{r.name}</h3>
-            <p class="t-date">{usd(r.price)} <span class="t-caption muted">per person</span></p>
-            <p class="label label--tight">{r.names}</p>
-            <p class="muted">{r.text}</p>
-          </div>
-        ))}
-      </div>
-      <div class="stack" style="--stack:var(--space-8)">
-        {galleries.map((g) => (
-          <div class="rule-top rule-top--soft stack" style="padding-top:var(--space-6)">
-            <div class="split-head" style="margin:0;align-items:baseline">
-              <h3 class="t-title">{g.title}</h3>
-              <p class="muted" style="max-width:520px">{g.note}</p>
-            </div>
-            <div class="grid grid--fill" style={`--min:${g.min}px;--gap:var(--space-5) var(--space-3)`}>
-              {g.items.map((it) => (
-                <figure class="fig fig--ink">
-                  <Photo name={it.img} alt={it.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class={`ratio-${g.ratio}`} />
-                  <figcaption class="label label--tight">{it.cap}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        ))}
+        {roomTypes.map((r) => <RoomCard type={r.type} name={r.name} price={usd(r.price)} text={r.text} />)}
       </div>
       <p class="t-caption muted" style="margin-top:var(--space-7)">Airport pickup from Guadalajara: {usd(rooms.airportPickup.oneWayUsd)} one way, {usd(rooms.airportPickup.roundTripUsd)} round trip. Flights not included.</p>
     </div>
@@ -255,7 +213,7 @@ const events = retreats.finca.map((r) => event({
 
   <section id="dates" class="section section--top-rule">
     <div class="wrap">
-      <p class="label" style="margin-bottom:var(--space-5)">{retreats.year} at Finca El Péndulo</p>
+      <p class="label" style="margin-bottom:var(--space-5)">Coming up at Finca El Péndulo</p>
       <div class="split-head">
         <h2 class="t-heading">Retreats at the Finca</h2>
         <p class="muted" style="max-width:440px">Seven days, six nights, all-inclusive. Up to 15 guests. From {usd(price.dorm)} depending on your room.</p>
@@ -263,7 +221,7 @@ const events = retreats.finca.map((r) => event({
       <ul class="rule-list date-table">
         {retreats.finca.map((r) => (
           <li>
-            <p class="t-date date-table__date">{dateRange(r.start, r.end, true)}</p>
+            <p class="t-date date-table__date">{retreatDates(r.start, r.end, retreats.year, true)}</p>
             {medicinePage[r.medicine]
               ? <a class="t-title date-table__title" href={href(medicinePage[r.medicine])}>{r.title}</a>
               : <p class="t-title date-table__title">{r.title}</p>}

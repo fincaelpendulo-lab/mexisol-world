@@ -4,10 +4,10 @@
 import Button from './Button.astro';
 import site from '../data/site.json';
 import retreats from '../data/retreats.json';
-import { dateRange } from '../lib/dates';
+import { dateRange, retreatDates } from '../lib/dates';
 import { whatsappUrl } from '../lib/url';
 
-const finca = retreats.finca.map((r) => ({ id: r.id, label: `${r.title.replace(/ retreat$/, '')}, ${dateRange(r.start, r.end)}` }));
+const finca = retreats.finca.map((r) => ({ id: r.id, label: `${r.title.replace(/ retreat$/, '')}, ${retreatDates(r.start, r.end, retreats.year)}` }));
 const intl = retreats.international.map((r) => ({ id: r.id, label: `${r.location === 'Europe' ? r.title : r.location}, ${dateRange(r.start, r.end)}` }));
 ---
 <form class="register-form" action={site.formEndpoint || '#'} method="post" data-register-form data-whatsapp={whatsappUrl}>
