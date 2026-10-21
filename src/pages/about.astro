@@ -11,13 +11,13 @@ import { href } from '../lib/url';
 
 const team = [
   { img: 'staff-humberto', alt: 'Humberto, who leads the ayahuasca retreats', role: 'Shaman', name: 'Humberto', text: 'Born in Tepatitlán. He left a contracting business in California to train in Perú, near Pucallpa, through long master plant dietas. He has led ceremonies on several continents and leads our ayahuasca retreats, singing through the night with the musicians.', link: { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') } },
-  { img: 'staff-krista', alt: 'Krista with a drum in the Osho Hut', role: 'Medicine woman', name: 'Krista', text: 'Born in Mexico City. An engineer by training, she spent more than twenty years running a high school before the medicine changed her path. She learned to work with mushrooms in Oaxaca and leads our psilocybin retreats.', link: { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') } },
-  { img: 'staff-marina', alt: 'Marina, founder of Finca El Péndulo', role: 'Finca El Péndulo', name: 'Marina', text: 'She founded the Finca in 2017 after years of meditation practice, and has kept building it ever since: more than fifteen spaces on four hectares. She looks after the place, and the community that keeps it running.', link: { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') } },
+  { img: 'staff-krista', alt: 'Krista with a drum in the Osho Hut', role: 'Medicine woman', name: 'Krista', text: 'Born in Mexico City. An engineer by training, she was a high school principal for 20 years before the medicine changed her path. She learned to work with mushrooms in Oaxaca and leads our psilocybin retreats.', link: { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') } },
+  { img: 'staff-marina', alt: 'Marina, founder of Finca El Péndulo', role: 'Finca El Péndulo', name: 'Marina', text: 'She founded the Finca in 2017 after years of meditation practice, and has kept building it ever since: more than fifteen spaces on 14 acres. She looks after the place, and the community that keeps it running.', link: { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') } },
 ];
 const follow = [
   { kind: 'Instagram', title: '@mexisol.world', text: 'Dates, moments from the Finca and news from the road.', href: site.instagram, track: 'outbound' },
-  { kind: 'YouTube', title: 'Finca El Péndulo', text: 'Videos from the land, the ceremonies and the music.', href: site.youtube.url, track: 'outbound' },
-  { kind: 'Visit', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. Twelve retreats in ${retreats.year}.`, href: href('/finca-el-pendulo') },
+  { kind: 'YouTube', title: 'Finca El Péndulo', text: 'Videos from the land, the ceremonies and the music.', href: site.youtube.channel, track: 'outbound' },
+  { kind: 'Visit', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. ${retreats.finca.length} retreats in ${retreats.year}.`, href: href('/finca-el-pendulo') },
 ];
 ---
 <BaseLayout
@@ -45,16 +45,16 @@ const follow = [
       <div class="stack" style="--stack:var(--space-4)">
         <p class="label">Our story</p>
         <h2 class="t-heading" style="margin-top:var(--space-5)">From the Finca to the world</h2>
-        <p class="muted">Marina founded Finca El Péndulo in 2017, after years of meditation practice. She started with the stables and an old tower. A year later the first ceremonies were held on the land, and people began arriving by word of mouth. In 2019 the Osho Hut went up, and it has held more than 1,000 ceremonies since.</p>
+        <p class="muted">Marina founded Finca El Péndulo in 2017, after years of meditation practice. She started with the stables and an old tower. A year later the first ceremonies were held on the land, and people began arriving by word of mouth. In 2019 the Osho Hut went up. More than 500 people have come to our retreats since.</p>
         <p class="muted">Humberto, born a few minutes away in Tepatitlán, came home after years of training with plant medicine in Perú and now leads our ayahuasca ceremonies. Krista arrived as a volunteer and stayed to lead the psilocybin work. Year after year, people came from all over the world to sit in the Osho Hut, walk the agave fields and go home a little lighter.</p>
         <p class="muted">In 2026 that community took a new name, MexiSol World, and a wider plan: keep holding retreats at home, and bring the ceremonies, the music and the gatherings to people beyond Mexico.</p>
       </div>
       <dl class="timeline timeline--wide">
         <div><dt class="t-title">2017</dt><dd class="muted">Marina founds Finca El Péndulo outside Tepatitlán.</dd></div>
         <div><dt class="t-title">2018</dt><dd class="muted">The first plant medicine ceremonies on the land.</dd></div>
-        <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut is built. More than 1,000 ceremonies have been held in it since.</dd></div>
+        <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut is built. More than 500 people have come to our retreats since.</dd></div>
         <div><dt class="t-title">2026</dt><dd class="muted">The community becomes MexiSol World.</dd></div>
-        <div><dt class="t-title">2027</dt><dd class="muted">Twelve retreats at the Finca and international retreats worldwide.</dd></div>
+        <div><dt class="t-title">2027</dt><dd class="muted">{retreats.finca.length} retreats at the Finca and international retreats worldwide.</dd></div>
       </dl>
     </div>
   </section>
@@ -88,7 +88,7 @@ const follow = [
         <p class="label">Finca El Péndulo on YouTube</p>
         <h2 class="t-heading">Welcome to MexiSol World</h2>
         <p>A short welcome to the new chapter, from the land where it all started.</p>
-        <p><a href={site.youtube.url} data-track="outbound">Watch Welcome to MexiSol World on YouTube</a></p>
+        <p><a href={site.youtube.channel} data-track="outbound">More videos on our YouTube channel</a></p>
       </div>
       <YouTube poster="mexisol-community-welcome" title="Welcome to MexiSol World" />
     </div>

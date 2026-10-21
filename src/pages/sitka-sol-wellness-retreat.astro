@@ -1,0 +1,164 @@
+---
+// Sitka & Sol Wellness Retreat (with Sitka Healing House). Copy and prices from the partner's flyer.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSplit from '../components/HeroSplit.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import BookingTerms from '../components/BookingTerms.astro';
+import retreats from '../data/retreats.json';
+import { registerHref } from '../lib/url';
+import { event, fincaLocation } from '../lib/schema';
+import { absolute } from '../lib/url';
+
+const r = retreats.finca.find((x) => x.id === 'sitka-sol')!;
+const rooms = [
+  { name: 'Shared room', text: 'Shared space with multiple guests.', usd: 1450, cad: 2000 },
+  { name: 'Semi-private room', text: 'Room with two beds and private bathroom.', usd: 1690, cad: 2350 },
+  { name: 'Private room', text: 'Room with a single bed and a private bathroom.', usd: 1800, cad: 2500 },
+  { name: 'Deluxe room', text: 'Room with single bed and private bathroom.', usd: 1900, cad: 2650 },
+];
+const features = [
+  { title: 'Supportive environment', text: 'Professional guidance and teaching with cleansing experts.' },
+  { title: 'Nature retreat', text: 'Located on a 14 acre farm, surrounded by nature.' },
+  { title: 'Liver cleanse', text: 'Individualized liver cleansing protocol to transform your life.' },
+  { title: 'Healthy cuisine', text: 'Nourishing meals made with fresh, natural ingredients.' },
+  { title: 'Comfortable accommodations', text: 'Spacious private and semi-private rooms, all with private bathrooms.' },
+];
+const guides = [
+  { name: 'Jackie "Laara" Herod', img: 'guide-jackie', alt: 'Jackie "Laara" Herod', text: 'Jackie has personally engaged in the cleansing process for the last eight years, completing over 60 liver cleanses. As a ceremony facilitator, she offers practices, meditations, and sound to support the wellness journey.' },
+  { name: 'Dr. Stewart Blaikie', img: 'guide-stewart', alt: 'Dr. Stewart Blaikie', text: "An internationally acclaimed cleansing expert with over 30 years of experience, Stewart combines gentle yet powerful cleansing methods, natural medicines, and extensive knowledge of the human body. His approach supports the body's natural ability to heal and thrive." },
+  { name: 'Humberto', img: 'guide-humberto', alt: 'Humberto playing a drum during a ceremony', text: 'As a facilitator of consciousness, Humberto utilizes music, poetry, and stories to guide people into deep levels of healing and meditation. As a shaman, he is an expert at creating ceremonial spaces, an asset to the cleansing process.' },
+];
+const schema = [event({
+  name: 'Sitka & Sol Wellness Retreat',
+  start: r.start,
+  end: r.end,
+  description: 'A wellness retreat with Sitka Healing House at Finca El Péndulo: a deep liver cleanse, educational sessions, movement, meditation, live music and sound healing.',
+  url: absolute('/sitka-sol-wellness-retreat'),
+  location: fincaLocation,
+  prices: rooms.map((x) => ({ name: x.name, priceUsd: x.usd })),
+})];
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
+---
+<BaseLayout
+  title="Sitka & Sol Wellness Retreat, Jalisco 2027 | MexiSol World"
+  description="A liver cleanse and wellness retreat at Finca El Péndulo, January 12-16, 2027, with Sitka Healing House. Meals, rooms, movement, meditation and live music."
+  path="/sitka-sol-wellness-retreat"
+  current="finca"
+  ogImage="sitka"
+  breadcrumbs={[{ name: 'Finca El Péndulo retreats', path: '/finca-el-pendulo' }, { name: 'Sitka & Sol Wellness Retreat', path: '/sitka-sol-wellness-retreat' }]}
+  schema={schema}
+>
+  <HeroSplit
+    image="sitka-hero-stone-circle"
+    imageAlt="Yoga on the stone circle among the onyx pillars of the Oracle"
+    eyebrow="January 12-16, 2027 · Tepatitlán, Mexico"
+    title="Sitka & Sol Wellness Retreat"
+    cta={{ label: 'Reserve your spot', href: registerHref('sitka-sol') }}
+    images={[
+      { name: 'sitka-kitchen-serving', alt: 'The kitchen team serving food from clay pots' },
+      { name: 'sitka-jacuzzi-pergola', alt: 'The jacuzzi under a wooden pergola among palms' },
+    ]}
+  >Where nature, health and consciousness meet. Cleanse. Detox. Renew. A retreat with Sitka Healing House at Finca El Péndulo.</HeroSplit>
+
+  <SectionIntro eyebrow="Nourish · Reconnect · Explore">Enjoy comfortable accommodations, nourishing meals, cleansing products, daily mindfulness, and movement practices. There's also plenty of time to slow down, explore this amazing farm, and reconnect with nature and yourself.</SectionIntro>
+
+  <div class="photo-row" style="--min:240px;--h:380px">
+    <Photo name="sitka-long-dinner" alt="Guests sharing dinner at a long table in warm light" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="sitka-morning-stretch" alt="Morning stretches on the stone circle" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="sitka-cold-tub" alt="A cold-plunge tub beside the garden" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Why attend?</h2>
+        <ul class="rule-list">
+          <li>Restore energy and vitality</li>
+          <li>Support your body's natural healing process</li>
+          <li>Deepen your mind-body connection</li>
+          <li>Gain clarity and reconnect with yourself</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">What you'll experience</h2>
+        <ul class="rule-list">
+          <li>Transformational liver flush</li>
+          <li>Educational sessions</li>
+          <li>Simple tools and body movement</li>
+          <li>Group reflection and meditation</li>
+          <li>Live music and sound healing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Your retreat</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Your wellness journey starts here</h2>
+      <ul class="grid sitka-features" style="--min:200px;--gap:var(--space-6)">
+        {features.map((f) => (
+          <li class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">{f.title}</h3><p>{f.text}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="guides">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Meet your guides</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Three guides, one week</h2>
+      <div class="grid" style="--min:260px;--gap:var(--space-7)">
+        {guides.map((g) => (
+          <div class="stack team-card" style="--stack:var(--space-3)">
+            <Photo name={g.img} alt={g.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[300, 470]} class="ratio-4-5 team-card__photo" />
+            <h3 class="t-title" style="margin-top:var(--space-4)">{g.name}</h3>
+            <p class="muted">{g.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--top-rule" id="prices">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Recharge your liver, revitalize your life</p>
+      <div class="split-head">
+        <h2 class="t-heading">Deep liver cleanse</h2>
+        <p class="muted" style="max-width:440px">Release what you've been carrying physically, emotionally, mentally, and energetically. Make space for something new.</p>
+      </div>
+      <div class="grid" style="--min:220px;--gap:var(--space-7) var(--space-5)">
+        {rooms.map((x) => (
+          <div class="rule-top stack" style="--stack:var(--space-2)">
+            <h3 class="t-title">{x.name}</h3>
+            <p class="muted">{x.text}</p>
+            <p class="t-date" style="margin-top:var(--space-3)">{usd(x.usd)}</p>
+            <p class="muted">{cad(x.cad)} <span class="t-caption">· per person</span></p>
+          </div>
+        ))}
+      </div>
+      <div class="pair" style="margin-top:var(--space-8)">
+        <Photo name="sitka-room-green" alt="A guest room with green walls and a double bed" sizes="(max-width: 760px) 50vw, 33vw" widths={[400, 800, 1200]} class="ratio-4-3" />
+        <Photo name="sitka-jacuzzi-pergola" alt="The jacuzzi under a wooden pergola among palms" sizes="(max-width: 760px) 50vw, 33vw" widths={[400, 800, 1200]} class="ratio-4-3" />
+      </div>
+    </div>
+  </section>
+
+  <BookingTerms />
+
+  <section class="section deep center">
+    <p class="label" style="margin-bottom:var(--space-5)">Sitka & Sol</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Discover your authentic self, and why it matters to say yes to yourself.</h2>
+    <p class="measure" style="margin-bottom:var(--space-7)">With <a href="https://www.sitkahealinghouse.com">Sitka Healing House</a> and MexiSol World at Finca El Péndulo.</p>
+    <div class="cluster">
+      <Button href={registerHref('sitka-sol')} variant="on-photo" data-track="register">Reserve your spot today</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .sitka-features { list-style: none; margin: 0; padding: 0; }
+</style>

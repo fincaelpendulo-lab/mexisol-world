@@ -13,19 +13,21 @@ import { Image } from 'astro:assets';
 import lockup from '../assets/brand/lockup-color.png';
 import retreats from '../data/retreats.json';
 import { dateRange } from '../lib/dates';
-import { href } from '../lib/url';
+import { href, registerHref } from '../lib/url';
+import Reviews from '../components/Reviews.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
 import { faqPage } from '../lib/schema';
 
 const fincaNext = retreats.finca.slice(0, 4).map((r) => ({
   date: dateRange(r.start, r.end, true),
   title: r.title,
-  href: href(r.medicine === 'ayahuasca' ? '/ayahuasca-retreat' : r.medicine === 'psilocybin' ? '/psilocybin-retreat' : '/finca-el-pendulo#dates'),
+  href: href(r.medicine === 'ayahuasca' ? '/ayahuasca-retreat' : r.medicine === 'psilocybin' ? '/psilocybin-retreat' : r.medicine === 'wellness' ? '/sitka-sol-wellness-retreat' : '/finca-el-pendulo#dates'),
 }));
 const intlNext = retreats.international.slice(0, 4).map((r) => ({
   date: dateRange(r.start, r.end, true),
   title: r.id === 'tarapoto' ? 'Master plant dieta, Tarapoto' : r.location.startsWith('Finca') ? `${r.title}, Finca El Péndulo` : r.location,
 }));
-const booking = retreats.finca.filter((r) => r.bookingUrl);
+const booking = ['ayahuasca', 'psilocybin'].map((m) => retreats.finca.find((r) => r.medicine === m && r.bookingUrl)).filter((r): r is NonNullable<typeof r> => !!r);
 
 const faq = [
   { q: 'Do I need experience with plant medicine?', a: 'No. Many of our guests have never sat in ceremony. The master plant dieta abroad is the exception, and is meant for people who have.' },
@@ -33,7 +35,8 @@ const faq = [
   { q: 'Do I have to take every medicine?', a: 'No. Everything besides the main medicine is optional, and you can sit out any ceremony.' },
   { q: 'How big are the groups?', a: 'Up to 15 guests, with several servers in every ceremony.' },
   { q: 'Is it safe to travel to the Finca?', a: 'It sits in a quiet ranching town an hour from Guadalajara by toll road, on private land with security and staff on site.' },
-  { q: 'Can I come with a friend or partner?', a: 'Yes, and sharing a room lowers the price for both of you.' },
+  { q: 'Can I come with a friend or partner?', a: 'Yes. Prices are per person, and when you share a room each of you gets 10% off.' },
+  { q: 'What is Satori?', a: 'A plant medicine taken as capsules: DMT from tepezcohuite bark (Mimosa tenuiflora) with Syrian rue, a natural MAO inhibitor. It works much like ayahuasca but builds more gradually and is gentler on the body. Because it contains an MAO inhibitor, the same medication review applies.' },
 ];
 ---
 <BaseLayout
@@ -117,6 +120,7 @@ const faq = [
             <li>Temazcal, fire circle and a sunrise hike</li>
             <li>Six nights, all meals, group and one-on-one integration</li>
           </ul>
+          <p class="t-date">From $1,850 USD per person <span class="t-caption muted">· 7 days · all-inclusive</span></p>
           <div><Button href={href('/ayahuasca-retreat')}>The ayahuasca retreat</Button></div>
         </article>
         <article class="stack">
@@ -132,6 +136,7 @@ const faq = [
             <li>Temazcal, fire circle and a sunrise hike</li>
             <li>Six nights, all meals, group and one-on-one integration</li>
           </ul>
+          <p class="t-date">From $1,850 USD per person <span class="t-caption muted">· 7 days · all-inclusive</span></p>
           <div><Button href={href('/psilocybin-retreat')}>The psilocybin retreat</Button></div>
         </article>
       </div>
@@ -143,7 +148,7 @@ const faq = [
           <div class="card deep">
             <p class="label label--tight">Both retreats</p>
             <h3 class="t-title">Satori</h3>
-            <p>A sacred brew prepared in Mexico, close to ayahuasca in how it works and how it feels. It is one of the three main ceremonies in every retreat.</p>
+            <p>A plant medicine taken as capsules: DMT from tepezcohuite bark (Mimosa tenuiflora) with Syrian rue, which lets it work when swallowed. It builds gradually, tends to feel lucid, and asks less of the body than ayahuasca. It is one of the three ceremonies in every retreat.</p>
           </div>
           <div class="card">
             <p class="label label--tight">Ayahuasca retreat</p>
@@ -187,6 +192,10 @@ const faq = [
           <p style="margin-top:var(--space-5)"><a href={href('/international-retreats')}>All international retreats</a></p>
         </div>
       </div>
+      <div class="rule-top rule-top--soft calendar-ask">
+        <div><h3 class="t-title">Not ready to pick a date?</h3><p class="muted">We will email you the full {retreats.year} calendar.</p></div>
+        <SubscribeForm list="calendar" button={`Send me the ${retreats.year} calendar`} idPrefix="cal-home" />
+      </div>
     </div>
   </section>
 
@@ -202,7 +211,7 @@ const faq = [
     </div>
   </section>
 
-  <SectionIntro eyebrow="Our home" id="finca">Finca El Péndulo is four hectares of countryside outside Tepatitlán, about an hour from Guadalajara airport. Horses in the fields, agave on the hills, and a lake that catches the sunset.</SectionIntro>
+  <SectionIntro eyebrow="Our home" id="finca">Finca El Péndulo is 14 acres of countryside outside Tepatitlán, about an hour from Guadalajara airport. Horses in the fields, agave on the hills, and a lake that catches the sunset.</SectionIntro>
 
   <div class="photo-row" style="--min:240px;--h:420px">
     <Photo name="web-buddha-pond" alt="A stone Buddha beside the water-lily pond" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
@@ -257,6 +266,8 @@ const faq = [
     </div>
   </section>
 
+  <Reviews />
+
   <section id="faq" class="section faq">
     <div class="measure">
       <p class="label center" style="margin-bottom:var(--space-5)">Good to know</p>
@@ -278,7 +289,7 @@ const faq = [
         <p class="muted">Tell us which retreat you have in mind. We will write back to set up a call. Nothing is confirmed, and nothing is charged, until we have talked.</p>
         {booking.length > 0 && (
           <div class="stack" style="--stack:var(--space-2)">
-            <p class="t-caption muted">Already decided? Book directly:</p>
+            <p class="t-caption muted">Already decided? Book the next date directly:</p>
             {booking.map((r) => <a href={r.bookingUrl} data-track="booking">{r.title}, {dateRange(r.start, r.end)}</a>)}
           </div>
         )}

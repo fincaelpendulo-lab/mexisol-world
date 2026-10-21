@@ -22,5 +22,8 @@
   },
   "about": {
     "photo": "src/assets/photos/web-three-women-agave.jpg"
+  },
+  "sitka": {
+    "photo": "src/assets/photos/sitka-hero-stone-circle.jpg"
   }
 }

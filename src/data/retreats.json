@@ -1,26 +1,183 @@
 {
   "year": 2027,
   "finca": [
-    { "id": "aya-jan", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-01-16", "end": "2027-01-22", "bookingUrl": "" },
-    { "id": "psi-feb", "medicine": "psilocybin", "title": "Psilocybin retreat", "guide": "With Krista", "start": "2027-02-13", "end": "2027-02-19", "bookingUrl": "" },
-    { "id": "aya-mar", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-03-14", "end": "2027-03-20", "bookingUrl": "" },
-    { "id": "familia-sagrada", "medicine": "familia-sagrada", "title": "Familia Sagrada retreat", "guide": "Holy Week", "start": "2027-03-21", "end": "2027-03-27", "bookingUrl": "", "noPrice": true },
-    { "id": "psi-apr", "medicine": "psilocybin", "title": "Psilocybin retreat", "guide": "With Krista", "start": "2027-04-10", "end": "2027-04-16", "bookingUrl": "" },
-    { "id": "aya-may", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-05-01", "end": "2027-05-07", "bookingUrl": "" },
-    { "id": "psi-jun", "medicine": "psilocybin", "title": "Psilocybin retreat", "guide": "With Krista", "start": "2027-06-05", "end": "2027-06-11", "bookingUrl": "" },
-    { "id": "aya-jul", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-07-03", "end": "2027-07-09", "bookingUrl": "" },
-    { "id": "psi-aug", "medicine": "psilocybin", "title": "Psilocybin retreat", "guide": "With Krista", "start": "2027-08-07", "end": "2027-08-13", "bookingUrl": "" },
-    { "id": "aya-sep", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-09-04", "end": "2027-09-10", "bookingUrl": "" },
-    { "id": "psi-oct", "medicine": "psilocybin", "title": "Psilocybin retreat", "guide": "With Krista", "start": "2027-10-16", "end": "2027-10-22", "bookingUrl": "" },
-    { "id": "aya-nov", "medicine": "ayahuasca", "title": "Ayahuasca retreat", "guide": "With Humberto", "start": "2027-11-06", "end": "2027-11-12", "bookingUrl": "" }
+    {
+      "id": "sitka-sol",
+      "medicine": "wellness",
+      "title": "Sitka & Sol Wellness Retreat",
+      "guide": "With Sitka Healing House",
+      "start": "2027-01-12",
+      "end": "2027-01-16",
+      "bookingUrl": "",
+      "noPrice": true
+    },
+    {
+      "id": "aya-jan",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-01-16",
+      "end": "2027-01-22",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b898977&currency=mxn&checkin=2027-01-16&checkout=2027-01-22&adults=1"
+    },
+    {
+      "id": "psi-feb",
+      "medicine": "psilocybin",
+      "title": "Psilocybin retreat",
+      "guide": "With Krista",
+      "start": "2027-02-13",
+      "end": "2027-02-19",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b186906&currency=mxn&checkin=2027-02-13&checkout=2027-02-19&adults=1"
+    },
+    {
+      "id": "aya-mar",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-03-14",
+      "end": "2027-03-20",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b967201&currency=mxn&checkin=2027-03-14&checkout=2027-03-20&adults=1"
+    },
+    {
+      "id": "familia-sagrada",
+      "medicine": "familia-sagrada",
+      "title": "Familia Sagrada retreat",
+      "guide": "Holy Week, with the Medicine and Music Festival",
+      "start": "2027-03-21",
+      "end": "2027-03-28",
+      "bookingUrl": "",
+      "noPrice": true,
+      "subtitle": "Ceremonies March 24-25, festival March 27-28"
+    },
+    {
+      "id": "psi-apr",
+      "medicine": "psilocybin",
+      "title": "Psilocybin retreat",
+      "guide": "With Krista",
+      "start": "2027-04-10",
+      "end": "2027-04-16",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b966829&currency=mxn&checkin=2027-04-10&checkout=2027-04-16&adults=1"
+    },
+    {
+      "id": "aya-may",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-05-01",
+      "end": "2027-05-07",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b050844&currency=mxn&checkin=2027-05-01&checkout=2027-05-07&adults=1"
+    },
+    {
+      "id": "psi-jun",
+      "medicine": "psilocybin",
+      "title": "Psilocybin retreat",
+      "guide": "With Krista",
+      "start": "2027-06-05",
+      "end": "2027-06-11",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b231994&currency=mxn&checkin=2027-06-05&checkout=2027-06-11&adults=1"
+    },
+    {
+      "id": "aya-jul",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-07-03",
+      "end": "2027-07-09",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b898625&currency=mxn&checkin=2027-07-03&checkout=2027-07-09&adults=1"
+    },
+    {
+      "id": "psi-aug",
+      "medicine": "psilocybin",
+      "title": "Psilocybin retreat",
+      "guide": "With Krista",
+      "start": "2027-08-07",
+      "end": "2027-08-13",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b053814&currency=mxn&checkin=2027-08-07&checkout=2027-08-13&adults=1"
+    },
+    {
+      "id": "aya-sep",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-09-04",
+      "end": "2027-09-10",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b130444&currency=mxn&checkin=2027-09-04&checkout=2027-09-10&adults=1"
+    },
+    {
+      "id": "psi-oct",
+      "medicine": "psilocybin",
+      "title": "Psilocybin retreat",
+      "guide": "With Krista",
+      "start": "2027-10-16",
+      "end": "2027-10-22",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b941195&currency=mxn&checkin=2027-10-16&checkout=2027-10-22&adults=1"
+    },
+    {
+      "id": "aya-nov",
+      "medicine": "ayahuasca",
+      "title": "Ayahuasca retreat",
+      "guide": "With Humberto",
+      "start": "2027-11-06",
+      "end": "2027-11-12",
+      "bookingUrl": "https://us2.cloudbeds.com/es-es/reservation/1BtVyc/?allotment_block_code=b093468&currency=mxn&checkin=2027-11-06&checkout=2027-11-12&adults=1"
+    }
   ],
   "international": [
-    { "id": "wellness", "location": "Finca El Péndulo, Jalisco", "country": "MX", "title": "Wellness retreat", "subtitle": "", "start": "2027-01-09", "end": "2027-01-15", "bookingUrl": "", "priceUsd": null },
-    { "id": "lima", "location": "Lima, Perú", "country": "PE", "title": "Master plant retreat", "subtitle": "Two days in the capital, on the way to the rainforest", "start": "2027-01-30", "end": "2027-01-31", "bookingUrl": "", "priceUsd": null },
-    { "id": "tarapoto", "location": "Tarapoto, Perú", "country": "PE", "title": "Master plant dieta", "subtitle": "In the Amazon rainforest", "description": "Ten days with one teacher plant, a simple diet and long stretches of quiet. Meant for people who have already sat in ceremony.", "start": "2027-02-01", "end": "2027-02-10", "bookingUrl": "", "priceUsd": null },
-    { "id": "varanasi", "location": "Varanasi, India", "country": "IN", "title": "Master plant retreat", "subtitle": "Two weeks on the banks of the Ganges", "start": "2027-03-01", "end": "2027-03-14", "bookingUrl": "", "priceUsd": null },
-    { "id": "festival", "location": "Finca El Péndulo, Jalisco", "country": "MX", "title": "Medicine and Music Festival", "subtitle": "Ceremonies March 24-25, festival March 27-28", "start": "2027-03-24", "end": "2027-03-28", "bookingUrl": "", "priceUsd": null },
-    { "id": "chicago", "location": "Chicago, USA", "country": "US", "title": "Master plant retreat", "subtitle": "", "start": "2027-05-06", "end": "2027-05-08", "bookingUrl": "", "priceUsd": null },
-    { "id": "europe", "location": "Europe", "country": "ES", "title": "Europe tour", "subtitle": "Starting in Alicante, Spain.", "start": "2027-05-13", "end": "2027-06-22", "bookingUrl": "", "priceUsd": null }
+    {
+      "id": "lima",
+      "location": "Lima, Perú",
+      "country": "PE",
+      "title": "Master plant retreat",
+      "subtitle": "Two days in the capital, on the way to the rainforest",
+      "start": "2027-01-30",
+      "end": "2027-01-31",
+      "bookingUrl": "",
+      "priceUsd": null
+    },
+    {
+      "id": "tarapoto",
+      "location": "Tarapoto, Perú",
+      "country": "PE",
+      "title": "Master plant dieta",
+      "subtitle": "In the Amazon rainforest",
+      "description": "Ten days with one teacher plant, a simple diet and long stretches of quiet. Meant for people who have already sat in ceremony.",
+      "start": "2027-02-01",
+      "end": "2027-02-10",
+      "bookingUrl": "",
+      "priceUsd": null
+    },
+    {
+      "id": "varanasi",
+      "location": "Varanasi, India",
+      "country": "IN",
+      "title": "Master plant retreat",
+      "subtitle": "Two weeks on the banks of the Ganges",
+      "start": "2027-03-01",
+      "end": "2027-03-14",
+      "bookingUrl": "",
+      "priceUsd": null
+    },
+    {
+      "id": "chicago",
+      "location": "Chicago, USA",
+      "country": "US",
+      "title": "Master plant retreat",
+      "subtitle": "",
+      "start": "2027-05-06",
+      "end": "2027-05-08",
+      "bookingUrl": "",
+      "priceUsd": null
+    },
+    {
+      "id": "europe",
+      "location": "Europe",
+      "country": "ES",
+      "title": "Europe tour",
+      "subtitle": "Starting in Alicante, Spain.",
+      "start": "2027-05-13",
+      "end": "2027-06-22",
+      "bookingUrl": "",
+      "priceUsd": null
+    }
   ]
 }

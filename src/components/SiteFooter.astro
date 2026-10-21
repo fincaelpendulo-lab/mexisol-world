@@ -4,6 +4,8 @@ import { Image } from 'astro:assets';
 import lockup from '../assets/brand/lockup-white.png';
 import site from '../data/site.json';
 import { href, whatsappUrl } from '../lib/url';
+import SubscribeForm from './SubscribeForm.astro';
+import rooms from '../data/rooms.json';
 
 const year = new Date().getFullYear();
 const columns = [
@@ -22,7 +24,7 @@ const columns = [
     { label: 'Our story', href: href('/about#story') },
     { label: 'Our team', href: href('/about#team') },
     { label: 'Instagram @mexisol.world', href: site.instagram, track: 'outbound' },
-    { label: 'Finca El Péndulo on YouTube', href: site.youtube.url, track: 'outbound' },
+    { label: 'Finca El Péndulo on YouTube', href: site.youtube.channel, track: 'outbound' },
   ] },
 ];
 ---
@@ -31,6 +33,11 @@ const columns = [
     <div class="site-footer__brand">
       <a href={href('/')} aria-label="MexiSol World home"><Image src={lockup} alt="" width={180} height={114} densities={[1, 2]} /></a>
       <p class="t-caption">Ayahuasca and psilocybin retreats at Finca El Péndulo, Jalisco, and retreats worldwide.</p>
+      <div class="site-footer__news">
+        <h2 class="label" style="margin-bottom:var(--space-3)">Newsletter</h2>
+        <p class="t-caption" style="margin-bottom:var(--space-3)">Dates and news from the Finca, and {rooms.newsletterDiscount}% off your booking.</p>
+        <SubscribeForm list="newsletter" button="Sign up" idPrefix="nl-foot" tone="deep" />
+      </div>
     </div>
     <div class="site-footer__cols">
       {columns.map((col) => (
@@ -64,7 +71,7 @@ const columns = [
 <style is:global>
   .site-footer { padding: var(--space-9) clamp(24px, 4vw, 48px) var(--space-7); }
   .site-footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-8); }
-  .site-footer__brand { display: flex; flex-direction: column; gap: var(--space-5); max-width: 280px; }
+  .site-footer__brand { display: flex; flex-direction: column; gap: var(--space-5); max-width: 320px; }
   .site-footer__brand img { width: 180px; height: auto; }
   .site-footer__cols { display: flex; flex-wrap: wrap; gap: var(--space-8); }
   .site-footer__col h2 { margin: 0 0 var(--space-4); }

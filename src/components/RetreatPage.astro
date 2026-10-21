@@ -8,7 +8,9 @@ import Button from './Button.astro';
 import retreats from '../data/retreats.json';
 import rooms from '../data/rooms.json';
 import { dateRange } from '../lib/dates';
-import { href } from '../lib/url';
+import { href, registerHref } from '../lib/url';
+import BookingTerms from './BookingTerms.astro';
+import Reviews from './Reviews.astro';
 
 interface Img { name: string; alt: string; position?: string; }
 interface Props {
@@ -28,7 +30,6 @@ interface Props {
 }
 const p = Astro.props;
 const dates = retreats.finca.filter((r) => r.medicine === p.medicine);
-const booking = dates.find((r) => r.bookingUrl)?.bookingUrl;
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 ---
 <HeroSplit image={p.hero.name} imageAlt={p.hero.alt} eyebrow="Finca El Péndulo · 7 days, 6 nights" title={p.title} cta={{ label: 'See dates', href: '#dates' }} images={p.heroThumbs}>{p.heroText}</HeroSplit>
@@ -85,28 +86,35 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
     <ul class="grid grid--fill date-cards" style="--min:240px;--gap:var(--space-3)">
       {dates.map((r) => (
         <li>
-          <a class="date-card" href={r.bookingUrl || '#register'} data-track={r.bookingUrl ? 'booking' : undefined}>
+          <div class="date-card">
             <span class="t-date">{dateRange(r.start, r.end)}</span>
-            <span class="date-card__cta">Register<span class="visually-hidden"> for {dateRange(r.start, r.end)}</span></span>
-          </a>
+            <span class="date-card__links">
+              {r.bookingUrl && <a href={r.bookingUrl} data-track="booking">Book<span class="visually-hidden"> {dateRange(r.start, r.end)}</span></a>}
+              <a href={registerHref(r.id)} data-track="register">Talk to us first<span class="visually-hidden"> about {dateRange(r.start, r.end)}</span></a>
+            </span>
+          </div>
         </li>
       ))}
     </ul>
     <div class="grid rule-top rule-top--soft" style="--min:200px;--gap:var(--space-5);margin-top:var(--space-8);padding-top:var(--space-6)">
       {rooms.rooms.map((r) => (
-        <div><p class="t-title" style="margin-bottom:var(--space-2)">{r.name}</p><p class="t-date muted">{usd(r.priceUsd)}</p></div>
+        <div><p class="t-title" style="margin-bottom:var(--space-2)">{r.name}</p><p class="t-date muted">{usd(r.priceUsd)} <span class="t-caption">per person</span></p></div>
       ))}
     </div>
     <p style="margin-top:var(--space-4)"><a href={href('/finca-el-pendulo#rooms')}>See the rooms</a></p>
   </div>
 </section>
 
+<BookingTerms />
+
+<Reviews limit={3} />
+
 <section id="register" class="section deep center">
   <p class="label" style="margin-bottom:var(--space-5)">Ready to talk?</p>
   <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Start with a call</h2>
   <p class="measure" style="margin-bottom:var(--space-7)">We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.</p>
   <div class="cluster">
-    <Button href={booking || href('/#register')} variant="on-photo" data-track={booking ? 'booking' : 'register'}>Book your place</Button>
+    <Button href={registerHref(dates[0]?.id)} variant="on-photo" data-track="register">Register for a call</Button>
     <Button href={href('/prepare')} variant="on-photo">How to prepare</Button>
   </div>
 </section>
@@ -115,4 +123,7 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
   .days, .date-cards { list-style: none; margin: 0; padding: 0; }
   .deep .days .label { color: var(--brand-ochre); }
   .date-cards .date-card { height: 100%; }
+  .date-cards .date-card:hover { background: none; color: var(--ink); }
+  .date-card__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+  .date-card__links a { min-height: 44px; display: inline-flex; align-items: center; }
 </style>

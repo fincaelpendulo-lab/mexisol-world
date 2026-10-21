@@ -257,3 +257,7 @@ strong, b, th { font-weight: 400; color: var(--ink); }
 .ms-hero__photo .hero-slide { opacity: 0; transition: opacity 1.2s ease; }
 .ms-hero__photo .hero-slide.is-active { opacity: 1; }
 .ms-hero__photo picture:has(.hero-slide) { position: absolute; inset: 0; }
+
+/* "Send me the calendar" row */
+.calendar-ask { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: var(--space-5) var(--space-8); align-items: end; margin-top: var(--space-8); }
+.calendar-ask .t-title { margin-bottom: var(--space-2); }

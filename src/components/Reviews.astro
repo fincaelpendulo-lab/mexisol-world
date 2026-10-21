@@ -1,0 +1,38 @@
+---
+// Guest reviews from the MexiSoul Retreats listings (the project's earlier name).
+// Short excerpts, first names only, linked to the source.
+const BOOK = 'https://bookretreats.com/organizers/o/ruger#reviews';
+const GURU = 'https://retreat.guru/centers/1747-1/mexisoul-retreats#reviews';
+const quotes = [
+  { text: 'From the first day, I felt cared for and safe.', name: 'Jay', source: 'BookRetreats', date: 'April 2025' },
+  { text: "One of the best things I've ever done in my life.", name: 'Thibault', source: 'BookRetreats', date: 'May 2025' },
+  { text: 'The location itself is a little magical, with nature, animals, and sacred spaces.', name: 'Jannie', source: 'BookRetreats', date: 'May 2025' },
+  { text: 'My experience was truly incredible. It turned out to be everything that I was hoping for and more.', name: 'Ayahuasca retreat guest', source: 'BookRetreats', date: 'April 2026' },
+  { text: 'A little piece of heaven in Mexico', name: 'Joanne', source: 'Retreat Guru', date: 'October 2026' },
+  { text: 'Had a great experience and felt incredible and cared for throughout the journey.', name: 'Sanjay', source: 'BookRetreats', date: 'April 2025' },
+];
+interface Props { limit?: number; }
+const { limit = 6 } = Astro.props;
+---
+<section class="section reviews" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:var(--space-5)">What guests say</p>
+    <div class="split-head">
+      <h2 class="t-heading" id="reviews-title">In their words</h2>
+      <p class="muted" style="max-width:440px">Rated 5.0 from 55 reviews on <a href={BOOK}>BookRetreats</a> and 4.92 from 181 reviews on <a href={GURU}>Retreat Guru</a>, where we were known as MexiSoul Retreats.</p>
+    </div>
+    <ul class="grid reviews__list" style="--min:280px;--gap:var(--space-3)">
+      {quotes.slice(0, limit).map((q) => (
+        <li class="card">
+          <blockquote class="t-lead reviews__quote">"{q.text}"</blockquote>
+          <p class="t-caption muted">{q.name} · {q.source} · {q.date}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style is:global>
+  .reviews__list { list-style: none; margin: 0; padding: 0; }
+  .reviews__quote { margin: 0; font: var(--text-lead); font-size: 21px; }
+</style>

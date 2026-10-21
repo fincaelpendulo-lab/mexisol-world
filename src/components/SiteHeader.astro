@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 import lockup from '../assets/brand/lockup-color.png';
 import Button from './Button.astro';
 import site from '../data/site.json';
-import { href, whatsappUrl } from '../lib/url';
+import { href, whatsappUrl, spanishHref } from '../lib/url';
 
 interface Props { current?: 'home' | 'resources' | 'finca' | 'international' | 'about' | 'none'; }
 const { current = 'none' } = Astro.props;
@@ -19,9 +19,10 @@ const resources = [
 const about = [
   { label: 'Our story', href: href('/about#story') },
   { label: 'Our team', href: href('/about#team') },
-  { label: 'Finca El Péndulo on YouTube', href: site.youtube.url },
+  { label: 'Finca El Péndulo on YouTube', href: site.youtube.channel },
   { label: 'Instagram @mexisol.world', href: site.instagram },
 ];
+const es = spanishHref(Astro.url.pathname);
 const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
 ---
 <header class="site-header" data-header>
@@ -56,9 +57,11 @@ const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
       <div class="site-nav__contact">
         <a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a>
         <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={es} hreflang="es" lang="es">Leer en español (traducción automática)</a>
       </div>
     </nav>
 
+    <a href={es} class="site-header__lang" hreflang="es" lang="es" data-track="translate" aria-label="Leer esta página en español (traducción automática)">ES</a>
     <Button href={href('/#register')} variant="primary" size="sm" class="site-header__cta" data-track="register">Register</Button>
   </div>
 </header>
@@ -83,6 +86,8 @@ const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
   .js .site-nav__item--menu:not(.is-open):not(:hover) .site-nav__sub { display: none; }
   .site-nav__item--menu.is-open svg { transform: rotate(180deg); }
   .site-nav__contact { display: none; }
+  .site-header__lang { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font: var(--text-nav); letter-spacing: 0.1em; color: var(--ink); text-decoration: none; border: 1px solid var(--hairline); }
+  .site-header__lang:hover { border-color: var(--ink); color: var(--ink); }
   .menu-toggle { display: none; }
 
   @media (min-width: 1240px) {
@@ -92,6 +97,7 @@ const isCurrent = (key: string) => (current === key ? 'is-current' : undefined);
   @media (max-width: 1239px) {
     .site-header__bar { flex-wrap: nowrap; }
     .site-header__logo { margin-right: auto; }
+    .site-header__lang { order: 2; }
     .site-header__cta { order: 2; }
     .menu-toggle { order: 3; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; min-width: 44px; padding: 0 var(--space-3); border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font: var(--text-nav); letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
     .menu-toggle__close { display: none; }

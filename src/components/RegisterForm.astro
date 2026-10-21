@@ -7,8 +7,8 @@ import retreats from '../data/retreats.json';
 import { dateRange } from '../lib/dates';
 import { whatsappUrl } from '../lib/url';
 
-const finca = retreats.finca.map((r) => `${r.title.replace(/ retreat$/, '')}, ${dateRange(r.start, r.end)}`);
-const intl = retreats.international.map((r) => `${r.location === 'Europe' ? r.title : r.location.startsWith('Finca') ? r.title : r.location}, ${dateRange(r.start, r.end)}`);
+const finca = retreats.finca.map((r) => ({ id: r.id, label: `${r.title.replace(/ retreat$/, '')}, ${dateRange(r.start, r.end)}` }));
+const intl = retreats.international.map((r) => ({ id: r.id, label: `${r.location === 'Europe' ? r.title : r.location}, ${dateRange(r.start, r.end)}` }));
 ---
 <form class="register-form" action={site.formEndpoint || '#'} method="post" data-register-form data-whatsapp={whatsappUrl}>
   <div class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1"></div>
@@ -35,12 +35,12 @@ const intl = retreats.international.map((r) => `${r.location === 'Europe' ? r.ti
     <label for="f-retreat">Retreat</label>
     <select id="f-retreat" name="retreat">
       <optgroup label="At Finca El Péndulo">
-        {finca.map((o) => <option>{o}</option>)}
+        {finca.map((o) => <option value={o.id}>{o.label}</option>)}
       </optgroup>
       <optgroup label="International">
-        {intl.map((o) => <option>{o}</option>)}
+        {intl.map((o) => <option value={o.id}>{o.label}</option>)}
       </optgroup>
-      <option>Not sure yet</option>
+      <option value="not-sure">Not sure yet</option>
     </select>
   </div>
   <div class="field">

@@ -1,0 +1,28 @@
+---
+// "How booking works": the payment and change terms, and how the discounts combine.
+import rooms from '../data/rooms.json';
+import { href } from '../lib/url';
+
+interface Props { id?: string; }
+const { id } = Astro.props;
+const half = rooms.booking.depositPercent;
+---
+<section class="section section--top-rule" id={id}>
+  <div class="wrap grid">
+    <div>
+      <p class="label" style="margin-bottom:var(--space-5)">How booking works</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Simple terms, in writing</h2>
+      <p class="muted">Prices are per person. If you are not sure yet, <a href={href('/#register')}>register first</a> and we will set up a call before you pay anything.</p>
+    </div>
+    <ol class="rule-list booking-steps">
+      <li><span class="t-title">{half}% deposit</span><span class="muted">Holds your place. It is not refundable, but you can move it to a later date.</span></li>
+      <li><span class="t-title">{100 - half}% balance</span><span class="muted">Charged to the same card at any time in the {rooms.booking.balanceDaysBefore / 7} weeks before the retreat.</span></li>
+      <li><span class="t-title">Discounts</span><span class="muted">Share a room and each of you gets {rooms.sharedRoomDiscount}% off. Newsletter subscribers get {rooms.newsletterDiscount}% off their booking. One discount per booking; they do not combine.</span></li>
+    </ol>
+  </div>
+</section>
+
+<style is:global>
+  .booking-steps { list-style: none; }
+  .booking-steps > li { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5) 0; }
+</style>

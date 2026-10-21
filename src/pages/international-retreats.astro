@@ -7,7 +7,7 @@ import Button from '../components/Button.astro';
 import site from '../data/site.json';
 import retreats from '../data/retreats.json';
 import { dateRange } from '../lib/dates';
-import { href, absolute } from '../lib/url';
+import { href, absolute, registerHref } from '../lib/url';
 import { event, fincaLocation, placeIn } from '../lib/schema';
 
 const year = retreats.year;
@@ -40,7 +40,7 @@ const events = retreats.international.map((r) => event({
     </div>
   </div>
 
-  <SectionIntro eyebrow="On the road">Through the year we take the medicine, the music and the ceremonies to partners in other countries. Each gathering has its own format, price and booking page. Every guest still talks with us before confirming.</SectionIntro>
+  <SectionIntro eyebrow="On the road">Through the year we take the medicine, the music and the ceremonies to partners in other countries. Every guest still talks with us before confirming.</SectionIntro>
 
   <div class="photo-row" style="--min:260px;--h:380px;margin-bottom:var(--space-8)">
     <Photo name="web-india-group" alt="The MexiSol World group in India" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
@@ -59,7 +59,7 @@ const events = retreats.international.map((r) => event({
             {r.subtitle && <p class="t-subtitle muted">{r.subtitle}</p>}
             {r.description && <p class="muted" style="max-width:var(--measure);margin-top:var(--space-3)">{r.description}</p>}
           </div>
-          <Button href={r.bookingUrl || href('/#register')} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Register for ${r.title}, ${r.location}, ${dateRange(r.start, r.end)}`}>Register</Button>
+          <Button href={r.bookingUrl || registerHref(r.id)} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Register for ${r.title}, ${r.location}, ${dateRange(r.start, r.end)}`}>Register</Button>
         </li>
       ))}
     </ul>

@@ -9,12 +9,15 @@ import site from '../data/site.json';
 import retreats from '../data/retreats.json';
 import rooms from '../data/rooms.json';
 import { dateRange } from '../lib/dates';
-import { href, absolute } from '../lib/url';
+import { href, absolute, registerHref } from '../lib/url';
+import BookingTerms from '../components/BookingTerms.astro';
+import Reviews from '../components/Reviews.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
 import { event, fincaLocation, fincaPlace } from '../lib/schema';
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
-const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat' };
+const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat' };
 
 const spaces = [
   { img: 'guests-gathered-inside-the-osho-hut', alt: 'A facilitator serving guests seated inside the Osho Hut', name: 'The Osho Hut', text: 'The spiritual heart of the Finca. A round stone house with a palm roof, where every ceremony happens with live music. It also hosts meditation, yoga, concerts and long dinners.' },
@@ -74,7 +77,9 @@ const events = retreats.finca.map((r) => event({
   start: r.start,
   end: r.end,
   description: r.medicine === 'familia-sagrada'
-    ? 'A Holy Week retreat at Finca El Péndulo, Jalisco.'
+    ? 'A Holy Week retreat at Finca El Péndulo, Jalisco, with the Medicine and Music Festival.'
+    : r.medicine === 'wellness'
+    ? 'Sitka & Sol Wellness Retreat with Sitka Healing House: a five-day liver cleanse, movement, meditation and live music at Finca El Péndulo.'
     : `Seven days, six nights, all-inclusive. Three ceremonies: two with ${r.medicine} and one with Satori. Up to 15 guests.`,
   url: absolute(medicinePage[r.medicine] ?? '/finca-el-pendulo'),
   location: fincaLocation,
@@ -84,7 +89,7 @@ const events = retreats.finca.map((r) => event({
 ---
 <BaseLayout
   title="Retreats at Finca El Péndulo, Jalisco | MexiSol World"
-  description="Twelve ayahuasca and psilocybin retreats in 2027 at Finca El Péndulo, near Guadalajara. Rooms from $1,850 USD, all-inclusive, up to 15 guests."
+  description="Ayahuasca, psilocybin and wellness retreats in 2027 at Finca El Péndulo, near Guadalajara. From $1,850 USD per person, all-inclusive, up to 15 guests."
   path="/finca-el-pendulo"
   current="finca"
   ogImage="finca"
@@ -102,7 +107,7 @@ const events = retreats.finca.map((r) => event({
     </div>
   </VideoBand>
 
-  <SectionIntro eyebrow="The land">Four hectares of countryside about an hour from Guadalajara airport, with more than fifteen spaces built by hand since 2017. Horses in the fields, agave on the hills, and a lake that catches the sunset. Every MexiSol retreat in Mexico happens here.</SectionIntro>
+  <SectionIntro eyebrow="The land">14 acres of countryside about an hour from Guadalajara airport, with more than fifteen spaces built by hand since 2017. Horses in the fields, agave on the hills, and a lake that catches the sunset. Every MexiSol retreat in Mexico happens here.</SectionIntro>
 
   <div class="photo-row" style="--min:220px;--h:380px">
     <Photo name="guests-sitting-and-swimming-at-lake" alt="Three women sitting in a circle by the lake" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
@@ -114,14 +119,14 @@ const events = retreats.finca.map((r) => event({
   <section id="story" class="section">
     <div class="wrap grid" style="align-items:center">
       <div>
-        <p class="label" style="margin-bottom:var(--space-5)">Eight years in the making</p>
+        <p class="label" style="margin-bottom:var(--space-5)">Since 2017</p>
         <h2 class="t-heading" style="margin-bottom:var(--space-5)">Built by hand, one space at a time</h2>
         <p class="muted" style="margin-bottom:var(--space-6)">Marina founded the Finca in 2017, starting with the stables and the old tower. Ceremonies began a year later, and people found their way here by word of mouth. The land has been under construction ever since, much of it with the help of volunteers from the community that lives here.</p>
         <dl class="timeline">
           <div><dt class="t-title">2017</dt><dd class="muted">Marina founds Finca El Péndulo. The stables and the tower come first.</dd></div>
           <div><dt class="t-title">2018</dt><dd class="muted">The first plant medicine ceremonies.</dd></div>
-          <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut goes up. More than 1,000 ceremonies have been held in it since.</dd></div>
-          <div><dt class="t-title">Today</dt><dd class="muted">More than fifteen spaces, nine horses and a community that keeps building.</dd></div>
+          <div><dt class="t-title">2019</dt><dd class="muted">The Osho Hut goes up.</dd></div>
+          <div><dt class="t-title">Today</dt><dd class="muted">More than fifteen spaces, nine horses and a community that keeps building. More than 500 people have come to our retreats.</dd></div>
         </dl>
       </div>
       <div class="pair">
@@ -134,7 +139,7 @@ const events = retreats.finca.map((r) => event({
   <div class="photo-band" style="--h:520px">
     <Photo name="aerial-lake-avalon" alt="Aerial view of Lake Avalón with its central palapa and stone paths" />
     <div class="photo-band__wash">
-      <p class="t-title">Four hectares, fifteen spaces</p>
+      <p class="t-title">14 acres, fifteen spaces</p>
       <p class="t-display" style="max-width:900px">Room to slow down</p>
     </div>
   </div>
@@ -212,13 +217,13 @@ const events = retreats.finca.map((r) => event({
     <div class="wrap">
       <p class="label" style="margin-bottom:var(--space-5)">Rooms and prices</p>
       <h2 class="t-heading" style="margin-bottom:var(--space-5)">Every room has a name</h2>
-      <p class="muted" style="max-width:var(--measure);margin-bottom:var(--space-7)">One price covers the whole retreat: ceremonies, meals, activities and your bed. Sharing a room with a friend or partner gets you a discount.</p>
+      <p class="muted" style="max-width:var(--measure);margin-bottom:var(--space-7)">One price covers the whole retreat: ceremonies, meals, activities and your bed. Prices are per person. Share a room with a friend or partner and each of you gets 10% off.</p>
       <div class="grid" style="--min:240px;--gap:var(--space-7) var(--space-3);margin-bottom:var(--space-9)">
         {roomTypes.map((r) => (
           <div class="stack" style="--stack:var(--space-3)">
             <Photo name={r.img} alt={r.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-3" />
             <h3 class="t-title" style="margin-top:var(--space-4)">{r.name}</h3>
-            <p class="t-date">{usd(r.price)}</p>
+            <p class="t-date">{usd(r.price)} <span class="t-caption muted">per person</span></p>
             <p class="label label--tight">{r.names}</p>
             <p class="muted">{r.text}</p>
           </div>
@@ -246,6 +251,8 @@ const events = retreats.finca.map((r) => event({
     </div>
   </section>
 
+  <BookingTerms id="booking" />
+
   <section id="dates" class="section section--top-rule">
     <div class="wrap">
       <p class="label" style="margin-bottom:var(--space-5)">{retreats.year} at Finca El Péndulo</p>
@@ -261,12 +268,21 @@ const events = retreats.finca.map((r) => event({
               ? <a class="t-title date-table__title" href={href(medicinePage[r.medicine])}>{r.title}</a>
               : <p class="t-title date-table__title">{r.title}</p>}
             <p class="t-caption muted date-table__note">{r.guide}</p>
-            <a href={r.bookingUrl || href('/#register')} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Register for the ${r.title}, ${dateRange(r.start, r.end)}`}>Register</a>
+            <span class="date-table__links">
+              {r.bookingUrl && <a href={r.bookingUrl} data-track="booking" aria-label={`Book the ${r.title}, ${dateRange(r.start, r.end)}`}>Book</a>}
+              <a href={registerHref(r.id)} data-track="register" aria-label={`Register for a call about the ${r.title}, ${dateRange(r.start, r.end)}`}>Register</a>
+            </span>
           </li>
         ))}
       </ul>
+      <div class="rule-top rule-top--soft calendar-ask">
+        <div><h3 class="t-title">Not ready to pick a date?</h3><p class="muted">We will email you the full {retreats.year} calendar.</p></div>
+        <SubscribeForm list="calendar" button={`Send me the ${retreats.year} calendar`} idPrefix="cal-finca" />
+      </div>
     </div>
   </section>
+
+  <Reviews />
 
   <section class="section deep">
     <div class="wrap grid" style="align-items:end">
@@ -292,6 +308,7 @@ const events = retreats.finca.map((r) => event({
   .date-table__title { flex: 1 1 260px; color: var(--ink); text-decoration: none; }
   a.date-table__title:hover { color: var(--accent-text); }
   .date-table__note { flex: 0 1 200px; }
+  .date-table__links { display: flex; gap: var(--space-5); }
   @media (max-width: 760px) {
     .date-table__date { flex-basis: 100%; }
     .also { aspect-ratio: auto; }

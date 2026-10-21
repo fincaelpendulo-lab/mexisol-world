@@ -37,6 +37,35 @@ async function ensureFields(env) {
   return ids;
 }
 
+const LISTS = {
+  newsletter: { tag: 'newsletter-10off', source: 'mexisol.world newsletter (10% off)' },
+  calendar: { tag: 'calendar-2027', source: 'mexisol.world 2027 calendar request' },
+};
+
+async function subscribe(form, env, headers) {
+  const email = String(form.get('email') || '').trim().slice(0, 160);
+  const list = LISTS[String(form.get('list') || '')];
+  const started = Number(form.get('_started') || 0);
+  if (String(form.get('website') || '') || !started || Date.now() - started < 2000) return reply({ ok: true }, 200, headers);
+  if (!list) return reply({ ok: false, error: 'list' }, 400, headers);
+  if (!EMAIL_RE.test(email)) return reply({ ok: false, errors: { email: 'invalid' } }, 422, headers);
+  const name = String(form.get('name') || '').trim().slice(0, 120);
+  const [firstName, ...rest] = name ? name.split(/\s+/) : [];
+  const res = await fetch(`${GHL}/contacts/upsert`, {
+    method: 'POST',
+    headers: GHL_HEADERS(env.GHL_TOKEN),
+    body: JSON.stringify({
+      locationId: env.GHL_LOCATION_ID,
+      email,
+      ...(firstName ? { firstName, lastName: rest.join(' ') } : {}),
+      source: list.source,
+      tags: [list.tag],
+    }),
+  }).catch(() => null);
+  if (!res || !res.ok) return reply({ ok: false, error: 'crm' }, 502, headers);
+  return reply({ ok: true }, 200, headers);
+}
+
 function cors(origin, allowed) {
   const ok = allowed.includes(origin);
   return {
@@ -64,6 +93,9 @@ export default {
 
     let form;
     try { form = await request.formData(); } catch { return reply({ ok: false, error: 'body' }, 400, headers); }
+
+    // Newsletter and 2027-calendar sign-ups: email only, honeypot and time check, no captcha.
+    if (new URL(request.url).pathname === '/subscribe') return subscribe(form, env, headers);
     const get = (k, max) => String(form.get(k) || '').trim().slice(0, max);
 
     // Bots: honeypot filled or submitted too fast. Answer "ok" so they learn nothing.

@@ -1,0 +1,31 @@
+---
+// Newsletter offer: 10% off a retreat booking. Shown once, after a delay or half a page of
+// scrolling, never over the registration form. A small bottom sheet on phones.
+import SubscribeForm from './SubscribeForm.astro';
+import rooms from '../data/rooms.json';
+---
+<div class="nl-pop" data-newsletter-pop hidden role="dialog" aria-modal="false" aria-labelledby="nl-title">
+  <button type="button" class="nl-pop__close" data-newsletter-close aria-label="Close">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l12 12M15 3L3 15"></path></svg>
+  </button>
+  <p class="label label--tight">Newsletter</p>
+  <h2 id="nl-title" class="t-title">{rooms.newsletterDiscount}% off your retreat</h2>
+  <p class="muted">Join our newsletter for dates and news from the Finca. Book a retreat and get {rooms.newsletterDiscount}% off.</p>
+  <SubscribeForm list="newsletter" button="Sign me up" idPrefix="nl-pop" />
+  <p class="t-caption muted">One discount per booking: it does not combine with the shared-room discount. Applied when we confirm your booking.</p>
+</div>
+
+<style is:global>
+  .nl-pop { position: fixed; z-index: 80; right: var(--space-5); bottom: var(--space-5); width: min(420px, calc(100vw - 32px)); padding: var(--space-6); background: var(--surface); color: var(--ink); border: 1px solid var(--ink); display: flex; flex-direction: column; gap: var(--space-3); }
+  .nl-pop[hidden] { display: none; }
+  .nl-pop__close { position: absolute; top: var(--space-2); right: var(--space-2); width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
+  .nl-pop .t-title { padding-right: var(--space-7); }
+  @media (max-width: 760px) {
+    .nl-pop { left: 0; right: 0; bottom: 0; width: auto; border-width: 1px 0 0; padding: var(--space-5) var(--space-5) var(--space-5); max-height: 70vh; overflow-y: auto; }
+    body.nl-open .wa-float { display: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .nl-pop { animation: nl-in 0.4s ease; }
+    @keyframes nl-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  }
+</style>

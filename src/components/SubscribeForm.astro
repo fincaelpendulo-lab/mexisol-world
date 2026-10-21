@@ -1,0 +1,29 @@
+---
+// Email-only sign-up (newsletter or 2027 calendar). Posts to the Worker's /subscribe route.
+import site from '../data/site.json';
+
+interface Props { list: 'newsletter' | 'calendar'; button: string; label?: string; idPrefix: string; tone?: 'light' | 'deep'; }
+const { list, button, label = 'Email', idPrefix, tone = 'light' } = Astro.props;
+const action = site.formEndpoint ? `${site.formEndpoint.replace(/\/$/, '')}/subscribe` : '#';
+---
+<form class:list={['subscribe', tone === 'deep' && 'subscribe--deep']} action={action} method="post" data-subscribe novalidate>
+  <input type="hidden" name="list" value={list} />
+  <input type="hidden" name="_started" value="" />
+  <div class="hp" aria-hidden="true"><label for={`${idPrefix}-website`}>Leave this field empty</label><input id={`${idPrefix}-website`} name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+  <div class="subscribe__row">
+    <label class="visually-hidden" for={`${idPrefix}-email`}>{label}</label>
+    <input id={`${idPrefix}-email`} name="email" type="email" autocomplete="email" required placeholder="Your email" aria-describedby={`${idPrefix}-status`} />
+    <button type="submit" class="ms-btn ms-btn--secondary">{button}</button>
+  </div>
+  <p id={`${idPrefix}-status`} class="t-caption subscribe__status" role="status" aria-live="polite"></p>
+</form>
+
+<style is:global>
+  .subscribe__row { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .subscribe__row input { flex: 1 1 220px; min-width: 0; min-height: 48px; padding: 12px 16px; font: var(--text-body); color: var(--ink); background: var(--surface); border: 1px solid var(--ink); border-radius: 0; }
+  .subscribe__status:empty { display: none; }
+  .subscribe__status { margin-top: var(--space-3); }
+  .subscribe--deep .ms-btn--secondary { border-color: var(--white); color: var(--white); }
+  .subscribe--deep .ms-btn--secondary:hover { background: var(--white); color: var(--black); }
+  .subscribe--deep .subscribe__row input { border-color: var(--white); }
+</style>

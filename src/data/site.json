@@ -11,7 +11,8 @@
   "instagram": "https://www.instagram.com/mexisol.world/",
   "youtube": {
     "id": "20fXazwvuN4",
-    "url": "https://www.youtube.com/watch?v=20fXazwvuN4"
+    "url": "https://www.youtube.com/watch?v=20fXazwvuN4",
+    "channel": "https://www.youtube.com/@FincaelPendulo"
   },
   "cloudbeds": "https://us2.cloudbeds.com/reservation/1BtVyc",
   "address": {
@@ -23,7 +24,10 @@
     "country": "MX",
     "countryName": "México"
   },
-  "geo": { "latitude": 20.8552543, "longitude": -102.8346738 },
+  "geo": {
+    "latitude": 20.8552543,
+    "longitude": -102.8346738
+  },
   "ga4Id": "G-VQWELQMWCC",
   "turnstileSiteKey": "0x4AAAAAAFcEbJ_lazXp8ZNc",
   "formEndpoint": "https://mexisol-form.mexisol.workers.dev"

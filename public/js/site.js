@@ -270,6 +270,82 @@
     var timer = window.setInterval(function () { check(); if (!pending.length) window.clearInterval(timer); }, 1000);
   }
 
+  /* ---------- Newsletter and calendar sign-ups ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-subscribe]'), function (f) {
+    var started = f.querySelector('[name="_started"]');
+    if (started) started.value = String(Date.now());
+    var out = f.querySelector('[role="status"]');
+    var email = f.querySelector('[name="email"]');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+        out.textContent = 'Please write an email address like name@example.com.';
+        email.setAttribute('aria-invalid', 'true');
+        email.focus();
+        return;
+      }
+      email.removeAttribute('aria-invalid');
+      var endpoint = f.getAttribute('action');
+      if (!endpoint || endpoint === '#') { out.textContent = 'Sign-ups are not open yet. Write to us on WhatsApp.'; return; }
+      var btn = f.querySelector('[type="submit"]');
+      btn.disabled = true;
+      out.textContent = 'Sending…';
+      var list = f.querySelector('[name="list"]').value;
+      fetch(endpoint, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return r.ok && j.ok !== false; }); })
+        .then(function (ok) {
+          if (ok) {
+            track('sign_up', { method: list });
+            out.textContent = list === 'calendar' ? 'Thank you. The calendar is on its way to your inbox.' : 'Thank you. You are on the list, and your 10% is noted for when you book.';
+            f.reset();
+            try { localStorage.setItem('mexisol-newsletter-v1', 'joined'); } catch (err) { /* ignore */ }
+          } else {
+            out.textContent = 'That did not go through. Please try again, or write to us on WhatsApp.';
+          }
+        })
+        .catch(function () { out.textContent = 'That did not go through. Please try again, or write to us on WhatsApp.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  });
+
+  /* ---------- Newsletter pop-up (once, after 30 s or half the page) ---------- */
+  (function () {
+    var pop = document.querySelector('[data-newsletter-pop]');
+    if (!pop) return;
+    var seen;
+    try { seen = localStorage.getItem('mexisol-newsletter-v1'); } catch (e) { seen = 'blocked'; }
+    if (seen) return;
+    var register = document.getElementById('register');
+    var shown = false;
+    function nearForm() {
+      if (!register) return false;
+      var r = register.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    }
+    function open() {
+      if (shown || nearForm() || body.classList.contains('banner-open') || body.classList.contains('menu-open')) return;
+      shown = true;
+      pop.hidden = false;
+      body.classList.add('nl-open');
+      try { localStorage.setItem('mexisol-newsletter-v1', 'shown'); } catch (e) { /* ignore */ }
+      window.removeEventListener('scroll', onScroll);
+    }
+    function close() {
+      pop.hidden = true;
+      body.classList.remove('nl-open');
+    }
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0 && window.scrollY / h > 0.5) open();
+    }
+    window.setTimeout(open, 30000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    pop.querySelector('[data-newsletter-close]').addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) close(); });
+    document.addEventListener('click', function (e) { if (!pop.hidden && !pop.contains(e.target)) close(); });
+  })();
+
   /* ---------- Registration form ---------- */
   var form = document.querySelector('[data-register-form]');
   if (form) {
@@ -284,6 +360,13 @@
       phone: 'Please write your WhatsApp number with the country code, like +52 378 790 0992.',
     };
     var phoneRe = /^\+?[0-9\s().-]{7,20}$/;
+
+    // Pre-select the retreat from links like /?retreat=aya-jan#register
+    var retreatSelect = form.querySelector('[name="retreat"]');
+    try {
+      var wanted = new URLSearchParams(window.location.search).get('retreat');
+      if (wanted && retreatSelect && retreatSelect.querySelector('option[value="' + wanted.replace(/[^a-z0-9-]/gi, '') + '"]')) retreatSelect.value = wanted;
+    } catch (e) { /* old browser */ }
 
     // Load Cloudflare Turnstile only when the form is close to view.
     var turnstileLoaded = false;
@@ -350,6 +433,8 @@
       var endpoint = form.getAttribute('action');
       if (!endpoint || endpoint === '#') { setStatus('error', fail); return; }
       var data = new FormData(form);
+      // Send the readable retreat name to the CRM, not the internal id.
+      if (retreatSelect) data.set('retreat', retreatSelect.options[retreatSelect.selectedIndex].text);
       var btn = form.querySelector('[type="submit"]');
       btn.disabled = true;
       setStatus('sending', '<p>Sending…</p>');
