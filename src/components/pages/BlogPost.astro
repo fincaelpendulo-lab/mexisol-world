@@ -1,0 +1,152 @@
+---
+// One blog post, in either language. Rendered by src/pages/blog/[slug].astro and src/pages/es/blog/[slug].astro.
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Photo from '../Photo.astro';
+import Button from '../Button.astro';
+import site from '../../data/site.json';
+import { posts, postPath, langOf, readingTime, wordCount, formatDate, type Post } from '../../lib/blog';
+import { localize } from '../../lib/i18n';
+import { href, absolute } from '../../lib/url';
+
+interface Props { post: Post; }
+const { post } = Astro.props;
+const lang = langOf(post);
+const es = lang === 'es';
+const { Content, headings } = await render(post);
+const path = postPath(post);
+const d = post.data;
+const toc = headings.filter((h) => h.depth === 2);
+
+const others = (await posts(lang)).filter((p) => p.id !== post.id);
+const shared = (p: Post) => p.data.tags.filter((tag) => d.tags.includes(tag)).length;
+const related = [...others].sort((a, b) => shared(b) - shared(a)).slice(0, 3);
+const translation = d.translation ? (await posts(es ? 'en' : 'es')).find((p) => p.id.endsWith(`/${d.translation}`)) : undefined;
+
+const t = es
+  ? { min: 'min de lectura', by: 'Por', updated: 'Actualizado', toc: 'En este artículo', ctaEyebrow: 'Ven a la Finca', ctaH: '¿Quieres vivirlo en persona?', ctaP: 'Regístrate y te llamamos para hablar de tu salud, tus preguntas y la fecha que mejor te queda.', ctaBtn: 'Regístrate', datesBtn: 'Ver próximos retiros', related: 'Sigue leyendo', back: 'Volver al blog' }
+  : { min: 'min read', by: 'By', updated: 'Updated', toc: 'In this post', ctaEyebrow: 'Come to the Finca', ctaH: 'Want to experience it in person?', ctaP: 'Register and we will call you to talk about your health, your questions and the date that suits you.', ctaBtn: 'Register', datesBtn: 'See upcoming retreats', related: 'Keep reading', back: 'Back to the blog' };
+
+const iso = (x: Date) => x.toISOString().slice(0, 10);
+const schema = [{
+  '@type': 'BlogPosting',
+  '@id': `${absolute(path)}#post`,
+  headline: d.title,
+  description: d.description,
+  url: absolute(path),
+  mainEntityOfPage: absolute(path),
+  inLanguage: lang,
+  datePublished: iso(d.date),
+  dateModified: iso(d.updated ?? d.date),
+  wordCount: wordCount(post),
+  keywords: d.tags.join(', '),
+  image: `${site.url}/og/${d.ogImage}.jpg`,
+  author: d.author === 'MexiSol World' ? { '@id': `${site.url}/#organization` } : { '@type': 'Person', name: d.author },
+  publisher: { '@id': `${site.url}/#organization` },
+  isPartOf: { '@id': `${absolute(localize('/blog', lang))}#blog` },
+}];
+---
+<BaseLayout
+  title={`${d.title} | MexiSol World`}
+  description={d.description}
+  path={path}
+  lang={lang}
+  alternate={translation ? postPath(translation) : null}
+  current="blog"
+  ogType="article"
+  ogImage={d.ogImage}
+  breadcrumbs={[{ name: 'Blog', path: localize('/blog', lang) }, { name: d.title, path }]}
+  schema={schema}
+>
+  <article class="post">
+    <header class="section post__head">
+      <div class="wrap post__narrow">
+        <nav aria-label={es ? 'Ruta de navegación' : 'Breadcrumb'} class="t-caption post__crumbs">
+          <a href={href(localize('/', lang))}>MexiSol World</a> / <a href={href(localize('/blog', lang))}>Blog</a>
+        </nav>
+        <h1 class="t-headline">{d.title}</h1>
+        <p class="t-lead muted">{d.description}</p>
+        <p class="t-caption muted post__meta">
+          <span>{t.by} {d.author}</span>
+          <time datetime={iso(d.date)}>{formatDate(d.date, lang)}</time>
+          {d.updated && <span>{t.updated} <time datetime={iso(d.updated)}>{formatDate(d.updated, lang)}</time></span>}
+          <span>{readingTime(post)} {t.min}</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="wrap post__photo">
+      <Photo name={d.image} alt={d.imageAlt} sizes="(max-width: 1200px) 100vw, 1200px" priority class="ratio-16-9" />
+    </div>
+
+    <div class="wrap post__narrow post__body">
+      {toc.length >= 3 && (
+        <nav class="post__toc" aria-labelledby="toc-title">
+          <p id="toc-title" class="label label--tight">{t.toc}</p>
+          <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      )}
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+
+  <section class="section deep">
+    <div class="wrap grid" style="align-items:end">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">{t.ctaEyebrow}</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">{t.ctaH}</h2>
+        <p>{t.ctaP}</p>
+      </div>
+      <div class="cluster">
+        <Button href={href(localize('/#register', lang))} variant="on-photo" data-track="register">{t.ctaBtn}</Button>
+        <Button href={href(localize('/upcoming-retreats', lang))} variant="on-photo">{t.datesBtn}</Button>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <h2 class="t-heading" style="margin-bottom:var(--space-7)">{t.related}</h2>
+        <ul class="post-grid" style="margin-top:0">
+          {related.map((p) => (
+            <li>
+              <article class="stack" style="--stack:var(--space-3)">
+                <a href={href(postPath(p))} tabindex="-1" aria-hidden="true"><Photo name={p.data.image} alt="" sizes="(max-width: 760px) 100vw, 33vw" widths={[400, 640, 900]} class="ratio-3-2" /></a>
+                <h3 class="t-title" style="margin-top:var(--space-4)"><a href={href(postPath(p))} class="post-link">{p.data.title}</a></h3>
+                <p class="muted">{p.data.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+        <p style="margin-top:var(--space-7)"><a href={href(localize('/blog', lang))}>{t.back}</a></p>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style is:global>
+  .post__head { padding-bottom: var(--space-7); }
+  .post__narrow { max-width: 760px; }
+  .post__head .post__narrow { display: flex; flex-direction: column; gap: var(--space-4); }
+  .post__crumbs a { color: var(--ink-muted); }
+  .post__meta > * + *::before { content: ' · '; }
+  .post__photo { margin-bottom: var(--space-8); }
+  .ratio-16-9 { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .post__body { padding-bottom: var(--space-9); }
+  .post__toc { border: 1px solid var(--hairline); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-8); }
+  .post__toc ol { margin: var(--space-3) 0 0; padding-left: 1.2em; display: grid; gap: var(--space-2); }
+  .post-link { color: var(--ink); text-decoration: none; }
+  .post-link:hover { color: var(--accent-text); text-decoration: underline; }
+  .post-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-8) var(--space-6); }
+  .prose { font: var(--text-body); }
+  .prose > * + * { margin-top: var(--space-5); }
+  .prose h2 { font: var(--text-heading); margin-top: var(--space-8); scroll-margin-top: calc(var(--header-height) + 16px); }
+  .prose h3 { font: var(--text-title); margin-top: var(--space-7); scroll-margin-top: calc(var(--header-height) + 16px); }
+  .prose ul, .prose ol { padding-left: 1.3em; }
+  .prose li + li { margin-top: var(--space-2); }
+  .prose blockquote { margin-left: 0; padding-left: var(--space-5); border-left: 2px solid var(--brand-forest); font: var(--text-lead); }
+  .prose table { width: 100%; border-collapse: collapse; font: var(--text-caption); display: block; overflow-x: auto; }
+  .prose th, .prose td { text-align: left; padding: var(--space-3); border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  .prose th { border-bottom-color: var(--ink); }
+</style>

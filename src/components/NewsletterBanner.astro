@@ -3,15 +3,22 @@
 import Photo from './Photo.astro';
 import SubscribeForm from './SubscribeForm.astro';
 import rooms from '../data/rooms.json';
+
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const off = `$${rooms.newsletterDiscountUsd} USD`;
+const t = lang === 'es'
+  ? { title: `${off} de descuento en tu retiro`, text: `Fechas y noticias de la Finca. Suscríbete y obtén ${off} de descuento al reservar. No se combina con el descuento por habitación compartida.`, button: 'Suscribirme' }
+  : { title: `${off} off your retreat`, text: `Dates and news from the Finca. Sign up and get ${off} off when you book. It does not combine with the shared-room discount.`, button: 'Sign me up' };
 ---
 <section class="nl-banner gutter" aria-labelledby="nl-banner-title">
   <div class="wrap nl-banner__inner">
     <Photo name="newsletter-greenhouse-lavender" alt="" sizes="(max-width: 760px) 100vw, 360px" widths={[400, 720]} class="nl-banner__photo" />
     <div class="nl-banner__text">
       <p class="label label--tight">Newsletter</p>
-      <h2 id="nl-banner-title" class="t-title">{rooms.newsletterDiscount}% off your retreat</h2>
-      <p class="muted">Dates and news from the Finca. Sign up and get {rooms.newsletterDiscount}% off when you book. It does not combine with the shared-room discount.</p>
-      <SubscribeForm list="newsletter" button="Sign me up" idPrefix="nl-banner" />
+      <h2 id="nl-banner-title" class="t-title">{t.title}</h2>
+      <p class="muted">{t.text}</p>
+      <SubscribeForm list="newsletter" button={t.button} idPrefix="nl-banner" lang={lang} />
     </div>
   </div>
 </section>

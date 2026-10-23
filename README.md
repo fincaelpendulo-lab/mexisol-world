@@ -21,6 +21,23 @@ You never need to touch a layout for these:
 
 Commit the change to `main` and the site rebuilds and deploys by itself in about three minutes.
 
+## Publish a blog post
+
+1. Copy one of the files in `src/content/blog/en/` and rename it. The file name becomes the address: `what-to-pack.md` → `mexisol.world/blog/what-to-pack`. Use lowercase words and hyphens.
+2. Fill in the top block:
+   - `title`: under about 60 characters, with the words people search for ("ayahuasca retreat Mexico").
+   - `description`: 120 to 160 characters. This is the snippet Google shows.
+   - `date`: `YYYY-MM-DD`. A post dated in the future appears on the first build after that day.
+   - `image` and `imageAlt`: a photo from `src/assets/photos/` (file name without `.jpg`) and a plain description of it.
+   - `ogImage`: the picture shown when the post is shared, from `public/og/` (`home`, `finca`, `ayahuasca`, `psilocybin`, `prepare`, `medical`, `about`...).
+   - `tags`: a few topics. Related posts are picked by shared tags.
+   - `translation`: the file name of the same post in the other language, so the two link to each other.
+   - `draft: true` keeps a post off the site until you remove it.
+3. Write the post in Markdown. Use `##` for sections (three or more give the post a table of contents) and link to our own pages with relative links, e.g. `[the psilocybin retreat](../psilocybin-retreat)` or `[another post](what-is-satori)`.
+4. Spanish posts go in `src/content/blog/es/` and link to the Spanish pages, e.g. `(../retiro-de-psilocibina)`.
+
+The blog index, the RSS feeds (`/rss.xml`, `/es/rss.xml`), the sitemap and Google's article data update by themselves.
+
 ## Run it on your computer
 
 Needs Node 22 or newer.

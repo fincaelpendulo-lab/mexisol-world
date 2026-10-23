@@ -4,33 +4,41 @@ import { Image } from 'astro:assets';
 import lockup from '../assets/brand/lockup-white.png';
 import site from '../data/site.json';
 import { href, whatsappUrl } from '../lib/url';
+import { ui, localize, type Lang } from '../lib/i18n';
 
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+const t = ui[lang];
+const n = t.nav;
+const to = (path: string) => href(localize(path, lang));
 const year = new Date().getFullYear();
-const columns = [
-  { title: 'Retreats', links: [
-    { label: 'Finca El Péndulo', href: href('/finca-el-pendulo') },
-    { label: 'International', href: href('/international-retreats') },
-    { label: 'Register', href: href('/#register'), track: 'register' },
+const columns: { title: string; links: { label: string; href: string; track?: string }[] }[] = [
+  { title: t.footer.retreats, links: [
+    { label: t.footer.calendar, href: to('/upcoming-retreats') },
+    { label: t.footer.finca, href: to('/finca-el-pendulo') },
+    { label: t.footer.international, href: to('/international-retreats') },
+    { label: n.register, href: to('/#register'), track: 'register' },
   ] },
-  { title: 'Resources', links: [
-    { label: 'Ayahuasca retreats', href: href('/ayahuasca-retreat') },
-    { label: 'Psilocybin retreats', href: href('/psilocybin-retreat') },
-    { label: 'Prepare and travel', href: href('/prepare') },
-    { label: 'Medical information', href: href('/medical') },
+  { title: n.resources, links: [
+    { label: n.ayahuasca, href: to('/ayahuasca-retreat') },
+    { label: n.psilocybin, href: to('/psilocybin-retreat') },
+    { label: n.prepare, href: to('/prepare') },
+    { label: n.medical, href: to('/medical') },
+    { label: n.blog, href: to('/blog') },
   ] },
-  { title: 'About us', links: [
-    { label: 'Our story', href: href('/about#story') },
-    { label: 'Our team', href: href('/about#team') },
+  { title: n.about, links: [
+    { label: n.story, href: to('/about#story') },
+    { label: n.team, href: to('/about#team') },
     { label: 'Instagram @mexisol.world', href: site.instagram, track: 'outbound' },
-    { label: 'Finca El Péndulo on YouTube', href: site.youtube.channel, track: 'outbound' },
+    { label: n.youtube, href: site.youtube.channel, track: 'outbound' },
   ] },
 ];
 ---
 <footer class="site-footer deep">
   <div class="site-footer__top wrap">
     <div class="site-footer__brand">
-      <a href={href('/')} aria-label="MexiSol World home"><Image src={lockup} alt="" width={180} height={114} densities={[1, 2]} /></a>
-      <p class="t-caption">Ayahuasca and psilocybin retreats at Finca El Péndulo, Jalisco, and retreats worldwide.</p>
+      <a href={to('/')} aria-label={t.home}><Image src={lockup} alt="" width={180} height={114} densities={[1, 2]} /></a>
+      <p class="t-caption">{t.footer.tagline}</p>
     </div>
     <div class="site-footer__cols">
       {columns.map((col) => (
@@ -42,7 +50,7 @@ const columns = [
         </div>
       ))}
       <div class="site-footer__col">
-        <h2 class="label">Contact</h2>
+        <h2 class="label">{t.footer.contact}</h2>
         <ul>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a></li>
@@ -52,11 +60,11 @@ const columns = [
     </div>
   </div>
   <div class="site-footer__bottom wrap">
-    <p class="t-caption">© {year} MexiSol World. Every guest is screened before confirming. Our retreats are not a substitute for medical or psychological care.</p>
+    <p class="t-caption">© {year} MexiSol World. {t.footer.legal}</p>
     <ul class="site-footer__legal">
-      <li><a href={href('/privacy')}>Privacy</a></li>
-      <li><a href={href('/terms')}>Terms</a></li>
-      <li><button type="button" class="site-footer__cookie" data-cookie-settings>Cookie settings</button></li>
+      <li><a href={to('/privacy')}>{t.footer.privacy}</a></li>
+      <li><a href={to('/terms')}>{t.footer.terms}</a></li>
+      <li><button type="button" class="site-footer__cookie" data-cookie-settings>{t.footer.cookies}</button></li>
     </ul>
   </div>
 </footer>

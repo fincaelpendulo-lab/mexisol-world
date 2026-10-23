@@ -50,7 +50,10 @@ for (const page of pages) {
       continue;
     }
     checked++;
-    const [p, hash] = ref.split('#');
+    // Relative links (used in blog posts) resolve against the page's own URL.
+    const pageUrl = `${base}/${path.relative(dist, page).replace(/\\/g, '/').replace(/(index)?\.html$/, '')}`;
+    const abs = ref.startsWith('/') || ref.startsWith('#') ? ref : (({ pathname, search, hash: h }) => pathname + search + h)(new URL(ref, `http://site${pageUrl}`));
+    const [p, hash] = abs.split('#');
     const target = p ? await resolve(p.split('?')[0]) : page;
     if (!target) { problems.push(`${page}: broken link ${ref}`); continue; }
     if (hash && target.endsWith('.html') && !(await idsOf(target)).has(hash)) problems.push(`${page}: missing anchor ${ref}`);

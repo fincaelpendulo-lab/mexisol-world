@@ -1,18 +1,25 @@
 ---
-// Newsletter offer: 10% off a retreat booking. Shown once, after a delay or half a page of
+// Newsletter offer: a fixed USD discount on a retreat booking. Shown once, after a delay or half a page of
 // scrolling, never over the registration form. A small bottom sheet on phones.
 import SubscribeForm from './SubscribeForm.astro';
 import rooms from '../data/rooms.json';
+
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const off = `$${rooms.newsletterDiscountUsd} USD`;
+const t = lang === 'es'
+  ? { close: 'Cerrar', title: `${off} de descuento en tu retiro`, text: `Suscríbete a nuestro boletín para recibir fechas y noticias de la Finca. Reserva un retiro y obtén ${off} de descuento.`, button: 'Suscribirme', note: 'Un descuento por reserva: no se combina con el descuento por habitación compartida. Se aplica cuando confirmamos tu reserva.' }
+  : { close: 'Close', title: `${off} off your retreat`, text: `Join our newsletter for dates and news from the Finca. Book a retreat and get ${off} off.`, button: 'Sign me up', note: 'One discount per booking: it does not combine with the shared-room discount. Applied when we confirm your booking.' };
 ---
 <div class="nl-pop" data-newsletter-pop hidden role="dialog" aria-modal="false" aria-labelledby="nl-title">
-  <button type="button" class="nl-pop__close" data-newsletter-close aria-label="Close">
+  <button type="button" class="nl-pop__close" data-newsletter-close aria-label={t.close}>
     <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l12 12M15 3L3 15"></path></svg>
   </button>
   <p class="label label--tight">Newsletter</p>
-  <h2 id="nl-title" class="t-title">{rooms.newsletterDiscount}% off your retreat</h2>
-  <p class="muted">Join our newsletter for dates and news from the Finca. Book a retreat and get {rooms.newsletterDiscount}% off.</p>
-  <SubscribeForm list="newsletter" button="Sign me up" idPrefix="nl-pop" />
-  <p class="t-caption muted">One discount per booking: it does not combine with the shared-room discount. Applied when we confirm your booking.</p>
+  <h2 id="nl-title" class="t-title">{t.title}</h2>
+  <p class="muted">{t.text}</p>
+  <SubscribeForm list="newsletter" button={t.button} idPrefix="nl-pop" lang={lang} />
+  <p class="t-caption muted">{t.note}</p>
 </div>
 
 <style is:global>

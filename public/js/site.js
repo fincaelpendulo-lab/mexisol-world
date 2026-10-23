@@ -14,26 +14,13 @@
     try { localStorage.setItem(CONSENT_KEY, JSON.stringify(value)); } catch (e) { /* private mode */ }
   }
 
-  /* ---------- Language toggle: inside Google Translate, go back to the original ---------- */
-  var ORIGIN = 'https://mexisol.world';
-  if (/\.translate\.goog$/.test(window.location.hostname)) {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-lang-toggle]'), function (a) {
-      a.href = ORIGIN + window.location.pathname + window.location.hash;
-      a.setAttribute('hreflang', 'en');
-      a.setAttribute('lang', 'en');
-      a.textContent = a.hasAttribute('data-lang-long') ? 'Back to English' : 'EN';
-      a.setAttribute('aria-label', 'Back to the original page in English');
-      a.setAttribute('target', '_top');
-    });
-  }
-
   /* ---------- Links to other websites open in a new tab ---------- */
   function markExternal(root) {
     Array.prototype.forEach.call((root || document).querySelectorAll('a[href^="http"]'), function (a) {
       var host;
       try { host = new URL(a.href).hostname; } catch (e) { return; }
-      var ours = host === window.location.hostname || host === 'mexisol.world' || /\.translate\.goog$/.test(host);
-      if (ours || a.hasAttribute('data-lang-toggle')) return;
+      var ours = host === window.location.hostname || host === 'mexisol.world';
+      if (ours) return;
       a.target = '_blank';
       var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
       if (rel.indexOf('noopener') < 0) rel.push('noopener');
@@ -365,7 +352,7 @@
         .then(function (ok) {
           if (ok) {
             track('sign_up', { method: list });
-            out.textContent = list === 'calendar' ? 'Thank you. The calendar is on its way to your inbox.' : 'Thank you. You are on the list, and your 10% is noted for when you book.';
+            out.textContent = list === 'calendar' ? 'Thank you. The calendar is on its way to your inbox.' : 'Thank you. You are on the list, and your $100 USD discount is noted for when you book.';
             f.reset();
             try { localStorage.setItem('mexisol-newsletter-v1', 'joined'); } catch (err) { /* ignore */ }
           } else {
@@ -502,7 +489,10 @@
       if (!endpoint || endpoint === '#') { setStatus('error', fail); return; }
       var data = new FormData(form);
       // Send the readable retreat name to the CRM, not the internal id.
-      if (retreatSelect) data.set('retreat', retreatSelect.options[retreatSelect.selectedIndex].text);
+      if (retreatSelect) {
+        data.set('retreat_id', retreatSelect.value);
+        data.set('retreat', retreatSelect.options[retreatSelect.selectedIndex].text);
+      }
       var btn = form.querySelector('[type="submit"]');
       btn.disabled = true;
       setStatus('sending', '<p>Sending…</p>');

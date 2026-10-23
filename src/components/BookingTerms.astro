@@ -17,7 +17,7 @@ const half = rooms.booking.depositPercent;
     <ol class="rule-list booking-steps">
       <li><span class="t-title">{half}% deposit</span><span class="muted">Holds your place. It is not refundable, but you can move it to a later date.</span></li>
       <li><span class="t-title">{100 - half}% balance</span><span class="muted">Charged to the same card at any time in the {rooms.booking.balanceDaysBefore / 7} weeks before the retreat.</span></li>
-      <li><span class="t-title">Discounts</span><span class="muted">Share a room and each of you gets {rooms.sharedRoomDiscount}% off. Newsletter subscribers get {rooms.newsletterDiscount}% off their booking. One discount per booking; they do not combine.</span></li>
+      <li><span class="t-title">Discounts</span><span class="muted">Share a room and each of you gets {rooms.sharedRoomDiscount}% off. Newsletter subscribers get ${rooms.newsletterDiscountUsd} USD off their booking. One discount per booking; they do not combine.</span></li>
     </ol>
   </div>
 </section>

@@ -2,17 +2,17 @@
 // Email-only sign-up (newsletter or 2027 calendar). Posts to the Worker's /subscribe route.
 import site from '../data/site.json';
 
-interface Props { list: 'newsletter' | 'calendar'; button: string; label?: string; idPrefix: string; tone?: 'light' | 'deep'; }
-const { list, button, label = 'Email', idPrefix, tone = 'light' } = Astro.props;
+interface Props { list: 'newsletter' | 'calendar'; button: string; label?: string; idPrefix: string; tone?: 'light' | 'deep'; lang?: 'en' | 'es'; }
+const { list, button, lang = 'en', label = lang === 'es' ? 'Correo electrónico' : 'Email', idPrefix, tone = 'light' } = Astro.props;
 const action = site.formEndpoint ? `${site.formEndpoint.replace(/\/$/, '')}/subscribe` : '#';
 ---
 <form class:list={['subscribe', tone === 'deep' && 'subscribe--deep']} action={action} method="post" data-subscribe novalidate>
   <input type="hidden" name="list" value={list} />
   <input type="hidden" name="_started" value="" />
-  <div class="hp" aria-hidden="true"><label for={`${idPrefix}-website`}>Leave this field empty</label><input id={`${idPrefix}-website`} name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+  <div class="hp" aria-hidden="true"><label for={`${idPrefix}-website`}>{lang === 'es' ? 'Deja este campo vacío' : 'Leave this field empty'}</label><input id={`${idPrefix}-website`} name="website" type="text" tabindex="-1" autocomplete="off" /></div>
   <div class="subscribe__row">
     <label class="visually-hidden" for={`${idPrefix}-email`}>{label}</label>
-    <input id={`${idPrefix}-email`} name="email" type="email" autocomplete="email" required placeholder="Your email" aria-describedby={`${idPrefix}-status`} />
+    <input id={`${idPrefix}-email`} name="email" type="email" autocomplete="email" required placeholder={lang === 'es' ? 'Tu correo' : 'Your email'} aria-describedby={`${idPrefix}-status`} />
     <button type="submit" class="ms-btn ms-btn--secondary">{button}</button>
   </div>
   <p id={`${idPrefix}-status`} class="t-caption subscribe__status" role="status" aria-live="polite"></p>

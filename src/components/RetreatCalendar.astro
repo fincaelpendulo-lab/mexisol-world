@@ -1,0 +1,105 @@
+---
+// Month-by-month calendar of upcoming retreats. Each retreat is a coloured bar across
+// its days; Finca retreats sit on the top line, international ones below, so overlapping
+// dates stay readable. The grids are visual only: the same dates are listed as text on the
+// page, and each month also lists its retreats as links.
+import type { Retreat, Kind } from '../lib/retreats';
+import { monthName, type Lang } from '../lib/i18n';
+import { dateRange } from '../lib/dates';
+import { href } from '../lib/url';
+
+interface Props { items: Retreat[]; lang?: Lang; }
+const { items, lang = 'en' } = Astro.props;
+
+const weekdays = lang === 'es' ? ['L', 'M', 'M', 'J', 'V', 'S', 'D'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const legend: { kind: Kind; label: string }[] = lang === 'es'
+  ? [{ kind: 'ayahuasca', label: 'Ayahuasca en la Finca' }, { kind: 'psilocybin', label: 'Psilocibina en la Finca' }, { kind: 'finca', label: 'Otros retiros en la Finca' }, { kind: 'international', label: 'Internacional' }]
+  : [{ kind: 'ayahuasca', label: 'Ayahuasca at the Finca' }, { kind: 'psilocybin', label: 'Psilocybin at the Finca' }, { kind: 'finca', label: 'Other Finca retreats' }, { kind: 'international', label: 'International' }];
+
+const iso = (y: number, m: number, d: number) => `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+const first = items[0]?.start ?? new Date().toISOString().slice(0, 10);
+const last = items.reduce((max, r) => (r.end > max ? r.end : max), first);
+const months: { y: number; m: number }[] = [];
+for (let y = +first.slice(0, 4), m = +first.slice(5, 7) - 1; iso(y, m, 1) <= last; m === 11 ? (y++, (m = 0)) : m++) months.push({ y, m });
+
+const lane = (r: Retreat) => (r.kind === 'international' ? 1 : 0);
+const grid = months.map(({ y, m }) => {
+  const days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const offset = (new Date(Date.UTC(y, m, 1)).getUTCDay() + 6) % 7;
+  const cells = Array.from({ length: days }, (_, i) => {
+    const day = iso(y, m, i + 1);
+    const bars: (Retreat & { from: boolean; to: boolean })[] = [];
+    for (const r of items) {
+      if (day < r.start || day > r.end) continue;
+      const l = bars[lane(r)] ? 1 - lane(r) : lane(r);
+      if (!bars[l]) bars[l] = { ...r, from: day === r.start, to: day === r.end };
+    }
+    return { d: i + 1, bars };
+  });
+  const inMonth = items.filter((r) => r.start <= iso(y, m, days) && r.end >= iso(y, m, 1));
+  return { y, m, offset, cells, inMonth };
+});
+---
+<div class="cal">
+  <ul class="cal__legend" aria-label={lang === 'es' ? 'Colores del calendario' : 'Calendar colours'}>
+    {legend.map((l) => <li><span class:list={['cal__swatch', `cal--${l.kind}`]}></span>{l.label}</li>)}
+  </ul>
+  <div class="cal__months">
+    {grid.map((g) => (
+      <section class="cal__month" aria-labelledby={`cal-${g.y}-${g.m}`}>
+        <h3 id={`cal-${g.y}-${g.m}`} class="t-title cal__name">{monthName(g.m, lang)} {g.y}</h3>
+        <div class="cal__grid" aria-hidden="true">
+          {weekdays.map((w) => <span class="cal__wd">{w}</span>)}
+          {g.cells.map((c, i) => (
+            <span class:list={['cal__day', c.bars.length && 'is-busy']} style={i === 0 && g.offset ? `grid-column-start:${g.offset + 1}` : undefined}>
+              <span class="cal__num">{c.d}</span>
+              <span class="cal__bars">
+                {[0, 1].map((n) => {
+                  const b = c.bars[n];
+                  return <span class:list={['cal__bar', b && `cal--${b.kind}`, b?.from && 'is-from', b?.to && 'is-to']} title={b ? b.title : undefined}></span>;
+                })}
+              </span>
+            </span>
+          ))}
+        </div>
+        {g.inMonth.length > 0
+          ? <ul class="cal__list">
+              {g.inMonth.map((r) => (
+                <li><span class:list={['cal__swatch', `cal--${r.kind}`]}></span><a href={href(r.page)}><span class="cal__when">{dateRange(r.start, r.end, true, lang)}</span> {r.title}{r.kind === 'international' ? `, ${r.place}` : ''}</a></li>
+              ))}
+            </ul>
+          : <p class="t-caption muted cal__none">{lang === 'es' ? 'Sin retiros este mes.' : 'No retreats this month.'}</p>}
+      </section>
+    ))}
+  </div>
+</div>
+
+<style is:global>
+  .cal { --cal-aya: var(--brand-forest); --cal-psi: var(--brand-slate); --cal-finca: var(--brand-terracotta); --cal-intl: var(--brand-ochre); }
+  .cal--ayahuasca { background: var(--cal-aya); }
+  .cal--psilocybin { background: var(--cal-psi); }
+  .cal--finca { background: var(--cal-finca); }
+  .cal--international { background: var(--cal-intl); }
+  .cal__legend { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
+  .cal__legend li { display: inline-flex; align-items: center; gap: var(--space-2); }
+  .cal__swatch { display: inline-block; flex: none; width: 14px; height: 14px; }
+  .cal__months { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--space-8) var(--space-6); }
+  .cal__month { min-width: 0; }
+  .cal__name { margin-bottom: var(--space-4); text-transform: capitalize; }
+  .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--hairline); }
+  .cal__wd { padding: var(--space-2) 0; font: var(--text-caption); text-align: center; color: var(--ink-muted); }
+  .cal__day { display: flex; flex-direction: column; min-height: 46px; border-top: 1px solid var(--hairline); }
+  .cal__num { font: var(--text-caption); text-align: center; padding-top: 4px; }
+  .cal__day.is-busy .cal__num { font-weight: 700; }
+  .cal__bars { display: flex; flex-direction: column; gap: 2px; margin-top: auto; padding-bottom: 4px; }
+  .cal__bar { display: block; height: 6px; }
+  .cal__bar.is-from { margin-left: 3px; }
+  .cal__bar.is-to { margin-right: 3px; }
+  .cal__list { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-1); }
+  .cal__list li { display: flex; align-items: flex-start; gap: var(--space-2); }
+  .cal__list .cal__swatch { margin-top: 0.4em; width: 10px; height: 10px; }
+  .cal__list a { color: var(--ink); text-decoration: none; min-height: 32px; }
+  .cal__list a:hover { color: var(--accent-text); text-decoration: underline; }
+  .cal__when { white-space: nowrap; color: var(--ink-muted); }
+  .cal__none { margin-top: var(--space-4); }
+</style>

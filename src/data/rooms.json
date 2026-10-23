@@ -28,7 +28,7 @@
     "roundTripUsd": 110
   },
   "sharedRoomDiscount": 10,
-  "newsletterDiscount": 10,
+  "newsletterDiscountUsd": 100,
   "booking": {
     "depositPercent": 50,
     "balanceDaysBefore": 14

@@ -1,4 +1,5 @@
 import site from '../data/site.json';
+import { localize, type Lang } from './i18n';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -18,15 +19,7 @@ export function absolute(path: string): string {
 export const whatsappUrl = `https://wa.me/${site.whatsapp.number}?text=${encodeURIComponent(site.whatsapp.message).replace(/'/g, '%27')}`;
 
 /** Link to the registration form with a retreat already selected. */
-export function registerHref(retreatId?: string): string {
-  return href(retreatId ? `/?retreat=${retreatId}#register` : '/#register');
+export function registerHref(retreatId?: string, lang: Lang = 'en'): string {
+  return href(localize(retreatId ? `/?retreat=${retreatId}#register` : '/#register', lang));
 }
 
-/** Google Translate's Spanish version of a page on the live domain (no script on our site). */
-export function spanishHref(pathname: string): string {
-  const host = new URL(site.url).hostname.replace(/-/g, '--').replace(/\./g, '-');
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  const raw = (base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname) || '/';
-  const path = raw.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
-  return `https://${host}.translate.goog${path}?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es`;
-}

@@ -2,26 +2,32 @@
 // Cookie consent. Nothing that sets cookies (Google Analytics, YouTube) loads
 // until the visitor allows it. public/js/site.js stores the choice.
 import { href } from '../lib/url';
+
+interface Props { lang?: 'en' | 'es'; }
+const { lang = 'en' } = Astro.props;
+const t = lang === 'es'
+  ? { text: 'Usamos cookies para contar visitas y saber qué páginas ayudan, y YouTube pone las suyas cuando reproduces nuestro video. No guardamos nada en tu dispositivo hasta que elijas.', policy: 'Lee nuestro aviso de privacidad', privacy: '/es/privacidad#cookies', choose: 'Elige qué permitir', essential: 'Esenciales', essentialText: 'Recuerdan esta elección. Siempre activas.', analytics: 'Analítica', analyticsText: 'Google Analytics, para contar visitas y clics.', video: 'Video', videoText: 'YouTube, para reproducir el video de nuestras páginas.', reject: 'Rechazar', customize: 'Personalizar', save: 'Guardar', accept: 'Aceptar todo' }
+  : { text: 'We use cookies to count visits and see which pages help people, and YouTube sets its own when you play our video. Nothing is stored on your device until you choose.', policy: 'Read our privacy policy', privacy: '/privacy#cookies', choose: 'Choose what to allow', essential: 'Essential', essentialText: 'Remembers this choice. Always on.', analytics: 'Analytics', analyticsText: 'Google Analytics, to count visits and clicks.', video: 'Video', videoText: 'YouTube, to play the video on our pages.', reject: 'Reject', customize: 'Customize', save: 'Save choices', accept: 'Accept all' };
 ---
 <section class="cookie" data-cookie-banner hidden aria-labelledby="cookie-title" role="region">
   <div class="cookie__inner">
     <div class="cookie__text">
       <h2 id="cookie-title" class="t-title">Cookies</h2>
-      <p>We use cookies to count visits and see which pages help people, and YouTube sets its own when you play our video. Nothing is stored on your device until you choose. <a href={href('/privacy#cookies')}>Read our privacy policy</a>.</p>
+      <p>{t.text} <a href={href(t.privacy)}>{t.policy}</a>.</p>
     </div>
     <form class="cookie__options" data-cookie-options hidden>
       <fieldset>
-        <legend class="label label--tight">Choose what to allow</legend>
-        <label class="cookie__check"><input type="checkbox" checked disabled /> <span><strong class="cookie__name">Essential</strong> Remembers this choice. Always on.</span></label>
-        <label class="cookie__check"><input type="checkbox" name="analytics" /> <span><strong class="cookie__name">Analytics</strong> Google Analytics, to count visits and clicks.</span></label>
-        <label class="cookie__check"><input type="checkbox" name="media" /> <span><strong class="cookie__name">Video</strong> YouTube, to play the video on our pages.</span></label>
+        <legend class="label label--tight">{t.choose}</legend>
+        <label class="cookie__check"><input type="checkbox" checked disabled /> <span><strong class="cookie__name">{t.essential}</strong> {t.essentialText}</span></label>
+        <label class="cookie__check"><input type="checkbox" name="analytics" /> <span><strong class="cookie__name">{t.analytics}</strong> {t.analyticsText}</span></label>
+        <label class="cookie__check"><input type="checkbox" name="media" /> <span><strong class="cookie__name">{t.video}</strong> {t.videoText}</span></label>
       </fieldset>
     </form>
     <div class="cookie__actions">
-      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="reject">Reject</button>
-      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="customize" aria-expanded="false">Customize</button>
-      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="save" hidden>Save choices</button>
-      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="accept">Accept all</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="reject">{t.reject}</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="customize" aria-expanded="false">{t.customize}</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="save" hidden>{t.save}</button>
+      <button type="button" class="ms-btn ms-btn--secondary" data-cookie="accept">{t.accept}</button>
     </div>
   </div>
 </section>
