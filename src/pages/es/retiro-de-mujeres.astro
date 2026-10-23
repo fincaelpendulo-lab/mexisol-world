@@ -42,6 +42,10 @@ const schema = [event({
   breadcrumbs={[{ name: 'Retiros en Finca El Péndulo', path: '/es/finca-el-pendulo' }, { name: 'Retiro para mujeres', path: '/es/retiro-de-mujeres' }]}
   schema={schema}
 >
+  <div class="lang-banner" role="note">
+    <p><strong>Este retiro se realiza en español.</strong> <span lang="en">This retreat is held in Spanish.</span></p>
+  </div>
+
   <HeroSplit
     image="women-circle-under-palapa"
     imageAlt="Un círculo de mujeres bajo la palapa junto al lago"
@@ -56,12 +60,6 @@ const schema = [event({
 
   <SectionIntro eyebrow="Para mujeres">Un espacio seguro de respeto, presencia y hermandad. Lugares limitados.</SectionIntro>
 
-  <div class="gutter">
-    <div class="wrap lang-note" role="note">
-      <p class="t-title">Este retiro se realiza en español.</p>
-      <p class="muted" lang="en">This retreat is held in Spanish.</p>
-    </div>
-  </div>
 
   <div class="photo-row" style="--min:240px;--h:380px">
     <Photo name="women-fire-circle-night" alt="Mujeres danzando alrededor del fuego por la noche" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
@@ -103,5 +101,6 @@ const schema = [event({
 </BaseLayout>
 
 <style is:global>
-  .lang-note { border: 1px solid var(--ink); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-8); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5); }
+  .lang-banner { background: var(--brand-forest); color: var(--white); padding: var(--space-3) clamp(16px, 4vw, 48px); text-align: center; }
+  .lang-banner strong { font-family: var(--font-display); font-weight: 400; }
 </style>

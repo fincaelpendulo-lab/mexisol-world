@@ -2,8 +2,9 @@
 // One calendar, one month at a time: arrows and month tabs switch months (public/js/site.js,
 // [data-cal]). Each retreat is a coloured bar across its days, labelled where it starts and at the
 // start of each week. Finca retreats sit on the top line, international ones below. Without
-// JavaScript every month is shown. Each month also lists its retreats as links, so the grid itself
-// is decorative for screen readers.
+// JavaScript every month is shown. Clicking a bar (or, on phones, its day) opens that retreat's page.
+// Each month also lists its retreats as links, so the grid is hidden from screen readers and the
+// bar links are left out of the tab order.
 import type { Retreat, Kind } from '../lib/retreats';
 import { monthName, type Lang } from '../lib/i18n';
 import { dateRange } from '../lib/dates';
@@ -75,9 +76,11 @@ const barLabel = (r: Retreat) => (r.kind === 'international' ? r.place : r.title
               {[0, 1].map((n) => {
                 const b = c.bars[n];
                 return (
-                  <span class:list={['cal__bar', b && `cal--${b.kind}`, b?.from && 'is-from', b?.to && 'is-to']}>
-                    {b?.label && <span class="cal__label">{barLabel(b)}</span>}
-                  </span>
+                  b
+                    ? <a href={href(b.page)} tabindex="-1" title={b.title} class:list={['cal__bar', `cal--${b.kind}`, b.from && 'is-from', b.to && 'is-to']}>
+                        {b.label && <span class="cal__label">{barLabel(b)}</span>}
+                      </a>
+                    : <span class="cal__bar"></span>
                 );
               })}
             </span>
@@ -126,11 +129,12 @@ const barLabel = (r: Retreat) => (r.kind === 'international' ? r.place : r.title
 
   .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--ink); overflow: hidden; }
   .cal__wd { padding: var(--space-3) var(--space-2); font: var(--text-caption); color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .cal__day { display: flex; flex-direction: column; min-height: 104px; border-top: 1px solid var(--hairline); min-width: 0; }
+  .cal__day { position: relative; display: flex; flex-direction: column; min-height: 104px; border-top: 1px solid var(--hairline); min-width: 0; }
   .cal__num { font: var(--text-caption); padding: var(--space-2); }
   .cal__day.is-busy .cal__num { font-weight: 700; }
   .cal__bars { display: flex; flex-direction: column; gap: 3px; margin-top: auto; padding-bottom: var(--space-2); }
-  .cal__bar { display: block; height: 22px; min-width: 0; position: relative; }
+  .cal__bar { display: block; height: 22px; min-width: 0; position: relative; text-decoration: none; }
+  a.cal__bar:hover { filter: brightness(0.85); }
   .cal__bar:not([class*="cal--"]) { visibility: hidden; }
   .cal__bar.is-from { margin-left: 4px; }
   .cal__bar.is-to { margin-right: 4px; }
@@ -148,7 +152,9 @@ const barLabel = (r: Retreat) => (r.kind === 'international' ? r.place : r.title
     .cal__day { min-height: 64px; }
     .cal__wd { text-align: center; padding: var(--space-2) 0; }
     .cal__num { text-align: center; padding: var(--space-1); }
-    .cal__bar { height: 8px; }
+    .cal__bar { height: 8px; position: static; }
+    /* The whole day is the tap target on phones. */
+    a.cal__bar::after { content: ''; position: absolute; inset: 0; }
     .cal__label { display: none; }
   }
 </style>
