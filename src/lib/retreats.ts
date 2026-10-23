@@ -28,7 +28,7 @@ const es: Record<string, string> = {
   'Europe tour': 'Gira por Europa',
   'With Humberto': 'Con Humberto',
   'With Krista': 'Con Krista',
-  'For women · With Araisis': 'Para mujeres · Con Araisis',
+  'For women · With Araisis · In Spanish': 'Para mujeres · Con Araisis · En español',
   'With Sitka Healing House': 'Con Sitka Healing House',
   'Holy Week, with the Medicine and Music Festival': 'Semana Santa, con el Festival de Medicina y Música',
   'Chicago, USA': 'Chicago, EE. UU.',
@@ -46,7 +46,7 @@ const medicinePage: Record<string, string> = {
   ayahuasca: '/ayahuasca-retreat',
   psilocybin: '/psilocybin-retreat',
   wellness: '/sitka-sol-wellness-retreat',
-  women: '/womens-retreat',
+  women: '/es/retiro-de-mujeres', // held in Spanish, so the page is Spanish only
 };
 
 /** All retreats that have not ended yet on the day the site is built, by start date. */

@@ -1,5 +1,6 @@
 ---
-// Retiro para mujeres con Araisis en Finca El Péndulo (versión en español de src/pages/womens-retreat.astro).
+// Retiro para mujeres con Araisis en Finca El Péndulo El retiro es en español, así que la página solo existe en español;
+// /womens-retreat redirige aquí (public/.htaccess).
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSplit from '../../components/HeroSplit.astro';
 import SectionIntro from '../../components/SectionIntro.astro';
@@ -44,7 +45,7 @@ const schema = [event({
   <HeroSplit
     image="women-circle-under-palapa"
     imageAlt="Un círculo de mujeres bajo la palapa junto al lago"
-    eyebrow="23-29 de noviembre de 2026 · Finca El Péndulo"
+    eyebrow="23-29 de noviembre de 2026 · Finca El Péndulo · En español"
     title="Danzando entre la Tierra y las estrellas"
     cta={{ label: 'Aparta tu lugar', href: r.bookingUrl }}
     images={[
@@ -54,6 +55,13 @@ const schema = [event({
   >Un retiro para mujeres con Araisis para volver a tu esencia. Seis días en Finca El Péndulo, en Tepatitlán de Morelos, Jalisco.</HeroSplit>
 
   <SectionIntro eyebrow="Para mujeres">Un espacio seguro de respeto, presencia y hermandad. Lugares limitados.</SectionIntro>
+
+  <div class="gutter">
+    <div class="wrap lang-note" role="note">
+      <p class="t-title">Este retiro se realiza en español.</p>
+      <p class="muted" lang="en">This retreat is held in Spanish.</p>
+    </div>
+  </div>
 
   <div class="photo-row" style="--min:240px;--h:380px">
     <Photo name="women-fire-circle-night" alt="Mujeres danzando alrededor del fuego por la noche" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
@@ -93,3 +101,7 @@ const schema = [event({
     </div>
   </section>
 </BaseLayout>
+
+<style is:global>
+  .lang-note { border: 1px solid var(--ink); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-8); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5); }
+</style>

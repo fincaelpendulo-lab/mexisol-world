@@ -1,8 +1,9 @@
 ---
-// Month-by-month calendar of upcoming retreats. Each retreat is a coloured bar across
-// its days; Finca retreats sit on the top line, international ones below, so overlapping
-// dates stay readable. The grids are visual only: the same dates are listed as text on the
-// page, and each month also lists its retreats as links.
+// One calendar, one month at a time: arrows and month tabs switch months (public/js/site.js,
+// [data-cal]). Each retreat is a coloured bar across its days, labelled where it starts and at the
+// start of each week. Finca retreats sit on the top line, international ones below. Without
+// JavaScript every month is shown. Each month also lists its retreats as links, so the grid itself
+// is decorative for screen readers.
 import type { Retreat, Kind } from '../lib/retreats';
 import { monthName, type Lang } from '../lib/i18n';
 import { dateRange } from '../lib/dates';
@@ -10,11 +11,14 @@ import { href } from '../lib/url';
 
 interface Props { items: Retreat[]; lang?: Lang; }
 const { items, lang = 'en' } = Astro.props;
+const es = lang === 'es';
 
-const weekdays = lang === 'es' ? ['L', 'M', 'M', 'J', 'V', 'S', 'D'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-const legend: { kind: Kind; label: string }[] = lang === 'es'
+const weekdays = es ? ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'] : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const legend: { kind: Kind; label: string }[] = es
   ? [{ kind: 'ayahuasca', label: 'Ayahuasca en la Finca' }, { kind: 'psilocybin', label: 'Psilocibina en la Finca' }, { kind: 'finca', label: 'Otros retiros en la Finca' }, { kind: 'international', label: 'Internacional' }]
   : [{ kind: 'ayahuasca', label: 'Ayahuasca at the Finca' }, { kind: 'psilocybin', label: 'Psilocybin at the Finca' }, { kind: 'finca', label: 'Other Finca retreats' }, { kind: 'international', label: 'International' }];
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const short = (m: number) => cap(monthName(m, lang).slice(0, 3));
 
 const iso = (y: number, m: number, d: number) => `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 const first = items[0]?.start ?? new Date().toISOString().slice(0, 10);
@@ -28,78 +32,123 @@ const grid = months.map(({ y, m }) => {
   const offset = (new Date(Date.UTC(y, m, 1)).getUTCDay() + 6) % 7;
   const cells = Array.from({ length: days }, (_, i) => {
     const day = iso(y, m, i + 1);
-    const bars: (Retreat & { from: boolean; to: boolean })[] = [];
+    const weekStart = (offset + i) % 7 === 0 || i === 0;
+    const bars: (Retreat & { from: boolean; to: boolean; label: boolean })[] = [];
     for (const r of items) {
       if (day < r.start || day > r.end) continue;
       const l = bars[lane(r)] ? 1 - lane(r) : lane(r);
-      if (!bars[l]) bars[l] = { ...r, from: day === r.start, to: day === r.end };
+      if (!bars[l]) bars[l] = { ...r, from: day === r.start, to: day === r.end, label: day === r.start || weekStart };
     }
     return { d: i + 1, bars };
   });
   const inMonth = items.filter((r) => r.start <= iso(y, m, days) && r.end >= iso(y, m, 1));
-  return { y, m, offset, cells, inMonth };
+  return { y, m, offset, cells, inMonth, id: `cal-${y}-${String(m + 1).padStart(2, '0')}` };
 });
+const barLabel = (r: Retreat) => (r.kind === 'international' ? r.place : r.title);
 ---
-<div class="cal">
-  <ul class="cal__legend" aria-label={lang === 'es' ? 'Colores del calendario' : 'Calendar colours'}>
+<div class="cal" data-cal>
+  <ul class="cal__legend" aria-label={es ? 'Colores del calendario' : 'Calendar colours'}>
     {legend.map((l) => <li><span class:list={['cal__swatch', `cal--${l.kind}`]}></span>{l.label}</li>)}
   </ul>
-  <div class="cal__months">
+
+  <div class="cal__tabs" data-cal-tabs hidden role="group" aria-label={es ? 'Elegir mes' : 'Choose a month'}>
     {grid.map((g) => (
-      <section class="cal__month" aria-labelledby={`cal-${g.y}-${g.m}`}>
-        <h3 id={`cal-${g.y}-${g.m}`} class="t-title cal__name">{monthName(g.m, lang)} {g.y}</h3>
-        <div class="cal__grid" aria-hidden="true">
-          {weekdays.map((w) => <span class="cal__wd">{w}</span>)}
-          {g.cells.map((c, i) => (
-            <span class:list={['cal__day', c.bars.length && 'is-busy']} style={i === 0 && g.offset ? `grid-column-start:${g.offset + 1}` : undefined}>
-              <span class="cal__num">{c.d}</span>
-              <span class="cal__bars">
-                {[0, 1].map((n) => {
-                  const b = c.bars[n];
-                  return <span class:list={['cal__bar', b && `cal--${b.kind}`, b?.from && 'is-from', b?.to && 'is-to']} title={b ? b.title : undefined}></span>;
-                })}
-              </span>
-            </span>
-          ))}
-        </div>
-        {g.inMonth.length > 0
-          ? <ul class="cal__list">
-              {g.inMonth.map((r) => (
-                <li><span class:list={['cal__swatch', `cal--${r.kind}`]}></span><a href={href(r.page)}><span class="cal__when">{dateRange(r.start, r.end, true, lang)}</span> {r.title}{r.kind === 'international' ? `, ${r.place}` : ''}</a></li>
-              ))}
-            </ul>
-          : <p class="t-caption muted cal__none">{lang === 'es' ? 'Sin retiros este mes.' : 'No retreats this month.'}</p>}
-      </section>
+      <button type="button" class:list={['cal__tab', g.inMonth.length && 'has-retreats']} data-cal-tab={g.id} aria-pressed="false">
+        {short(g.m)} <span class="cal__tab-year">{String(g.y).slice(2)}</span>
+      </button>
     ))}
   </div>
+
+  {grid.map((g) => (
+    <section class="cal__month" id={g.id} data-cal-month aria-labelledby={`${g.id}-name`}>
+      <div class="cal__head">
+        <button type="button" class="cal__nav" data-cal-prev hidden aria-label={es ? 'Mes anterior' : 'Previous month'}><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12.5 4 6.5 10l6 6"></path></svg></button>
+        <h3 id={`${g.id}-name`} class="t-heading cal__name">{cap(monthName(g.m, lang))} {g.y}</h3>
+        <button type="button" class="cal__nav" data-cal-next hidden aria-label={es ? 'Mes siguiente' : 'Next month'}><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 4l6 6-6 6"></path></svg></button>
+      </div>
+      <div class="cal__grid" aria-hidden="true">
+        {weekdays.map((w) => <span class="cal__wd">{w}</span>)}
+        {g.cells.map((c, i) => (
+          <span class:list={['cal__day', c.bars.length && 'is-busy']} style={i === 0 && g.offset ? `grid-column-start:${g.offset + 1}` : undefined}>
+            <span class="cal__num">{c.d}</span>
+            <span class="cal__bars">
+              {[0, 1].map((n) => {
+                const b = c.bars[n];
+                return (
+                  <span class:list={['cal__bar', b && `cal--${b.kind}`, b?.from && 'is-from', b?.to && 'is-to']}>
+                    {b?.label && <span class="cal__label">{barLabel(b)}</span>}
+                  </span>
+                );
+              })}
+            </span>
+          </span>
+        ))}
+      </div>
+      {g.inMonth.length > 0
+        ? <ul class="cal__list">
+            {g.inMonth.map((r) => (
+              <li><span class:list={['cal__swatch', `cal--${r.kind}`]}></span><a href={href(r.page)}><span class="cal__when">{dateRange(r.start, r.end, true, lang)}</span> {r.title}{r.kind === 'international' ? `, ${r.place}` : ''}</a></li>
+            ))}
+          </ul>
+        : <p class="muted cal__none">{es ? 'Sin retiros este mes.' : 'No retreats this month.'}</p>}
+    </section>
+  ))}
 </div>
 
 <style is:global>
   .cal { --cal-aya: var(--brand-forest); --cal-psi: var(--brand-slate); --cal-finca: var(--brand-terracotta); --cal-intl: var(--brand-ochre); }
-  .cal--ayahuasca { background: var(--cal-aya); }
-  .cal--psilocybin { background: var(--cal-psi); }
-  .cal--finca { background: var(--cal-finca); }
-  .cal--international { background: var(--cal-intl); }
-  .cal__legend { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
+  .cal--ayahuasca { background: var(--cal-aya); color: var(--white); }
+  .cal--psilocybin { background: var(--cal-psi); color: var(--white); }
+  .cal--finca { background: var(--cal-finca); color: var(--black); }
+  .cal--international { background: var(--cal-intl); color: var(--black); }
+  .cal__legend { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
   .cal__legend li { display: inline-flex; align-items: center; gap: var(--space-2); }
   .cal__swatch { display: inline-block; flex: none; width: 14px; height: 14px; }
-  .cal__months { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--space-8) var(--space-6); }
-  .cal__month { min-width: 0; }
-  .cal__name { margin-bottom: var(--space-4); text-transform: capitalize; }
-  .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--hairline); }
-  .cal__wd { padding: var(--space-2) 0; font: var(--text-caption); text-align: center; color: var(--ink-muted); }
-  .cal__day { display: flex; flex-direction: column; min-height: 46px; border-top: 1px solid var(--hairline); }
-  .cal__num { font: var(--text-caption); text-align: center; padding-top: 4px; }
+
+  .cal__tabs { display: flex; gap: var(--space-2); overflow-x: auto; padding-bottom: var(--space-3); margin-bottom: var(--space-6); scrollbar-width: thin; }
+  .cal__tabs[hidden] { display: none; }
+  .cal__tab { flex: none; min-height: 44px; min-width: 64px; padding: 0 var(--space-3); border: 1px solid var(--hairline); background: var(--surface); color: var(--ink); font: var(--text-nav); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+  .cal__tab.has-retreats { border-color: var(--ink); }
+  .cal__tab:hover { border-color: var(--ink); }
+  .cal__tab[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .cal__tab-year { opacity: 0.7; }
+
+  .cal__month + .cal__month { margin-top: var(--space-9); }
+  .cal.is-ready .cal__month { margin-top: 0; }
+  .cal.is-ready .cal__month:not(.is-active) { display: none; }
+  .cal__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+  .cal__name { flex: 1; }
+  .cal.is-ready .cal__name { text-align: center; }
+  .cal__nav { width: 48px; height: 48px; flex: none; display: inline-grid; place-items: center; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .cal__nav[hidden] { display: none; }
+  .cal__nav:hover:not(:disabled) { background: var(--ink); color: var(--surface); }
+  .cal__nav:disabled { opacity: 0.3; cursor: default; }
+
+  .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--ink); overflow: hidden; }
+  .cal__wd { padding: var(--space-3) var(--space-2); font: var(--text-caption); color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .cal__day { display: flex; flex-direction: column; min-height: 104px; border-top: 1px solid var(--hairline); min-width: 0; }
+  .cal__num { font: var(--text-caption); padding: var(--space-2); }
   .cal__day.is-busy .cal__num { font-weight: 700; }
-  .cal__bars { display: flex; flex-direction: column; gap: 2px; margin-top: auto; padding-bottom: 4px; }
-  .cal__bar { display: block; height: 6px; }
-  .cal__bar.is-from { margin-left: 3px; }
-  .cal__bar.is-to { margin-right: 3px; }
-  .cal__list { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-1); }
-  .cal__list li { display: flex; align-items: flex-start; gap: var(--space-2); }
-  .cal__list .cal__swatch { margin-top: 0.4em; width: 10px; height: 10px; }
+  .cal__bars { display: flex; flex-direction: column; gap: 3px; margin-top: auto; padding-bottom: var(--space-2); }
+  .cal__bar { display: block; height: 22px; min-width: 0; position: relative; }
+  .cal__bar:not([class*="cal--"]) { visibility: hidden; }
+  .cal__bar.is-from { margin-left: 4px; }
+  .cal__bar.is-to { margin-right: 4px; }
+  .cal__label { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); z-index: 1; white-space: nowrap; font: var(--text-caption); font-size: 12px; line-height: 1; pointer-events: none; }
+
+  .cal__list { list-style: none; margin: var(--space-5) 0 0; padding: 0; display: grid; gap: var(--space-2); }
+  .cal__list li { display: flex; align-items: flex-start; gap: var(--space-3); }
+  .cal__list .cal__swatch { margin-top: 0.45em; }
   .cal__list a { color: var(--ink); text-decoration: none; min-height: 32px; }
   .cal__list a:hover { color: var(--accent-text); text-decoration: underline; }
-  .cal__when { white-space: nowrap; color: var(--ink-muted); }
-  .cal__none { margin-top: var(--space-4); }
+  .cal__when { white-space: nowrap; color: var(--ink-muted); margin-right: var(--space-2); }
+  .cal__none { margin-top: var(--space-5); }
+
+  @media (max-width: 760px) {
+    .cal__day { min-height: 64px; }
+    .cal__wd { text-align: center; padding: var(--space-2) 0; }
+    .cal__num { text-align: center; padding: var(--space-1); }
+    .cal__bar { height: 8px; }
+    .cal__label { display: none; }
+  }
 </style>

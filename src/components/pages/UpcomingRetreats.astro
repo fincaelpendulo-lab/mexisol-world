@@ -3,6 +3,7 @@
 // Used by /upcoming-retreats and /es/proximos-retiros.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../Button.astro';
+import Photo from '../Photo.astro';
 import RetreatCalendar from '../RetreatCalendar.astro';
 import SubscribeForm from '../SubscribeForm.astro';
 import retreats from '../../data/retreats.json';
@@ -42,9 +43,10 @@ const t = es
   ? {
       title: 'Próximos retiros y calendario 2026-2027 | MexiSol World',
       description: 'Todas las fechas de nuestros retiros de ayahuasca, psilocibina y bienestar en Finca El Péndulo, Jalisco, y de los retiros internacionales, en un solo calendario.',
-      crumb: 'Próximos retiros',
-      eyebrow: 'Calendario',
-      h1: 'Próximos retiros',
+      crumb: `Calendario ${retreats.year}`,
+      eyebrow: `Calendario ${retreats.year}`,
+      bannerAlt: 'Vista aérea del Lago Avalón en Finca El Péndulo, con su palapa y senderos de piedra',
+      h1: 'Calendario de retiros',
       lead: 'Todas las fechas en un solo lugar: los retiros en Finca El Péndulo, en Jalisco, y los que hacemos en otros países.',
       seeCal: 'Ver el calendario',
       seeList: 'Ver la lista de fechas',
@@ -65,9 +67,10 @@ const t = es
   : {
       title: 'Upcoming Retreats and Calendar 2026-2027 | MexiSol World',
       description: 'Every date for our ayahuasca, psilocybin and wellness retreats at Finca El Péndulo, Jalisco, and our international retreats, in one calendar.',
-      crumb: 'Upcoming retreats',
-      eyebrow: 'Calendar',
-      h1: 'Upcoming retreats',
+      crumb: `${retreats.year} Calendar`,
+      eyebrow: `${retreats.year} Calendar`,
+      bannerAlt: 'Aerial view of Lake Avalón at Finca El Péndulo, with its palapa and stone paths',
+      h1: 'Retreat calendar',
       lead: 'Every date in one place: the retreats at Finca El Péndulo in Jalisco, and the ones we lead in other countries.',
       seeCal: 'See the calendar',
       seeList: 'See the list of dates',
@@ -109,17 +112,18 @@ const schema = items.map((r) => event({
   breadcrumbs={[{ name: t.crumb, path }]}
   schema={schema}
 >
-  <section class="section" style="padding-bottom:var(--space-8);border-bottom:1px solid var(--hairline)">
-    <div class="wrap">
-      <p class="label" style="margin-bottom:var(--space-5)">{t.eyebrow}</p>
-      <h1 class="t-display" style="margin-bottom:var(--space-5)">{t.h1}</h1>
-      <p class="t-lead" style="max-width:var(--measure);margin-bottom:var(--space-7)">{t.lead}</p>
-      <div class="cluster">
-        <Button href="#calendar">{t.seeCal}</Button>
-        <Button href="#dates">{t.seeList}</Button>
+  <div class="photo-band" style="--h:560px">
+    <Photo name="aerial-lake-avalon" alt={t.bannerAlt} priority />
+    <div class="photo-band__wash">
+      <p class="label">{t.eyebrow}</p>
+      <h1 class="t-display">{t.h1}</h1>
+      <p class="t-subtitle" style="max-width:760px">{t.lead}</p>
+      <div class="cluster" style="margin-top:var(--space-6)">
+        <Button href="#calendar" variant="on-photo">{t.seeCal}</Button>
+        <Button href="#dates" variant="on-photo">{t.seeList}</Button>
       </div>
     </div>
-  </section>
+  </div>
 
   <section id="calendar" class="section">
     <div class="wrap">

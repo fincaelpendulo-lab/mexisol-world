@@ -18,7 +18,7 @@ import { event, fincaLocation, fincaPlace } from '../lib/schema';
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
-const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat', women: '/womens-retreat' };
+const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat', women: '/es/retiro-de-mujeres' };
 const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
 
 const spaces = [

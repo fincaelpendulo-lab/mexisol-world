@@ -302,6 +302,49 @@
     });
   });
 
+  /* ---------- Retreat calendar: one month at a time ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cal]'), function (cal) {
+    var months = Array.prototype.slice.call(cal.querySelectorAll('[data-cal-month]'));
+    var tabs = Array.prototype.slice.call(cal.querySelectorAll('[data-cal-tab]'));
+    var tabBox = cal.querySelector('[data-cal-tabs]');
+    if (months.length < 2) return;
+    // Start on the month of the URL hash (#cal-2027-03), else the first month with a retreat.
+    var start = 0;
+    months.some(function (m, i) { if (m.querySelector('.cal__list')) { start = i; return true; } return false; });
+    months.forEach(function (m, i) { if ('#' + m.id === window.location.hash) start = i; });
+    var current = -1;
+    function show(i, focusTab) {
+      i = Math.max(0, Math.min(months.length - 1, i));
+      current = i;
+      months.forEach(function (m, j) {
+        m.classList.toggle('is-active', j === i);
+        m.querySelector('[data-cal-prev]').disabled = i === 0;
+        m.querySelector('[data-cal-next]').disabled = i === months.length - 1;
+      });
+      tabs.forEach(function (t, j) { t.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+      var tab = tabs[i];
+      if (tab && tabBox) tabBox.scrollLeft = tab.offsetLeft - tabBox.offsetLeft - (tabBox.clientWidth - tab.offsetWidth) / 2;
+      if (focusTab && tab) tab.focus();
+    }
+    months.forEach(function (m) {
+      var prev = m.querySelector('[data-cal-prev]');
+      var next = m.querySelector('[data-cal-next]');
+      prev.hidden = false; next.hidden = false;
+      prev.addEventListener('click', function () { show(current - 1); months[current].querySelector('[data-cal-prev]').focus(); if (prev.disabled) next.focus(); });
+      next.addEventListener('click', function () { show(current + 1); var n = months[current].querySelector('[data-cal-next]'); (n.disabled ? months[current].querySelector('[data-cal-prev]') : n).focus(); });
+    });
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1, true); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1, true); }
+      });
+    });
+    if (tabBox) tabBox.hidden = false;
+    cal.classList.add('is-ready');
+    show(start);
+  });
+
   /* ---------- Reveal on scroll ---------- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var pending = [];

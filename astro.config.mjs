@@ -15,7 +15,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !/\/404$/.test(page),
+      filter: (page) => !/\/40[34]$/.test(page),
     }),
   ],
   image: {

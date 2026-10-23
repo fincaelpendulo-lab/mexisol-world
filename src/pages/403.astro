@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
+import Button from '../components/Button.astro';
+import { href } from '../lib/url';
+---
+<BaseLayout
+  title="Page not available | MexiSol World"
+  description="This address is not available. Find our ayahuasca and psilocybin retreats at Finca El Péndulo, our international retreats, or register for a call."
+  path="/403"
+  noindex
+>
+  <div class="photo-band" style="--h:520px">
+    <Photo name="agave-field-and-palapa-cabins-under" alt="" priority />
+    <div class="photo-band__wash">
+      <p class="label">Error 403</p>
+      <h1 class="t-display">This door is closed</h1>
+      <p class="t-subtitle" style="max-width:760px">This address is not open to visitors. The page you want is probably one click away.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="wrap stack">
+      <h2 class="t-heading">Where to go from here</h2>
+      <ul class="rule-list" style="max-width:var(--measure)">
+        <li><a href={href('/')}>Home</a></li>
+        <li><a href={href('/finca-el-pendulo')}>Finca El Péndulo retreats</a></li>
+        <li><a href={href('/international-retreats')}>International retreats</a></li>
+        <li><a href={href('/ayahuasca-retreat')}>Ayahuasca retreat</a></li>
+        <li><a href={href('/psilocybin-retreat')}>Psilocybin retreat</a></li>
+        <li><a href={href('/upcoming-retreats')}>Upcoming retreats</a></li>
+        <li lang="es"><a href={href('/es')}>Página de inicio en español</a></li>
+      </ul>
+      <div><Button href={href('/#register')} variant="secondary" data-track="register">Register for a call</Button></div>
+    </div>
+  </section>
+</BaseLayout>
