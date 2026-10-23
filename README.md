@@ -38,6 +38,16 @@ Commit the change to `main` and the site rebuilds and deploys by itself in about
 
 The blog index, the RSS feeds (`/rss.xml`, `/es/rss.xml`), the sitemap and Google's article data update by themselves.
 
+## Spanish version
+
+The Spanish site lives under `/es` with Spanish addresses (`/es/nosotros`, `/es/retiro-de-ayahuasca`...). No automatic translation is involved.
+
+- Each Spanish page is a file in `src/pages/es/`. When you change the text of an English page, change its Spanish twin too.
+- The list of English and Spanish page pairs is in `src/lib/i18n.ts` (`esRoutes`). The ES/EN button and Google's `hreflang` tags use it, and only link a Spanish page once it exists.
+- Menu, footer, form, cookie banner and other shared text: `src/lib/i18n.ts` and the components themselves. Messages shown by the form script: `public/js/site.js` (the `T('English', 'Español')` calls).
+- Retreat titles and notes come from `src/data/retreats.json` in English. Add the Spanish for any new title or note to the list in `src/lib/retreats.ts`.
+- The registration form sends `language` (`en` or `es`) with every request.
+
 ## Run it on your computer
 
 Needs Node 22 or newer.

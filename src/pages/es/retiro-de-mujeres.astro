@@ -1,0 +1,95 @@
+---
+// Retiro para mujeres con Araisis en Finca El Péndulo (versión en español de src/pages/womens-retreat.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSplit from '../../components/HeroSplit.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import retreats from '../../data/retreats.json';
+import { registerHref, absolute } from '../../lib/url';
+import { event, fincaLocation } from '../../lib/schema';
+
+const r = retreats.finca.find((x) => x.id === 'womens-araisis')!;
+const included = [
+  'Dos ceremonias con niños santos (hongos sagrados)',
+  'Música medicina en vivo',
+  'Ceremonias de activación de la voz, cacao y kambó',
+  'Talleres de astrología femenina, en grupo e individuales, a partir de tu carta natal',
+  'Movimiento, liberación, sensualidad y conexión con tu cuerpo',
+  'Rituales de amor propio y meditaciones guiadas',
+  'Del linaje a la libertad',
+  'Tiempo en la naturaleza, integración y descanso',
+  'Temazcal',
+];
+const schema = [event({
+  name: 'Retiro para mujeres con Araisis',
+  start: r.start,
+  end: r.end,
+  description: 'Danzando entre la Tierra y las estrellas: un retiro para mujeres en Finca El Péndulo con Araisis. Dos ceremonias con hongos sagrados, música medicina, cacao, kambó, activación de la voz, talleres de astrología y temazcal.',
+  url: absolute('/es/retiro-de-mujeres'),
+  location: fincaLocation,
+  bookingUrl: r.bookingUrl,
+})];
+---
+<BaseLayout
+  title="Retiro para mujeres en Finca El Péndulo, nov. 2026 | MexiSol World"
+  description="Un retiro para mujeres con Araisis, del 23 al 29 de noviembre de 2026, cerca de Guadalajara: ceremonias con hongos sagrados, música, cacao, kambó, astrología y temazcal."
+  path="/es/retiro-de-mujeres"
+  lang="es"
+  current="finca"
+  ogImage="women"
+  breadcrumbs={[{ name: 'Retiros en Finca El Péndulo', path: '/es/finca-el-pendulo' }, { name: 'Retiro para mujeres', path: '/es/retiro-de-mujeres' }]}
+  schema={schema}
+>
+  <HeroSplit
+    image="women-circle-under-palapa"
+    imageAlt="Un círculo de mujeres bajo la palapa junto al lago"
+    eyebrow="23-29 de noviembre de 2026 · Finca El Péndulo"
+    title="Danzando entre la Tierra y las estrellas"
+    cta={{ label: 'Aparta tu lugar', href: r.bookingUrl }}
+    images={[
+      { name: 'women-osho-hut-flower-circle', alt: 'Mujeres sentadas alrededor de un círculo de flores en la Choza Osho' },
+      { name: 'women-meditation-osho-hut', alt: 'Tres mujeres meditando en la Choza Osho' },
+    ]}
+  >Un retiro para mujeres con Araisis para volver a tu esencia. Seis días en Finca El Péndulo, en Tepatitlán de Morelos, Jalisco.</HeroSplit>
+
+  <SectionIntro eyebrow="Para mujeres">Un espacio seguro de respeto, presencia y hermandad. Lugares limitados.</SectionIntro>
+
+  <div class="photo-row" style="--min:240px;--h:380px">
+    <Photo name="women-fire-circle-night" alt="Mujeres danzando alrededor del fuego por la noche" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="women-long-dinner" alt="Mujeres compartiendo una larga cena a la luz de las velas" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="women-movement-balloons" alt="Movimiento y juego con globos rojos" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">La experiencia</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Seis días para volver a ti</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Ceremonia, música y movimiento entre mujeres, con tiempo para el descanso y para la tierra.</p>
+        <p class="muted">Antes de confirmar tu lugar, el equipo de Araisis agenda una llamada breve contigo.</p>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Qué incluye</h2>
+        <ul class="rule-list">
+          {included.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-row" style="--min:320px;--h:460px">
+    <Photo name="women-group-portrait" alt="Mujeres juntas después de un retiro" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} />
+    <Photo name="women-drum-at-night" alt="Tambores y danza por la noche bajo la palapa" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} />
+  </div>
+
+  <section id="register" class="section deep center">
+    <p class="label" style="margin-bottom:var(--space-5)">Lugares limitados</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Aparta tu lugar</h2>
+    <p class="measure" style="margin-bottom:var(--space-7)">Las reservas de este retiro las gestiona Araisis. ¿Tienes preguntas antes? Escríbenos y te ponemos en contacto.</p>
+    <div class="cluster">
+      <Button href={r.bookingUrl} variant="on-photo" data-track="booking">Reservar con Araisis</Button>
+      <Button href={registerHref('womens-araisis', 'es')} variant="on-photo" data-track="register">Pregúntanos primero</Button>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,122 @@
+---
+// Información médica (versión en español de src/pages/medical.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import { href } from '../../lib/url';
+---
+<BaseLayout
+  title="Evaluación médica para ayahuasca y psilocibina | MexiSol World"
+  description="Quién no debe tomar ayahuasca, psilocibina ni Satori, qué medicamentos interactúan y cómo funciona nuestra evaluación de salud antes de confirmar cualquier retiro."
+  path="/es/informacion-medica"
+  lang="es"
+  current="resources"
+  ogImage="medical"
+  breadcrumbs={[{ name: 'Información médica', path: '/es/informacion-medica' }]}
+>
+  <section class="section" style="padding-bottom:var(--space-8);border-bottom:1px solid var(--hairline)">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Recursos</p>
+      <h1 class="t-display" style="margin-bottom:var(--space-5)">Información médica</h1>
+      <p class="t-lead" style="max-width:var(--measure)">Estas medicinas son poderosas y no son adecuadas para todos los cuerpos. Lee esto antes de reservar y cuéntanos todo con honestidad en la llamada.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Cómo funciona la evaluación</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Nada se confirma hasta revisar tu salud</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Cuando te registras, te preguntamos por tu historial médico, cada medicamento, suplemento y hierba que tomas, y cualquier consumo reciente de otras sustancias. Lo revisamos contigo en una llamada.</p>
+        <p class="muted" style="margin-bottom:var(--space-4)">Algunas condiciones hacen que el retiro no sea seguro para ti. Otras solo requieren autorización de tu propio médico, o un cambio en las medicinas en las que participas.</p>
+        <p>Nunca suspendas por tu cuenta un medicamento recetado. Cualquier cambio debe planearse con el médico que lo recetó.</p>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">El retiro de ayahuasca puede no ser seguro si tienes</h2>
+        <ul class="rule-list">
+          <li>Epilepsia o un trastorno convulsivo</li>
+          <li>Esquizofrenia, psicosis, trastorno bipolar o un trastorno disociativo</li>
+          <li>Enfermedad cardiaca grave, un infarto previo, stents, arritmia o marcapasos</li>
+          <li>Enfermedad hepática grave</li>
+          <li>Un derrame cerebral, hemorragia cerebral, aneurisma o coágulo en el pasado</li>
+          <li>Dependencia activa del alcohol, las benzodiacepinas o los opioides</li>
+          <li>Un trastorno alimentario activo con purga, o una ruptura del esófago en el pasado</li>
+          <li>Un trasplante de órgano o medicamentos inmunosupresores</li>
+          <li>Quimioterapia o radioterapia en las últimas cuatro semanas</li>
+          <li>Uso actual o pasado de hormona del crecimiento (HGH)</li>
+          <li>Un embarazo, o estás amamantando</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--top-rule" id="psilocybin">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Psilocibina</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Qué revisamos antes de un retiro de psilocibina</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">La psilocibina es más amable con el cuerpo que la ayahuasca, pero no es adecuada para todos. Su principal riesgo es psicológico, así que la evaluación y la preparación importan tanto como la dosis.</p>
+        <p class="muted" style="margin-bottom:var(--space-4)">El retiro de psilocibina también incluye una ceremonia de Satori, que contiene un inhibidor de la MAO. Todo lo de la lista de ayahuasca de arriba aplica también a esa noche.</p>
+        <p class="t-caption muted">Basado en MacCallum y colaboradores, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9751063/" lang="en">"Therapeutic use of psilocybin: practical considerations for dosing and administration"</a>, Frontiers in Psychiatry, 2022.</p>
+      </div>
+      <div>
+        <h3 class="label" style="margin-bottom:var(--space-5)">El retiro de psilocibina puede no ser seguro si tienes</h3>
+        <ul class="rule-list">
+          <li>Antecedentes personales de esquizofrenia, psicosis, trastorno bipolar o trastorno límite de la personalidad</li>
+          <li>Un embarazo, o estás amamantando</li>
+          <li>Enfermedad cardiaca o presión alta graves o sin control. La psilocibina sube la frecuencia cardiaca y la presión durante algunas horas</li>
+        </ul>
+        <h3 class="label" style="margin:var(--space-7) 0 var(--space-5)">Avísanos si tomas</h3>
+        <ul class="rule-list">
+          <li>Antidepresivos: ISRS, IRSN, tricíclicos o IMAO. Algunos pueden atenuar o intensificar la experiencia, y mezclar fármacos serotoninérgicos conlleva riesgo de síndrome serotoninérgico</li>
+          <li>Antipsicóticos, litio o estimulantes</li>
+          <li>Otros fármacos que actúan sobre la serotonina o la dopamina</li>
+          <li>Diclofenaco o probenecid, que pueden tener que suspenderse antes de la ceremonia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Por medicina</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Lo que cada una te pide</h2>
+      <div class="grid" style="--min:240px;--gap:var(--space-7)">
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Ayahuasca y Satori</h3><p>La ayahuasca contiene IMAO, que pueden reaccionar de forma peligrosa con muchos medicamentos y suplementos. Satori es DMT de la corteza de tepezcohuite con ruda siria, también un inhibidor de la MAO, así que la misma revisión aplica a ambas.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Psilocibina</h3><p>Más amable con el cuerpo, pero una enfermedad hepática grave sigue siendo motivo para no asistir. Satori también forma parte de este retiro, así que aplica la revisión de medicamentos.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Kambó</h3><p>No es para quien toma medicamentos para la presión baja, tiene enfermedad de Addison o ha tomado bufo en las últimas ocho semanas.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Bufo</h3><p>Un complemento opcional con costo extra, y siempre es tu decisión. Todo lo de la lista de arriba aplica.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Medicamentos</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Cuéntanos todo lo que tomas</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Algunos medicamentos se pueden seguir tomando. Muchos no. Los grupos de abajo son los problemas más comunes. La lista no está completa, por eso preguntamos por todo.</p>
+        <p class="muted">El cannabis puede atenuar la experiencia, así que te pedimos dejarlo antes de venir.</p>
+      </div>
+      <ul class="rule-list">
+        <li>Antidepresivos, incluidos todos los ISRS, IRSN, tricíclicos e IMAO</li>
+        <li>Benzodiacepinas, pastillas para dormir y muchos antipsicóticos</li>
+        <li>Estimulantes para el TDAH y medicamentos para bajar de peso</li>
+        <li>Analgésicos opioides y tramadol</li>
+        <li>Triptanos para la migraña, algunos antihistamínicos y descongestionantes, jarabe para la tos con dextrometorfano</li>
+        <li>Hierbas y suplementos: hierba de San Juan, 5-HTP, kava, kratom, ginseng, rhodiola, efedra, yohimbe</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gutter center" style="padding-bottom:var(--space-9)">
+    <div class="measure rule-top rule-top--soft" style="padding-top:var(--space-8)">
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">¿Tienes dudas sobre algo?</h2>
+      <p class="muted" style="margin-bottom:var(--space-7)">Pregúntanos antes de reservar. Preferimos hablarlo a que llegues con dudas.</p>
+      <div class="cluster">
+        <Button href={href('/es#register')} data-track="register">Regístrate y agenda una llamada</Button>
+        <Button href={href('/es/preparacion')}>Preparación y viaje</Button>
+      </div>
+      <p class="t-caption muted" style="margin-top:var(--space-6)">Esta página es información general, no consejo médico.</p>
+    </div>
+  </section>
+</BaseLayout>

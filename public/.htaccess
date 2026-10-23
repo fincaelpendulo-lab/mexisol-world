@@ -1,6 +1,8 @@
 # MexiSol World on Hostinger (Apache / LiteSpeed).
 Options -Indexes -MultiViews
 DirectoryIndex index.html
+# /blog and /es are pages (blog.html, es.html) and also folders of subpages: never add a slash.
+DirectorySlash Off
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
@@ -16,18 +18,19 @@ ErrorDocument 404 /404.html
   RewriteCond %{THE_REQUEST} \s/([^.?\s]+)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
 
-  # Trailing slash -> no slash, except the home page.
+  # Trailing slash -> no slash, except the home page and folders.
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [R=301,L]
 
   # /sitemap.xml serves the sitemap index (the name most tools expect).
   RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L]
 
-  # Clean URLs: /about serves about.html.
+  # Clean URLs: /about serves about.html. /blog serves blog.html even though a blog/ folder
+  # exists, and so does /blog/ if the server adds the slash itself.
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+)$ $1.html [L]
+  RewriteCond %{REQUEST_FILENAME}.html -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 <IfModule mod_headers.c>

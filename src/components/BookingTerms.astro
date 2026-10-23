@@ -2,23 +2,42 @@
 // "How booking works": the payment and change terms, and how the discounts combine.
 import rooms from '../data/rooms.json';
 import { href } from '../lib/url';
+import { pageLang, localize } from '../lib/i18n';
 
 interface Props { id?: string; }
 const { id } = Astro.props;
 const half = rooms.booking.depositPercent;
+const es = pageLang(Astro.url) === 'es';
+const weeks = rooms.booking.balanceDaysBefore / 7;
 ---
 <section class="section section--top-rule" id={id}>
   <div class="wrap grid">
-    <div>
-      <p class="label" style="margin-bottom:var(--space-5)">How booking works</p>
-      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Simple terms, in writing</h2>
-      <p class="muted">For our ayahuasca and psilocybin retreats at the Finca. Prices are per person. If you are not sure yet, <a href={href('/#register')}>register first</a> and we will set up a call before you pay anything.</p>
-    </div>
-    <ol class="rule-list booking-steps">
-      <li><span class="t-title">{half}% deposit</span><span class="muted">Holds your place. It is not refundable, but you can move it to a later date.</span></li>
-      <li><span class="t-title">{100 - half}% balance</span><span class="muted">Charged to the same card at any time in the {rooms.booking.balanceDaysBefore / 7} weeks before the retreat.</span></li>
-      <li><span class="t-title">Discounts</span><span class="muted">Share a room and each of you gets {rooms.sharedRoomDiscount}% off. Newsletter subscribers get ${rooms.newsletterDiscountUsd} USD off their booking. One discount per booking; they do not combine.</span></li>
-    </ol>
+    {es ? (
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Cómo funciona la reserva</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Condiciones simples, por escrito</h2>
+        <p class="muted">Para nuestros retiros de ayahuasca y psilocibina en la Finca. Los precios son por persona. Si aún tienes dudas, <a href={href(localize('/#register', 'es'))}>regístrate primero</a> y agendamos una llamada antes de que pagues nada.</p>
+      </div>
+    ) : (
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">How booking works</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Simple terms, in writing</h2>
+        <p class="muted">For our ayahuasca and psilocybin retreats at the Finca. Prices are per person. If you are not sure yet, <a href={href('/#register')}>register first</a> and we will set up a call before you pay anything.</p>
+      </div>
+    )}
+    {es ? (
+      <ol class="rule-list booking-steps">
+        <li><span class="t-title">Anticipo del {half}%</span><span class="muted">Aparta tu lugar. No es reembolsable, pero puedes moverlo a una fecha posterior.</span></li>
+        <li><span class="t-title">Saldo del {100 - half}%</span><span class="muted">Se cobra a la misma tarjeta en cualquier momento de las {weeks} semanas previas al retiro.</span></li>
+        <li><span class="t-title">Descuentos</span><span class="muted">Si comparten habitación, cada persona recibe {rooms.sharedRoomDiscount}% de descuento. Quienes se suscriben al boletín reciben ${rooms.newsletterDiscountUsd} USD de descuento en su reserva. Un descuento por reserva; no se combinan.</span></li>
+      </ol>
+    ) : (
+      <ol class="rule-list booking-steps">
+        <li><span class="t-title">{half}% deposit</span><span class="muted">Holds your place. It is not refundable, but you can move it to a later date.</span></li>
+        <li><span class="t-title">{100 - half}% balance</span><span class="muted">Charged to the same card at any time in the {weeks} weeks before the retreat.</span></li>
+        <li><span class="t-title">Discounts</span><span class="muted">Share a room and each of you gets {rooms.sharedRoomDiscount}% off. Newsletter subscribers get ${rooms.newsletterDiscountUsd} USD off their booking. One discount per booking; they do not combine.</span></li>
+      </ol>
+    )}
   </div>
 </section>
 

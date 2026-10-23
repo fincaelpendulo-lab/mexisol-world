@@ -4,6 +4,9 @@
   'use strict';
 
   var body = document.body;
+  // Spanish pages (html lang="es") get Spanish messages.
+  var ES = document.documentElement.lang === 'es';
+  function T(en, es) { return ES ? es : en; }
   var CONSENT_KEY = 'mexisol-consent-v1';
 
   /* ---------- Storage (may be blocked) ---------- */
@@ -228,8 +231,8 @@
     btn.setAttribute('aria-pressed', 'false');
     btn.addEventListener('click', function () {
       var paused = btn.getAttribute('aria-pressed') === 'true';
-      if (paused) { v.play(); btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Pause the background video'); }
-      else { v.pause(); btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Play the background video'); }
+      if (paused) { v.play(); btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', T('Pause the background video', 'Pausar el video de fondo')); }
+      else { v.pause(); btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', T('Play the background video', 'Reproducir el video de fondo')); }
     });
     var p = v.play();
     if (p && p.catch) p.catch(function () { /* autoplay blocked: the photo stays */ });
@@ -255,7 +258,7 @@
     btn.addEventListener('click', function () {
       playing = !playing;
       btn.setAttribute('aria-pressed', playing ? 'false' : 'true');
-      btn.setAttribute('aria-label', playing ? 'Pause the slideshow' : 'Play the slideshow');
+      btn.setAttribute('aria-label', playing ? T('Pause the slideshow', 'Pausar las fotos') : T('Play the slideshow', 'Reproducir las fotos'));
     });
   });
 
@@ -335,31 +338,31 @@
       e.preventDefault();
       var v = email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
-        out.textContent = 'Please write an email address like name@example.com.';
+        out.textContent = T('Please write an email address like name@example.com.', 'Escribe un correo como nombre@ejemplo.com.');
         email.setAttribute('aria-invalid', 'true');
         email.focus();
         return;
       }
       email.removeAttribute('aria-invalid');
       var endpoint = f.getAttribute('action');
-      if (!endpoint || endpoint === '#') { out.textContent = 'Sign-ups are not open yet. Write to us on WhatsApp.'; return; }
+      if (!endpoint || endpoint === '#') { out.textContent = T('Sign-ups are not open yet. Write to us on WhatsApp.', 'Las suscripciones aún no están abiertas. Escríbenos por WhatsApp.'); return; }
       var btn = f.querySelector('[type="submit"]');
       btn.disabled = true;
-      out.textContent = 'Sending…';
+      out.textContent = T('Sending…', 'Enviando…');
       var list = f.querySelector('[name="list"]').value;
       fetch(endpoint, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return r.ok && j.ok !== false; }); })
         .then(function (ok) {
           if (ok) {
             track('sign_up', { method: list });
-            out.textContent = list === 'calendar' ? 'Thank you. The calendar is on its way to your inbox.' : 'Thank you. You are on the list, and your $100 USD discount is noted for when you book.';
+            out.textContent = list === 'calendar' ? T('Thank you. The calendar is on its way to your inbox.', 'Gracias. El calendario va en camino a tu correo.') : T('Thank you. You are on the list, and your $100 USD discount is noted for when you book.', 'Gracias. Ya estás en la lista y tu descuento de $100 USD queda anotado para cuando reserves.');
             f.reset();
             try { localStorage.setItem('mexisol-newsletter-v1', 'joined'); } catch (err) { /* ignore */ }
           } else {
-            out.textContent = 'That did not go through. Please try again, or write to us on WhatsApp.';
+            out.textContent = T('That did not go through. Please try again, or write to us on WhatsApp.', 'No se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp.');
           }
         })
-        .catch(function () { out.textContent = 'That did not go through. Please try again, or write to us on WhatsApp.'; })
+        .catch(function () { out.textContent = T('That did not go through. Please try again, or write to us on WhatsApp.', 'No se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp.'); })
         .then(function () { btn.disabled = false; });
     });
   });
@@ -410,9 +413,9 @@
     if (startedField) startedField.value = String(started);
     var whatsapp = form.getAttribute('data-whatsapp');
     var messages = {
-      name: 'Please write your full name.',
-      email: 'Please write an email address like name@example.com.',
-      phone: 'Please write your WhatsApp number with the country code, like +52 378 790 0992.',
+      name: T('Please write your full name.', 'Escribe tu nombre completo.'),
+      email: T('Please write an email address like name@example.com.', 'Escribe un correo como nombre@ejemplo.com.'),
+      phone: T('Please write your WhatsApp number with the country code, like +52 378 790 0992.', 'Escribe tu número de WhatsApp con código de país, como +52 378 790 0992.'),
     };
     var phoneRe = /^\+?[0-9\s().-]{7,20}$/;
 
@@ -432,7 +435,7 @@
       window.mexisolTurnstile = function () {
         var box = form.querySelector('.cf-turnstile');
         if (box && !box.hasChildNodes()) {
-          window.turnstile.render(box, { sitekey: box.getAttribute('data-sitekey'), size: 'flexible', theme: 'light' });
+          window.turnstile.render(box, { sitekey: box.getAttribute('data-sitekey'), size: 'flexible', theme: 'light', language: ES ? 'es' : 'auto' });
         }
       };
       var t = document.createElement('script');
@@ -480,11 +483,12 @@
         if (msg && !firstBad) firstBad = input;
       });
       if (firstBad) {
-        setStatus('error', '<p>Some details need a second look. Check the fields marked below.</p>');
+        setStatus('error', T('<p>Some details need a second look. Check the fields marked below.</p>', '<p>Algunos datos necesitan revisión. Revisa los campos marcados abajo.</p>'));
         firstBad.focus();
         return;
       }
-      var fail = '<p>We could not send your request just now. Write to us on <a href="' + whatsapp + '" data-track="whatsapp">WhatsApp</a> and we will answer there.</p>';
+      var fail = T('<p>We could not send your request just now. Write to us on <a href="' + whatsapp + '" data-track="whatsapp">WhatsApp</a> and we will answer there.</p>',
+        '<p>No pudimos enviar tu solicitud en este momento. Escríbenos por <a href="' + whatsapp + '" data-track="whatsapp">WhatsApp</a> y te respondemos ahí.</p>');
       var endpoint = form.getAttribute('action');
       if (!endpoint || endpoint === '#') { setStatus('error', fail); return; }
       var data = new FormData(form);
@@ -493,16 +497,17 @@
         data.set('retreat_id', retreatSelect.value);
         data.set('retreat', retreatSelect.options[retreatSelect.selectedIndex].text);
       }
+      data.set('language', ES ? 'es' : 'en');
       var btn = form.querySelector('[type="submit"]');
       btn.disabled = true;
-      setStatus('sending', '<p>Sending…</p>');
+      setStatus('sending', T('<p>Sending…</p>', '<p>Enviando…</p>'));
       fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok !== false, j: j }; }); })
         .then(function (res) {
           if (res.ok) {
             track('form_submit', { form: 'register', retreat: data.get('retreat') || '' });
             form.reset();
-            setStatus('ok', '<p>Thank you. We have your request and will write back to set up a call.</p>');
+            setStatus('ok', T('<p>Thank you. We have your request and will write back to set up a call.</p>', '<p>Gracias. Recibimos tu solicitud y te escribiremos para agendar una llamada.</p>'));
           } else {
             setStatus('error', fail);
           }

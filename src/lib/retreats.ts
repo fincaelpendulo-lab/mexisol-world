@@ -17,6 +17,7 @@ export interface Retreat {
   bookingUrl: string;
 }
 
+// Spanish for every English string in retreats.json. Add a line here when you add a new title or note.
 const es: Record<string, string> = {
   'Ayahuasca retreat': 'Retiro de ayahuasca',
   'Psilocybin retreat': 'Retiro de psilocibina',
@@ -36,6 +37,8 @@ const es: Record<string, string> = {
   'In the Amazon rainforest': 'En la selva amazónica',
   'Two weeks on the banks of the Ganges': 'Dos semanas a orillas del Ganges',
   'Starting in Alicante, Spain.': 'Empieza en Alicante, España.',
+  'Ten days with one teacher plant, a simple diet and long stretches of quiet. Meant for people who have already sat in ceremony.':
+    'Diez días con una planta maestra, una dieta sencilla y largos ratos de silencio. Pensada para personas que ya han estado en ceremonia.',
 };
 export const tr = (s: string, lang: Lang) => (lang === 'es' ? es[s] ?? s : s);
 

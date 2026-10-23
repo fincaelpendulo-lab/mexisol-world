@@ -11,21 +11,27 @@ const quotes = [
   { text: 'A little piece of heaven in Mexico', name: 'Joanne', source: 'Retreat Guru', date: 'October 2026' },
   { text: 'Had a great experience and felt incredible and cared for throughout the journey.', name: 'Sanjay', source: 'BookRetreats', date: 'April 2025' },
 ];
+import { pageLang } from '../lib/i18n';
 interface Props { limit?: number; }
 const { limit = 6 } = Astro.props;
+const es = pageLang(Astro.url) === 'es';
+const month: Record<string, string> = { April: 'abril', May: 'mayo', October: 'octubre' };
+const when = (d: string) => (es ? d.replace(/^(\w+) (\d+)$/, (_, m, y) => `${month[m] ?? m} de ${y}`) : d);
 ---
 <section class="section reviews" aria-labelledby="reviews-title">
   <div class="wrap">
-    <p class="label" style="margin-bottom:var(--space-5)">What guests say</p>
+    <p class="label" style="margin-bottom:var(--space-5)">{es ? 'Lo que dicen los huéspedes' : 'What guests say'}</p>
     <div class="split-head">
-      <h2 class="t-heading" id="reviews-title">In their words</h2>
-      <p class="muted" style="max-width:440px">Rated 5.0 from 55 reviews on <a href={BOOK}>BookRetreats</a> and 4.92 from 181 reviews on <a href={GURU}>Retreat Guru</a>, where we were known as MexiSoul Retreats.</p>
+      <h2 class="t-heading" id="reviews-title">{es ? 'En sus palabras' : 'In their words'}</h2>
+      {es
+        ? <p class="muted" style="max-width:440px">Calificación de 5.0 en 55 reseñas en <a href={BOOK}>BookRetreats</a> y de 4.92 en 181 reseñas en <a href={GURU}>Retreat Guru</a>, donde nos conocían como MexiSoul Retreats. Las reseñas están en inglés.</p>
+        : <p class="muted" style="max-width:440px">Rated 5.0 from 55 reviews on <a href={BOOK}>BookRetreats</a> and 4.92 from 181 reviews on <a href={GURU}>Retreat Guru</a>, where we were known as MexiSoul Retreats.</p>}
     </div>
     <ul class="grid reviews__list" style="--min:280px;--gap:var(--space-3)">
       {quotes.slice(0, limit).map((q) => (
         <li class="card">
-          <blockquote class="t-lead reviews__quote">"{q.text}"</blockquote>
-          <p class="t-caption muted">{q.name} · {q.source} · {q.date}</p>
+          <blockquote class="t-lead reviews__quote" lang="en">"{q.text}"</blockquote>
+          <p class="t-caption muted">{es && q.name === 'Ayahuasca retreat guest' ? 'Huésped del retiro de ayahuasca' : q.name} · {q.source} · {when(q.date)}</p>
         </li>
       ))}
     </ul>

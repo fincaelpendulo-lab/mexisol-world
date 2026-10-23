@@ -1,14 +1,18 @@
 ---
 // Layout for Privacy and Terms: draft notice, title, long-form text.
 interface Props { title: string; updated: string; }
+import { pageLang } from '../lib/i18n';
 const { title, updated } = Astro.props;
+const es = pageLang(Astro.url) === 'es';
 ---
 <section class="section legal">
   <div class="legal__body">
-    <p class="legal__draft" role="note"><strong>DRAFT – needs legal review.</strong> This text has not been reviewed by a lawyer yet and may change.</p>
+    {es
+      ? <p class="legal__draft" role="note"><strong>BORRADOR: pendiente de revisión legal.</strong> Este texto aún no ha sido revisado por un abogado y puede cambiar.</p>
+      : <p class="legal__draft" role="note"><strong>DRAFT – needs legal review.</strong> This text has not been reviewed by a lawyer yet and may change.</p>}
     <p class="label" style="margin-bottom:var(--space-5)">Legal</p>
     <h1 class="t-display" style="margin-bottom:var(--space-5)">{title}</h1>
-    <p class="muted" style="margin-bottom:var(--space-8)">Last updated {updated}</p>
+    <p class="muted" style="margin-bottom:var(--space-8)">{es ? 'Última actualización:' : 'Last updated'} {updated}</p>
     <slot />
   </div>
 </section>

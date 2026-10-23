@@ -11,6 +11,8 @@ import { dateRange } from '../lib/dates';
 import { href, registerHref } from '../lib/url';
 import BookingTerms from './BookingTerms.astro';
 import Reviews from './Reviews.astro';
+import { pageLang, localize } from '../lib/i18n';
+import { tr } from '../lib/retreats';
 
 interface Img { name: string; alt: string; position?: string; }
 interface Props {
@@ -31,19 +33,25 @@ interface Props {
 const p = Astro.props;
 const dates = retreats.finca.filter((r) => r.medicine === p.medicine);
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+const lang = pageLang(Astro.url);
+const to = (path: string) => href(localize(path, lang));
+const t = lang === 'es'
+  ? { eyebrow: 'Finca El Péndulo · 7 días, 6 noches', seeDates: 'Ver fechas', expect: 'Qué esperar', medicine: 'La medicina', included: 'Qué incluye', week: 'La semana', weekH: 'Siete días en la Finca', day: 'Día', schedule: 'El programa se ajusta al grupo. Cada ceremonia es opcional.', dates: `Fechas ${retreats.year}`, book: 'Reservar', talk: 'Habla con nosotros primero', about: 'sobre', perPerson: 'por persona', rooms: 'Ver las habitaciones', ready: '¿Hablamos?', call: 'Empieza con una llamada', callP: 'Revisamos tu salud, tus medicamentos y lo que esperas del retiro. Nada se confirma antes de eso.', register: 'Regístrate para una llamada', prepare: 'Cómo prepararte' }
+  : { eyebrow: 'Finca El Péndulo · 7 days, 6 nights', seeDates: 'See dates', expect: 'What to expect', medicine: 'The medicine', included: "What's included", week: 'The week', weekH: 'Seven days at the Finca', day: 'Day', schedule: 'The schedule moves with the group. Every ceremony is optional.', dates: `${retreats.year} dates`, book: 'Book', talk: 'Talk to us first', about: 'about', perPerson: 'per person', rooms: 'See the rooms', ready: 'Ready to talk?', call: 'Start with a call', callP: 'We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.', register: 'Register for a call', prepare: 'How to prepare' };
+const roomName: Record<string, string> = { dorm: 'Dormitorio compartido', 'semi-private': 'Villa semiprivada', private: 'Habitación privada', deluxe: 'Habitación deluxe' };
 ---
-<HeroSplit image={p.hero.name} imageAlt={p.hero.alt} eyebrow="Finca El Péndulo · 7 days, 6 nights" title={p.title} cta={{ label: 'See dates', href: '#dates' }} images={p.heroThumbs}>{p.heroText}</HeroSplit>
+<HeroSplit image={p.hero.name} imageAlt={p.hero.alt} eyebrow={t.eyebrow} title={p.title} cta={{ label: t.seeDates, href: '#dates' }} images={p.heroThumbs}>{p.heroText}</HeroSplit>
 
-<SectionIntro eyebrow="What to expect">{p.intro}</SectionIntro>
+<SectionIntro eyebrow={t.expect}>{p.intro}</SectionIntro>
 
 <section class="section" style="padding-top:0">
   <div class="wrap grid">
     <div class="stack" style="--stack:var(--space-4)">
-      <h2 class="t-heading" style="margin-bottom:var(--space-2)">The medicine</h2>
-      {p.medicineText.map((t) => <p class="muted">{t}</p>)}
+      <h2 class="t-heading" style="margin-bottom:var(--space-2)">{t.medicine}</h2>
+      {p.medicineText.map((m) => <p class="muted">{m}</p>)}
     </div>
     <div>
-      <h2 class="label" style="margin-bottom:var(--space-5)">What's included</h2>
+      <h2 class="label" style="margin-bottom:var(--space-5)">{t.included}</h2>
       <ul class="rule-list">
         {p.included.map((i) => <li>{i}</li>)}
         <li class="muted">{p.optional}</li>
@@ -60,18 +68,18 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 
 <section class="section deep">
   <div class="wrap">
-    <p class="label" style="margin-bottom:var(--space-5)">The week</p>
-    <h2 class="t-heading" style="margin-bottom:var(--space-8)">Seven days at the Finca</h2>
+    <p class="label" style="margin-bottom:var(--space-5)">{t.week}</p>
+    <h2 class="t-heading" style="margin-bottom:var(--space-8)">{t.weekH}</h2>
     <ol class="grid days" style="--min:260px;--gap:var(--space-6) var(--space-7)">
       {p.days.map((d, i) => (
         <li class="rule-top">
-          <p class="label label--tight" style="margin-bottom:var(--space-2)">Day {i + 1}</p>
+          <p class="label label--tight" style="margin-bottom:var(--space-2)">{t.day} {i + 1}</p>
           <h3 class="t-title" style="margin-bottom:var(--space-2)">{d.title}</h3>
           <p>{d.text}</p>
         </li>
       ))}
     </ol>
-    <p class="t-caption" style="margin-top:var(--space-7)">The schedule moves with the group. Every ceremony is optional.</p>
+    <p class="t-caption" style="margin-top:var(--space-7)">{t.schedule}</p>
   </div>
 </section>
 
@@ -81,16 +89,16 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 
 <section id="dates" class="section">
   <div class="wrap">
-    <p class="label" style="margin-bottom:var(--space-5)">{retreats.year} dates</p>
+    <p class="label" style="margin-bottom:var(--space-5)">{t.dates}</p>
     <h2 class="t-heading" style="margin-bottom:var(--space-7)">{p.datesTitle}</h2>
     <ul class="grid grid--fill date-cards" style="--min:240px;--gap:var(--space-3)">
       {dates.map((r) => (
         <li>
           <div class="date-card">
-            <span class="t-date">{dateRange(r.start, r.end)}</span>
+            <span class="t-date">{dateRange(r.start, r.end, false, lang)}</span>
             <span class="date-card__links">
-              {r.bookingUrl && <a href={r.bookingUrl} data-track="booking">Book<span class="visually-hidden"> {dateRange(r.start, r.end)}</span></a>}
-              <a href={registerHref(r.id)} data-track="register">Talk to us first<span class="visually-hidden"> about {dateRange(r.start, r.end)}</span></a>
+              {r.bookingUrl && <a href={r.bookingUrl} data-track="booking">{t.book}<span class="visually-hidden"> {dateRange(r.start, r.end, false, lang)}</span></a>}
+              <a href={registerHref(r.id, lang)} data-track="register">{t.talk}<span class="visually-hidden"> {t.about} {dateRange(r.start, r.end, false, lang)}</span></a>
             </span>
           </div>
         </li>
@@ -98,10 +106,10 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
     </ul>
     <div class="grid rule-top rule-top--soft" style="--min:200px;--gap:var(--space-5);margin-top:var(--space-8);padding-top:var(--space-6)">
       {rooms.rooms.map((r) => (
-        <div><p class="t-title" style="margin-bottom:var(--space-2)">{r.name}</p><p class="t-date muted">{usd(r.priceUsd)} <span class="t-caption">per person</span></p></div>
+        <div><p class="t-title" style="margin-bottom:var(--space-2)">{lang === 'es' ? roomName[r.id] ?? r.name : r.name}</p><p class="t-date muted">{usd(r.priceUsd)} <span class="t-caption">{t.perPerson}</span></p></div>
       ))}
     </div>
-    <p style="margin-top:var(--space-4)"><a href={href('/finca-el-pendulo#rooms')}>See the rooms</a></p>
+    <p style="margin-top:var(--space-4)"><a href={to('/finca-el-pendulo#rooms')}>{t.rooms}</a></p>
   </div>
 </section>
 
@@ -110,12 +118,12 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 <Reviews limit={3} />
 
 <section id="register" class="section deep center">
-  <p class="label" style="margin-bottom:var(--space-5)">Ready to talk?</p>
-  <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Start with a call</h2>
-  <p class="measure" style="margin-bottom:var(--space-7)">We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.</p>
+  <p class="label" style="margin-bottom:var(--space-5)">{t.ready}</p>
+  <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">{t.call}</h2>
+  <p class="measure" style="margin-bottom:var(--space-7)">{t.callP}</p>
   <div class="cluster">
-    <Button href={registerHref(dates[0]?.id)} variant="on-photo" data-track="register">Register for a call</Button>
-    <Button href={href('/prepare')} variant="on-photo">How to prepare</Button>
+    <Button href={registerHref(dates[0]?.id, lang)} variant="on-photo" data-track="register">{t.register}</Button>
+    <Button href={to('/prepare')} variant="on-photo">{t.prepare}</Button>
   </div>
 </section>
 

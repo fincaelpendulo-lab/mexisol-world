@@ -1,6 +1,7 @@
 ---
 // Design system HeroSplit: tall photo, overlapping card with the page's h1, two detail photos.
 import Photo from './Photo.astro';
+import { pageLang } from '../lib/i18n';
 import Button from './Button.astro';
 
 interface Thumb { name: string; alt: string; position?: string; }
@@ -16,6 +17,7 @@ interface Props {
   slides?: Thumb[];
 }
 const { image, imageAlt, eyebrow, title, cta, images = [], video, slides = [] } = Astro.props;
+const es = pageLang(Astro.url) === 'es';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <section class="ms-hero">
@@ -25,12 +27,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <Photo name={sl.name} alt={sl.alt} sizes="(max-width: 760px) 100vw, 58vw" class="hero-slide" style={sl.position ? `object-position:${sl.position}` : undefined} />
     ))}
     {slides.length > 0 && (
-      <button type="button" class="video-band__toggle" data-slides-toggle hidden aria-label="Pause the slideshow">
+      <button type="button" class="video-band__toggle" data-slides-toggle hidden aria-label={es ? 'Pausar las fotos' : 'Pause the slideshow'}>
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect class="i-pause" x="4" y="3" width="3" height="12"></rect><rect class="i-pause" x="11" y="3" width="3" height="12"></rect><path class="i-play" d="M5 3v12l10-6z"></path></svg>
       </button>
     )}
     {video && (
-      <button type="button" class="video-band__toggle" data-video-toggle hidden aria-label="Pause the background video">
+      <button type="button" class="video-band__toggle" data-video-toggle hidden aria-label={es ? 'Pausar el video de fondo' : 'Pause the background video'}>
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect class="i-pause" x="4" y="3" width="3" height="12"></rect><rect class="i-pause" x="11" y="3" width="3" height="12"></rect><path class="i-play" d="M5 3v12l10-6z"></path></svg>
       </button>
     )}

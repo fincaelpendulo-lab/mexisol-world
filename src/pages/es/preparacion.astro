@@ -1,0 +1,102 @@
+---
+// Preparación y viaje (versión en español de src/pages/prepare.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideSplit from '../../components/GuideSplit.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import rooms from '../../data/rooms.json';
+import { href } from '../../lib/url';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+---
+<BaseLayout
+  title="Cómo prepararte para tu retiro y llegar a la Finca | MexiSol World"
+  description="Lo que debes saber antes de un retiro de ayahuasca o psilocibina en México: salud y medicamentos, la dieta, qué empacar y cómo llegar desde el aeropuerto de Guadalajara."
+  path="/es/preparacion"
+  lang="es"
+  current="resources"
+  ogImage="prepare"
+  breadcrumbs={[{ name: 'Preparación y viaje', path: '/es/preparacion' }]}
+>
+  <div class="photo-band" style="--h:520px">
+    <Photo name="agave-field-and-palapa-cabins-under" alt="Campo de agave y cabañas con techo de palapa bajo las nubes" priority />
+    <div class="photo-band__wash">
+      <p class="label">Antes de venir</p>
+      <h1 class="t-display">Preparación y viaje</h1>
+      <p class="t-subtitle" style="max-width:760px">Lo que debes saber sobre tu salud, tu cuerpo y cómo llegar a la Finca.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Tu salud</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">La seguridad es lo primero</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Estas medicinas son fuertes y no le van bien a todo el mundo. Antes de confirmar tu lugar, revisamos tu historial de salud y cada medicamento y suplemento que tomas.</p>
+        <p class="muted">Los antidepresivos como los ISRS, muchos fármacos psiquiátricos, algunos medicamentos para la gripa y las alergias, y hierbas como la hierba de San Juan o el kratom pueden reaccionar mal con la ayahuasca y el Satori. Si necesitas suspender algo, hazlo solo con la guía de tu médico y avísanos con tiempo.</p>
+        <p style="margin-top:var(--space-5)"><a href={href('/es/informacion-medica')}>Lee la información médica completa</a></p>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Habla con nosotros primero si tienes</h2>
+        <ul class="rule-list">
+          <li>Epilepsia o antecedentes de convulsiones</li>
+          <li>Esquizofrenia, psicosis o trastorno bipolar</li>
+          <li>Enfermedad cardiaca grave, marcapasos o arritmia</li>
+          <li>Enfermedad hepática grave</li>
+          <li>Un derrame cerebral, aneurisma o coágulo en el pasado</li>
+          <li>Dependencia del alcohol, las benzodiacepinas o los opioides</li>
+          <li>Un embarazo, o estás amamantando</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <GuideSplit eyebrow="Las semanas previas" title="Come limpio. Mira hacia dentro." image="lavender-path-with-the-greenhouse-behind" imageAlt="Sendero de lavanda con el invernadero al fondo" reverse>
+    <p>Durante las dos semanas previas, evita la carne roja, los alimentos procesados, el azúcar refinada y el alcohol, y reduce la cafeína. Deja el cannabis. Pasa menos tiempo frente a las pantallas y más tiempo caminando, escribiendo y durmiendo. Llega con una intención abierta, o sin ninguna. La medicina rara vez sigue un plan.</p>
+  </GuideSplit>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Qué empacar</h2>
+        <ul class="rule-list">
+          <li>Capas: los días son cálidos y las noches frescas</li>
+          <li>Ropa cómoda y holgada para la ceremonia</li>
+          <li>Traje de baño, sombrero, lentes de sol, bloqueador</li>
+          <li>Un diario</li>
+          <li>Antifaz para dormir, tapones para los oídos o audífonos</li>
+          <li>Efectivo en USD o MXN para extras</li>
+        </ul>
+        <p class="t-caption muted" style="margin-top:var(--space-4)">Las toallas y la ropa de cama están incluidas. Te enviamos la lista completa después de reservar.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Después</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Date unos días</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Tómalo con calma al volver a casa. Descansa, come sencillo, pasa tiempo al aire libre y pospón las grandes decisiones. Comparte la experiencia solo con personas que sepan escuchar.</p>
+        <p class="muted">Seguimos en contacto después del retiro, y el grupo casi siempre también.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Cómo llegar</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Vuela a Guadalajara</h2>
+      <p style="max-width:var(--measure);margin-bottom:var(--space-8)">La Finca está a una hora al oriente del Aeropuerto Internacional de Guadalajara (GDL), a las afueras de Tepatitlán de Morelos. Los vuelos no están incluidos.</p>
+      <div class="grid" style="--min:260px;--gap:var(--space-7)">
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">Nuestro traslado</h3><p>Una persona de nuestro equipo te recibe en el aeropuerto. {usd(rooms.airportPickup.oneWayUsd)} sencillo, {usd(rooms.airportPickup.roundTripUsd)} redondo. Antes de volar recibes su nombre y su foto.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">En autobús</h3><p>Taxi a la Nueva Central Camionera, autobús a Tepatitlán cada 30 minutos y luego un taxi corto a la Finca. Unas dos horas y menos de $30 USD.</p></div>
+        <div class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">En auto</h3><p>Busca «Finca El Péndulo» en <a href="https://maps.app.goo.gl/icPCz4ojjqUjLsNR6">Google Maps</a>. Casi todo el camino es por autopista de cuota. Camino al Saucillo 861, Tepatitlán de Morelos, Jalisco.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <p class="label" style="margin-bottom:var(--space-5)">¿Todo listo?</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-7)">Elige tu retiro</h2>
+    <div class="cluster">
+      <Button href={href('/es/retiro-de-ayahuasca')}>Retiro de ayahuasca</Button>
+      <Button href={href('/es/retiro-de-psilocibina')}>Retiro de psilocibina</Button>
+    </div>
+  </section>
+</BaseLayout>

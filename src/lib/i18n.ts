@@ -123,3 +123,10 @@ export const ui = {
     },
   },
 } as const;
+
+/** The language of the page being built, from its URL: anything under /es is Spanish. */
+export function pageLang(url: URL): Lang {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const path = url.pathname.slice(base.length);
+  return /^\/es(\/|$|\.html)/.test(path) ? 'es' : 'en';
+}

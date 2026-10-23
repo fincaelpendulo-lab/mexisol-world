@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/LegalPage.astro';
+import site from '../../data/site.json';
+import { href } from '../../lib/url';
+---
+<BaseLayout
+  title="Términos y condiciones | MexiSol World"
+  description="Los términos para usar mexisol.world y reservar un retiro de MexiSol World: evaluación, reservas y pagos, cancelaciones, tu salud y nuestras responsabilidades."
+  path="/es/terminos"
+  lang="es"
+  breadcrumbs={[{ name: 'Términos y condiciones', path: '/es/terminos' }]}
+>
+  <LegalPage title="Términos y condiciones" updated="octubre de 2026">
+    <p>Estos términos aplican a mexisol.world y a los retiros que organiza MexiSol World en {site.address.name}, {site.address.locality}, {site.address.region}, y en el extranjero. Al usar el sitio o reservar un retiro, los aceptas. Cada retiro puede tener además su propio acuerdo por escrito, que prevalece cuando ambos difieran.</p>
+
+    <h2>El sitio web</h2>
+    <p>La información de este sitio es general. Las fechas, programas y precios de los retiros pueden cambiar, y lo que cuenta es la confirmación que te enviamos. Los textos, fotos, videos y logotipos pertenecen a MexiSol World o se usan con permiso. No los copies para uso comercial sin pedirnos autorización.</p>
+    <p>Nada en este sitio es consejo médico, psicológico ni legal. Lee nuestra <a href={href('/es/informacion-medica')}>información médica</a> y habla con tu médico antes de decidir asistir.</p>
+
+    <h2>Registrarte no es reservar</h2>
+    <p>Enviar el formulario de registro no aparta un lugar ni crea ninguna obligación de pago. Un lugar solo se confirma después de una llamada de evaluación, nuestra confirmación por escrito y el pago del anticipo indicado en esa confirmación.</p>
+
+    <h2>Evaluación y tu salud</h2>
+    <ul>
+      <li>Te comprometes a decirnos la verdad, de forma completa, sobre tu salud física y mental, medicamentos, suplementos y consumo reciente de sustancias, y a avisarnos si algo cambia antes del retiro.</li>
+      <li>Podemos rechazar o cancelar una reserva si creemos que un retiro no es seguro para ti. Si cancelamos por este motivo antes del retiro, te reembolsamos lo que pagaste, menos los costos no reembolsables ya explicados en tu confirmación.</li>
+      <li>Nunca suspendas un medicamento recetado sin la guía del médico que lo recetó.</li>
+      <li>Cada ceremonia y actividad es voluntaria. Puedes no participar en cualquiera de ellas en cualquier momento.</li>
+    </ul>
+
+    <h2>Pagos y cancelaciones</h2>
+    <p>Los precios son por persona y en dólares estadounidenses, salvo que se indique otra cosa. El anticipo, el calendario de pagos, los plazos de cancelación y los montos de reembolso de tu retiro se establecen en tu confirmación de reserva o en el acuerdo del retiro. Si no puedes asistir, avísanos lo antes posible.</p>
+    <p>Si tenemos que cancelar o mover un retiro por motivos bajo nuestro control, puedes elegir un reembolso completo o un lugar en otra fecha. Ante hechos fuera del control de cualquiera, como desastres naturales o restricciones gubernamentales, te ofreceremos otra fecha y buscaremos una solución de buena fe.</p>
+
+    <h2>Durante el retiro</h2>
+    <ul>
+      <li>Sigue las indicaciones de las personas facilitadoras y del personal, sobre todo durante las ceremonias.</li>
+      <li>No traigas alcohol, drogas ni medicamentos que no hayas declarado en la evaluación.</li>
+      <li>Respeta a las demás personas, al personal, a los animales y a la tierra. Podemos pedir que se retire a cualquier persona que se ponga en riesgo o ponga en riesgo a otros, sin reembolso por los días no usados.</li>
+      <li>No tomes fotos ni video de otras personas sin su consentimiento.</li>
+    </ul>
+
+    <h2>Riesgos y responsabilidad</h2>
+    <p>Las ceremonias con medicinas de plantas, el kambó, el bufo, el temazcal, la equitación, las caminatas y la natación conllevan riesgos físicos y emocionales. Participas conociendo estos riesgos y habiendo declarado tu salud con honestidad. Tenemos un cuidado razonable, con personal capacitado y evaluación previa. En la medida en que la ley lo permita, MexiSol World no es responsable de daños causados por información que hayas ocultado, por no seguir las indicaciones del personal o por hechos fuera de nuestro control. Nada en estos términos limita los derechos que te otorga la Ley Federal de Protección al Consumidor.</p>
+
+    <h2>Viaje</h2>
+    <p>Los vuelos, el seguro de viaje, las visas y el traslado de ida y vuelta a la Finca son tu responsabilidad, salvo que tu confirmación diga otra cosa. Te recomendamos un seguro de viaje que cubra cancelación y atención médica.</p>
+
+    <h2>Privacidad</h2>
+    <p>Cómo tratamos tus datos personales se explica en nuestro <a href={href('/es/privacidad')}>aviso de privacidad</a>.</p>
+
+    <h2>Ley aplicable y controversias</h2>
+    <p>Estos términos se rigen por las leyes de México. Intentaremos resolver cualquier desacuerdo hablando primero. Si no es posible, serán competentes los tribunales de Jalisco, México, sin perjuicio de tus derechos como consumidor.</p>
+
+    <h2>Contacto</h2>
+    <p>Preguntas sobre estos términos: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </LegalPage>
+</BaseLayout>

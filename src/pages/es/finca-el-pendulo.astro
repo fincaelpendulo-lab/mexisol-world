@@ -1,0 +1,276 @@
+---
+// Retiros en Finca El Péndulo (versión en español de src/pages/finca-el-pendulo.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+import VideoBand from '../../components/VideoBand.astro';
+import Photo from '../../components/Photo.astro';
+import RoomCard from '../../components/RoomCard.astro';
+import Button from '../../components/Button.astro';
+import site from '../../data/site.json';
+import retreats from '../../data/retreats.json';
+import rooms from '../../data/rooms.json';
+import { dateRange, retreatDates } from '../../lib/dates';
+import { href, absolute, registerHref } from '../../lib/url';
+import { tr } from '../../lib/retreats';
+import BookingTerms from '../../components/BookingTerms.astro';
+import Reviews from '../../components/Reviews.astro';
+import SubscribeForm from '../../components/SubscribeForm.astro';
+import { event, fincaLocation, fincaPlace } from '../../lib/schema';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
+const medicinePage: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', women: '/es/retiro-de-mujeres' };
+const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
+
+const spaces = [
+  { img: 'guests-gathered-inside-the-osho-hut', alt: 'Una facilitadora sirviendo a los huéspedes sentados dentro de la Choza Osho', name: 'La Choza Osho', text: 'El corazón espiritual de la Finca. Una casa redonda de piedra con techo de palma, donde se hacen todas las ceremonias con música en vivo. También recibe meditación, yoga, conciertos y largas cenas.' },
+  { img: 'onyx-pillars-of-the-oracle-glowing', alt: 'Yoga en el círculo de piedra del Oráculo, entre sus pilares', name: 'El Oráculo', text: 'Dieciséis pilares de ónix de Jalisco, cada uno tallado con una runa. Trae una pregunta y elige una columna. También lo usamos para yoga al aire libre, meditación y cenas de cierre.' },
+  { img: 'rider-on-a-chestnut-horse-looking', alt: 'Una jinete sonriente sobre un caballo oscuro', name: 'Los caballos', text: 'Nueve caballos, cinco de ellos nacidos en la Finca. Cabalgatas por los cerros, terapia con caballos y clases para aprender a cuidarlos. No necesitas experiencia.' },
+  { img: 'lake-avalon-with-its-palapa-and', alt: 'La palapa y las mesas al aire libre junto al Lago Avalón', name: 'Lago Avalón', text: 'Carpas koi, tortugas y una palapa junto al agua. Camastros al sol, una mesa larga para cenar y un sendero alrededor de la orilla para caminar al atardecer.' },
+  { img: 'lords-atrium-root-and-jesus', alt: 'La raíz gigante con un Jesús meditando en el Atrio del Señor', name: 'El Atrio del Señor', text: 'Una raíz de 30 toneladas con un Jesús meditando al frente, en el centro del atrio. Ven aquí a meditar, a conectar y a sentir el espíritu de la Finca.' },
+  { img: 'pool-in-front-of-the-brick', alt: 'La alberca larga con cipreses y edificios de ladrillo detrás', name: 'La alberca', text: 'Templada todo el año y rodeada de verde. Hecha para las tardes lentas entre ceremonias.' },
+  { img: 'ambu-terrace-a-covered-terrace-with', alt: 'Terraza Ambu, una terraza techada con pilares de madera frente a los campos de agave', name: 'Terraza Ambu', text: 'Una amplia terraza techada con vista a los campos de agave, con espacio para hasta 200 personas. Donde nos reunimos para la música, las celebraciones y la pizza del horno de leña.' },
+];
+const more = [
+  { img: 'painted-temazcal-dome-behind-the-cold', alt: 'La cúpula pintada del temazcal detrás de las tinas de agua fría', name: 'Temazcal', text: 'El baño de vapor tradicional, calentado con piedras volcánicas, con tinas de agua fría afuera para el contraste.' },
+  { img: 'sammasati-with-a-jacuzzi-and-long', alt: 'Sammasati, con jacuzzi y mesas largas de madera bajo luces colgantes', name: 'Sammasati', text: 'El punto de encuentro en el centro de la Finca: una mesa de madera para 25, un jacuzzi para 8 y una fogata.' },
+  { img: 'inside-the-gaia-greenhouse-full-of', alt: 'El invernadero Gaia, una mesa larga de madera entre plantas colgantes', name: 'Invernadero 27', text: 'Hierbas, verduras, frutas y plantas medicinales cultivadas según la temporada. Lo que cosecha llega a tu plato.' },
+  { img: 'guests-painting-and-working-with-clay', alt: 'Huéspedes pintando en mesas de colores en el taller de arte', name: 'Taller de arte', text: 'Cinco tornos de alfarería, pinturas, lienzos y material de manualidades, para cuando quieras trabajar con las manos.' },
+  { img: 'massage-table-made-up-with-white', alt: 'Una mesa de masaje preparada con toallas blancas en el spa', name: 'Spa', text: 'Una sala de masaje y una de tratamientos, con dos terapeutas que ofrecen masajes y faciales.' },
+  { img: 'gym-with-a-pilates-reformer-bikes', alt: 'El gimnasio con un reformer de Pilates, bicicletas y una caminadora', name: 'Gimnasio', text: 'Pesas libres, un reformer de Pilates, bicicletas y una caminadora, además de ping pong y billar en la sala.' },
+  { img: 'wolf-on-wooden-platform', alt: 'Uno de los dos lobos de la Finca de pie sobre una plataforma de madera', name: 'Los lobos', text: 'Dos lobos hermanos, rescatados cuando sus antiguos cuidadores ya no pudieron tenerlos. Los huéspedes pueden conocerlos en visitas guiadas y respetuosas.' },
+  { img: 'hormiguero-a-palm-roofed-building-among', alt: 'El Hormiguero, una palapa en forma de cono entre plataneras', name: 'El Hormiguero', text: 'Una casa de dos pisos construida por voluntarios entre plataneras, con cocina compartida y fogata. Caben hasta 20 personas.' },
+];
+const week = [
+  { img: 'guests-sitting-on-yoga-mats-under', alt: 'Huéspedes sentados en tapetes de yoga bajo la palapa junto al lago', cap: 'Práctica matutina junto al lago' },
+  { img: 'smoke-and-light-over-a-flower', alt: 'Humo y luz sobre un altar de flores dentro de la Choza Osho', cap: 'Ceremonia en la Choza Osho' },
+  { img: 'fire-circle-at-night-with-guests', alt: 'Una persona de pie dentro de un anillo de fuego, con el grupo sentado alrededor', cap: 'El círculo de fuego' },
+  { img: 'guests-sharing-a-candlelit-dinner-at', alt: 'Huéspedes compartiendo la cena en una mesa larga con luz cálida', cap: 'La cena juntos' },
+];
+const roomTypes = [
+  { type: 'dorm' as const, name: 'Dormitorio compartido', price: price.dorm, text: 'Compartido con hasta otras tres personas en la casa que construyeron los voluntarios entre las plataneras. Buena opción si vienes solo o sola y quieres compañía.' },
+  { type: 'villa' as const, name: 'Villa semiprivada', price: price['semi-private'], text: 'Una o dos personas. Baño compartido, cortinas para privacidad y vista al oriente, hacia el amanecer y los caballos.' },
+  { type: 'private' as const, name: 'Habitación privada', price: price.private, text: 'Una o dos personas, con baño privado.' },
+  { type: 'deluxe' as const, name: 'Habitación deluxe', price: price.deluxe, text: 'Las únicas habitaciones con jacuzzi propio. Cama queen, un sofá cama para una tercera persona y baño privado. Solo hay dos.' },
+];
+
+const offers = rooms.rooms.map((r) => ({ name: r.name, priceUsd: r.priceUsd }));
+const events = retreats.finca.map((r) => event({
+  name: `${tr(r.title, 'es')} en Finca El Péndulo`,
+  start: r.start,
+  end: r.end,
+  description: r.medicine === 'familia-sagrada'
+    ? 'Un retiro de Semana Santa en Finca El Péndulo, Jalisco, con el Festival de Medicina y Música.'
+    : r.medicine === 'women'
+    ? 'Un retiro para mujeres con Araisis en Finca El Péndulo: dos ceremonias con hongos sagrados, música, cacao, kambó, activación de la voz, talleres de astrología y temazcal.'
+    : r.medicine === 'wellness'
+    ? 'Sitka & Sol Wellness Retreat con Sitka Healing House: una limpieza de hígado de cinco días, movimiento, meditación y música en vivo en Finca El Péndulo.'
+    : `Siete días, seis noches, todo incluido. Tres ceremonias: dos con ${r.medicine === 'ayahuasca' ? 'ayahuasca' : 'psilocibina'} y una con Satori. Hasta 15 personas.`,
+  url: absolute(medicinePage[r.medicine] ?? '/es/finca-el-pendulo'),
+  location: fincaLocation,
+  prices: r.noPrice ? undefined : offers,
+  bookingUrl: r.bookingUrl,
+}));
+---
+<BaseLayout
+  title="Retiros en Finca El Péndulo, Jalisco | MexiSol World"
+  description={`Retiros de ayahuasca, psilocibina y bienestar en ${retreats.year} en Finca El Péndulo, cerca de Guadalajara. Desde $1,850 USD por persona, todo incluido, hasta 15 personas.`}
+  path="/es/finca-el-pendulo"
+  lang="es"
+  current="finca"
+  ogImage="finca"
+  breadcrumbs={[{ name: 'Retiros en Finca El Péndulo', path: '/es/finca-el-pendulo' }]}
+  schema={[fincaPlace, ...events]}
+>
+  <VideoBand poster="aerial-agave-rows-and-cabins" alt="Vista aérea de las hileras de agave y las cabañas con techo de palapa en Finca El Péndulo" mp4="/video/finca-aerial.mp4" webm="/video/finca-aerial.webm">
+    <p class="t-title">Tepatitlán de Morelos, Jalisco</p>
+    <p class="t-date">{inYear} retiros en {retreats.year}</p>
+    <h1 class="t-display">Finca El Péndulo</h1>
+    <p class="t-subtitle" style="max-width:760px">Nuestro hogar en los Altos de Jalisco</p>
+    <div class="cluster" style="margin-top:var(--space-6)">
+      <Button href="#dates" variant="on-photo">Ver fechas {retreats.year}</Button>
+      <Button href="#spaces" variant="on-photo">Los espacios</Button>
+    </div>
+  </VideoBand>
+
+  <SectionIntro eyebrow="La tierra">14 acres de campo a una hora del aeropuerto de Guadalajara, con más de quince espacios construidos a mano desde 2017. Caballos en los potreros, agave en las lomas y un lago donde se refleja el atardecer. Todos los retiros de MexiSol en México suceden aquí.</SectionIntro>
+
+  <div class="photo-row" style="--min:220px;--h:380px">
+    <Photo name="guests-sitting-and-swimming-at-lake" alt="Tres mujeres sentadas en círculo junto al lago" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-painting-and-working-with-clay" alt="Huéspedes pintando en mesas de colores en el taller de arte" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="guests-setting-out-on-a-horseback" alt="Tres jinetes saliendo frente al edificio de ladrillo" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="fire-circle-at-night-with-guests" alt="Un círculo de fuego de noche con huéspedes sentados alrededor" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+  </div>
+
+  <section id="story" class="section">
+    <div class="wrap grid" style="align-items:center">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Desde 2017</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Construida a mano, un espacio a la vez</h2>
+        <p class="muted" style="margin-bottom:var(--space-6)">Marina fundó la Finca en 2017, empezando por las caballerizas y la vieja torre. Las ceremonias comenzaron un año después y la gente llegó de boca en boca. Desde entonces la tierra no ha dejado de construirse, en gran parte con ayuda de voluntarios de la comunidad que vive aquí.</p>
+        <dl class="timeline">
+          <div><dt class="t-title">2017</dt><dd class="muted">Marina funda Finca El Péndulo. Primero llegan las caballerizas y la torre.</dd></div>
+          <div><dt class="t-title">2018</dt><dd class="muted">Las primeras ceremonias con medicinas de plantas.</dd></div>
+          <div><dt class="t-title">2019</dt><dd class="muted">Se levanta la Choza Osho.</dd></div>
+          <div><dt class="t-title">Hoy</dt><dd class="muted">Más de quince espacios, nueve caballos y una comunidad que sigue construyendo. Más de 500 personas han venido a nuestros retiros.</dd></div>
+        </dl>
+      </div>
+      <div class="pair">
+        <Photo name="osho-hut-under-construction-its-palm" alt="La Choza Osho en construcción, con su techo de palma a medio poner" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+        <Photo name="mare-and-her-foal-grazing-beside" alt="Una yegua y su potrillo pastando junto a los perros de la Finca" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-band" style="--h:520px">
+    <Photo name="aerial-lake-avalon" alt="Vista aérea del Lago Avalón con su palapa central y senderos de piedra" />
+    <div class="photo-band__wash">
+      <p class="t-title">14 acres, quince espacios</p>
+      <p class="t-display" style="max-width:900px">Espacio para bajar el ritmo</p>
+    </div>
+  </div>
+
+  <section id="spaces" class="section" style="padding-bottom:var(--space-8)">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Los espacios</p>
+      <div class="split-head">
+        <h2 class="t-heading">Hechos para la ceremonia y para los días intermedios</h2>
+        <p class="muted" style="max-width:400px">Siete lugares que conocerás durante tu semana.</p>
+      </div>
+      <div class="grid grid--fill" style="--min:260px;--gap:var(--space-7) var(--space-3)">
+        {spaces.map((s, i) => (
+          <div class="stack" style="--stack:var(--space-3)">
+            <Photo name={s.img} alt={s.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5" />
+            <h3 class="label label--tight" style="margin-top:var(--space-4)">{String(i + 1).padStart(2, '0')} / {s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+        <div class="card deep also">
+          <p class="label label--tight">También en la tierra</p>
+          <p class="t-title">Temazcal, Sammasati, el invernadero Gaia, un taller de arte, spa, gimnasio, un jardín de rosas y dos lobos rescatados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Más de la Finca</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">Lugares para descansar, crear y recuperarte</h2>
+      <div class="grid grid--fill" style="--min:240px;--gap:var(--space-6) var(--space-3)">
+        {more.map((s) => (
+          <div class="stack" style="--stack:var(--space-3)">
+            <Photo name={s.img} alt={s.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-3-2" />
+            <h3 class="t-title" style="margin-top:var(--space-4)">{s.name}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">La vida en la Finca</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">Cómo es una semana aquí</h2>
+      <div class="photo-row" style="--min:220px;--h:360px">
+        {week.map((w) => (
+          <figure class="fig">
+            <Photo name={w.img} alt={w.alt} sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} />
+            <figcaption class="label label--tight">{w.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid" style="align-items:center">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">La mesa</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Comida que acompaña el trabajo</h2>
+        <p class="muted" style="margin-bottom:var(--space-4)">Todo se cocina aquí con ingredientes enteros, muchos cultivados en el invernadero Gaia o en granjas cercanas. Principalmente basada en plantas, tipo buffet, tres comidas al día y dos en días de ceremonia.</p>
+        <p class="muted">Sin alcohol, sin azúcar refinada, sin alimentos procesados. Cubrimos dietas veganas, sin gluten y otras: avísanos al reservar.</p>
+      </div>
+      <div class="pair">
+        <Photo name="candlelit-dinner-at-the-greenhouse-table" alt="Cena a la luz de las velas en la mesa del invernadero" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+        <Photo name="inside-the-gaia-greenhouse-full-of" alt="Dentro del invernadero Gaia" sizes="(max-width: 760px) 50vw, 25vw" widths={[400, 640, 900]} class="ratio-3-4" />
+      </div>
+    </div>
+  </section>
+
+  <section id="rooms" class="section" style="padding-top:0">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Habitaciones y precios</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-5)">Cada habitación tiene nombre</h2>
+      <p class="muted" style="max-width:var(--measure);margin-bottom:var(--space-7)">Un solo precio cubre todo el retiro: ceremonias, comidas, actividades y tu cama. Los precios son por persona. Si compartes habitación con una amistad o tu pareja, cada quien recibe 10% de descuento.</p>
+      <div class="grid" style="--min:240px;--gap:var(--space-7) var(--space-3);margin-bottom:var(--space-9)">
+        {roomTypes.map((r) => <RoomCard type={r.type} name={r.name} price={usd(r.price)} text={r.text} />)}
+      </div>
+      <p class="t-caption muted" style="margin-top:var(--space-7)">Traslado desde el aeropuerto de Guadalajara: {usd(rooms.airportPickup.oneWayUsd)} sencillo, {usd(rooms.airportPickup.roundTripUsd)} redondo. Vuelos no incluidos.</p>
+    </div>
+  </section>
+
+  <BookingTerms id="booking" />
+
+  <section id="dates" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Próximamente en Finca El Péndulo</p>
+      <div class="split-head">
+        <h2 class="t-heading">Retiros en la Finca</h2>
+        <p class="muted" style="max-width:440px">Siete días, seis noches, todo incluido. Hasta 15 personas. Desde {usd(price.dorm)} según tu habitación.</p>
+      </div>
+      <ul class="rule-list date-table">
+        {retreats.finca.map((r) => (
+          <li>
+            <p class="t-date date-table__date">{retreatDates(r.start, r.end, retreats.year, true, 'es')}</p>
+            {medicinePage[r.medicine]
+              ? <a class="t-title date-table__title" href={href(medicinePage[r.medicine])}>{tr(r.title, 'es')}</a>
+              : <p class="t-title date-table__title">{tr(r.title, 'es')}</p>}
+            <p class="t-caption muted date-table__note">{tr(r.guide, 'es')}</p>
+            <span class="date-table__links">
+              {r.bookingUrl && <a href={r.bookingUrl} data-track="booking" aria-label={`Reservar ${tr(r.title, 'es')}, ${dateRange(r.start, r.end, false, 'es')}`}>Reservar</a>}
+              <a href={registerHref(r.id, 'es')} data-track="register" aria-label={`Regístrate para una llamada sobre ${tr(r.title, 'es')}, ${dateRange(r.start, r.end, false, 'es')}`}>Regístrate</a>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <div class="rule-top rule-top--soft calendar-ask">
+        <div><h3 class="t-title">¿Aún no eliges fecha?</h3><p class="muted">Te enviamos por correo el calendario completo de {retreats.year}.</p></div>
+        <SubscribeForm list="calendar" button={`Enviarme el calendario ${retreats.year}`} idPrefix="cal-finca" lang="es" />
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+
+  <section class="section deep">
+    <div class="wrap grid" style="align-items:end">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">Cómo llegar</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">A una hora de Guadalajara</h2>
+        <p style="margin-bottom:var(--space-4)">Vuela a Guadalajara (GDL). Podemos recogerte en el aeropuerto por {usd(rooms.airportPickup.oneWayUsd)} sencillo o {usd(rooms.airportPickup.roundTripUsd)} redondo.</p>
+        <p>¿Quieres visitarnos fuera de un retiro? La Finca también recibe huéspedes para estancias tranquilas.</p>
+      </div>
+      <div class="cluster">
+        <Button href={href('/es/preparacion')} variant="on-photo">Preparación y viaje</Button>
+        <Button href={site.cloudbeds} variant="on-photo" data-track="booking">Reserva una estancia en la Finca</Button>
+        <Button href="https://fincaelpendulo.com.mx" variant="on-photo">Visita fincaelpendulo.com.mx</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .also { justify-content: flex-end; aspect-ratio: 4 / 5; }
+  .date-table > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-6); padding: var(--space-5) 0; }
+  .date-table__date { flex: 0 0 200px; }
+  .date-table__title { flex: 1 1 260px; color: var(--ink); text-decoration: none; }
+  a.date-table__title:hover { color: var(--accent-text); }
+  .date-table__note { flex: 0 1 200px; }
+  .date-table__links { display: flex; gap: var(--space-5); }
+  @media (max-width: 760px) {
+    .date-table__date { flex-basis: 100%; }
+    .also { aspect-ratio: auto; }
+  }
+</style>

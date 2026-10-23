@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RetreatPage from '../../components/RetreatPage.astro';
+---
+<BaseLayout
+  title="Retiro de psilocibina en Jalisco, México, 7 días | MexiSol World"
+  description="Un retiro de hongos de psilocibina de siete días cerca de Guadalajara, guiado por Krista: dos ceremonias y una de Satori. Hasta 15 personas, desde $1,850 USD."
+  path="/es/retiro-de-psilocibina"
+  lang="es"
+  current="resources"
+  ogImage="psilocybin"
+  breadcrumbs={[{ name: 'Retiro de psilocibina', path: '/es/retiro-de-psilocibina' }]}
+>
+  <RetreatPage
+    medicine="psilocybin"
+    title="Retiro de psilocibina"
+    hero={{ name: 'web-meditation-with-jesus-statue', alt: 'Huéspedes meditando junto a la figura de Jesús en el Atrio del Señor' }}
+    heroThumbs={[
+      { name: 'web-clay-pot-blessing', alt: 'Una bendición sobre una olla de barro en la Choza Osho' },
+      { name: 'web-two-women-meditating', alt: 'Dos huéspedes meditando en el jardín' },
+    ]}
+    heroText="Tres ceremonias, dos con hongos sagrados y una con Satori, guiadas por Krista con música, meditación y movimiento. Hasta 15 personas. Desde $1,850 USD, todo incluido."
+    intro="Los hongos suelen abrir las cosas con suavidad y luego de golpe. Mucha gente los siente más amables con el cuerpo que la ayahuasca. Pocos los sienten fáciles para el corazón, y de eso se trata."
+    medicineText={[
+      'Los hongos de psilocibina se usan en ceremonia en México desde hace siglos, sobre todo en las montañas de Oaxaca. Los nuestros vienen de México.',
+      'Antes de cada ceremonia te sientas con Krista y acuerdan la dosis. El ambiente es más ligero que una noche de ayahuasca: música, espacio abierto, lugar para moverte o descansar. La purga es menos común.',
+      'La tercera ceremonia es con Satori, una medicina de plantas que se toma en cápsulas: DMT de la corteza de tepezcohuite (Mimosa tenuiflora) con ruda siria, que permite que funcione al tragarla. Llega de forma gradual y suele sentirse lúcida, con menos purga que la ayahuasca.',
+    ]}
+    included={[
+      '2 ceremonias de psilocibina y 1 de Satori',
+      'Ceremonias de rapé y cacao',
+      'Activación de la voz',
+      'Terapia con caballos y meditaciones Osho',
+      'Temazcal y círculo de fuego',
+      'Integración grupal e individual',
+      'Caminata al amanecer, alberca y lago',
+      'Seis noches y todas las comidas',
+    ]}
+    optional="Opcional, con costo extra: masajes"
+    strip={[
+      { name: 'web-face-painting', alt: 'Pintura facial antes de una ceremonia' },
+      { name: 'web-temazcal-garden', alt: 'El jardín del temazcal bajo el sol' },
+      { name: 'web-jesus-garden', alt: 'La figura de Jesús entre bugambilias en el jardín' },
+    ]}
+    days={[
+      { title: 'Llegada', text: 'Registro, recorrido por la tierra y cena para conocer al grupo.' },
+      { title: 'Apertura', text: 'Conoce a Krista, rapé, respiración. Primera ceremonia de psilocibina.' },
+      { title: 'Satori', text: 'Meditación Osho, tiempo con los caballos. Ceremonia de Satori.' },
+      { title: 'Más profundo', text: 'Mañana libre. Segunda ceremonia de psilocibina y fogata después.' },
+      { title: 'Voz y fuego', text: 'Activación de la voz, integración grupal, círculo de fuego por la noche.' },
+      { title: 'Cierre', text: 'Caminata al amanecer, temazcal, cacao en la Choza Osho, cena de cierre en el Oráculo.' },
+      { title: 'Salida', text: 'Desayuno, despedidas y traslado al aeropuerto.' },
+    ]}
+    guide={{
+      eyebrow: 'Tu guía',
+      name: 'Krista',
+      image: { name: 'staff-krista', alt: 'Krista con un tambor en la Choza Osho' },
+      text: 'Nació en la Ciudad de México. Ingeniera de formación, fue directora de preparatoria durante 20 años. Llegó a la Finca como voluntaria y se quedó. Aprendió a trabajar con hongos en Oaxaca. Sus ceremonias son tranquilas, prácticas y cálidas.',
+    }}
+    datesTitle="Psilocibina en la Finca"
+  />
+</BaseLayout>

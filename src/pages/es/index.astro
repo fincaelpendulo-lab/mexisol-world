@@ -1,0 +1,323 @@
+---
+// Página de inicio en español (misma estructura que src/pages/index.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSplit from '../../components/HeroSplit.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+import GuideSplit from '../../components/GuideSplit.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import Seal from '../../components/Seal.astro';
+import YouTube from '../../components/YouTube.astro';
+import RegisterForm from '../../components/RegisterForm.astro';
+import { Image } from 'astro:assets';
+import lockup from '../../assets/brand/lockup-color.png';
+import retreats from '../../data/retreats.json';
+import { dateRange, retreatDates } from '../../lib/dates';
+import { href } from '../../lib/url';
+import { tr } from '../../lib/retreats';
+import Reviews from '../../components/Reviews.astro';
+import SubscribeForm from '../../components/SubscribeForm.astro';
+import { faqPage } from '../../lib/schema';
+
+const page: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', women: '/es/retiro-de-mujeres' };
+const fincaNext = retreats.finca.slice(0, 4).map((r) => ({
+  date: retreatDates(r.start, r.end, retreats.year, true, 'es'),
+  title: tr(r.title, 'es'),
+  href: href(page[r.medicine] ?? '/es/finca-el-pendulo#dates'),
+}));
+const intlNext = retreats.international.slice(0, 4).map((r) => ({
+  date: dateRange(r.start, r.end, true, 'es'),
+  title: r.id === 'tarapoto' ? 'Dieta de plantas maestras, Tarapoto' : tr(r.location, 'es'),
+}));
+const booking = ['ayahuasca', 'psilocybin'].map((m) => retreats.finca.find((r) => r.medicine === m && r.bookingUrl)).filter((r): r is NonNullable<typeof r> => !!r);
+
+const faq = [
+  { q: '¿Necesito experiencia con medicinas de plantas?', a: 'No. Muchos de nuestros huéspedes nunca han estado en una ceremonia. La excepción es la dieta de plantas maestras en el extranjero, pensada para quienes ya tienen experiencia.' },
+  { q: '¿Ayahuasca o psilocibina?', a: 'La ayahuasca es más física y suele durar más. La psilocibina es más suave con el cuerpo. Las dos pueden ser intensas en lo emocional. Cuéntanos qué te trae y te ayudamos a elegir.' },
+  { q: '¿Tengo que tomar todas las medicinas?', a: 'No. Todo lo que no es la medicina principal es opcional, y puedes no participar en cualquier ceremonia.' },
+  { q: '¿De qué tamaño son los grupos?', a: 'Hasta 15 personas, con varias personas sirviendo en cada ceremonia.' },
+  { q: '¿Es seguro viajar a la Finca?', a: 'Está en un pueblo ganadero tranquilo, a una hora de Guadalajara por autopista, en un terreno privado con seguridad y personal en el lugar.' },
+  { q: '¿Puedo ir con una amistad o mi pareja?', a: 'Sí. Los precios son por persona y, si comparten habitación, cada quien recibe 10% de descuento.' },
+  { q: '¿Qué es Satori?', a: 'Una medicina de plantas que se toma en cápsulas: DMT de la corteza de tepezcohuite (Mimosa tenuiflora) con ruda siria, un inhibidor natural de la MAO. Actúa de forma parecida a la ayahuasca, pero llega más gradualmente y es más suave con el cuerpo. Como contiene un inhibidor de la MAO, aplica la misma revisión de medicamentos.' },
+];
+---
+<BaseLayout
+  title="Retiros de ayahuasca y psilocibina en México | MexiSol World"
+  description="Retiros de siete días de ayahuasca y psilocibina en Finca El Péndulo, Jalisco, a una hora de Guadalajara. Hasta 15 personas, guías con experiencia y una llamada primero."
+  path="/es"
+  lang="es"
+  current="home"
+  ogImage="home"
+  schema={[faqPage(faq)]}
+>
+  <HeroSplit
+    image="web-wolf-on-platform"
+    imageAlt="Uno de los lobos de la Finca sobre su plataforma de madera"
+    slides={[
+      { name: 'web-osho-hut-mandala-circle', alt: 'Un mandala de hojas, flores y velas en el centro de la Choza Osho' },
+      { name: 'home-root-meditation', alt: 'Dos huéspedes meditando bajo la raíz gigante del Atrio del Señor' },
+      { name: 'web-altar-earth-goddess', alt: 'Un altar con una figura de diosa de la tierra, vasijas de barro y flores rojas' },
+      { name: 'home-temazcal-greeting', alt: 'Un saludo a la tierra junto a la cúpula pintada del temazcal' },
+      { name: 'web-fire-circle-oracle', alt: 'El círculo de fuego en el Oráculo, con el grupo sentado alrededor' },
+      { name: 'home-osho-hut-altar-cups', alt: 'Preparando el altar y las copas para la ceremonia en la Choza Osho' },
+      { name: 'web-temazcal-smudging', alt: 'Sahumando con copal antes del temazcal' },
+      { name: 'home-oracle-reading', alt: 'Una facilitadora leyendo al grupo entre los pilares del Oráculo' },
+      { name: 'web-fire-dancer', alt: 'Una danza con fuego por la noche bajo ojos de dios colgantes' },
+      { name: 'home-candlelit-dinner-guests', alt: 'Huéspedes en una larga cena a la luz de las velas' },
+      { name: 'home-drum-by-the-temazcal', alt: 'Un tambor tocado junto al temazcal' },
+    ]}
+    eyebrow="Retiros de ayahuasca y psilocibina"
+    title="Siéntate con la medicina. Nosotros sostenemos el espacio."
+    cta={{ label: `Ver fechas ${retreats.year}`, href: '#next' }}
+    images={[
+      { name: 'web-altar-figure-flowers', alt: 'Una pequeña figura de altar entre flores blancas y rojas' },
+      { name: 'web-candles-and-bougainvillea', alt: 'Velas, fruta y bugambilias en el altar de ceremonia' },
+    ]}
+  >Retiros de una semana en Finca El Péndulo, nuestro hogar en los Altos de Jalisco, y retiros internacionales con aliados en distintos países. Grupos de hasta 15 personas, guías con experiencia y una conversación contigo antes de confirmar cualquier cosa.</HeroSplit>
+
+  <div class="photo-row home-strip" style="--min:220px;--h:380px">
+    <Photo name="web-agave-rows" alt="Hileras de agave azul a la altura de las plantas" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="web-osho-hut-altar" alt="El altar de la Choza Osho con velas y flores moradas bajo el vitral" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="web-group-yoga-oracle" alt="Un grupo practicando yoga en el círculo de piedra del Oráculo" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+    <Photo name="web-candlelit-dinner" alt="El grupo compartiendo una cena a la luz de las velas" sizes="(max-width: 760px) 100vw, 25vw" widths={[480, 800, 1000]} />
+  </div>
+
+  <section id="about" class="section center home-about">
+    <Image src={lockup} alt="MexiSol World" width={200} height={127} densities={[1, 2]} class="home-about__logo" />
+    <p class="label">Quiénes somos</p>
+    <p class="t-lead measure">No creemos que haya algo roto en ti. Creemos que la mayoría de las personas necesita un lugar seguro, buena compañía y unos días tranquilos para volver a escucharse.</p>
+    <p class="measure muted">MexiSol World es un equipo pequeño de guías, músicos y personal con base en Finca El Péndulo, en Tepatitlán, Jalisco. Ahí hacemos retiros de ayahuasca y psilocibina durante todo el año, y viajamos con la medicina a retiros en otros países. Sin sistema de creencias, sin dogma. Viene gente de todos los orígenes, mucha de ella escéptica.</p>
+    <p><a href={href('/es/nosotros#story')}>Lee nuestra historia</a></p>
+  </section>
+
+  <div class="photo-row" style="--min:320px">
+    <a href={href('/es/finca-el-pendulo')} class="tile">
+      <Photo name="home-greenhouse-table" alt="El invernadero, con una mesa larga entre las plantas" sizes="(max-width: 760px) 100vw, 50vw" />
+      <div class="tile__wash wash-strong">
+        <p class="label">En la Finca</p>
+        <h2 class="t-heading tile__title">Finca El Péndulo, Jalisco</h2>
+        <p style="max-width:460px">Nuestro hogar. Retiros de siete días de ayahuasca y psilocibina casi todos los meses de {retreats.year}.</p>
+      </div>
+    </a>
+    <a href={href('/es/retiros-internacionales')} class="tile">
+      <Photo name="web-india-group" alt="El grupo de MexiSol World en India" sizes="(max-width: 760px) 100vw, 50vw" />
+      <div class="tile__wash wash-strong">
+        <p class="label">Internacional</p>
+        <h2 class="t-heading tile__title">Retiros por el mundo</h2>
+        <p style="max-width:460px">Retiros, ceremonias y encuentros con aliados en otros países, con el mismo equipo y el mismo cuidado.</p>
+      </div>
+    </a>
+  </div>
+
+  <section id="medicine" class="section">
+    <div class="wrap">
+      <div class="center" style="margin-bottom:var(--space-8)">
+        <p class="label" style="margin-bottom:var(--space-5)">La medicina</p>
+        <p class="t-lead measure">Cada retiro gira en torno a una medicina principal. Todos incluyen tres ceremonias: dos con esa medicina y una con Satori.</p>
+      </div>
+      <div class="grid" style="--min:320px">
+        <article class="stack">
+          <Photo name="web-osho-hut-ceremony-setup" alt="La Choza Osho preparada para la ceremonia, con copas y velas en círculo" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <p class="label label--tight">01 / Ayahuasca</p>
+          <h2 class="t-heading">Ayahuasca</h2>
+          <p>Una bebida de la liana de ayahuasca y la hoja de chacruna, usada en ceremonia en toda la Amazonía desde hace generaciones. La nuestra se prepara en Pucallpa.</p>
+          <p class="muted">Las ceremonias son de noche en la Choza Osho, guiadas por Humberto con cantos de medicina en vivo. Le pide mucho al cuerpo. La purga es común, y también las horas largas y en silencio. Quienes sirven se quedan en el espacio toda la noche.</p>
+          <ul class="rule-list rule-list--soft">
+            <li>2 ceremonias de ayahuasca y 1 de Satori</li>
+            <li>2 sesiones de kambó, rapé y cacao</li>
+            <li>Bufo opcional, con costo extra</li>
+            <li>Temazcal, círculo de fuego y caminata al amanecer</li>
+            <li>Seis noches, todas las comidas, integración grupal e individual</li>
+          </ul>
+          <p class="t-date">Desde $1,850 USD por persona <span class="t-caption muted">· 7 días · todo incluido</span></p>
+          <div><Button href={href('/es/retiro-de-ayahuasca')}>El retiro de ayahuasca</Button></div>
+        </article>
+        <article class="stack">
+          <Photo name="web-meditation-outdoors" alt="Un grupo meditando al aire libre en el círculo de piedra" sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <p class="label label--tight">02 / Psilocibina</p>
+          <h2 class="t-heading">Psilocibina</h2>
+          <p>Hongos sagrados, con una larga historia ceremonial en México, sobre todo en Oaxaca. Los nuestros vienen de México.</p>
+          <p class="muted">Más suave con el cuerpo que la ayahuasca y a menudo más ligera en el ánimo, aunque no siempre. Krista guía estos retiros con música, meditación y movimiento. Tú decides la dosis con ella antes.</p>
+          <ul class="rule-list rule-list--soft">
+            <li>2 ceremonias de psilocibina y 1 de Satori</li>
+            <li>Rapé, cacao y activación de la voz</li>
+            <li>Terapia con caballos y meditaciones Osho</li>
+            <li>Temazcal, círculo de fuego y caminata al amanecer</li>
+            <li>Seis noches, todas las comidas, integración grupal e individual</li>
+          </ul>
+          <p class="t-date">Desde $1,850 USD por persona <span class="t-caption muted">· 7 días · todo incluido</span></p>
+          <div><Button href={href('/es/retiro-de-psilocibina')}>El retiro de psilocibina</Button></div>
+        </article>
+      </div>
+
+      <div class="rule-top rule-top--soft" style="margin-top:var(--space-9);padding-top:var(--space-8)">
+        <p class="label" style="margin-bottom:var(--space-5)">Junto a la medicina principal</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-7)">Otras cuatro que puedes conocer</h2>
+        <div class="grid" style="--min:240px;--gap:var(--space-3)">
+          <div class="card deep">
+            <p class="label label--tight">Ambos retiros</p>
+            <h3 class="t-title">Satori</h3>
+            <p>Una medicina de plantas que se toma en cápsulas: DMT de la corteza de tepezcohuite (Mimosa tenuiflora) con ruda siria, que permite que funcione al tragarla. Llega de forma gradual, suele sentirse lúcida y le pide menos al cuerpo que la ayahuasca. Es una de las tres ceremonias de cada retiro.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Retiro de ayahuasca</p>
+            <h3 class="t-title">Kambó</h3>
+            <p class="muted">La secreción de una rana arborícola amazónica, aplicada en pequeños puntos de la piel. Breve, intensa y física. Se usa para limpiar el cuerpo antes de la ceremonia.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Ambos retiros</p>
+            <h3 class="t-title">Rapé</h3>
+            <p class="muted">Un polvo fino de tabaco y ceniza de plantas que se sopla suavemente en la nariz. Calma la mente y te aterriza. El nuestro lo hace el pueblo kuntanawa de Brasil.</p>
+          </div>
+          <div class="card">
+            <p class="label label--tight">Opcional, con costo extra</p>
+            <h3 class="t-title">Bufo</h3>
+            <p class="muted">5-MeO-DMT del sapo del desierto de Sonora, recolectado sin dañar a los animales. Una experiencia breve y muy fuerte. Un complemento opcional con costo extra, y siempre es tu decisión.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="measure center muted" style="margin-top:var(--space-8)">Toda medicina distinta de la principal es opcional. No necesitas experiencia. ¿No sabes qué retiro es para ti? Para eso es la primera llamada.</p>
+    </div>
+  </section>
+
+  <section id="next" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Próximamente</p>
+      <div class="split-head" style="margin-bottom:var(--space-8)">
+        <h2 class="t-heading">Próximos retiros</h2>
+        <Button href={href('/es/proximos-retiros')}>Ver el calendario completo</Button>
+      </div>
+      <div class="grid" style="--min:320px">
+        <div>
+          <h3 class="t-title" style="margin-bottom:var(--space-4)">En Finca El Péndulo</h3>
+          <div class="rule-list" style="padding:0">
+            {fincaNext.map((r) => <a class="date-row" href={r.href}><span class="t-date">{r.date}</span><span>{r.title}</span></a>)}
+          </div>
+          <p style="margin-top:var(--space-5)"><a href={href('/es/finca-el-pendulo#dates')}>Todos los retiros en la Finca</a></p>
+        </div>
+        <div>
+          <h3 class="t-title" style="margin-bottom:var(--space-4)">Internacionales</h3>
+          <div class="rule-list" style="padding:0">
+            {intlNext.map((r) => <a class="date-row" href={href('/es/retiros-internacionales')}><span class="t-date">{r.date}</span><span>{r.title}</span></a>)}
+          </div>
+          <p style="margin-top:var(--space-5)"><a href={href('/es/retiros-internacionales')}>Todos los retiros internacionales</a></p>
+        </div>
+      </div>
+      <div class="rule-top rule-top--soft calendar-ask">
+        <div><h3 class="t-title">¿Aún no eliges fecha?</h3><p class="muted">Te enviamos por correo el calendario completo de {retreats.year}.</p></div>
+        <SubscribeForm list="calendar" button={`Enviarme el calendario ${retreats.year}`} idPrefix="cal-home" lang="es" />
+      </div>
+    </div>
+  </section>
+
+  <section id="watch" class="section deep">
+    <div class="wrap watch">
+      <div class="watch__text">
+        <p class="label">Mira</p>
+        <h2 class="t-heading">Bienvenidos a MexiSol World</h2>
+        <p>Un nuevo capítulo para la comunidad de Finca El Péndulo. La misma tierra, la misma gente, y retiros, ceremonias y música que ahora viajan más allá de México.</p>
+        <p><a href="https://www.youtube.com/watch?v=20fXazwvuN4" data-track="outbound">Ver «Welcome to MexiSol World» en YouTube</a></p>
+      </div>
+      <YouTube poster="mexisol-community-welcome" title="Welcome to MexiSol World" />
+    </div>
+  </section>
+
+  <SectionIntro eyebrow="Nuestro hogar" id="finca">Finca El Péndulo son 14 acres de campo a las afueras de Tepatitlán, a una hora del aeropuerto de Guadalajara. Caballos en los potreros, agave en las lomas y un lago donde se refleja el atardecer.</SectionIntro>
+
+  <div class="photo-row" style="--min:240px;--h:420px">
+    <Photo name="web-buddha-pond" alt="Un Buda de piedra junto al estanque de nenúfares" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1024]} />
+    <Photo name="web-riders" alt="Huéspedes cabalgando entre los árboles" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="web-lounge-interior" alt="Una sala con sillones y vista a los potreros" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+  <div class="center" style="padding:var(--space-7) clamp(24px, 4vw, 48px) var(--space-9)">
+    <Button href={href('/es/finca-el-pendulo')}>Conoce la Finca y sus retiros</Button>
+  </div>
+
+  <GuideSplit eyebrow="Nuestro equipo" title="Quienes sostienen el espacio" image="mexisol-community-welcome" imageAlt="El equipo de MexiSol World y huéspedes saludando frente a la Choza Osho" reverse>
+    <p>Un equipo pequeño, acompañado de músicos, personas que sirven y personal local. Los conocerás a todos el primer día, y a la mayoría antes de llegar.</p>
+  </GuideSplit>
+
+  <section id="team" class="section" style="padding-top:var(--space-8)">
+    <div class="wrap grid" style="--min:240px;--gap:var(--space-7)">
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-humberto" alt="Humberto, quien guía los retiros de ayahuasca" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Chamán</p>
+        <h3 class="t-title">Humberto</h3>
+        <p class="muted">Guía nuestros retiros de ayahuasca.</p>
+      </div>
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-krista" alt="Krista con un tambor en la Choza Osho" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Mujer medicina</p>
+        <h3 class="t-title">Krista</h3>
+        <p class="muted">Guía nuestros retiros de psilocibina.</p>
+      </div>
+      <div class="stack team-card" style="--stack:var(--space-2)">
+        <Photo name="staff-marina" alt="Marina, fundadora de Finca El Péndulo" sizes="(max-width: 760px) 100vw, 25vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+        <p class="label label--tight" style="margin-top:var(--space-4)">Finca El Péndulo</p>
+        <h3 class="t-title">Marina</h3>
+        <p class="muted">Cuida la tierra y a las personas que la hacen funcionar.</p>
+      </div>
+      <div style="display:flex;align-items:flex-end;padding-top:var(--space-5)">
+        <a href={href('/es/nosotros#team')}>Conoce al equipo</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Cómo funciona</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">De la primera llamada a la primera ceremonia</h2>
+      <ol class="grid steps" style="--min:220px;--gap:var(--space-7)">
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">01</p><h3 class="t-title">Elige una fecha</h3><p>Escoge un retiro en la Finca o en el extranjero y envíanos el formulario de abajo.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Habla con nosotros</h3><p>Una llamada sobre tu salud, tus medicamentos y por qué quieres venir. Algunos medicamentos, incluidos los antidepresivos, no se combinan con este trabajo. Revisamos cada uno antes de confirmar.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">03</p><h3 class="t-title">Prepárate</h3><p>Come limpio, usa menos las pantallas y llega con pocas expectativas. Te enviamos una guía y una lista de equipaje.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">04</p><h3 class="t-title">Llega</h3><p>Si quieres, te recogemos en Guadalajara. Para la hora de la cena ya conocerás la tierra y al grupo.</p></li>
+      </ol>
+      <p class="cluster" style="margin-top:var(--space-8);gap:var(--space-6)"><a href={href('/es/preparacion')}>Guía de preparación y viaje</a><a href={href('/es/informacion-medica')}>Información médica</a></p>
+    </div>
+  </section>
+
+  <Reviews />
+
+  <section id="faq" class="section faq">
+    <div class="measure">
+      <p class="label center" style="margin-bottom:var(--space-5)">Bueno saber</p>
+      <h2 class="t-heading center" style="margin-bottom:var(--space-7)">Preguntas frecuentes</h2>
+      {faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section id="register" class="section section--top-rule">
+    <div class="wrap register">
+      <div class="register__intro stack">
+        <p class="label">Regístrate</p>
+        <h2 class="t-heading">Aparta tu lugar</h2>
+        <p class="muted">Dinos qué retiro tienes en mente. Te escribiremos para agendar una llamada. Nada se confirma, y nada se cobra, hasta que hayamos hablado.</p>
+        {booking.length > 0 && (
+          <div class="stack" style="--stack:var(--space-2)">
+            <p class="t-caption muted">¿Ya lo decidiste? Reserva directamente la próxima fecha:</p>
+            {booking.map((r) => <a href={r.bookingUrl} data-track="booking">{tr(r.title, 'es')}, {dateRange(r.start, r.end, false, 'es')}</a>)}
+          </div>
+        )}
+        <div style="margin-top:var(--space-6)"><Seal size={120} /></div>
+      </div>
+      <RegisterForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .home-about > * + * { margin-top: var(--space-5); }
+  .home-about .label { margin-top: var(--space-7); }
+  .home-about__logo { width: 200px; height: auto; margin: 0 auto; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .register { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+  .register__intro { flex: 1 1 360px; min-width: 0; }
+  .home-strip { padding-top: var(--space-3); }
+</style>

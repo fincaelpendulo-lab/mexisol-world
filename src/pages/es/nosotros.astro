@@ -1,0 +1,122 @@
+---
+// Nosotros (versión en español de src/pages/about.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSplit from '../../components/HeroSplit.astro';
+import GuideSplit from '../../components/GuideSplit.astro';
+import YouTube from '../../components/YouTube.astro';
+import Photo from '../../components/Photo.astro';
+import site from '../../data/site.json';
+import retreats from '../../data/retreats.json';
+import { href } from '../../lib/url';
+
+const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
+const team = [
+  { img: 'staff-humberto', alt: 'Humberto, quien guía los retiros de ayahuasca', role: 'Chamán', name: 'Humberto', text: 'Nació en Tepatitlán. Dejó un negocio de construcción en California para formarse en Perú, cerca de Pucallpa, con largas dietas de plantas maestras. Ha guiado ceremonias en varios continentes y guía nuestros retiros de ayahuasca, cantando toda la noche con los músicos.', link: { label: 'Retiros de ayahuasca', href: href('/es/retiro-de-ayahuasca') } },
+  { img: 'staff-krista', alt: 'Krista con un tambor en la Choza Osho', role: 'Mujer medicina', name: 'Krista', text: 'Nació en la Ciudad de México. Ingeniera de formación, fue directora de preparatoria durante 20 años antes de que la medicina cambiara su camino. Aprendió a trabajar con hongos en Oaxaca y guía nuestros retiros de psilocibina.', link: { label: 'Retiros de psilocibina', href: href('/es/retiro-de-psilocibina') } },
+  { img: 'staff-marina', alt: 'Marina, fundadora de Finca El Péndulo', role: 'Finca El Péndulo', name: 'Marina', text: 'Fundó la Finca en 2017 después de años de práctica de meditación, y no ha dejado de construirla: más de quince espacios en 14 acres. Cuida el lugar y a la comunidad que lo mantiene vivo.', link: { label: 'Finca El Péndulo', href: href('/es/finca-el-pendulo') } },
+];
+const follow = [
+  { kind: 'Instagram', title: '@mexisol.world', text: 'Fechas, momentos de la Finca y noticias del camino.', href: site.instagram, track: 'outbound' },
+  { kind: 'YouTube', title: 'Finca El Péndulo', text: 'Videos de la tierra, las ceremonias y la música.', href: site.youtube.channel, track: 'outbound' },
+  { kind: 'Visita', title: 'Finca El Péndulo', text: `Tepatitlán de Morelos, Jalisco. ${inYear} retiros en ${retreats.year}.`, href: href('/es/finca-el-pendulo') },
+];
+---
+<BaseLayout
+  title="Nosotros: la historia y el equipo de MexiSol World en Jalisco"
+  description="MexiSol World nació alrededor de Finca El Péndulo, en Tepatitlán, Jalisco. Conoce a Humberto, Krista y Marina, y cómo un pedazo de tierra se volvió comunidad."
+  path="/es/nosotros"
+  lang="es"
+  current="about"
+  ogImage="about"
+  breadcrumbs={[{ name: 'Nosotros', path: '/es/nosotros' }]}
+>
+  <HeroSplit
+    image="web-three-women-agave"
+    imageAlt="Tres mujeres platicando frente al campo de agave"
+    eyebrow="Nosotros"
+    title="Todo empezó con un pedazo de tierra"
+    cta={{ label: 'Ver el video', href: '#watch' }}
+    images={[
+      { name: 'web-stone-palapa-cabin', alt: 'Una cabaña de piedra con techo de palapa entre agaves' },
+      { name: 'web-fountain-at-night', alt: 'La fuente bajo la palapa principal de noche' },
+    ]}
+  >MexiSol World es la comunidad que creció alrededor de Finca El Péndulo: una mujer que construyó un hogar para este trabajo, un chamán que volvió al pueblo donde nació y las personas que siguen regresando.</HeroSplit>
+
+  <section id="story" class="section">
+    <div class="wrap grid">
+      <div class="stack" style="--stack:var(--space-4)">
+        <p class="label">Nuestra historia</p>
+        <h2 class="t-heading" style="margin-top:var(--space-5)">De la Finca al mundo</h2>
+        <p class="muted">Marina fundó Finca El Péndulo en 2017, después de años de práctica de meditación. Empezó con las caballerizas y una vieja torre. Un año después se hicieron las primeras ceremonias en la tierra y la gente empezó a llegar de boca en boca. En 2019 se levantó la Choza Osho. Desde entonces, más de 500 personas han venido a nuestros retiros.</p>
+        <p class="muted">Humberto, nacido a unos minutos de aquí en Tepatitlán, volvió a casa después de años de formación con medicinas de plantas en Perú y hoy guía nuestras ceremonias de ayahuasca. Krista llegó como voluntaria y se quedó para guiar el trabajo con psilocibina. Año tras año llegó gente de todo el mundo a sentarse en la Choza Osho, caminar entre los agaves y volver a casa un poco más ligera.</p>
+        <p class="muted">En 2026 esa comunidad tomó un nombre nuevo, MexiSol World, y un plan más amplio: seguir haciendo retiros en casa y llevar las ceremonias, la música y los encuentros a personas fuera de México.</p>
+      </div>
+      <dl class="timeline timeline--wide">
+        <div><dt class="t-title">2017</dt><dd class="muted">Marina funda Finca El Péndulo a las afueras de Tepatitlán.</dd></div>
+        <div><dt class="t-title">2018</dt><dd class="muted">Las primeras ceremonias con medicinas de plantas en la tierra.</dd></div>
+        <div><dt class="t-title">2019</dt><dd class="muted">Se construye la Choza Osho. Desde entonces, más de 500 personas han venido a nuestros retiros.</dd></div>
+        <div><dt class="t-title">2026</dt><dd class="muted">La comunidad se convierte en MexiSol World.</dd></div>
+        <div><dt class="t-title">2027</dt><dd class="muted">{inYear} retiros en la Finca y retiros internacionales por el mundo.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <GuideSplit eyebrow="En qué creemos" title="Nada que arreglar. Solo algo que recordar." image="web-group-terrace" imageAlt="El grupo de MexiSol World reunido en una terraza" reverse>
+    <p>No prometemos milagros. Ofrecemos un espacio seguro, personas que saben lo que hacen y medicinas que se han usado con cuidado durante generaciones. Lo que encuentres ahí es tuyo.</p>
+  </GuideSplit>
+
+  <section id="team" class="section section--top-rule">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Nuestro equipo</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Quienes sostienen el espacio</h2>
+      <div class="grid" style="--min:280px">
+        {team.map((t) => (
+          <div class="stack team-card" style="--stack:var(--space-3)">
+            <Photo name={t.img} alt={t.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+            <p class="label label--tight" style="margin-top:var(--space-4)">{t.role}</p>
+            <h3 class="t-title">{t.name}</h3>
+            <p class="muted">{t.text}</p>
+            <p><a href={t.link.href}>{t.link.label}</a></p>
+          </div>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:var(--space-7)">A su lado: músicos, personas que sirven, cocineras y cocineros, y el personal local que mantiene la Finca en marcha.</p>
+    </div>
+  </section>
+
+  <section id="watch" class="section deep">
+    <div class="wrap watch">
+      <div class="watch__text">
+        <p class="label">Finca El Péndulo en YouTube</p>
+        <h2 class="t-heading">Bienvenidos a MexiSol World</h2>
+        <p>Una breve bienvenida al nuevo capítulo, desde la tierra donde todo empezó.</p>
+        <p><a href={site.youtube.channel} data-track="outbound">Más videos en nuestro canal de YouTube</a></p>
+      </div>
+      <YouTube poster="mexisol-community-welcome" title="Welcome to MexiSol World" />
+    </div>
+  </section>
+
+  <section id="follow" class="section">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Síguenos</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Sigue cerca entre retiros</h2>
+      <div class="grid" style="--min:260px;--gap:var(--space-3)">
+        {follow.map((f) => (
+          <a class="follow-card" href={f.href} data-track={f.track}>
+            <span class="label label--tight">{f.kind}</span>
+            <span class="t-title">{f.title}</span>
+            <span class="muted">{f.text}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .timeline--wide > div { padding: var(--space-5) 0; }
+  .timeline--wide dt { flex-basis: 96px; }
+  .follow-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-7); border: 1px solid var(--ink); text-decoration: none; color: var(--ink); }
+  .follow-card:hover { background: var(--ink); color: var(--surface); }
+  .follow-card:hover .label, .follow-card:hover .muted { color: var(--surface); }
+</style>

@@ -1,0 +1,88 @@
+---
+// Retiros internacionales (versión en español de src/pages/international-retreats.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import site from '../../data/site.json';
+import retreats from '../../data/retreats.json';
+import { dateRange } from '../../lib/dates';
+import { href, absolute, registerHref } from '../../lib/url';
+import { tr } from '../../lib/retreats';
+import { event, fincaLocation, placeIn } from '../../lib/schema';
+
+const year = retreats.year;
+const events = retreats.international.map((r) => event({
+  name: r.location === 'Europe' ? tr(r.title, 'es') : `${tr(r.title, 'es')}, ${tr(r.location, 'es')}`,
+  start: r.start,
+  end: r.end,
+  description: [tr(r.subtitle, 'es'), r.description && tr(r.description, 'es')].filter(Boolean).join(' ') || `${tr(r.title, 'es')} con MexiSol World.`,
+  url: absolute('/es/retiros-internacionales'),
+  location: r.location.startsWith('Finca') ? fincaLocation : placeIn(r.id === 'europe' ? 'Alicante, Spain' : r.location, r.country),
+  prices: r.priceUsd ? [{ name: r.title, priceUsd: r.priceUsd }] : undefined,
+  bookingUrl: r.bookingUrl,
+}));
+---
+<BaseLayout
+  title={`Retiros internacionales de medicina de plantas ${year} | MexiSol World`}
+  description={`Ceremonias y retiros con MexiSol World en Perú, India, Estados Unidos y Europa en ${year}, guiados por el mismo equipo que recibe en Finca El Péndulo.`}
+  path="/es/retiros-internacionales"
+  lang="es"
+  current="international"
+  ogImage="international"
+  breadcrumbs={[{ name: 'Retiros internacionales', path: '/es/retiros-internacionales' }]}
+  schema={events}
+>
+  <div class="photo-band" style="--h:600px">
+    <Photo name="web-glacier-group" alt="El grupo de MexiSol World en un barco frente a un glaciar" priority />
+    <div class="photo-band__wash wash-strong">
+      <p class="label">Internacional {year}</p>
+      <h1 class="t-display">Retiros por el mundo</h1>
+      <p class="t-subtitle" style="max-width:760px">El mismo equipo y el mismo cuidado, lejos de casa</p>
+    </div>
+  </div>
+
+  <SectionIntro eyebrow="En camino">Durante el año llevamos la medicina, la música y las ceremonias a aliados en otros países. Cada persona sigue hablando con nosotros antes de confirmar.</SectionIntro>
+
+  <div class="photo-row" style="--min:260px;--h:380px;margin-bottom:var(--space-8)">
+    <Photo name="web-india-group" alt="El grupo de MexiSol World en India" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="web-river-group" alt="El grupo junto a un río en el bosque" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="web-group-terrace" alt="El grupo de MexiSol World reunido en una terraza" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+
+  <section class="gutter" style="padding-bottom:var(--space-9)">
+    <ul class="wrap rule-list intl-list">
+      {retreats.international.map((r) => (
+        <li>
+          <div class="intl-list__text">
+            <p class="t-title">{tr(r.location, 'es')}</p>
+            <p class="t-date muted" style="margin-bottom:var(--space-3)">{dateRange(r.start, r.end, false, 'es')} de {year}</p>
+            <h2 class="t-heading">{tr(r.title, 'es')}</h2>
+            {r.subtitle && <p class="t-subtitle muted">{tr(r.subtitle, 'es')}</p>}
+            {r.description && <p class="muted" style="max-width:var(--measure);margin-top:var(--space-3)">{tr(r.description, 'es')}</p>}
+          </div>
+          <Button href={r.bookingUrl || registerHref(r.id, 'es')} data-track={r.bookingUrl ? 'booking' : 'register'} aria-label={`Regístrate en ${tr(r.title, 'es')}, ${tr(r.location, 'es')}, ${dateRange(r.start, r.end, false, 'es')}`}>Regístrate</Button>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap grid" style="align-items:end">
+      <div>
+        <p class="label" style="margin-bottom:var(--space-5)">¿Prefieres una semana en casa?</p>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">Ven a la Finca</h2>
+        <p>Nuestros retiros de siete días de ayahuasca y psilocibina se hacen casi todos los meses en Finca El Péndulo, en Jalisco.</p>
+      </div>
+      <div class="cluster">
+        <Button href={href('/es/finca-el-pendulo')} variant="on-photo">Retiros en Finca El Péndulo</Button>
+        <Button href={site.instagram} variant="on-photo" data-track="outbound">Sigue a @mexisol.world en Instagram</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .intl-list > li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-5) var(--space-8); padding: var(--space-7) 0; }
+  .intl-list__text { flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+</style>

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/LegalPage.astro';
+import site from '../../data/site.json';
+import { whatsappUrl } from '../../lib/url';
+---
+<BaseLayout
+  title="Aviso de privacidad | MexiSol World"
+  description="Cómo MexiSol World recaba, usa y protege tus datos personales, qué cookies usamos y cómo ejercer tus derechos ARCO conforme a la ley mexicana."
+  path="/es/privacidad"
+  lang="es"
+  breadcrumbs={[{ name: 'Aviso de privacidad', path: '/es/privacidad' }]}
+>
+  <LegalPage title="Aviso de privacidad" updated="octubre de 2026">
+    <p>Este aviso explica cómo MexiSol World trata tus datos personales cuando usas mexisol.world o te pones en contacto con nosotros. Está redactado conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su reglamento.</p>
+
+    <h2>Responsable de tus datos</h2>
+    <p>MexiSol World, que organiza retiros en {site.address.name}, {site.address.street}, {site.address.postalCode} {site.address.locality}, {site.address.region}, {site.address.countryName}. Para cualquier asunto relacionado con tus datos, escribe a <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+    <h2>Qué datos recabamos</h2>
+    <h3>Cuando llenas el formulario de registro</h3>
+    <ul>
+      <li>Tu nombre, correo electrónico y, si lo proporcionas, tu número de WhatsApp</li>
+      <li>El retiro que te interesa</li>
+      <li>Lo que decidas escribir en el campo de mensaje</li>
+    </ul>
+    <h3>Durante la evaluación, antes de confirmar un retiro</h3>
+    <p>Para decidir si un retiro es seguro para ti, preguntamos por tu salud, medicamentos, suplementos y consumo reciente de otras sustancias. Estos son datos personales sensibles conforme a la LFPDPPP. Solo los recabamos con tu consentimiento expreso, otorgado antes de la llamada de evaluación, y los usamos únicamente para ese fin.</p>
+    <h3>Cuando navegas por el sitio</h3>
+    <ul>
+      <li>Si aceptas las cookies de analítica: páginas visitadas, ubicación aproximada (a nivel ciudad), tipo de dispositivo y navegador, cómo llegaste y clics en botones como Regístrate o WhatsApp. Se recaban con Google Analytics 4.</li>
+      <li>Verificaciones de seguridad en el formulario con Cloudflare Turnstile, que revisa señales técnicas de tu navegador para distinguir personas de bots. No usa cookies publicitarias.</li>
+    </ul>
+
+    <h2>Para qué los usamos</h2>
+    <p>Finalidades primarias, necesarias para la relación que nos pides:</p>
+    <ul>
+      <li>Responder tu solicitud y agendar una llamada de evaluación</li>
+      <li>Evaluar si un retiro es seguro para ti</li>
+      <li>Confirmar, organizar y dar seguimiento a tu reserva, incluidas tus necesidades de viaje y alimentación</li>
+    </ul>
+    <p>Finalidades secundarias, que puedes rechazar sin afectar tu reserva:</p>
+    <ul>
+      <li>Medir cómo se usa el sitio y mejorarlo (solo con tu consentimiento para analítica)</li>
+      <li>Informarte sobre próximos retiros y eventos</li>
+    </ul>
+    <p>Para rechazar las finalidades secundarias, escribe a <a href={`mailto:${site.email}`}>{site.email}</a> en cualquier momento.</p>
+
+    <h2>Con quién los compartimos</h2>
+    <p>No vendemos tus datos. Solo los compartimos con proveedores que nos ayudan a prestar el servicio, bajo contratos que les obligan a protegerlos:</p>
+    <ul>
+      <li>Nuestro sistema de gestión de clientes (GoHighLevel), donde se guardan las solicitudes de registro</li>
+      <li>Cloudflare, que recibe el formulario y lo revisa contra spam</li>
+      <li>Google, para analítica, solo si aceptas las cookies de analítica</li>
+      <li>Las personas facilitadoras y el personal que lleva tu retiro, solo con la información que necesitan para cuidarte</li>
+    </ul>
+    <p>Algunos de estos proveedores guardan datos fuera de México, incluso en Estados Unidos. Al enviar el formulario aceptas estas transferencias, que la LFPDPPP permite cuando son necesarias para el servicio que solicitas.</p>
+
+    <h2 id="cookies">Cookies</h2>
+    <p>No guardamos nada en tu dispositivo hasta que elijas en el aviso de cookies. Hasta entonces, Google Analytics funciona en modo de consentimiento: no pone cookies y solo recibe señales anónimas de que se vio una página, sin identificadores. Puedes cambiar tu elección en cualquier momento con el enlace Configurar cookies al pie de cada página.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Cookies que usamos">
+    <table>
+      <thead><tr><th scope="col">Tipo</th><th scope="col">Proveedor</th><th scope="col">Finalidad</th><th scope="col">Duración</th></tr></thead>
+      <tbody>
+        <tr><td>Esenciales</td><td>MexiSol World</td><td>Recuerda tu elección de cookies (se guarda en tu navegador, no se nos envía)</td><td>Hasta que la borres</td></tr>
+        <tr><td>Analítica</td><td>Google Analytics 4</td><td>Cuenta visitas y clics</td><td>Hasta 14 meses</td></tr>
+        <tr><td>Video</td><td>YouTube (modo de privacidad mejorada)</td><td>Reproduce nuestro video cuando le das play</td><td>La define YouTube</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Cuánto tiempo los conservamos</h2>
+    <ul>
+      <li>Solicitudes de registro que no se convierten en reserva: hasta 24 meses, después se eliminan</li>
+      <li>Información de la evaluación de salud: el tiempo necesario para llevar tu retiro de forma segura, después se elimina o se anonimiza, salvo que la ley nos obligue a conservarla más tiempo</li>
+      <li>Registros de reservas y pagos: el tiempo que exija la legislación fiscal mexicana</li>
+      <li>Datos de analítica: hasta 14 meses</li>
+    </ul>
+
+    <h2>Tus derechos ARCO</h2>
+    <p>Conforme a la LFPDPPP tienes derecho a <strong>Acceder</strong> a tus datos, <strong>Rectificarlos</strong> si son incorrectos, <strong>Cancelarlos</strong> cuando ya no sean necesarios y <strong>Oponerte</strong> a su uso para fines específicos. También puedes revocar tu consentimiento o limitar el uso de tus datos.</p>
+    <p>Para presentar una solicitud, escribe a <a href={`mailto:${site.email}`}>{site.email}</a> con tu nombre, un medio para responderte, una copia de una identificación (o la autorización de tu representante) y una descripción clara de lo que solicitas. Responderemos en un plazo de 20 días hábiles y, si procede, la haremos efectiva dentro de los 15 días hábiles siguientes.</p>
+    <p>Si consideras que tus derechos no han sido respetados, puedes presentar una queja ante la autoridad mexicana de protección de datos.</p>
+
+    <h2>Seguridad</h2>
+    <p>El sitio se sirve solo por HTTPS. Los envíos del formulario viajan cifrados, se revisan contra spam y se guardan en nuestro sistema de gestión de clientes con acceso restringido. Ningún sistema es perfectamente seguro, y te avisaremos sin demora si una vulneración afecta tus datos.</p>
+
+    <h2>Cambios a este aviso</h2>
+    <p>Si cambiamos este aviso, publicaremos la nueva versión en esta página con una fecha nueva.</p>
+
+    <h2>Contacto</h2>
+    <p>Escribe a <a href={`mailto:${site.email}`}>{site.email}</a> o por <a href={whatsappUrl} data-track="whatsapp">WhatsApp</a>.</p>
+  </LegalPage>
+</BaseLayout>

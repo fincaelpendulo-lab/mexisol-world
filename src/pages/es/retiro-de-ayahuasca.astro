@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RetreatPage from '../../components/RetreatPage.astro';
+---
+<BaseLayout
+  title="Retiro de ayahuasca en México, 7 días en Jalisco | MexiSol World"
+  description="Siete días en Finca El Péndulo, cerca de Guadalajara: dos ceremonias de ayahuasca y una de Satori, guiadas por Humberto. Hasta 15 personas, desde $1,850 USD."
+  path="/es/retiro-de-ayahuasca"
+  lang="es"
+  current="resources"
+  ogImage="ayahuasca"
+  breadcrumbs={[{ name: 'Retiro de ayahuasca', path: '/es/retiro-de-ayahuasca' }]}
+>
+  <RetreatPage
+    medicine="ayahuasca"
+    title="Retiro de ayahuasca"
+    hero={{ name: 'web-lords-atrium-gathering', alt: 'El grupo reunido en el Atrio del Señor, junto a la raíz gigante y la figura de Jesús' }}
+    heroThumbs={[
+      { name: 'web-preparing-the-brew', alt: 'Preparando la medicina en una olla de barro dentro de la Choza Osho' },
+      { name: 'web-smudging-copal', alt: 'Sahumando con copal antes de la ceremonia' },
+    ]}
+    heroText="Tres ceremonias nocturnas en la Choza Osho, dos con ayahuasca y una con Satori, guiadas por Humberto con música en vivo. Hasta 15 personas. Desde $1,850 USD, todo incluido."
+    intro="La ayahuasca tiene una forma de quitarte las historias que te cuentas. Algunas noches traen visiones, otras traen lágrimas, otras solo una larga espera. Todas enseñan algo."
+    medicineText={[
+      'Una bebida de la liana de ayahuasca y la hoja de chacruna, usada en ceremonia en toda la Amazonía desde hace generaciones. La nuestra se prepara en Pucallpa.',
+      'Es exigente con el cuerpo. La purga es común y forma parte del proceso. Una ceremonia dura casi toda la noche. Eliges un colchón, se apagan las luces, se sirven las copas una por una y, al rato, empiezan los cantos. Quienes sirven traen agua, pañuelos y un brazo firme para acompañarte al baño.',
+      'La tercera ceremonia es con Satori, una medicina de plantas que se toma en cápsulas: DMT de la corteza de tepezcohuite (Mimosa tenuiflora) con ruda siria, que permite que funcione al tragarla. Actúa de forma muy parecida a la ayahuasca, pero llega de manera más gradual y suele ser más suave con el cuerpo.',
+    ]}
+    included={[
+      '2 ceremonias de ayahuasca y 1 de Satori',
+      '2 sesiones de kambó',
+      'Ceremonias de rapé y cacao',
+      'Sananga, chilcuague y otros remedios de plantas',
+      'Temazcal y círculo de fuego',
+      'Integración grupal e individual',
+      'Caminata al Cerro La Campana, caballos, alberca y lago',
+      'Seis noches y todas las comidas',
+    ]}
+    optional="Opcional, con costo extra: bufo, masajes"
+    days={[
+      { title: 'Llegada', text: 'Registro, recorrido por la tierra y cena para conocer al grupo.' },
+      { title: 'Apertura', text: 'Intenciones con Humberto, kambó por la mañana, tarde tranquila. Primera ceremonia de ayahuasca por la noche.' },
+      { title: 'Satori', text: 'Descanso y escritura. Ceremonia de Satori.' },
+      { title: 'Más profundo', text: 'Segundo kambó, yoga o respiración opcional, tiempo individual. Segunda ceremonia de ayahuasca.' },
+      { title: 'Fuego', text: 'Bufo opcional. Integración grupal con Humberto. Círculo de fuego por la noche.' },
+      { title: 'Cierre', text: 'Caminata al amanecer al Cerro La Campana, temazcal, cacao en la Choza Osho, cena de cierre en el Oráculo.' },
+      { title: 'Salida', text: 'Desayuno, despedidas y traslado al aeropuerto.' },
+    ]}
+    guide={{
+      eyebrow: 'Tu chamán',
+      name: 'Humberto',
+      image: { name: 'staff-humberto', alt: 'Humberto, quien guía los retiros de ayahuasca' },
+      text: 'Nació en Tepatitlán, a unos minutos de la Finca. Se formó en Perú con largas dietas de plantas maestras y ha guiado ceremonias en varios continentes. Abre cada ceremonia, canta toda la noche con los músicos y está ahí a la mañana siguiente para hablarlo contigo.',
+    }}
+    datesTitle="Ayahuasca en la Finca"
+  />
+</BaseLayout>

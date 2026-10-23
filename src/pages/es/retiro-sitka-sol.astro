@@ -1,0 +1,154 @@
+---
+// Sitka & Sol Wellness Retreat en español (versión de src/pages/sitka-sol-wellness-retreat.astro).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSplit from '../../components/HeroSplit.astro';
+import SectionIntro from '../../components/SectionIntro.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import retreats from '../../data/retreats.json';
+import { registerHref, absolute } from '../../lib/url';
+import { event, fincaLocation } from '../../lib/schema';
+
+const r = retreats.finca.find((x) => x.id === 'sitka-sol')!;
+const rooms = [
+  { name: 'Habitación compartida', text: 'Espacio compartido con varias personas.', usd: 1450, cad: 2000 },
+  { name: 'Habitación semiprivada', text: 'Habitación con dos camas y baño privado.', usd: 1690, cad: 2350 },
+  { name: 'Habitación privada', text: 'Habitación con una cama y baño privado.', usd: 1800, cad: 2500 },
+  { name: 'Habitación deluxe', text: 'Habitación con una cama y baño privado.', usd: 1900, cad: 2650 },
+];
+const features = [
+  { title: 'Un entorno de apoyo', text: 'Acompañamiento profesional y enseñanza con especialistas en limpieza.' },
+  { title: 'Retiro en la naturaleza', text: 'En una finca de 14 acres, rodeada de naturaleza.' },
+  { title: 'Limpieza de hígado', text: 'Un protocolo de limpieza de hígado personalizado para transformar tu vida.' },
+  { title: 'Cocina saludable', text: 'Comidas nutritivas hechas con ingredientes frescos y naturales.' },
+  { title: 'Hospedaje cómodo', text: 'Habitaciones privadas y semiprivadas amplias, todas con baño privado.' },
+];
+const guides = [
+  { name: 'Jackie "Laara" Herod', img: 'guide-jackie', alt: 'Jackie "Laara" Herod', text: 'Jackie ha vivido el proceso de limpieza en carne propia durante los últimos ocho años, con más de 60 limpiezas de hígado. Como facilitadora de ceremonias, ofrece prácticas, meditaciones y sonido para acompañar el camino de bienestar.' },
+  { name: 'Dr. Stewart Blaikie', img: 'guide-stewart', alt: 'Dr. Stewart Blaikie', text: 'Especialista en limpieza reconocido internacionalmente, con más de 30 años de experiencia. Stewart combina métodos de limpieza suaves pero potentes, medicinas naturales y un amplio conocimiento del cuerpo humano. Su enfoque apoya la capacidad natural del cuerpo para sanar y florecer.' },
+  { name: 'Humberto', img: 'guide-humberto', alt: 'Humberto tocando un tambor durante una ceremonia', text: 'Como facilitador de conciencia, Humberto usa la música, la poesía y las historias para guiar a las personas a niveles profundos de sanación y meditación. Como chamán, sabe crear espacios ceremoniales, algo valioso para el proceso de limpieza.' },
+];
+const schema = [event({
+  name: 'Sitka & Sol Wellness Retreat',
+  start: r.start,
+  end: r.end,
+  description: 'Un retiro de bienestar con Sitka Healing House en Finca El Péndulo: una limpieza profunda de hígado, sesiones educativas, movimiento, meditación, música en vivo y sanación con sonido.',
+  url: absolute('/es/retiro-sitka-sol'),
+  location: fincaLocation,
+  prices: rooms.map((x) => ({ name: x.name, priceUsd: x.usd })),
+})];
+const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
+const cad = (n: number) => `$${n.toLocaleString('en-US')} CAD`;
+---
+<BaseLayout
+  title="Sitka & Sol Wellness Retreat, Jalisco 2027 | MexiSol World"
+  description="Un retiro de limpieza de hígado y bienestar en Finca El Péndulo, del 12 al 16 de enero de 2027, con Sitka Healing House. Comidas, hospedaje, movimiento, meditación y música."
+  path="/es/retiro-sitka-sol"
+  lang="es"
+  current="finca"
+  ogImage="sitka"
+  breadcrumbs={[{ name: 'Retiros en Finca El Péndulo', path: '/es/finca-el-pendulo' }, { name: 'Sitka & Sol Wellness Retreat', path: '/es/retiro-sitka-sol' }]}
+  schema={schema}
+>
+  <HeroSplit
+    image="sitka-hero-pool"
+    imageAlt="La alberca frente a la palapa principal y la torre blanca, bajo un cielo azul"
+    eyebrow="12-16 de enero de 2027 · Tepatitlán, México"
+    title="Sitka & Sol Wellness Retreat"
+    cta={{ label: 'Aparta tu lugar', href: registerHref('sitka-sol', 'es') }}
+    images={[
+      { name: 'sitka-kitchen-serving', alt: 'El equipo de cocina sirviendo comida de ollas de barro' },
+      { name: 'sitka-jacuzzi-pergola', alt: 'El jacuzzi bajo una pérgola de madera entre palmeras' },
+    ]}
+  >Donde se encuentran la naturaleza, la salud y la conciencia. Limpia. Desintoxica. Renueva. Un retiro con Sitka Healing House en Finca El Péndulo.</HeroSplit>
+
+  <SectionIntro eyebrow="Nutre · Reconecta · Explora">Disfruta de un hospedaje cómodo, comidas nutritivas, productos de limpieza, práctica diaria de atención plena y movimiento. También hay mucho tiempo para bajar el ritmo, recorrer esta finca increíble y reconectar con la naturaleza y contigo.</SectionIntro>
+
+  <div class="photo-row" style="--min:240px;--h:380px">
+    <Photo name="sitka-long-dinner" alt="Huéspedes compartiendo la cena en una mesa larga con luz cálida" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="sitka-morning-stretch" alt="Estiramientos por la mañana en el círculo de piedra" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+    <Photo name="sitka-cold-tub" alt="Una tina de agua fría junto al jardín" sizes="(max-width: 760px) 100vw, 33vw" widths={[480, 800, 1200]} />
+  </div>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">¿Por qué venir?</h2>
+        <ul class="rule-list">
+          <li>Recupera energía y vitalidad</li>
+          <li>Apoya el proceso natural de sanación de tu cuerpo</li>
+          <li>Profundiza la conexión entre mente y cuerpo</li>
+          <li>Gana claridad y reconecta contigo</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="label" style="margin-bottom:var(--space-5)">Lo que vivirás</h2>
+        <ul class="rule-list">
+          <li>Una limpieza de hígado transformadora</li>
+          <li>Sesiones educativas</li>
+          <li>Herramientas sencillas y movimiento corporal</li>
+          <li>Reflexión en grupo y meditación</li>
+          <li>Música en vivo y sanación con sonido</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Tu retiro</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Tu camino de bienestar empieza aquí</h2>
+      <ul class="grid sitka-features" style="--min:200px;--gap:var(--space-6)">
+        {features.map((f) => (
+          <li class="rule-top"><h3 class="t-title" style="margin-bottom:var(--space-3)">{f.title}</h3><p>{f.text}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="guides">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Conoce a tus guías</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-8)">Tres guías, una semana</h2>
+      <div class="grid" style="--min:260px;--gap:var(--space-7)">
+        {guides.map((g) => (
+          <div class="stack team-card" style="--stack:var(--space-3)">
+            <Photo name={g.img} alt={g.alt} sizes="(max-width: 760px) 100vw, 33vw" widths={[400, 640, 900]} class="ratio-4-5 team-card__photo" />
+            <h3 class="t-title" style="margin-top:var(--space-4)">{g.name}</h3>
+            <p class="muted">{g.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--top-rule" id="prices">
+    <div class="wrap">
+      <p class="label" style="margin-bottom:var(--space-5)">Habitaciones y precios</p>
+      <h2 class="t-heading" style="margin-bottom:var(--space-7)">Elige tu habitación</h2>
+      <div class="grid" style="--min:220px;--gap:var(--space-7) var(--space-5)">
+        {rooms.map((x) => (
+          <div class="rule-top stack" style="--stack:var(--space-2)">
+            <h3 class="t-title">{x.name}</h3>
+            <p class="muted">{x.text}</p>
+            <p class="t-date" style="margin-top:var(--space-3)">{usd(x.usd)}</p>
+            <p class="muted">{cad(x.cad)} <span class="t-caption">· por persona</span></p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep center">
+    <p class="label" style="margin-bottom:var(--space-5)">Sitka & Sol</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">Descubre tu ser auténtico, y por qué importa decirte que sí.</h2>
+    <p class="measure" style="margin-bottom:var(--space-7)">Con <a href="https://www.sitkahealinghouse.com">Sitka Healing House</a> y MexiSol World en Finca El Péndulo.</p>
+    <div class="cluster">
+      <Button href={registerHref('sitka-sol', 'es')} variant="on-photo" data-track="register">Aparta tu lugar hoy</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .sitka-features { list-style: none; margin: 0; padding: 0; }
+</style>
