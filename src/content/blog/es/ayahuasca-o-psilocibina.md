@@ -1,11 +1,12 @@
 ---
 title: "¿Ayahuasca o psilocibina? Cómo elegir tu retiro"
-description: "En qué se diferencian la ayahuasca y los hongos de psilocibina en la ceremonia, en el cuerpo y en la evaluación, y cómo decidir qué retiro en Finca El Péndulo es para ti."
-date: 2026-10-23
+description: "En qué se diferencian la ayahuasca y los hongos de psilocibina en la ceremonia, en el cuerpo y en la evaluación, y cómo elegir tu retiro en Finca El Péndulo."
+date: 2026-08-31
+updated: 2026-10-23
 image: web-osho-hut-ceremony-setup
 imageAlt: "Colchones y cobijas en círculo dentro de la Choza Osho antes de una ceremonia"
 ogImage: ayahuasca
-tags: [ayahuasca, psilocibina, elegir un retiro]
+tags: [ayahuasca, psilocibina, elegir un retiro, ciencia]
 translation: ayahuasca-or-psilocybin
 ---
 
@@ -37,6 +38,32 @@ Antes de cada ceremonia te sientas con Krista, que guía los retiros de psilocib
 
 Lee más sobre [el retiro de psilocibina](../retiro-de-psilocibina).
 
+## Qué hace cada una en el cerebro
+
+**Ayahuasca.** Sus efectos visionarios vienen de la DMT de la hoja de chacruna. Por sí sola, la DMT se descompone en el estómago antes de llegar al cerebro. La liana de ayahuasca contiene alcaloides harmala que frenan ese proceso por unas horas, y así la DMT puede actuar. La liana no es solo un vehículo: hay investigaciones que sugieren que sus compuestos favorecen nuevas conexiones entre neuronas.
+
+**Psilocibina.** En el cuerpo se convierte en psilocina, que actúa sobre los receptores de serotonina, sobre todo el 5-HT2A, ligado al ánimo, la percepción y el pensamiento. En 2023 se descubrió además que se une directamente a TrkB, un receptor relacionado con la capacidad del cerebro de formar nuevas conexiones. Más en [psilocibina y neuroplasticidad](psilocibina-neuroplasticidad).
+
+**Las dos** calman la red neuronal por defecto, el sistema detrás del narrador interno y de nuestra idea habitual de quiénes somos. Una imagen útil: el cerebro es una pista de esquí, y los pensamientos repetidos marcan surcos profundos. Estas medicinas tienden nieve fresca por un rato, y nuevos caminos se vuelven posibles.
+
+## Quién suele elegir cada una
+
+**La ayahuasca** suele atraer a quienes:
+
+- han hecho mucho trabajo personal y sienten que pueden ir más hondo
+- cargan depresión, trauma o duelo que otros caminos no han alcanzado
+- tienen una intención clara y no temen una noche exigente
+- se sienten llamados por la ceremonia amazónica y sus cantos
+- ya trabajaron con psilocibina y quieren ir más allá
+
+**La psilocibina** suele atraer a quienes:
+
+- son nuevos en las medicinas de plantas y quieren una experiencia real sin la intensidad de la ayahuasca
+- buscan calidez, conexión y abrir el corazón más que confrontación
+- prefieren un espacio tranquilo y acogedor
+- disfrutan una semana variada con movimiento, caballos y meditación
+- se preocupan por la purga
+
 ## Lado a lado
 
 | | Retiro de ayahuasca | Retiro de psilocibina |
@@ -57,6 +84,10 @@ La ayahuasca y el Satori contienen inhibidores de la MAO, que pueden reaccionar 
 Los principales riesgos de la psilocibina son psicológicos. Tener antecedentes personales de psicosis, esquizofrenia o trastorno bipolar es motivo para no asistir. También sube la frecuencia cardiaca y la presión durante algunas horas.
 
 Nunca suspendas por tu cuenta un medicamento recetado. Lee la [información médica](../informacion-medica) completa antes de reservar.
+
+## ¿Se pueden hacer las dos?
+
+Sí. Muchas personas empiezan con psilocibina, se dan tiempo para integrar y vuelven después por la ayahuasca. No compiten: trabajan en capas distintas.
 
 ## Preguntas para hacerte
 

@@ -1,11 +1,12 @@
 ---
 title: "Ayahuasca or psilocybin: how to choose your retreat"
 description: "How ayahuasca and psilocybin mushrooms differ in ceremony, in the body and in screening, and how to decide which retreat at Finca El Péndulo suits you."
-date: 2026-10-23
+date: 2026-08-31
 image: web-osho-hut-ceremony-setup
 imageAlt: "Mattresses and blankets laid out in a circle in the Osho Hut before a ceremony"
 ogImage: ayahuasca
-tags: [ayahuasca, psilocybin, choosing a retreat]
+tags: [ayahuasca, psilocybin, choosing a retreat, science]
+updated: 2026-10-23
 translation: ayahuasca-o-psilocibina
 ---
 
@@ -37,6 +38,32 @@ Before each ceremony you sit with Krista, who leads the psilocybin retreats, and
 
 Read more about [the psilocybin retreat](../psilocybin-retreat).
 
+## What each one does in the brain
+
+**Ayahuasca.** Its visionary effects come from DMT, found in the chacruna leaf. On its own, DMT is broken down in the stomach before it reaches the brain. The ayahuasca vine contains harmala alkaloids that pause that process for a few hours, so the DMT can act. The vine is not just a carrier: research suggests its compounds may support new connections between nerve cells.
+
+**Psilocybin.** In the body it becomes psilocin, which acts on serotonin receptors, especially the 5-HT2A receptor involved in mood, perception and thinking. In 2023 researchers also found it binds directly to TrkB, a receptor tied to the brain's ability to form new connections. More in [psilocybin and neuroplasticity](psilocybin-neuroplasticity).
+
+**Both** quiet the default mode network, the brain system behind the inner narrator and our habitual sense of self. A useful image: the brain is a ski slope, and repeated thoughts carve deep grooves. These medicines lay down fresh snow for a while, so new paths become possible.
+
+## Who tends to choose each one
+
+**Ayahuasca** often draws people who:
+
+- have done a lot of personal work and feel ready to go deeper
+- carry depression, trauma or grief that other approaches have not reached
+- have a clear intention and are not afraid of a demanding night
+- feel called to Amazonian ceremony and its songs
+- have worked with psilocybin before and want to go further
+
+**Psilocybin** often draws people who:
+
+- are new to plant medicine and want a real experience without ayahuasca's intensity
+- are looking for warmth, connection and an open heart more than confrontation
+- are drawn to a calm, nurturing container
+- like a varied week with movement, horses and meditation
+- are worried about purging
+
 ## Side by side
 
 | | Ayahuasca retreat | Psilocybin retreat |
@@ -57,6 +84,10 @@ Ayahuasca and Satori both contain MAO inhibitors, which can react dangerously wi
 Psilocybin's main risks are psychological. A personal history of psychosis, schizophrenia or bipolar disorder is a reason not to attend. It also raises heart rate and blood pressure for a few hours.
 
 Never stop a prescribed medication on your own. Read the full [medical information](../medical) before you book.
+
+## Can you do both?
+
+Yes. Many guests start with psilocybin, take time to integrate, and come back for ayahuasca. The two medicines are not competing. They work on different layers.
 
 ## Questions to ask yourself
 
