@@ -9,6 +9,7 @@ import Button from '../../components/Button.astro';
 import Seal from '../../components/Seal.astro';
 import YouTube from '../../components/YouTube.astro';
 import RegisterForm from '../../components/RegisterForm.astro';
+import BookingWidget from '../../components/BookingWidget.astro';
 import { Image } from 'astro:assets';
 import lockup from '../../assets/brand/lockup-color.png';
 import retreats from '../../data/retreats.json';
@@ -270,7 +271,7 @@ const faq = [
       <h2 class="t-heading" style="margin-bottom:var(--space-8)">De la primera llamada a la primera ceremonia</h2>
       <ol class="grid steps" style="--min:220px;--gap:var(--space-7)">
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">01</p><h3 class="t-title">Elige una fecha</h3><p>Escoge un retiro en la Finca o en el extranjero y envíanos el formulario de abajo.</p></li>
-        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Habla con nosotros</h3><p>Una llamada sobre tu salud, tus medicamentos y por qué quieres venir. Algunos medicamentos, incluidos los antidepresivos, no se combinan con este trabajo. Revisamos cada uno antes de confirmar.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Habla con nosotros</h3><p>Una llamada sobre tu salud, tus medicamentos y por qué quieres venir. Algunos medicamentos, incluidos los antidepresivos, no se combinan con este trabajo. Revisamos cada uno antes de confirmar. <a href="#book-call" data-track="book_call">Agenda tu llamada</a>.</p></li>
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">03</p><h3 class="t-title">Prepárate</h3><p>Come limpio, usa menos las pantallas y llega con pocas expectativas. Te enviamos una guía y una lista de equipaje.</p></li>
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">04</p><h3 class="t-title">Llega</h3><p>Si quieres, te recogemos en Guadalajara. Para la hora de la cena ya conocerás la tierra y al grupo.</p></li>
       </ol>
@@ -298,7 +299,7 @@ const faq = [
       <div class="register__intro stack">
         <p class="label">Regístrate</p>
         <h2 class="t-heading">Aparta tu lugar</h2>
-        <p class="muted">Dinos qué retiro tienes en mente. Te escribiremos para agendar una llamada. Nada se confirma, y nada se cobra, hasta que hayamos hablado.</p>
+        <p class="muted">Dinos qué retiro tienes en mente y te escribimos, o <a href="#book-call" data-track="book_call">agenda tu llamada ahora</a>. Nada se confirma, y nada se cobra, hasta que hayamos hablado.</p>
         {booking.length > 0 && (
           <div class="stack" style="--stack:var(--space-2)">
             <p class="t-caption muted">¿Ya lo decidiste? Reserva directamente la próxima fecha:</p>
@@ -308,6 +309,13 @@ const faq = [
         <div style="margin-top:var(--space-6)"><Seal size={120} /></div>
       </div>
       <RegisterForm />
+    </div>
+    <div class="wrap home-booking" id="book-call">
+      <div class="home-booking__intro">
+        <h3 class="t-heading">¿Prefieres elegir tú la hora?</h3>
+        <p class="muted">Agenda tu llamada directamente en nuestro calendario. Elige día y hora, y recibes la confirmación por correo.</p>
+      </div>
+      <BookingWidget />
     </div>
   </section>
 </BaseLayout>
@@ -320,4 +328,7 @@ const faq = [
   .register { display: flex; flex-wrap: wrap; gap: var(--space-8); }
   .register__intro { flex: 1 1 360px; min-width: 0; }
   .home-strip { padding-top: var(--space-3); }
+  .home-booking { margin-top: var(--space-9); padding-top: var(--space-8); border-top: 1px solid var(--hairline); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--space-8); align-items: start; }
+  .home-booking__intro { display: flex; flex-direction: column; gap: var(--space-4); }
+  @media (max-width: 960px) { .home-booking { grid-template-columns: 1fr; gap: var(--space-6); } }
 </style>

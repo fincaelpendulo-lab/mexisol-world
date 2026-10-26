@@ -1,0 +1,33 @@
+---
+// GoHighLevel booking calendar for a discovery call. public/js/site.js sets the iframe's src and
+// loads form_embed.js (GoHighLevel's script, which sizes the iframe) when the calendar comes near
+// the screen, so pages don't pay for it up front. The link below opens the same calendar if
+// scripts are off or the iframe can't load.
+import site from '../data/site.json';
+import { pageLang } from '../lib/i18n';
+
+const es = pageLang(Astro.url) === 'es';
+const b = site.booking;
+---
+<div class="booking-widget" data-booking-widget data-script={b.script}>
+  <iframe
+    data-src={b.embed}
+    id={b.embedId}
+    title={es ? 'Calendario para agendar una llamada con MexiSol World' : 'Calendar to book a call with MexiSol World'}
+    allow="payment"
+    scrolling="no"
+    style="width:100%;border:none;overflow:hidden"
+  ></iframe>
+  <p class="t-caption muted booking-widget__fallback">
+    {es ? '¿No ves el calendario?' : "Can't see the calendar?"} <a href={b.url} data-track="book_call">{es ? 'Ábrelo en una página nueva' : 'Open it in a new page'}</a>.
+  </p>
+</div>
+
+<style is:global>
+  .booking-widget { background: var(--white); color: var(--ink); border: 1px solid var(--hairline); padding: var(--space-3); }
+  .booking-widget iframe { display: block; min-height: 720px; }
+  .no-js .booking-widget iframe { display: none; }
+  .booking-widget__fallback { padding: var(--space-3) var(--space-2) 0; }
+  .booking-widget__fallback a { color: var(--ink); }
+  @media (max-width: 560px) { .booking-widget { padding: var(--space-1); margin-left: -8px; margin-right: -8px; } }
+</style>

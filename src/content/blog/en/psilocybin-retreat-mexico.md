@@ -68,4 +68,4 @@ Mexico.
 **When are the next dates?**
 See the [retreat calendar](../upcoming-retreats).
 
-Have questions? [Register](../#register) and we will call you.
+Have questions? [Book a call](../book-a-call).

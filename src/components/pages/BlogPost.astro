@@ -24,8 +24,8 @@ const related = [...others].sort((a, b) => shared(b) - shared(a)).slice(0, 3);
 const translation = d.translation ? (await posts(es ? 'en' : 'es')).find((p) => p.id.endsWith(`/${d.translation}`)) : undefined;
 
 const t = es
-  ? { min: 'min de lectura', by: 'Por', updated: 'Actualizado', toc: 'En este artículo', ctaEyebrow: 'Ven a la Finca', ctaH: '¿Quieres vivirlo en persona?', ctaP: 'Regístrate y te llamamos para hablar de tu salud, tus preguntas y la fecha que mejor te queda.', ctaBtn: 'Regístrate', datesBtn: 'Ver próximos retiros', related: 'Sigue leyendo', back: 'Volver al blog' }
-  : { min: 'min read', by: 'By', updated: 'Updated', toc: 'In this post', ctaEyebrow: 'Come to the Finca', ctaH: 'Want to experience it in person?', ctaP: 'Register and we will call you to talk about your health, your questions and the date that suits you.', ctaBtn: 'Register', datesBtn: 'See upcoming retreats', related: 'Keep reading', back: 'Back to the blog' };
+  ? { min: 'min de lectura', by: 'Por', updated: 'Actualizado', toc: 'En este artículo', ctaEyebrow: 'Ven a la Finca', ctaH: '¿Quieres vivirlo en persona?', ctaP: 'Agenda una llamada para hablar de tu salud, tus preguntas y la fecha que mejor te queda.', ctaBtn: 'Agenda una llamada', datesBtn: 'Ver próximos retiros', related: 'Sigue leyendo', back: 'Volver al blog' }
+  : { min: 'min read', by: 'By', updated: 'Updated', toc: 'In this post', ctaEyebrow: 'Come to the Finca', ctaH: 'Want to experience it in person?', ctaP: 'Book a call to talk about your health, your questions and the date that suits you.', ctaBtn: 'Book a call', datesBtn: 'See upcoming retreats', related: 'Keep reading', back: 'Back to the blog' };
 
 const iso = (x: Date) => x.toISOString().slice(0, 10);
 const schema = [{
@@ -98,7 +98,7 @@ const schema = [{
         <p>{t.ctaP}</p>
       </div>
       <div class="cluster">
-        <Button href={href(localize('/#register', lang))} variant="on-photo" data-track="register">{t.ctaBtn}</Button>
+        <Button href={href(localize('/book-a-call', lang))} variant="on-photo" data-track="book_call">{t.ctaBtn}</Button>
         <Button href={href(localize('/upcoming-retreats', lang))} variant="on-photo">{t.datesBtn}</Button>
       </div>
     </div>

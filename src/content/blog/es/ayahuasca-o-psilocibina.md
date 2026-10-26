@@ -98,4 +98,4 @@ Sí. Muchas personas empiezan con psilocibina, se dan tiempo para integrar y vue
 
 ## ¿Sigues pensándolo?
 
-Es normal. [Regístrate](../../es#register) y agendamos una llamada para revisar tu salud, tus preguntas y las fechas. Preferimos hablarlo a que llegues con dudas.
+Es normal. [Agenda una llamada](../agenda-una-llamada) para revisar tu salud, tus preguntas y las fechas. Preferimos hablarlo a que llegues con dudas.

@@ -52,6 +52,7 @@ const columns: { title: string; links: { label: string; href: string; track?: st
       <div class="site-footer__col">
         <h2 class="label">{t.footer.contact}</h2>
         <ul>
+          <li><a href={to('/book-a-call')} data-track="book_call">{n.bookCall}</a></li>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a></li>
           <li><p class="t-caption">{site.address.name}, {site.address.street},<br />{site.address.locality}, {site.address.region}</p></li>

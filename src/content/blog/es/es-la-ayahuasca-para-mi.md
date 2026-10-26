@@ -71,4 +71,4 @@ No es una pregunta de sí o no. Tiene que ver con el momento, con estar listo o 
 
 Si después de leer esto sigues con dudas, habla con nosotros. Una llamada te ayuda a ver si es el momento o si necesitas prepararte más. No hay vergüenza en esperar. El momento importa.
 
-Conoce el [retiro de ayahuasca](../retiro-de-ayahuasca), revisa nuestra [información médica](../informacion-medica) o [regístrate](../../es#register) para una llamada.
+Conoce el [retiro de ayahuasca](../retiro-de-ayahuasca), revisa nuestra [información médica](../informacion-medica) o [agenda una llamada](../agenda-una-llamada).

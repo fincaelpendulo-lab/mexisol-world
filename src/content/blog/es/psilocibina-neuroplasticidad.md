@@ -55,4 +55,4 @@ No. El estudio de 2023 probó psilocina y LSD. Sus resultados no deben aplicarse
 **¿Qué es TrkB?**
 Un receptor cerebral central en la señalización del BDNF, una vía muy ligada a la neuroplasticidad y al funcionamiento de varios antidepresivos. Se ha demostrado que la psilocina se une a él directamente.
 
-¿Quieres hablar de lo que un retiro puede y no puede ofrecer? [Regístrate](../../es#register) y agendamos una llamada.
+¿Quieres hablar de lo que un retiro puede y no puede ofrecer? [Agenda una llamada](../agenda-una-llamada) con nosotros.

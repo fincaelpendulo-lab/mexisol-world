@@ -69,4 +69,4 @@ Ayahuasca is more physical and longer. Psilocybin is gentler on the body. Read [
 **How do I prepare?**
 Two weeks of clean eating, no alcohol or recreational drugs, and a medication review. See [how to prepare for ayahuasca](how-to-prepare-for-ayahuasca).
 
-Ready to talk? [Register](../#register) and we will set up a call.
+Ready to talk? [Book a call](../book-a-call) at a time that suits you.

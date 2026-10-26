@@ -30,5 +30,11 @@
   },
   "ga4Id": "G-VQWELQMWCC",
   "turnstileSiteKey": "0x4AAAAAAFcEbJ_lazXp8ZNc",
-  "formEndpoint": "https://mexisol-form.mexisol.workers.dev"
+  "formEndpoint": "https://mexisol-form.mexisol.workers.dev",
+  "booking": {
+    "url": "https://info.mexisol.world/widget/bookings/discovery-call-mexisol-world",
+    "embed": "https://info.mexisol.world/widget/booking/98dB889gEXR5A1okG7UO",
+    "embedId": "98dB889gEXR5A1okG7UO_1793031560806",
+    "script": "https://info.mexisol.world/js/form_embed.js"
+  }
 }

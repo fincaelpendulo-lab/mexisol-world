@@ -68,4 +68,4 @@ De México.
 **¿Cuándo son las próximas fechas?**
 Mira el [calendario de retiros](../proximos-retiros).
 
-¿Tienes preguntas? [Regístrate](../../es#register) y te llamamos.
+¿Tienes preguntas? [Agenda una llamada](../agenda-una-llamada).

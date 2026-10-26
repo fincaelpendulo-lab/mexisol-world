@@ -113,6 +113,7 @@
     var kind = a.getAttribute('data-track');
     var url = a.href;
     if (kind === 'register') track('register_click', { link_url: url });
+    else if (kind === 'book_call' || /info\.mexisol\.world\/widget/.test(url)) track('book_call_click', { link_url: url });
     else if (kind === 'whatsapp' || /wa\.me\//.test(url)) track('whatsapp_click', { link_url: url });
     else if (kind === 'booking' || /cloudbeds\.com/.test(url)) track('booking_click', { link_url: url });
     else if (/instagram\.com/.test(url)) track('outbound_instagram', { link_url: url });
@@ -345,6 +346,33 @@
     show(start);
   });
 
+  /* ---------- Booking calendar: load the iframe and GoHighLevel's script when it comes near ---------- */
+  var bookingWidgets = Array.prototype.slice.call(document.querySelectorAll('[data-booking-widget]'));
+  function loadBooking(w) {
+    var frame = w.querySelector('iframe[data-src]');
+    if (!frame || frame.src) return;
+    frame.src = frame.getAttribute('data-src');
+    var url = w.getAttribute('data-script');
+    if (url && !document.querySelector('script[src="' + url + '"]')) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }
+  if (bookingWidgets.length) {
+    if ('IntersectionObserver' in window) {
+      var bookingObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { loadBooking(e.target); bookingObserver.unobserve(e.target); }
+        });
+      }, { rootMargin: '800px 0px' });
+      bookingWidgets.forEach(function (w) { bookingObserver.observe(w); });
+    } else {
+      bookingWidgets.forEach(loadBooking);
+    }
+  }
+
   /* ---------- Reveal on scroll ---------- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var pending = [];
@@ -550,7 +578,9 @@
           if (res.ok) {
             track('form_submit', { form: 'register', retreat: data.get('retreat') || '' });
             form.reset();
-            setStatus('ok', T('<p>Thank you. We have your request and will write back to set up a call.</p>', '<p>Gracias. Recibimos tu solicitud y te escribiremos para agendar una llamada.</p>'));
+            var bookUrl = (body.getAttribute('data-base') || '') + (ES ? '/es/agenda-una-llamada' : '/book-a-call');
+            setStatus('ok', T('<p>Thank you. We have your request and will write back to set up a call. Want to pick the time now? <a href="' + bookUrl + '" data-track="book_call">Book your call</a>.</p>',
+              '<p>Gracias. Recibimos tu solicitud y te escribiremos para agendar una llamada. ¿Quieres elegir la hora ahora? <a href="' + bookUrl + '" data-track="book_call">Agenda tu llamada</a>.</p>'));
           } else {
             setStatus('error', fail);
           }

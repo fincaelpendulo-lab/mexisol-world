@@ -1,0 +1,74 @@
+---
+// Book a discovery call: the booking calendar, with the other ways to reach us.
+// Used by /book-a-call and /es/agenda-una-llamada.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingWidget from '../BookingWidget.astro';
+import site from '../../data/site.json';
+import { localize, type Lang } from '../../lib/i18n';
+import { href, whatsappUrl } from '../../lib/url';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+const es = lang === 'es';
+const path = localize('/book-a-call', lang);
+const t = es
+  ? {
+      title: 'Agenda una llamada de descubrimiento | MexiSol World',
+      description: 'Elige día y hora para una llamada con el equipo de MexiSol World: tus preguntas, tu salud y el retiro de ayahuasca o psilocibina que mejor te queda.',
+      crumb: 'Agenda una llamada',
+      eyebrow: 'Llamada de descubrimiento',
+      h1: 'Agenda una llamada',
+      lead: 'Elige el día y la hora que te queden. Hablamos de lo que te trae, de tu salud y tus medicamentos, y de qué retiro y qué fecha tienen sentido para ti.',
+      steps: ['Elige un horario en el calendario.', 'Recibes la confirmación por correo.', 'Hablamos. Nada se confirma ni se cobra hasta entonces.'],
+      before: 'Antes de la llamada',
+      beforeText: 'Ten a la mano la lista de tus medicamentos y suplementos. Si quieres adelantar, lee nuestra',
+      medical: 'información médica',
+      other: '¿Prefieres otra forma?',
+      wa: 'Escríbenos por WhatsApp',
+      form: 'Llena el formulario de registro',
+    }
+  : {
+      title: 'Book a Discovery Call | MexiSol World',
+      description: 'Choose a day and time for a call with the MexiSol World team: your questions, your health, and which ayahuasca or psilocybin retreat fits you best.',
+      crumb: 'Book a call',
+      eyebrow: 'Discovery call',
+      h1: 'Book a call',
+      lead: 'Pick a day and time that suit you. We talk about what brings you, your health and medications, and which retreat and date make sense for you.',
+      steps: ['Choose a time in the calendar.', 'You get a confirmation by email.', 'We talk. Nothing is confirmed or charged until then.'],
+      before: 'Before the call',
+      beforeText: 'Have a list of your medications and supplements at hand. To get a head start, read our',
+      medical: 'medical information',
+      other: 'Prefer another way?',
+      wa: 'Message us on WhatsApp',
+      form: 'Fill in the registration form',
+    };
+---
+<BaseLayout title={t.title} description={t.description} path={path} lang={lang} breadcrumbs={[{ name: t.crumb, path }]}>
+  <section class="section" style="padding-bottom:var(--space-7)">
+    <div class="wrap book-call">
+      <div class="book-call__intro stack" style="--stack:var(--space-4)">
+        <p class="label">{t.eyebrow}</p>
+        <h1 class="t-display">{t.h1}</h1>
+        <p class="t-lead">{t.lead}</p>
+        <ol class="rule-list book-call__steps">
+          {t.steps.map((s) => <li>{s}</li>)}
+        </ol>
+        <h2 class="t-title" style="margin-top:var(--space-6)">{t.before}</h2>
+        <p class="muted">{t.beforeText} <a href={href(localize('/medical', lang))}>{t.medical}</a>.</p>
+        <h2 class="t-title" style="margin-top:var(--space-6)">{t.other}</h2>
+        <p><a href={whatsappUrl} data-track="whatsapp">{t.wa}</a> · <a href={href(localize('/#register', lang))} data-track="register">{t.form}</a> · <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </div>
+      <div class="book-call__widget">
+        <BookingWidget />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .book-call { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: var(--space-8); align-items: start; }
+  .book-call__steps { list-style: decimal inside; }
+  @media (max-width: 960px) {
+    .book-call { grid-template-columns: 1fr; gap: var(--space-7); }
+  }
+</style>

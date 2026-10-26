@@ -103,6 +103,6 @@ Nothing is confirmed until this review is done.
 
 Don't guess, and don't "see what happens". Send us your full list. We will tell you whether it is a clear no, a possible yes with planning, or something to review with your doctor.
 
-The full list of conditions and medicines is on our [medical information](../medical) page. When you are ready, [register](../#register) and we will set up a call.
+The full list of conditions and medicines is on our [medical information](../medical) page. When you are ready, [book a call](../book-a-call) and we will go over it together.
 
 *This article is general information, not medical advice.*

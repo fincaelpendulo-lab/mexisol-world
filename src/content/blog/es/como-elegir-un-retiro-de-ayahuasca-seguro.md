@@ -123,4 +123,4 @@ Después del análisis, escúchate. ¿Te responden con claridad? ¿Las personas 
 
 Respuestas claras a todo: una buena opción. Respuestas vagas: sigue buscando.
 
-¿Quieres hacernos estas preguntas? [Regístrate](../../es#register) y te llamamos.
+¿Quieres hacernos estas preguntas? [Agenda una llamada](../agenda-una-llamada).

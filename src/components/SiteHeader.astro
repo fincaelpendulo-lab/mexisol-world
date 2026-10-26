@@ -73,6 +73,7 @@ const chevron = '<svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 
       </ul>
       <div class="site-nav__contact">
         {switchTo && <a href={href(switchTo)} hreflang={other} lang={other} data-track="language">{t.switchLong}</a>}
+        <a href={to('/book-a-call')} data-track="book_call">{n.bookCall}</a>
         <a href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a>
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </div>

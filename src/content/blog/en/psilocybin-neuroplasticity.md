@@ -55,4 +55,4 @@ No. The 2023 study tested psilocin and LSD. Its findings should not be applied t
 **What is TrkB?**
 A brain receptor central to BDNF signaling, a pathway strongly tied to neuroplasticity and to how several antidepressants work. Psilocin has been shown to bind to it directly.
 
-Want to talk through what a retreat can and cannot offer? [Register](../#register) and we will set up a call.
+Want to talk through what a retreat can and cannot offer? [Book a call](../book-a-call) with us.

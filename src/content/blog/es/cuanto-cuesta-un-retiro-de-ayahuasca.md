@@ -66,4 +66,4 @@ Más en [cómo elegir un retiro de ayahuasca seguro](como-elegir-un-retiro-de-ay
 
 Una semana de ceremonias es una inversión de dinero, tiempo y energía. Vale la pena cuando el lugar se toma en serio tu seguridad, las personas saben lo que hacen, y te das tiempo para integrar después.
 
-¿Preguntas sobre precios o habitaciones? [Regístrate](../../es#register) y te llamamos, o mira el [calendario de retiros](../proximos-retiros).
+¿Preguntas sobre precios o habitaciones? [Agenda una llamada](../agenda-una-llamada) o mira el [calendario de retiros](../proximos-retiros).

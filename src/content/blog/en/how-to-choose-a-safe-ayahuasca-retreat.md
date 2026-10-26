@@ -123,4 +123,4 @@ After the analysis, listen to yourself. Do your questions get clear answers? Do 
 
 Clear answers to all of them: a solid option. Vague answers: keep looking.
 
-Ready to ask us? [Register](../#register) and we will call you.
+Ready to ask us? [Book a call](../book-a-call).

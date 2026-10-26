@@ -9,6 +9,7 @@ import Button from '../components/Button.astro';
 import Seal from '../components/Seal.astro';
 import YouTube from '../components/YouTube.astro';
 import RegisterForm from '../components/RegisterForm.astro';
+import BookingWidget from '../components/BookingWidget.astro';
 import { Image } from 'astro:assets';
 import lockup from '../assets/brand/lockup-color.png';
 import retreats from '../data/retreats.json';
@@ -267,7 +268,7 @@ const faq = [
       <h2 class="t-heading" style="margin-bottom:var(--space-8)">From first call to first ceremony</h2>
       <ol class="grid steps" style="--min:220px;--gap:var(--space-7)">
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">01</p><h3 class="t-title">Pick a date</h3><p>Choose a retreat at the Finca or abroad and send us the form below.</p></li>
-        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Talk with us</h3><p>A call about your health, your medications and why you want to come. Some medications, including antidepressants, do not mix with this work. We review every one before confirming.</p></li>
+        <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">02</p><h3 class="t-title">Talk with us</h3><p>A call about your health, your medications and why you want to come. Some medications, including antidepressants, do not mix with this work. We review every one before confirming. <a href="#book-call" data-track="book_call">Book your call</a>.</p></li>
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">03</p><h3 class="t-title">Prepare</h3><p>Eat clean, cut back on screens, come with few expectations. We send a guide and a packing list.</p></li>
         <li class="rule-top stack" style="--stack:var(--space-3)"><p class="t-title ochre" aria-hidden="true">04</p><h3 class="t-title">Arrive</h3><p>We pick you up in Guadalajara if you like. By dinner you will know the land and the group.</p></li>
       </ol>
@@ -295,7 +296,7 @@ const faq = [
       <div class="register__intro stack">
         <p class="label">Register</p>
         <h2 class="t-heading">Save your place</h2>
-        <p class="muted">Tell us which retreat you have in mind. We will write back to set up a call. Nothing is confirmed, and nothing is charged, until we have talked.</p>
+        <p class="muted">Tell us which retreat you have in mind and we will write back, or <a href="#book-call" data-track="book_call">book your call now</a>. Nothing is confirmed, and nothing is charged, until we have talked.</p>
         {booking.length > 0 && (
           <div class="stack" style="--stack:var(--space-2)">
             <p class="t-caption muted">Already decided? Book the next date directly:</p>
@@ -305,6 +306,13 @@ const faq = [
         <div style="margin-top:var(--space-6)"><Seal size={120} /></div>
       </div>
       <RegisterForm />
+    </div>
+    <div class="wrap home-booking" id="book-call">
+      <div class="home-booking__intro">
+        <h3 class="t-heading">Prefer to pick the time yourself?</h3>
+        <p class="muted">Book your call directly in our calendar. Choose a day and time, and you get a confirmation by email.</p>
+      </div>
+      <BookingWidget />
     </div>
   </section>
 </BaseLayout>
@@ -317,4 +325,7 @@ const faq = [
   .register { display: flex; flex-wrap: wrap; gap: var(--space-8); }
   .register__intro { flex: 1 1 360px; min-width: 0; }
   .home-strip { padding-top: var(--space-3); }
+  .home-booking { margin-top: var(--space-9); padding-top: var(--space-8); border-top: 1px solid var(--hairline); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--space-8); align-items: start; }
+  .home-booking__intro { display: flex; flex-direction: column; gap: var(--space-4); }
+  @media (max-width: 960px) { .home-booking { grid-template-columns: 1fr; gap: var(--space-6); } }
 </style>

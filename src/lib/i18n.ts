@@ -20,6 +20,7 @@ export const esRoutes: Record<string, string> = {
   '/privacy': '/es/privacidad',
   '/terms': '/es/terminos',
   '/blog': '/es/blog',
+  '/book-a-call': '/es/agenda-una-llamada',
 };
 const enRoutes = Object.fromEntries(Object.entries(esRoutes).map(([en, es]) => [es, en]));
 
@@ -67,6 +68,7 @@ export const ui = {
       team: 'Our team',
       youtube: 'Finca El Péndulo on YouTube',
       register: 'Register',
+      bookCall: 'Book a call',
     },
     switchLabel: 'ES',
     switchLong: 'Leer en español',
@@ -106,6 +108,7 @@ export const ui = {
       team: 'Nuestro equipo',
       youtube: 'Finca El Péndulo en YouTube',
       register: 'Regístrate',
+      bookCall: 'Agenda una llamada',
     },
     switchLabel: 'EN',
     switchLong: 'Read in English',

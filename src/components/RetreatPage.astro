@@ -4,13 +4,13 @@ import HeroSplit from './HeroSplit.astro';
 import SectionIntro from './SectionIntro.astro';
 import GuideSplit from './GuideSplit.astro';
 import Photo from './Photo.astro';
-import Button from './Button.astro';
 import retreats from '../data/retreats.json';
 import rooms from '../data/rooms.json';
 import { dateRange } from '../lib/dates';
 import { href, registerHref } from '../lib/url';
 import BookingTerms from './BookingTerms.astro';
 import Reviews from './Reviews.astro';
+import BookingWidget from './BookingWidget.astro';
 import { pageLang, localize } from '../lib/i18n';
 import { tr } from '../lib/retreats';
 
@@ -36,8 +36,8 @@ const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const lang = pageLang(Astro.url);
 const to = (path: string) => href(localize(path, lang));
 const t = lang === 'es'
-  ? { eyebrow: 'Finca El Péndulo · 7 días, 6 noches', seeDates: 'Ver fechas', expect: 'Qué esperar', medicine: 'La medicina', included: 'Qué incluye', week: 'La semana', weekH: 'Siete días en la Finca', day: 'Día', schedule: 'El programa se ajusta al grupo. Cada ceremonia es opcional.', dates: `Fechas ${retreats.year}`, book: 'Reservar', talk: 'Habla con nosotros primero', about: 'sobre', perPerson: 'por persona', rooms: 'Ver las habitaciones', ready: '¿Hablamos?', call: 'Empieza con una llamada', callP: 'Revisamos tu salud, tus medicamentos y lo que esperas del retiro. Nada se confirma antes de eso.', register: 'Regístrate para una llamada', prepare: 'Cómo prepararte' }
-  : { eyebrow: 'Finca El Péndulo · 7 days, 6 nights', seeDates: 'See dates', expect: 'What to expect', medicine: 'The medicine', included: "What's included", week: 'The week', weekH: 'Seven days at the Finca', day: 'Day', schedule: 'The schedule moves with the group. Every ceremony is optional.', dates: `${retreats.year} dates`, book: 'Book', talk: 'Talk to us first', about: 'about', perPerson: 'per person', rooms: 'See the rooms', ready: 'Ready to talk?', call: 'Start with a call', callP: 'We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.', register: 'Register for a call', prepare: 'How to prepare' };
+  ? { eyebrow: 'Finca El Péndulo · 7 días, 6 noches', seeDates: 'Ver fechas', expect: 'Qué esperar', medicine: 'La medicina', included: 'Qué incluye', week: 'La semana', weekH: 'Siete días en la Finca', day: 'Día', schedule: 'El programa se ajusta al grupo. Cada ceremonia es opcional.', dates: `Fechas ${retreats.year}`, book: 'Reservar', talk: 'Habla con nosotros primero', about: 'sobre', perPerson: 'por persona', rooms: 'Ver las habitaciones', ready: '¿Hablamos?', call: 'Empieza con una llamada', callP: 'Elige día y hora en el calendario. Revisamos tu salud, tus medicamentos y lo que esperas del retiro. Nada se confirma antes de eso.', register: '¿Prefieres escribirnos primero? Regístrate', prepare: 'Cómo prepararte' }
+  : { eyebrow: 'Finca El Péndulo · 7 days, 6 nights', seeDates: 'See dates', expect: 'What to expect', medicine: 'The medicine', included: "What's included", week: 'The week', weekH: 'Seven days at the Finca', day: 'Day', schedule: 'The schedule moves with the group. Every ceremony is optional.', dates: `${retreats.year} dates`, book: 'Book', talk: 'Talk to us first', about: 'about', perPerson: 'per person', rooms: 'See the rooms', ready: 'Ready to talk?', call: 'Start with a call', callP: 'Pick a day and time in the calendar. We go over your health, your medications and what you are hoping for. Nothing is confirmed until then.', register: 'Prefer to write first? Register', prepare: 'How to prepare' };
 const roomName: Record<string, string> = { dorm: 'Dormitorio compartido', 'semi-private': 'Villa semiprivada', private: 'Habitación privada', deluxe: 'Habitación deluxe' };
 ---
 <HeroSplit image={p.hero.name} imageAlt={p.hero.alt} eyebrow={t.eyebrow} title={p.title} cta={{ label: t.seeDates, href: '#dates' }} images={p.heroThumbs}>{p.heroText}</HeroSplit>
@@ -98,7 +98,7 @@ const roomName: Record<string, string> = { dorm: 'Dormitorio compartido', 'semi-
             <span class="t-date">{dateRange(r.start, r.end, false, lang)}</span>
             <span class="date-card__links">
               {r.bookingUrl && <a href={r.bookingUrl} data-track="booking">{t.book}<span class="visually-hidden"> {dateRange(r.start, r.end, false, lang)}</span></a>}
-              <a href={registerHref(r.id, lang)} data-track="register">{t.talk}<span class="visually-hidden"> {t.about} {dateRange(r.start, r.end, false, lang)}</span></a>
+              <a href="#register" data-track="book_call">{t.talk}<span class="visually-hidden"> {t.about} {dateRange(r.start, r.end, false, lang)}</span></a>
             </span>
           </div>
         </li>
@@ -117,14 +117,18 @@ const roomName: Record<string, string> = { dorm: 'Dormitorio compartido', 'semi-
 
 <Reviews limit={3} />
 
-<section id="register" class="section deep center">
-  <p class="label" style="margin-bottom:var(--space-5)">{t.ready}</p>
-  <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">{t.call}</h2>
-  <p class="measure" style="margin-bottom:var(--space-7)">{t.callP}</p>
-  <div class="cluster">
-    <Button href={registerHref(dates[0]?.id, lang)} variant="on-photo" data-track="register">{t.register}</Button>
-    <Button href={to('/prepare')} variant="on-photo">{t.prepare}</Button>
+<section id="register" class="section deep">
+  <div class="center">
+    <p class="label" style="margin-bottom:var(--space-5)">{t.ready}</p>
+    <h2 class="t-heading measure" style="margin-bottom:var(--space-5)">{t.call}</h2>
+    <p class="measure" style="margin-bottom:var(--space-7)">{t.callP}</p>
   </div>
+  <div class="wrap retreat-booking">
+    <BookingWidget />
+  </div>
+  <p class="center retreat-booking__more">
+    <a href={registerHref(dates[0]?.id, lang)} data-track="register">{t.register}</a> · <a href={to('/prepare')}>{t.prepare}</a>
+  </p>
 </section>
 
 <style is:global>
@@ -134,4 +138,6 @@ const roomName: Record<string, string> = { dorm: 'Dormitorio compartido', 'semi-
   .date-cards .date-card:hover { background: none; color: var(--ink); }
   .date-card__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
   .date-card__links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .retreat-booking { max-width: 900px; }
+  .retreat-booking__more { margin-top: var(--space-6); }
 </style>

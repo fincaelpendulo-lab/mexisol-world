@@ -98,4 +98,4 @@ Yes. Many guests start with psilocybin, take time to integrate, and come back fo
 
 ## Still deciding
 
-That is normal. [Register](../#register) and we will set up a call to go over your health, your questions and the dates. We would rather talk it through than have you arrive unsure.
+That is normal. [Book a call](../book-a-call) and we will go over your health, your questions and the dates. We would rather talk it through than have you arrive unsure.

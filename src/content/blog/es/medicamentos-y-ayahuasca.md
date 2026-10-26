@@ -103,6 +103,6 @@ Nada se confirma hasta terminar esta revisión.
 
 No adivines ni pruebes "a ver qué pasa". Mándanos tu lista completa. Te diremos si es un no claro, un sí posible con planeación o algo para revisar con tu médico.
 
-La lista completa de condiciones y medicamentos está en nuestra [información médica](../informacion-medica). Cuando estés listo o lista, [regístrate](../../es#register) y agendamos una llamada.
+La lista completa de condiciones y medicamentos está en nuestra [información médica](../informacion-medica). Cuando estés listo o lista, [agenda una llamada](../agenda-una-llamada) y lo revisamos juntos.
 
 *Este artículo es información general, no consejo médico.*

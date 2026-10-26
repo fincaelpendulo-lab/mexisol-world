@@ -71,4 +71,4 @@ It is not a yes-or-no question. It is about timing, readiness and an honest look
 
 If you are still unsure, talk to us. A call helps you see whether now is the time, or whether you need more preparation first. There is no shame in waiting. Timing matters.
 
-Read about [the ayahuasca retreat](../ayahuasca-retreat), check our [medical information](../medical), or [register](../#register) for a call.
+Read about [the ayahuasca retreat](../ayahuasca-retreat), check our [medical information](../medical), or [book a call](../book-a-call).

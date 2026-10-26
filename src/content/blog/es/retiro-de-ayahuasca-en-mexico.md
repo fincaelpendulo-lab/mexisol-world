@@ -69,4 +69,4 @@ La ayahuasca es más física y más larga. La psilocibina es más suave con el c
 **¿Cómo me preparo?**
 Dos semanas de comida limpia, sin alcohol ni drogas recreativas, y una revisión de medicamentos. Mira [cómo prepararte para la ayahuasca](como-prepararte-para-la-ayahuasca).
 
-¿Hablamos? [Regístrate](../../es#register) y agendamos una llamada.
+¿Hablamos? [Agenda una llamada](../agenda-una-llamada) con nosotros.

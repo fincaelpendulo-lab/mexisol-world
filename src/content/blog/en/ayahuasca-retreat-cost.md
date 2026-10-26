@@ -66,4 +66,4 @@ More in [how to choose a safe ayahuasca retreat](how-to-choose-a-safe-ayahuasca-
 
 A week of ceremony is an investment of money, time and energy. It is worth it when the place takes your safety seriously and the people know what they are doing, and when you give yourself time to integrate afterward.
 
-Questions about price or rooms? [Register](../#register) and we will call you, or see the [retreat calendar](../upcoming-retreats).
+Questions about price or rooms? [Book a call](../book-a-call), or see the [retreat calendar](../upcoming-retreats).
