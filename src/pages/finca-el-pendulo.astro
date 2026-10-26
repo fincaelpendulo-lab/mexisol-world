@@ -18,7 +18,7 @@ import { event, fincaLocation, fincaPlace } from '../lib/schema';
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
-const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat', women: '/es/retiro-de-mujeres' };
+const medicinePage: Record<string, string> = { ayahuasca: '/ayahuasca-retreat', psilocybin: '/psilocybin-retreat', wellness: '/sitka-sol-wellness-retreat', newyear: '/new-year-retreat', women: '/es/retiro-de-mujeres' };
 const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
 
 const spaces = [
@@ -62,6 +62,8 @@ const events = retreats.finca.map((r) => event({
     ? 'A Holy Week retreat at Finca El Péndulo, Jalisco, with the Medicine and Music Festival.'
     : r.medicine === 'women'
     ? "A women's retreat with Araisis at Finca El Péndulo: two ceremonies with sacred mushrooms, music, cacao, kambo, voice activation, astrology workshops and temazcal."
+    : r.medicine === 'newyear'
+    ? 'New Year at Finca El Péndulo: a five-night retreat with an ayahuasca ceremony on December 31, a two-night ceremony and celebration, or one night of New Year dinner, fire and live music.'
     : r.medicine === 'wellness'
     ? 'Sitka & Sol Wellness Retreat with Sitka Healing House: a five-day liver cleanse, movement, meditation and live music at Finca El Péndulo.'
     : `Seven days, six nights, all-inclusive. Three ceremonies: two with ${r.medicine} and one with Satori. Up to 15 guests.`,

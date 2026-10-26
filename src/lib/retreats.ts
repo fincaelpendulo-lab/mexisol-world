@@ -23,6 +23,8 @@ const es: Record<string, string> = {
   'Psilocybin retreat': 'Retiro de psilocibina',
   "Women's Retreat with Araisis": 'Retiro de mujeres con Araisis',
   'Familia Sagrada retreat': 'Retiro Familia Sagrada',
+  'New Year at Finca El Péndulo': 'Año Nuevo en Finca El Péndulo',
+  'Retreat, ceremony or celebration': 'Retiro, ceremonia o festejo',
   'Master plant retreat': 'Retiro de plantas maestras',
   'Master plant dieta': 'Dieta de plantas maestras',
   'Europe tour': 'Gira por Europa',
@@ -46,6 +48,7 @@ const medicinePage: Record<string, string> = {
   ayahuasca: '/ayahuasca-retreat',
   psilocybin: '/psilocybin-retreat',
   wellness: '/sitka-sol-wellness-retreat',
+  newyear: '/new-year-retreat',
   women: '/es/retiro-de-mujeres', // held in Spanish, so the page is Spanish only
 };
 

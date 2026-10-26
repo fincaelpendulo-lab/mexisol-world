@@ -22,7 +22,7 @@ import { faqPage } from '../lib/schema';
 const fincaNext = retreats.finca.slice(0, 4).map((r) => ({
   date: retreatDates(r.start, r.end, retreats.year, true),
   title: r.title,
-  href: href(r.medicine === 'ayahuasca' ? '/ayahuasca-retreat' : r.medicine === 'psilocybin' ? '/psilocybin-retreat' : r.medicine === 'wellness' ? '/sitka-sol-wellness-retreat' : r.medicine === 'women' ? '/es/retiro-de-mujeres' : '/finca-el-pendulo#dates'),
+  href: href(r.medicine === 'ayahuasca' ? '/ayahuasca-retreat' : r.medicine === 'psilocybin' ? '/psilocybin-retreat' : r.medicine === 'wellness' ? '/sitka-sol-wellness-retreat' : r.medicine === 'newyear' ? '/new-year-retreat' : r.medicine === 'women' ? '/es/retiro-de-mujeres' : '/finca-el-pendulo#dates'),
 }));
 const intlNext = retreats.international.slice(0, 4).map((r) => ({
   date: dateRange(r.start, r.end, true),

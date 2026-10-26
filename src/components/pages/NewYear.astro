@@ -1,0 +1,289 @@
+---
+// New Year 2027 at Finca El Péndulo: three packages (retreat, ceremony and celebration, celebration).
+// Content from the "Landing page · Año Nuevo 2027" doc. Prices are per person in Mexican pesos,
+// lodging and activities included. Booking is by WhatsApp. Used by /new-year-retreat and /es/ano-nuevo.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Photo from '../Photo.astro';
+import Button from '../Button.astro';
+import site from '../../data/site.json';
+import { localize, type Lang } from '../../lib/i18n';
+import { href, absolute } from '../../lib/url';
+import { fincaLocation } from '../../lib/schema';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+const es = lang === 'es';
+const path = localize('/new-year-retreat', lang);
+const wa = (text: string) => `https://wa.me/${site.whatsapp.number}?text=${encodeURIComponent(text)}`;
+const mxn = (n: number) => `$${n.toLocaleString('en-US')}`;
+
+type Prices = { room: string; p: (number | null)[] }[];
+const rooms = es ? ['Deluxe', 'Privada', 'Aldea', 'Hostal'] : ['Deluxe', 'Private', 'Aldea', 'Hostel'];
+const table = (rows: (number | null)[][]): Prices => rows.map((p, i) => ({ room: rooms[i], p }));
+
+const packages = [
+  {
+    id: 'retreat',
+    name: es ? 'Retiro de Año Nuevo' : 'New Year Retreat',
+    dates: es ? '28 de diciembre de 2026 al 2 de enero de 2027' : 'December 28, 2026 to January 2, 2027',
+    nights: es ? '5 noches' : '5 nights',
+    from: 9350,
+    start: '2026-12-28', end: '2027-01-02',
+    img: 'web-group-yoga-oracle',
+    alt: es ? 'Yoga al aire libre en el círculo de piedra del Oráculo' : 'Outdoor yoga on the stone circle of the Oracle',
+    days: es
+      ? [['28 dic', 'Llegada y activación de voz'], ['29 dic', 'Yoga, temazcal y cold plunge'], ['30 dic', 'Kambó y círculos de fuego'], ['31 dic', 'Ceremonia de ayahuasca y cena de año nuevo con fogata y canto'], ['1 ene', 'Mitos y mantras'], ['2 ene', 'Salida']]
+      : [['Dec 28', 'Arrival and voice activation'], ['Dec 29', 'Yoga, temazcal and cold plunge'], ['Dec 30', 'Kambo and fire circles'], ['Dec 31', 'Ayahuasca ceremony, then New Year dinner with a bonfire and song'], ['Jan 1', 'Myths and mantras'], ['Jan 2', 'Departure']],
+    prices: table([[20800, 12700, null, null], [17800, 11200, null, null], [18400, 11500, 10200, 9550], [9350, null, null, null]]),
+    friends: 9550,
+    wa: wa(es ? 'Hola, quiero reservar el Retiro de Año Nuevo en Finca El Péndulo' : "Hi, I'd like to book the New Year Retreat at Finca El Péndulo"),
+  },
+  {
+    id: 'ceremony',
+    name: es ? 'Festejo y Ceremonia de fin de año' : "New Year's Eve Ceremony and Celebration",
+    dates: es ? '31 de diciembre de 2026 al 2 de enero de 2027' : 'December 31, 2026 to January 2, 2027',
+    nights: es ? '2 noches' : '2 nights',
+    from: 4750,
+    start: '2026-12-31', end: '2027-01-02',
+    img: 'blog-altar-candles',
+    alt: es ? 'Altar con velas y flores en el salón ceremonial' : 'An altar with candles and flowers in the ceremony space',
+    days: es
+      ? [['31 dic', 'Ceremonia de ayahuasca y cena de año nuevo con fogata y canto'], ['1 ene', 'Mitos y mantras'], ['2 ene', 'Salida']]
+      : [['Dec 31', 'Ayahuasca ceremony, then New Year dinner with a bonfire and song'], ['Jan 1', 'Myths and mantras'], ['Jan 2', 'Departure']],
+    prices: table([[9330, 6090, null, null], [8130, 5490, null, null], [8370, 5610, 5090, 4830], [4750, null, null, null]]),
+    friends: 4830,
+    wa: wa(es ? 'Hola, quiero reservar el Festejo y Ceremonia de fin de año en Finca El Péndulo' : "Hi, I'd like to book the New Year's Eve Ceremony and Celebration at Finca El Péndulo"),
+  },
+  {
+    id: 'celebration',
+    name: es ? 'Festejo de Año Nuevo' : 'New Year Celebration',
+    dates: es ? '31 de diciembre de 2026 al 1 de enero de 2027' : 'December 31, 2026 to January 1, 2027',
+    nights: es ? '1 noche' : '1 night',
+    from: 1650,
+    start: '2026-12-31', end: '2027-01-01',
+    img: 'web-fire-dancer',
+    alt: es ? 'Espectáculo de fuego de noche' : 'A fire performance at night',
+    includes: es ? 'Incluye cena de año nuevo, celebración con fogata y concierto.' : 'Includes New Year dinner, a bonfire celebration and a concert.',
+    days: [] as string[][],
+    prices: table([[3940, 2320, null, null], [3340, 2020, null, null], [3460, 2080, 1820, 1690], [1650, null, null, null]]),
+    friends: 1690,
+    wa: wa(es ? 'Hola, quiero reservar el Festejo de Año Nuevo en Finca El Péndulo' : "Hi, I'd like to book the New Year Celebration at Finca El Péndulo"),
+  },
+];
+const waAll = wa(es ? 'Hola, quiero reservar Año Nuevo 2027 en Finca El Péndulo' : "Hi, I'd like to book New Year 2027 at Finca El Péndulo");
+
+const t = es
+  ? {
+      title: 'Año Nuevo 2027 en Finca El Péndulo | Retiro y festejo en Jalisco',
+      description: 'Recibe 2027 en Finca El Péndulo, Tepatitlán, Jalisco. Tres paquetes con hospedaje y actividades incluidos, desde $1,650 MXN por persona.',
+      crumbFinca: 'Retiros en Finca El Péndulo', crumb: 'Año Nuevo 2027',
+      eyebrow: '28 de diciembre al 2 de enero · Finca El Péndulo',
+      h1: 'Recibe 2027 en Finca El Péndulo',
+      sub: 'Tres formas de cerrar el año en Tepatitlán de Morelos, Jalisco. Del 28 de diciembre al 2 de enero.',
+      bookWa: 'Reserva por WhatsApp', seePackages: 'Ver los paquetes',
+      intro: 'Precios por persona, con hospedaje y actividades incluidos. Elige el paquete y el tipo de habitación.',
+      fromLabel: 'desde', perPerson: 'por persona', program: 'Programa', day: 'Día', activities: 'Actividades',
+      bookThis: 'Reserva este paquete',
+      pricesH: 'Precios por persona', pricesNote: 'Hospedaje y actividades incluidos. Montos en pesos mexicanos (MXN).',
+      room: 'Habitación', people: ['1 pers.', '2 pers.', '3 pers.', '4 pers.'], na: 'No disponible',
+      notesH: 'Notas de habitaciones',
+      notes: ['Deluxe y Privada: 1 o 2 personas.', 'Aldea: hasta 4 personas. La 3.ª y la 4.ª persona pagan $600 MXN extra por noche cada una.', 'Hostal: individual.'],
+      friendsH: 'Ven con tus amigos', friendsP: 'En una Aldea para 4, cada quien paga casi lo mismo que en el hostal, y tienen su propio espacio.',
+      pkg: 'Paquete', friendsCol: 'Aldea para 4, por persona',
+      healthH: 'Antes de la ceremonia',
+      healthP: 'El Retiro de Año Nuevo y el Festejo y Ceremonia incluyen una ceremonia de ayahuasca, y el retiro también incluye kambó. Como en todos nuestros retiros, revisamos tu salud y tus medicamentos antes de confirmar tu lugar.',
+      medical: 'Información médica', call: 'Agenda una llamada',
+      whereH: 'Ubicación',
+      whereP: 'Finca El Péndulo · Camino al Saucillo 861, Tepatitlán de Morelos, Jalisco. A una hora de Guadalajara.',
+      howGet: 'Cómo llegar',
+      closeEyebrow: 'Año Nuevo 2027', closeH: 'Cierra el año con nosotros', closeP: 'Escríbenos por WhatsApp y te ayudamos a elegir paquete y habitación.',
+      eventDesc: (n: string) => `${n} en Finca El Péndulo, Tepatitlán de Morelos, Jalisco. Hospedaje y actividades incluidos.`,
+    }
+  : {
+      title: 'New Year 2027 at Finca El Péndulo | Retreat and Celebration in Jalisco',
+      description: 'Ring in 2027 at Finca El Péndulo in Tepatitlán, Jalisco. Three packages with lodging and activities included, from $1,650 MXN per person.',
+      crumbFinca: 'Finca El Péndulo retreats', crumb: 'New Year 2027',
+      eyebrow: 'December 28 to January 2 · Finca El Péndulo',
+      h1: 'Ring in 2027 at Finca El Péndulo',
+      sub: 'Three ways to close the year in Tepatitlán de Morelos, Jalisco. December 28 to January 2.',
+      bookWa: 'Book on WhatsApp', seePackages: 'See the packages',
+      intro: 'Prices are per person, with lodging and activities included. Choose your package and your room.',
+      fromLabel: 'from', perPerson: 'per person', program: 'Program', day: 'Day', activities: 'Activities',
+      bookThis: 'Book this package',
+      pricesH: 'Prices per person', pricesNote: 'Lodging and activities included. Prices in Mexican pesos (MXN).',
+      room: 'Room', people: ['1 guest', '2 guests', '3 guests', '4 guests'], na: 'Not available',
+      notesH: 'About the rooms',
+      notes: ['Deluxe and Private: 1 or 2 guests.', 'Aldea: up to 4 guests. The 3rd and 4th guest pay $600 MXN extra per night each.', 'Hostel: single bed.'],
+      friendsH: 'Come with friends', friendsP: 'In an Aldea for four, each of you pays almost the same as in the hostel, and you get a space of your own.',
+      pkg: 'Package', friendsCol: 'Aldea for 4, per person',
+      healthH: 'Before the ceremony',
+      healthP: "The New Year Retreat and the New Year's Eve Ceremony and Celebration include an ayahuasca ceremony, and the retreat also includes kambo. As in all our retreats, we review your health and medications before confirming your place.",
+      medical: 'Medical information', call: 'Book a call',
+      whereH: 'Location',
+      whereP: 'Finca El Péndulo · Camino al Saucillo 861, Tepatitlán de Morelos, Jalisco. One hour from Guadalajara.',
+      howGet: 'How to get here',
+      closeEyebrow: 'New Year 2027', closeH: 'Close the year with us', closeP: 'Message us on WhatsApp and we will help you choose your package and room.',
+      eventDesc: (n: string) => `${n} at Finca El Péndulo, Tepatitlán de Morelos, Jalisco. Lodging and activities included.`,
+    };
+
+const schema = packages.map((p) => ({
+  '@type': 'Event',
+  name: `${p.name} · Finca El Péndulo`,
+  startDate: p.start,
+  endDate: p.end,
+  description: t.eventDesc(p.name),
+  url: `${absolute(path)}#${p.id}`,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: fincaLocation,
+  organizer: { '@id': `${site.url}/#organization` },
+  image: [`${site.url}/og/finca.jpg`],
+  inLanguage: lang,
+  offers: { '@type': 'Offer', price: p.from, priceCurrency: 'MXN', availability: 'https://schema.org/InStock', url: p.wa },
+}));
+---
+<BaseLayout
+  title={t.title}
+  description={t.description}
+  path={path}
+  lang={lang}
+  current="finca"
+  ogImage="finca"
+  breadcrumbs={[{ name: t.crumbFinca, path: localize('/finca-el-pendulo', lang) }, { name: t.crumb, path }]}
+  schema={schema}
+>
+  <div class="photo-band" style="--h:620px">
+    <Photo name="fire-circle-at-night" alt={es ? 'Círculo de fuego de noche en Finca El Péndulo' : 'A fire circle at night at Finca El Péndulo'} priority />
+    <div class="photo-band__wash wash-strong">
+      <p class="label">{t.eyebrow}</p>
+      <h1 class="t-display">{t.h1}</h1>
+      <p class="t-subtitle" style="max-width:760px">{t.sub}</p>
+      <div class="cluster" style="margin-top:var(--space-6)">
+        <Button href={waAll} variant="on-photo" data-track="whatsapp">{t.bookWa}</Button>
+        <Button href="#packages" variant="on-photo">{t.seePackages}</Button>
+      </div>
+    </div>
+  </div>
+
+  <section class="gutter center" style="padding:var(--space-8) clamp(24px, 4vw, 48px)">
+    <p class="t-lead measure">{t.intro}</p>
+  </section>
+
+  <section id="packages" class="section" style="padding-top:0">
+    <div class="wrap ny-packages">
+      {packages.map((p, i) => (
+        <article id={p.id} class="ny-package">
+          <Photo name={p.img} alt={p.alt} sizes="(max-width: 900px) 100vw, 40vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+          <div class="ny-package__text">
+            <p class="label label--tight">{t.pkg} {i + 1}</p>
+            <h2 class="t-heading">{p.name}</h2>
+            <p class="t-date">{p.dates}</p>
+            <p class="muted">{p.nights} · {t.fromLabel} <strong class="ny-from">{mxn(p.from)} MXN</strong> {t.perPerson}</p>
+            {p.days.length > 0 && (
+              <table class="ny-table">
+                <caption class="visually-hidden">{t.program}: {p.name}</caption>
+                <thead><tr><th scope="col">{t.day}</th><th scope="col">{t.activities}</th></tr></thead>
+                <tbody>{p.days.map(([d, a]) => <tr><th scope="row">{d}</th><td>{a}</td></tr>)}</tbody>
+              </table>
+            )}
+            {'includes' in p && p.includes && <p>{p.includes}</p>}
+            <div><Button href={p.wa} data-track="whatsapp">{t.bookThis}</Button></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="prices" class="section section--top-rule">
+    <div class="wrap">
+      <h2 class="t-heading" style="margin-bottom:var(--space-3)">{t.pricesH}</h2>
+      <p class="muted" style="margin-bottom:var(--space-7)">{t.pricesNote}</p>
+      <div class="ny-prices">
+        {packages.map((p) => (
+          <div>
+            <h3 class="t-title" style="margin-bottom:var(--space-4)">{p.name} · {p.nights}</h3>
+            <div class="table-scroll" tabindex="0" role="region" aria-label={`${t.pricesH}: ${p.name}`}>
+              <table class="ny-table ny-table--prices">
+                <thead><tr><th scope="col">{t.room}</th>{t.people.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+                <tbody>
+                  {p.prices.map((r) => (
+                    <tr><th scope="row">{r.room}</th>{r.p.map((v) => v ? <td>{mxn(v)}</td> : <td><span aria-hidden="true">·</span><span class="visually-hidden">{t.na}</span></td>)}</tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h3 class="t-title" style="margin:var(--space-8) 0 var(--space-4)">{t.notesH}</h3>
+      <ul class="rule-list rule-list--soft" style="max-width:var(--measure)">
+        {t.notes.map((n) => <li>{n}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section id="friends" class="section deep">
+    <div class="wrap grid" style="align-items:center">
+      <div>
+        <h2 class="t-heading" style="margin-bottom:var(--space-5)">{t.friendsH}</h2>
+        <p style="margin-bottom:var(--space-6)">{t.friendsP}</p>
+        <table class="ny-table ny-table--deep">
+          <thead><tr><th scope="col">{t.pkg}</th><th scope="col">{t.friendsCol}</th></tr></thead>
+          <tbody>{packages.map((p) => <tr><th scope="row">{p.name}</th><td>{mxn(p.friends)} MXN</td></tr>)}</tbody>
+        </table>
+      </div>
+      <Photo name="guests-sharing-a-candlelit-dinner-at" alt={es ? 'Amigos cenando a la luz de las velas' : 'Friends sharing dinner by candlelight'} sizes="(max-width: 760px) 100vw, 50vw" widths={[480, 800, 1200]} class="ratio-4-3" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <h2 class="t-title" style="margin-bottom:var(--space-4)">{t.healthH}</h2>
+        <p class="muted" style="margin-bottom:var(--space-5)">{t.healthP}</p>
+        <div class="cluster">
+          <Button href={href(localize('/medical', lang))}>{t.medical}</Button>
+          <Button href={href(localize('/book-a-call', lang))} data-track="book_call">{t.call}</Button>
+        </div>
+      </div>
+      <div>
+        <h2 class="t-title" style="margin-bottom:var(--space-4)">{t.whereH}</h2>
+        <p class="muted" style="margin-bottom:var(--space-5)">{t.whereP}</p>
+        <Button href={href(localize('/prepare', lang))}>{t.howGet}</Button>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-band" style="--h:480px">
+    <Photo name="blog-fountain-palapa" alt={es ? 'La palapa y la fuente de noche' : 'The palapa and the fountain at night'} />
+    <div class="photo-band__wash wash-strong">
+      <p class="label">{t.closeEyebrow}</p>
+      <h2 class="t-display">{t.closeH}</h2>
+      <p class="t-subtitle" style="max-width:640px">{t.closeP}</p>
+      <div class="cluster" style="margin-top:var(--space-6)">
+        <Button href={waAll} variant="on-photo" data-track="whatsapp">{t.bookWa}</Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .ny-packages { display: flex; flex-direction: column; gap: var(--space-9); }
+  .ny-package { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--space-8); align-items: start; scroll-margin-top: calc(var(--header-height) + 24px); }
+  .ny-package:nth-child(even) > :first-child { order: 2; }
+  .ny-package__text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .ny-from { font-weight: 400; color: var(--ink); }
+  .ny-table { width: 100%; border-collapse: collapse; font: var(--text-body); }
+  .ny-table th, .ny-table td { text-align: left; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  .ny-table thead th { font: var(--text-caption); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); border-bottom-color: var(--ink); }
+  .ny-table tbody th { font-weight: 400; white-space: nowrap; }
+  .ny-table--prices td { white-space: nowrap; }
+  .ny-table--deep th, .ny-table--deep td { border-bottom-color: rgba(255, 255, 255, 0.32); }
+  .ny-table--deep thead th { color: var(--on-deep); border-bottom-color: var(--white); }
+  .ny-prices .table-scroll { overflow-x: auto; }
+  .ny-prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: var(--space-8) var(--space-7); }
+  @media (max-width: 900px) {
+    .ny-package { grid-template-columns: 1fr; gap: var(--space-5); }
+    .ny-package:nth-child(even) > :first-child { order: 0; }
+  }
+</style>

@@ -14,6 +14,7 @@ export const esRoutes: Record<string, string> = {
   '/ayahuasca-retreat': '/es/retiro-de-ayahuasca',
   '/psilocybin-retreat': '/es/retiro-de-psilocibina',
   '/sitka-sol-wellness-retreat': '/es/retiro-sitka-sol',
+  '/new-year-retreat': '/es/ano-nuevo',
   '/prepare': '/es/preparacion',
   '/medical': '/es/informacion-medica',
   '/about': '/es/nosotros',

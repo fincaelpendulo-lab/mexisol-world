@@ -20,7 +20,7 @@ import Reviews from '../../components/Reviews.astro';
 import SubscribeForm from '../../components/SubscribeForm.astro';
 import { faqPage } from '../../lib/schema';
 
-const page: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', women: '/es/retiro-de-mujeres' };
+const page: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', newyear: '/es/ano-nuevo', women: '/es/retiro-de-mujeres' };
 const fincaNext = retreats.finca.slice(0, 4).map((r) => ({
   date: retreatDates(r.start, r.end, retreats.year, true, 'es'),
   title: tr(r.title, 'es'),

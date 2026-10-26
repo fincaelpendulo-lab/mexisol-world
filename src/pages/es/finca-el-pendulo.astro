@@ -19,7 +19,7 @@ import { event, fincaLocation, fincaPlace } from '../../lib/schema';
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')} USD`;
 const price = Object.fromEntries(rooms.rooms.map((r) => [r.id, r.priceUsd]));
-const medicinePage: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', women: '/es/retiro-de-mujeres' };
+const medicinePage: Record<string, string> = { ayahuasca: '/es/retiro-de-ayahuasca', psilocybin: '/es/retiro-de-psilocibina', wellness: '/es/retiro-sitka-sol', newyear: '/es/ano-nuevo', women: '/es/retiro-de-mujeres' };
 const inYear = retreats.finca.filter((r) => r.start.startsWith(String(retreats.year))).length;
 
 const spaces = [
@@ -63,6 +63,8 @@ const events = retreats.finca.map((r) => event({
     ? 'Un retiro de Semana Santa en Finca El Péndulo, Jalisco, con el Festival de Medicina y Música.'
     : r.medicine === 'women'
     ? 'Un retiro para mujeres con Araisis en Finca El Péndulo: dos ceremonias con hongos sagrados, música, cacao, kambó, activación de la voz, talleres de astrología y temazcal.'
+    : r.medicine === 'newyear'
+    ? 'Año Nuevo en Finca El Péndulo: un retiro de cinco noches con ceremonia de ayahuasca el 31 de diciembre, un festejo con ceremonia de dos noches, o una noche de cena de año nuevo, fogata y concierto.'
     : r.medicine === 'wellness'
     ? 'Sitka & Sol Wellness Retreat con Sitka Healing House: una limpieza de hígado de cinco días, movimiento, meditación y música en vivo en Finca El Péndulo.'
     : `Siete días, seis noches, todo incluido. Tres ceremonias: dos con ${r.medicine === 'ayahuasca' ? 'ayahuasca' : 'psilocibina'} y una con Satori. Hasta 15 personas.`,

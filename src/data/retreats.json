@@ -12,6 +12,16 @@
       "noPrice": true
     },
     {
+      "id": "new-year-2027",
+      "medicine": "newyear",
+      "title": "New Year at Finca El Péndulo",
+      "guide": "Retreat, ceremony or celebration",
+      "start": "2026-12-28",
+      "end": "2027-01-02",
+      "bookingUrl": "https://wa.me/523787900992?text=Hola%2C%20quiero%20reservar%20A%C3%B1o%20Nuevo%202027%20en%20Finca%20El%20P%C3%A9ndulo",
+      "noPrice": true
+    },
+    {
       "id": "sitka-sol",
       "medicine": "wellness",
       "title": "Sitka & Sol Wellness Retreat",
