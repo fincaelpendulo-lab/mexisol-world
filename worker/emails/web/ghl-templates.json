@@ -1,0 +1,44 @@
+{
+ "01-request-info": {
+  "id": "6ae119160cbc021f071c41dd",
+  "ghl_name": "Web 01 - Request info",
+  "workflow": "Solicitud de información (sitio web)",
+  "sha256": "aaf5ba66486ffcea14586403a1899aed22a521b28344434388537660eabf1643",
+  "subject": "Thank you, {{contact.first_name}}. Here is what comes next"
+ },
+ "02-newsletter-welcome": {
+  "id": "6ae1191e0cbc021f071c4322",
+  "ghl_name": "Web 02 - Newsletter welcome",
+  "workflow": "Bienvenida newsletter ($100 USD)",
+  "sha256": "2c01e7a0516b11c1cfcfcbbfd30dde1c6adeccfa7090214d6957bfbabaf73aee",
+  "subject": "Welcome to MexiSol World: your $100 USD is waiting"
+ },
+ "03-calendar-2027": {
+  "id": "6ae1191f79173350f1a9cc71",
+  "ghl_name": "Web 03 - Calendar 2027",
+  "workflow": "Calendario 2027 (sitio web)",
+  "sha256": "ef739f1a573c53181baf30a742f54a76400702de749afcab7daac37ec8482d62",
+  "subject": "Your 2027 calendar from MexiSol World"
+ },
+ "04-followup-day2": {
+  "id": "6ae11920a92b4f00e1e1259f",
+  "ghl_name": "Web 04 - Follow-up day 2",
+  "workflow": "Seguimiento lead web (días 2, 5, 10)",
+  "sha256": "551f2105e2a1baf85ae16d7a9489cf8b9413fb989056bee89a9529de79bd6980",
+  "subject": "Any questions, {{contact.first_name}}?"
+ },
+ "05-followup-day5": {
+  "id": "6ae119225895ff985fcea36e",
+  "ghl_name": "Web 05 - Follow-up day 5",
+  "workflow": "Seguimiento lead web (días 2, 5, 10)",
+  "sha256": "fbe63b1062f98273338d137b1ff2c949e1dac14f5ebc29df1c5422aa0407a687",
+  "subject": "What a week at the Finca feels like"
+ },
+ "06-followup-day10": {
+  "id": "6ae119235895ff985fcea39c",
+  "ghl_name": "Web 06 - Follow-up day 10",
+  "workflow": "Seguimiento lead web (días 2, 5, 10)",
+  "sha256": "a9fe6d5ab4b918c807cf41c86f32a949b04e7601af33fc497c41a523c3d7bd7c",
+  "subject": "Still thinking it over? That is fine"
+ }
+}

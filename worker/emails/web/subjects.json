@@ -1,0 +1,8 @@
+{
+ "01-request-info": "Thank you, {{contact.first_name}}. Here is what comes next",
+ "02-newsletter-welcome": "Welcome to MexiSol World: your $100 USD is waiting",
+ "03-calendar-2027": "Your 2027 calendar from MexiSol World",
+ "04-followup-day2": "Any questions, {{contact.first_name}}?",
+ "05-followup-day5": "What a week at the Finca feels like",
+ "06-followup-day10": "Still thinking it over? That is fine"
+}
