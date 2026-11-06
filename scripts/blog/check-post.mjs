@@ -64,7 +64,7 @@ function checkLang(lang, slug) {
   const srcHead = lang === 'es' ? /^## Fuentes\s*$/m : /^## Sources\s*$/m;
   const srcIdx = post.body.search(srcHead);
   if (srcIdx < 0) errors.push(`${tag}: no "## ${lang === 'es' ? 'Fuentes' : 'Sources'}" section`);
-  const sources = srcIdx < 0 ? [] : [...post.body.slice(srcIdx).matchAll(/\]\((https?:[^)\s]+)\)/g)].map((m) => m[1]);
+  const sources = srcIdx < 0 ? [] : [...post.body.slice(srcIdx).matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]);
   if (srcIdx >= 0 && sources.length < 5) errors.push(`${tag}: ${sources.length} sources (minimum 5)`);
   const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov/;
   if (srcIdx >= 0 && !sources.some((u) => academic.test(u))) errors.push(`${tag}: no academic source (journal, DOI or PubMed)`);
@@ -78,7 +78,7 @@ function checkLang(lang, slug) {
     path = path.replace(/\/$/, '') || '/';
     if (!internalExists(path)) errors.push(`${tag}: internal link ${m[1]} → ${path} has no page`);
   }
-  return { ...post, slug, lang, links: [...post.body.matchAll(/\]\((https?:[^)\s]+)\)/g)].map((m) => m[1]) };
+  return { ...post, slug, lang, links: [...post.body.matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]) };
 }
 
 function internalExists(path) {

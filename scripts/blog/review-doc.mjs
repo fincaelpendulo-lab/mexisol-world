@@ -27,7 +27,7 @@ function parse(text) {
 const words = (s) => s.replace(/[#*_>`|[\]()]/g, ' ').split(/\s+/).filter(Boolean).length;
 function countSources(body) {
   const i = body.search(/^## (Sources|Fuentes)\s*$/m);
-  const urls = i < 0 ? [] : [...body.slice(i).matchAll(/\]\((https?:[^)\s]+)\)/g)].map((m) => m[1]);
+  const urls = i < 0 ? [] : [...body.slice(i).matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]);
   const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov|who\.int|nih\.gov|gob\.mx/;
   const video = /youtube\.com|youtu\.be|vimeo\.com|ted\.com/;
   const c = { academic: 0, media: 0, video: 0, total: urls.length };
