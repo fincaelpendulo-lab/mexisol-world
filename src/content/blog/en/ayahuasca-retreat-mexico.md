@@ -56,7 +56,7 @@ Fly into Guadalajara (GDL). We can pick you up at the airport, or you can take t
 
 ## Dates
 
-Ayahuasca retreats at the Finca run through the year, alternating with psilocybin retreats. See every date in the [retreat calendar](../upcoming-retreats).
+Our ayahuasca retreats at the Finca run through the year, alternating with psilocybin retreats. See every date in the [retreat calendar](../upcoming-retreats).
 
 ## Frequently asked questions
 

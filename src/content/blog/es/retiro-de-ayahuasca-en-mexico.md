@@ -56,7 +56,7 @@ Vuela a Guadalajara (GDL). Podemos recogerte en el aeropuerto, o puedes venir en
 
 ## Fechas
 
-Los retiros de ayahuasca en la Finca se hacen durante todo el año, alternados con los de psilocibina. Todas las fechas están en el [calendario de retiros](../proximos-retiros).
+Nuestros retiros de ayahuasca en la Finca se hacen durante todo el año, alternados con los de psilocibina. Todas las fechas están en el [calendario de retiros](../proximos-retiros).
 
 ## Preguntas frecuentes
 
