@@ -117,12 +117,11 @@
       "angle": "Results are a retreat's own promo pages and a quiz site; nobody shows the whole process. We publish ours: the form, the intake call, medication and heart review, mental health history, what leads to 'not now', and what happens on arrival. The safe-retreat checklist tells people what to ask any centre; this shows exactly what we do.",
       "outline": [
         "Why screening comes before payment",
-        "Step 1: the health form",
-        "Step 2: the intake call",
-        "What we look at: medications, heart, mental health history",
+        "Your medications: why tapering comes first, always with your doctor",
+        "Why you are coming: the intention conversation",
+        "Your commitment to the process",
         "When the answer is 'not now', and what happens next",
-        "Checks on arrival and during the week",
-        "How to prepare for the call",
+        "How to prepare for the screening call",
         "FAQ"
       ],
       "internalLinks": [
@@ -139,7 +138,7 @@
         "Dos Santos et al. 2017, review of ayahuasca safety, Expert Opin Drug Saf"
       ],
       "cta": "book-a-call",
-      "notes": "Cornerstone guide 4. Needs Carlos to confirm the real steps, who does the call and the exact exclusion list. No diagnosis or medical instructions."
+      "notes": "Cornerstone guide 4. Carlos (2026-11-06): screening = (1) review of medications and the taper, done with the prescribing doctor; (2) an evaluation of why the person is coming; (3) their commitment to transformation. Do not add steps beyond these and what src/pages/medical states. No diagnosis or medical instructions, no taper schedules."
     },
     {
       "date": "2026-11-12",
@@ -164,9 +163,8 @@
         "What women ask us before they book",
         "Getting there: pickup from Guadalajara airport",
         "Where you sleep and who you share with",
-        "Who is in the room during ceremony",
-        "Consent and touch: our rules",
-        "Same-gender support during the week",
+        "A team that is mostly women",
+        "Your integration coach is a woman",
         "Questions to ask any retreat",
         "FAQ"
       ],
@@ -185,7 +183,7 @@
         "Our transport and room details from /finca-el-pendulo"
       ],
       "cta": "book-a-call",
-      "notes": "Needs Carlos to confirm consent/touch policy wording and who provides same-gender support. Do not overstate safety of the region; be factual."
+      "notes": "Carlos (2026-11-06): our integration coach is a woman and most of the team are women. He did not give a consent/touch policy: do not invent one or describe rules. Do not name the integration coach unless she is one of Humberto, Krista, Marina on the site. Do not overstate safety of the region; be factual."
     },
     {
       "date": "2026-11-14",
@@ -228,15 +226,15 @@
         "Our MXN prices from /es/retiro-de-ayahuasca"
       ],
       "cta": "book-a-call",
-      "notes": "Local Seeker: write in Spanish first, then English. Carlos: are there weekend or single-ceremony options for locals? If yes, feature them; if not, say the week is the format. No legal claims."
+      "notes": "Local Seeker: write in Spanish first, then English. Carlos (2026-11-06): there are NO weekend or single-ceremony options; the full retreat week is the format. Say so plainly and explain why a held week differs from a one-night ceremony. No legal claims."
     },
     {
       "date": "2026-11-16",
       "profile": "Healing Seeker",
       "slug": "difficult-ayahuasca-ceremony",
       "slugEs": "ceremonia-de-ayahuasca-dificil",
-      "title": "When an ayahuasca ceremony gets hard: what a difficult night looks like",
-      "titleEs": "Cuando la ceremonia de ayahuasca se pone difícil: cómo es una noche dura",
+      "title": "No bad trips: when an ayahuasca ceremony gets hard",
+      "titleEs": "No hay malos viajes: cuando la ceremonia de ayahuasca se pone difícil",
       "keyword": "bad ayahuasca experience",
       "keywordEs": "mala experiencia con ayahuasca",
       "secondary": [
@@ -248,15 +246,14 @@
       ],
       "intent": "informational",
       "searcherQuestion": "What if my ayahuasca night is terrifying? What actually happens, and who helps me?",
-      "angle": "Fear of losing control is the main thing that stops Healing Seekers. Results are horror stories, an ICEERS piece and studies. We describe honestly what a hard night is like (fear, grief, body sensations, feeling stuck), what the staff do minute by minute, how we lower the risk (screening, group size, setting), and how hard nights are worked with afterwards. The first-ceremony post covers a typical night; this covers the hard one.",
+      "angle": "Searchers type 'bad ayahuasca experience' out of fear. We meet that search and reframe it with our view: there are no good or bad experiences, only experiences, and tough moments are part of the process. Then the honest detail of what a hard night is like, how the team holds it and how it is integrated afterwards.",
       "outline": [
-        "Hard nights happen, and they are not a failure",
-        "What a difficult night can feel like",
+        "There is no such thing as a bad trip",
+        "What a hard night can feel like",
+        "Why tough is part of the process",
         "What our team does when you are struggling",
-        "Why screening and setting lower the risk",
         "What helps you in the moment",
-        "The days after a hard ceremony",
-        "When a hard night needs more support",
+        "Working with a hard night in the days after",
         "FAQ"
       ],
       "internalLinks": [
@@ -273,7 +270,7 @@
         "Perkins et al. on setting and challenging experiences in ayahuasca survey (n=2,751)"
       ],
       "cta": "book-a-call",
-      "notes": "Humberto's first-hand view of how he holds a hard night would make this the strongest post of the month. No promise that every hard night ends well."
+      "notes": "Carlos (2026-11-06), the core message: 'There are not good or bad experiences. There is no such thing as a good or bad trip. There are only experiences. Tough is part of the process.' Use the keyword for search but never call an experience bad in our own voice. No promise that every hard night ends well; still mention screening and support. No invented Humberto quotes."
     },
     {
       "date": "2026-11-17",
@@ -404,7 +401,7 @@
         "Past returning guests' notes in GHL (anonymised)"
       ],
       "cta": "book-a-call",
-      "notes": "Good chance for a short quote from Humberto on how he sees repeat sittings."
+      "notes": "No quote from Humberto available; do not invent one."
     },
     {
       "date": "2026-11-23",
@@ -475,7 +472,7 @@
         "What a full dose is like",
         "What the research says about each",
         "Why a first full dose belongs in a held space",
-        "How dose is decided at our retreat",
+        "How dose is decided at our retreat: a conversation, in the moment",
         "FAQ"
       ],
       "internalLinks": [
@@ -491,7 +488,7 @@
         "Goodwin et al. 2022, NEJM, psilocybin in TRD (already cited on the blog)"
       ],
       "cta": "book-a-call",
-      "notes": "No gram amounts or home-use instructions. Ask Krista for one line on how she sets the dose."
+      "notes": "Carlos (2026-11-06): dose is decided through conversation and in the moment; guests can choose a smaller dose and ask for more medicine. No gram amounts or home-use instructions. No invented Krista quotes."
     },
     {
       "date": "2026-11-26",
