@@ -1,6 +1,6 @@
 ---
 title: "A new chapter begins: welcome to MexiSol World"
-description: "A letter from Marina, Humberto, Krista and the team at Finca El Péndulo: why we started MexiSol World, and how to stay connected for the retreats ahead."
+description: "A letter from Marina, Humberto, Krista and the MexiSol World team: why we started MexiSol World, and how to stay connected for the retreats ahead."
 date: 2026-10-23
 image: blog-agave-field
 imageAlt: "Rows of blue agave stretching across the fields around Finca El Péndulo"

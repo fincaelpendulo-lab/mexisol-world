@@ -35,7 +35,7 @@ Ask what is not included, too: airport transfers, optional medicines and treatme
 
 ## Our prices
 
-At Finca El Péndulo, one price covers the whole seven days and six nights: three ceremonies, kambo, hapé and cacao, temazcal, fire circle, group and one-on-one integration, the activities, all meals and your bed. Prices are per person, in US dollars:
+At MexiSol World, one price covers the whole seven days and six nights: three ceremonies, kambo, hapé and cacao, temazcal, fire circle, group and one-on-one integration, the activities, all meals and your bed. Prices are per person, in US dollars:
 
 | Room | Price |
 |---|---|

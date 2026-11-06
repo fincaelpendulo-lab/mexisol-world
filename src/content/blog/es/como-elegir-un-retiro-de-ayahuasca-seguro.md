@@ -87,7 +87,7 @@ Las emergencias graves son raras, pero quieres saber que hay un plan.
 
 ¿Qué incluye? ¿Qué cuesta aparte? ¿Por qué un retiro cuesta $2,000 y otro $10,000?
 
-**En la Finca:** un solo precio cubre los siete días: ceremonias, comidas, actividades, integración y tu cama. Por persona: dormitorio compartido $1,850, villa semiprivada $2,300, habitación privada $2,650 y habitación deluxe $2,775 USD. El traslado del aeropuerto y los extras opcionales, como el bufo o los masajes, van aparte. Detalles en la [página de la Finca](../finca-el-pendulo#rooms).
+**En MexiSol World:** un solo precio cubre los siete días: ceremonias, comidas, actividades, integración y tu cama. Por persona: dormitorio compartido $1,850, villa semiprivada $2,300, habitación privada $2,650 y habitación deluxe $2,775 USD. El traslado del aeropuerto y los extras opcionales, como el bufo o los masajes, van aparte. Detalles en la [página de la Finca](../finca-el-pendulo#rooms).
 
 ## 9. Reseñas reales
 

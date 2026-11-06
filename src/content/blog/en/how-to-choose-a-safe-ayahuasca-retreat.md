@@ -87,7 +87,7 @@ Serious emergencies are rare, but you want to know there is a plan.
 
 What is included? What costs extra? Why does one retreat cost $2,000 and another $10,000?
 
-**At the Finca:** one price covers the whole seven days: ceremonies, meals, activities, integration and your bed. Per person: shared dorm $1,850, semi-private villa $2,300, private room $2,650 and deluxe room $2,775 USD. Airport pickup and optional extras such as Bufo or massages are listed separately. Details on the [Finca page](../finca-el-pendulo#rooms).
+**At MexiSol World:** one price covers the whole seven days: ceremonies, meals, activities, integration and your bed. Per person: shared dorm $1,850, semi-private villa $2,300, private room $2,650 and deluxe room $2,775 USD. Airport pickup and optional extras such as Bufo or massages are listed separately. Details on the [Finca page](../finca-el-pendulo#rooms).
 
 ## 9. Real reviews
 
