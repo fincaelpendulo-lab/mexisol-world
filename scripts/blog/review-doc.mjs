@@ -28,7 +28,7 @@ const words = (s) => s.replace(/[#*_>`|[\]()]/g, ' ').split(/\s+/).filter(Boolea
 function countSources(body) {
   const i = body.search(/^## (Sources|Fuentes)\s*$/m);
   const urls = i < 0 ? [] : [...body.slice(i).matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]);
-  const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov|who\.int|nih\.gov|gob\.mx/;
+  const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov|who\.int|\.gov\b|\.gov\.|\.gob\b|\.gob\.|gov\.uk|\.edu\b|\.ac\.uk/;
   const video = /youtube\.com|youtu\.be|vimeo\.com|ted\.com/;
   const c = { academic: 0, media: 0, video: 0, total: urls.length };
   for (const u of urls) c[academic.test(u) ? 'academic' : video.test(u) ? 'video' : 'media']++;
