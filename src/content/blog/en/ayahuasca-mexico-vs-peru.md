@@ -15,7 +15,7 @@ translation: ayahuasca-en-mexico-o-en-peru
 
 Peru offers the deepest living tradition and the rainforest itself. Mexico offers a much shorter trip, an easier climate and quicker access to a road and a city. Choosing between ayahuasca Mexico vs Peru comes down to what you value most for this ceremony: the source of the tradition, or time, cost and care close to home.
 
-We run ayahuasca retreats at Finca El Péndulo in Jalisco, so we are not neutral. We will say plainly where Peru does better. If you have sat in the Amazon before, or you are weighing your first trip, this is the comparison we would want to read.
+We are MexiSol World. We organize ayahuasca retreats in Jalisco, held at Finca El Péndulo, so we are not neutral. We will say plainly where Peru does better. If you have sat in the Amazon before, or you are weighing your first trip, this is the comparison we would want to read.
 
 ## The short answer
 
@@ -23,13 +23,13 @@ Choose Peru if being in the Amazon, with the communities this medicine comes fro
 
 Choose Mexico if you want a held week with fewer travel days, lower total cost and a gentler setting for the body, and you are fine with the medicine coming to you rather than going to it.
 
-| | Peru (Amazon) | Mexico (Jalisco highlands) |
+| | Peru (Amazon) | A MexiSol World retreat (held at Finca El Péndulo, Jalisco) |
 |---|---|---|
-| Tradition | The source: native Amazonian communities, declared national heritage | Imported medicine, alongside Mexico's own traditions |
+| Tradition | The source: native Amazonian communities, declared national heritage | Medicine prepared in Pucallpa, Peru, alongside Mexico's own traditions |
 | Getting there | International flight, domestic flight to Iquitos or Pucallpa, often a boat | One flight to Guadalajara, about an hour by road |
 | Setting | Rainforest | Highlands, warm days, cool nights |
 | Health prep | CDC lists malaria and yellow fever for the Iquitos area | Jalisco not listed for either |
-| Medical access | Centres often remote | On a road, near a town |
+| Medical access | Centres often remote | The venue is on a road, near a town |
 
 ## Tradition and lineage: what Peru offers
 
@@ -41,7 +41,7 @@ Ayahuasca tourism there is also large and long established. [AFP reported in 202
 
 ### Where our lineage comes from
 
-We will not pretend Jalisco is the Amazon. Our ayahuasca is a brew of the vine and the chacruna leaf, prepared in Pucallpa, Peru. Humberto, who leads our ceremonies, was born in Tepatitlán, a few minutes from the Finca, and trained in Peru through long master plant dietas.
+We will not pretend Jalisco is the Amazon. Our ayahuasca is a brew of the vine and the chacruna leaf, prepared in Pucallpa, Peru. Humberto, who leads our ceremonies, was born in Tepatitlán, a few minutes from Finca El Péndulo, where our retreats take place, and trained in Peru through long master plant dietas.
 
 So the medicine and the training come from Peru. What Mexico adds are its own traditions around the week: temazcal, cacao and fire. If lineage questions matter to you, ask any centre, in either country, who trained the facilitator, for how long and with whom.
 
@@ -49,11 +49,11 @@ So the medicine and the training come from Peru. What Mexico adds are its own tr
 
 Iquitos, the main hub for ayahuasca tourism in Peru, is a city of around 430,000 people that is [accessible only by air and river](https://www.guinnessworldrecords.com/world-records/101153-largest-city-with-no-major-road-connection). From Lima, the domestic flight takes about [1 hour 40 minutes, according to Peru's official tourism site](https://www.peru.travel/en/destinations/loreto). Some centres sit far outside the city: the lodge in the AFP report was about five hours by river from Iquitos.
 
-Guadalajara has direct flights from many cities in Mexico, the United States and Canada. The Finca is about an hour from the airport by toll road. If your flight lands on arrival day with time to spare, you can be here for dinner. Details are in [how to get to Finca El Péndulo](../blog/getting-to-finca-el-pendulo).
+Guadalajara has direct flights from many cities in Mexico, the United States and Canada. Our retreats are held at Finca El Péndulo, about an hour from the airport by toll road. If your flight lands on arrival day with time to spare, you can be there for dinner. Details are in [how to get to Finca El Péndulo](../blog/getting-to-finca-el-pendulo).
 
 ### Count the days, not just the retreat
 
-A seven-day retreat is never seven days away. For Peru, add the international flight, the domestic flight, any night in Lima or Iquitos your connections require, and the river or road transfer. For Jalisco, a flight that lands on arrival day can get you to the Finca before dinner, and the last day ends with the ride to the airport. The first ceremony is on day two.
+A seven-day retreat is never seven days away. For Peru, add the international flight, the domestic flight, any night in Lima or Iquitos your connections require, and the river or road transfer. For Jalisco, a flight that lands on arrival day can get you to the venue before dinner, and the last day ends with the ride to the airport. The first ceremony is on day two.
 
 Less travel also means arriving more rested for that first night.
 
@@ -92,7 +92,7 @@ Disclosure matters everywhere. In a 2025 death in Loreto, [El Comercio reported]
 
 Medical screening is required before anyone is confirmed. It has three parts: a review of every medication you take and of any taper, which is always planned with the doctor who prescribed it; a conversation about why you are coming; and your commitment to the process. See [our medical information](../medical) for the conditions that rule ayahuasca out.
 
-The Finca is on a road, near Tepatitlán and about an hour from Guadalajara. Getting help is a drive, not a boat ride. Groups are up to 15 guests.
+Our retreats take place at Finca El Péndulo, which is on a road, near Tepatitlán and about an hour from Guadalajara. Getting help is a drive, not a boat ride. Our groups are up to 15 guests.
 
 Mexico has its own safety questions. The [UK government's travel advice for Mexico](https://www.gov.uk/foreign-travel-advice/mexico) advises against all but essential travel to some parts of Jalisco, south and south-west of Lake Chapala and some northern municipalities. Read your own government's current advice for whichever region you choose. Our checklist on [how to choose a safe ayahuasca retreat](../blog/how-to-choose-a-safe-ayahuasca-retreat) works in any country.
 

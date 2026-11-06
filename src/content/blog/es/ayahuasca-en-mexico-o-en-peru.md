@@ -15,7 +15,7 @@ translation: ayahuasca-mexico-vs-peru
 
 Perú tiene la tradición viva más profunda y la selva misma. México ofrece un viaje mucho más corto, un clima más amable y un camino y una ciudad cerca. Elegir entre tomar ayahuasca en México o en Perú depende de qué pesa más para ti esta vez: el origen de la tradición, o el tiempo, el costo y el cuidado cerca de casa.
 
-Hacemos retiros de ayahuasca en Finca El Péndulo, en Jalisco, así que no somos neutrales. Aun así, vamos a decir con claridad en qué gana Perú. Si ya te sentaste en la Amazonía, o estás pensando en tu primer viaje, esta es la comparación que a nosotros nos gustaría leer.
+Somos MexiSol World. Organizamos retiros de ayahuasca en Jalisco, que se realizan en Finca El Péndulo, así que no somos neutrales. Aun así, vamos a decir con claridad en qué gana Perú. Si ya te sentaste en la Amazonía, o estás pensando en tu primer viaje, esta es la comparación que a nosotros nos gustaría leer.
 
 ## La respuesta corta
 
@@ -23,13 +23,13 @@ Elige Perú si estar en la Amazonía, con los pueblos de donde viene esta medici
 
 Elige México si quieres una semana bien acompañada con menos días de viaje, menor costo total y un entorno más ligero para el cuerpo, y te parece bien que la medicina venga a ti en lugar de ir tú a ella.
 
-| | Perú (Amazonía) | México (Altos de Jalisco) |
+| | Perú (Amazonía) | Un retiro de MexiSol World (en Finca El Péndulo, Jalisco) |
 |---|---|---|
-| Tradición | El origen: pueblos amazónicos, patrimonio cultural de la nación | Medicina que llega de fuera, junto a tradiciones mexicanas propias |
+| Tradición | El origen: pueblos amazónicos, patrimonio cultural de la nación | Medicina preparada en Pucallpa, Perú, junto a tradiciones mexicanas propias |
 | Cómo llegar | Vuelo internacional, vuelo nacional a Iquitos o Pucallpa, muchas veces lancha | Un vuelo a Guadalajara y una hora por carretera |
 | Entorno | Selva tropical | Altos: días cálidos, noches frescas |
 | Salud antes de viajar | Los CDC señalan paludismo y fiebre amarilla en la zona de Iquitos | Jalisco no aparece en ninguno de los dos |
-| Acceso médico | Centros a menudo remotos | Sobre un camino, cerca de un pueblo |
+| Acceso médico | Centros a menudo remotos | La sede está sobre un camino, cerca de un pueblo |
 
 ## Tradición y linaje: lo que ofrece Perú
 
@@ -41,7 +41,7 @@ El turismo de ayahuasca allá también es grande y viejo. [AFP informó en 2025]
 
 ### De dónde viene nuestro linaje
 
-No vamos a fingir que Jalisco es la Amazonía. Nuestra ayahuasca es un cocimiento de la liana y la hoja de chacruna, preparado en Pucallpa, Perú. Humberto, quien guía nuestras ceremonias, nació en Tepatitlán, a unos minutos de la Finca, y se formó en Perú con largas dietas de plantas maestras.
+No vamos a fingir que Jalisco es la Amazonía. Nuestra ayahuasca es un cocimiento de la liana y la hoja de chacruna, preparado en Pucallpa, Perú. Humberto, quien guía nuestras ceremonias, nació en Tepatitlán, a unos minutos de Finca El Péndulo, donde se realizan nuestros retiros, y se formó en Perú con largas dietas de plantas maestras.
 
 La medicina y la formación vienen de Perú. Lo que México suma son sus propias tradiciones alrededor de la semana: el temazcal, el cacao y el fuego. Si el linaje te importa, pregunta en cualquier centro, en cualquier país, quién formó al facilitador, durante cuánto tiempo y con quién.
 
@@ -49,11 +49,11 @@ La medicina y la formación vienen de Perú. Lo que México suma son sus propias
 
 Iquitos, el centro principal del turismo de ayahuasca en Perú, es una ciudad de unos 430,000 habitantes a la que [solo se llega por aire o por río](https://www.guinnessworldrecords.com/world-records/101153-largest-city-with-no-major-road-connection). Desde Lima, el vuelo nacional dura cerca de [1 hora 40 minutos, según el sitio oficial de turismo del Perú](https://www.peru.travel/en/destinations/loreto). Algunos centros están lejos de la ciudad: el albergue del reporte de AFP quedaba a unas cinco horas de viaje fluvial desde Iquitos.
 
-Guadalajara tiene vuelos directos desde muchas ciudades de México, Estados Unidos y Canadá. La Finca está a una hora del aeropuerto por autopista, y también puedes llegar en carro. Todos los detalles están en [cómo llegar a Finca El Péndulo](../blog/como-llegar-a-finca-el-pendulo).
+Guadalajara tiene vuelos directos desde muchas ciudades de México, Estados Unidos y Canadá. Nuestros retiros se realizan en Finca El Péndulo, a una hora del aeropuerto por autopista, y también puedes llegar en carro. Todos los detalles están en [cómo llegar a Finca El Péndulo](../blog/como-llegar-a-finca-el-pendulo).
 
 ### Cuenta los días, no solo el retiro
 
-Un retiro de siete días nunca son siete días fuera. Para Perú, suma el vuelo internacional, el vuelo nacional, la noche en Lima o Iquitos si tus conexiones la exigen, y el traslado por río o carretera. Para Jalisco, un vuelo que aterriza el día de llegada te deja en la Finca antes de la cena, y el último día termina con el traslado al aeropuerto. La primera ceremonia es el segundo día.
+Un retiro de siete días nunca son siete días fuera. Para Perú, suma el vuelo internacional, el vuelo nacional, la noche en Lima o Iquitos si tus conexiones la exigen, y el traslado por río o carretera. Para Jalisco, un vuelo que aterriza el día de llegada te deja en la sede del retiro antes de la cena, y el último día termina con el traslado al aeropuerto. La primera ceremonia es el segundo día.
 
 Viajar menos también significa llegar más descansado a esa primera noche.
 
@@ -76,7 +76,7 @@ La ayahuasca exige mucho al cuerpo en cualquier lugar. En la [Encuesta Global de
 
 Por eso importa el entorno alrededor de la ceremonia. La Amazonía te da la selva de noche, algo que mucha gente vive con gran fuerza. También pide preparación: los [CDC recomiendan prevenir el paludismo en la zona de Iquitos](https://wwwnc.cdc.gov/travel/destinations/traveler/none/peru) y vacunarse contra la fiebre amarilla en las partes bajas de Loreto.
 
-En México, los [CDC no incluyen a Jalisco entre las zonas con paludismo](https://wwwnc.cdc.gov/travel/destinations/traveler/none/mexico) y no recomiendan la vacuna contra la fiebre amarilla. En los Altos los días son cálidos y las noches frescas casi todo el año. Entre ceremonias hay camas de verdad, alberca, lago y comida hecha aquí.
+En México, los [CDC no incluyen a Jalisco entre las zonas con paludismo](https://wwwnc.cdc.gov/travel/destinations/traveler/none/mexico) y no recomiendan la vacuna contra la fiebre amarilla. En los Altos los días son cálidos y las noches frescas casi todo el año. Entre ceremonias hay camas de verdad, alberca, lago y comida preparada en la sede.
 
 Un punto práctico: cualquier vacuna o medicina que te dé la consulta de viaje entra en tu lista de medicamentos. Todo medicamento se revisa antes de la ayahuasca, que contiene un inhibidor de la MAO.
 
@@ -92,7 +92,7 @@ Decir todo lo que tomas importa en cualquier lugar. En una muerte en Loreto en 2
 
 La evaluación médica es obligatoria antes de confirmar a cualquier persona. Tiene tres partes: la revisión de todos tus medicamentos y de cualquier reducción de dosis, que siempre se planea con el médico que te los recetó; una conversación sobre por qué vienes; y tu compromiso con el proceso. En nuestra [información médica](../informacion-medica) están las condiciones que descartan la ayahuasca.
 
-La Finca está sobre un camino, cerca de Tepatitlán y a una hora de Guadalajara. Pedir ayuda es cuestión de manejar, no de una lancha. Los grupos son de hasta 15 personas.
+Nuestros retiros se realizan en Finca El Péndulo, que está sobre un camino, cerca de Tepatitlán y a una hora de Guadalajara. Pedir ayuda es cuestión de manejar, no de una lancha. Nuestros grupos son de hasta 15 personas.
 
 México tiene sus propias preguntas de seguridad. La [guía de viaje del gobierno británico para México](https://www.gov.uk/foreign-travel-advice/mexico) desaconseja los viajes no esenciales a algunas zonas de Jalisco: al sur y suroeste del Lago de Chapala y algunos municipios del norte. Revisa la guía vigente de tu propio gobierno para la región que elijas. Nuestra lista para [elegir un retiro de ayahuasca seguro](../blog/como-elegir-un-retiro-de-ayahuasca-seguro) sirve en cualquier país.
 

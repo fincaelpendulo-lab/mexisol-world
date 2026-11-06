@@ -107,4 +107,10 @@ where WebFetch timed out).
 | Retreats now offered "in Peru and beyond"; framing by facilitators supports integration | 15 |
 | MexiSol: 7 days/6 nights, up to 15 guests, 2 ayahuasca + 1 Satori, prices $1,850 to $2,775 USD, pickup $60/$110, about one hour from GDL, ayahuasca prepared in Pucallpa, Humberto trained in Peru through master plant dietas, born in Tepatitlán | src/pages/ayahuasca-retreat.astro, src/data/rooms.json, existing posts |
 | Screening: medication review and taper with prescribing doctor; why you are coming; commitment | blog/house-facts.md |
-| Flight landing on arrival day can reach the Finca before dinner | getting-to-finca-el-pendulo post |
+| Flight landing on arrival day can reach the venue (Finca El Péndulo) before dinner | getting-to-finca-el-pendulo post |
+
+## Voice note (revision 2026-11-06)
+
+Per blog/house-facts.md: MexiSol World organizes the retreats and speaks in first person; Finca El Péndulo is only
+the venue MexiSol World hires to host them. The comparison is "a MexiSol World retreat (held at Finca El Péndulo)"
+vs Peru.
