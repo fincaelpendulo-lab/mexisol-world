@@ -31,6 +31,9 @@ Finca El Péndulo, Jalisco, Mexico. Carlos runs the business; report to him in S
 - Read `src/data/retreats.json` for the next two months of dates. Seasonal hooks from the profiles count:
   January reset, new year, after the holidays, birthdays, the women's retreat, events at the finca.
 
+- Read `blog/house-facts.md` (what Carlos has confirmed). Don't plan sections that need facts not there or on the site;
+  if a post would need his input, ask in `notes`.
+
 ## 3. Keyword research (with WebSearch and WebFetch)
 
 For each candidate topic:

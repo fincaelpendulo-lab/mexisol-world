@@ -39,7 +39,8 @@ Rules for verifiable sources:
   If you can't find a source for a claim, drop the claim.
 - Confirm each source says what you cite it for. Quote exact numbers; give the year and the type of study.
   Say when evidence is small, early, or animal-only.
-- Facts about MexiSol (prices, dates, team, what is included, screening, location) come only from the site:
+- Read `blog/house-facts.md` before writing: facts and views Carlos confirmed himself. Use them where relevant.
+- Facts about MexiSol (prices, dates, team, what is included, screening, location) come only from house-facts and the site:
   `src/data/site.json`, `src/data/retreats.json`, `src/data/rooms.json`, `src/pages/` and existing posts.
   Never invent a guest story, quote, number of guests or outcome.
 
