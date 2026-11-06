@@ -1,0 +1,327 @@
+<title>MexiSol Blog Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Tenor+Sans&display=swap">
+<style>
+/* Layout: an editorial desk. Left, the month's posts down a dated rail with a status chip each; right, the post as a reader will see it, with the review controls pinned under it. Stacks to one column on phones. */
+:root{
+  --surface:#ffffff; --panel:#f4f6f3; --ink:#111511; --muted:#566258; --hairline:rgba(17,21,17,.16);
+  --forest:#314a34; --slate:#557b8e; --terracotta:#ce833f; --ochre:#e4a550;
+  --link:#3f6475; --on-forest:#ffffff;
+  --st-review:#ce833f; --st-changes:#b4532a; --st-ok:#2f6b45; --st-plan:#8a948c; --st-live:#314a34;
+  --display:"Cal Sans","Tenor Sans",system-ui,sans-serif;
+  --text:"Tenor Sans",Georgia,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --surface:#1b281d; --panel:#223325; --ink:#eef2ec; --muted:#a9b6ab; --hairline:rgba(238,242,236,.2);
+  --forest:#9cc3a0; --slate:#8fb3c6; --terracotta:#e09a5a; --ochre:#e9b46a; --link:#9cc4d6; --on-forest:#14201a;
+  --st-review:#e9a560; --st-changes:#e98a64; --st-ok:#86c79a; --st-plan:#7f8c82; --st-live:#9cc3a0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --surface:#1b281d; --panel:#223325; --ink:#eef2ec; --muted:#a9b6ab; --hairline:rgba(238,242,236,.2);
+  --forest:#9cc3a0; --slate:#8fb3c6; --terracotta:#e09a5a; --ochre:#e9b46a; --link:#9cc4d6; --on-forest:#14201a;
+  --st-review:#e9a560; --st-changes:#e98a64; --st-ok:#86c79a; --st-plan:#7f8c82; --st-live:#9cc3a0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--surface);color:var(--ink);font:400 16px/1.55 var(--text);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+a{color:var(--link)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.1}
+button,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--slate);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:28px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between;border-bottom:1px solid var(--hairline);padding-bottom:20px}
+header.top h1{font-size:clamp(30px,5vw,44px);color:var(--forest)}
+.tally{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--muted)}
+.tally b{font-family:var(--display);font-weight:400;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums;margin-right:6px}
+.tally .hot b{color:var(--st-review)}
+.notice{font-size:14px;color:var(--muted)}
+.notice[data-tone="warn"]{color:var(--st-changes)}
+
+.desk{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:860px){.desk{grid-template-columns:1fr}}
+
+/* Rail */
+.rail{display:grid;gap:18px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 40px);overflow:auto;padding-right:4px}
+@media (max-width:860px){.rail{position:static;max-height:none;overflow:visible}}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.filters button{border:1px solid var(--hairline);background:transparent;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:var(--on-forest)}
+.week{display:grid;gap:2px}
+.week h3{font-family:var(--text);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--hairline)}
+.item{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;width:100%;text-align:left;background:transparent;border:0;border-left:3px solid transparent;padding:10px 8px 10px 10px;cursor:pointer;border-radius:0 6px 6px 0}
+.item:hover{background:var(--panel)}
+.item[aria-current="true"]{background:var(--panel);border-left-color:var(--forest)}
+.day{display:grid;justify-items:center;line-height:1}
+.day b{font-family:var(--display);font-weight:400;font-size:24px;font-variant-numeric:tabular-nums}
+.day span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.item .t{font-size:15px;line-height:1.3;display:block;min-width:0;overflow-wrap:anywhere}
+.item .m{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px;font-size:12px;color:var(--muted)}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.02em;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--st-plan))}
+.chip[data-s="review"]{--c:var(--st-review);color:var(--st-review)}
+.chip[data-s="changes"],.chip[data-s="revising"]{--c:var(--st-changes);color:var(--st-changes)}
+.chip[data-s="approved"],.chip[data-s="scheduled"]{--c:var(--st-ok);color:var(--st-ok)}
+.chip[data-s="published"]{--c:var(--st-live);color:var(--st-live)}
+.chip[data-s="published"]::before{border-radius:2px}
+.chip[data-s="planned"]::before{background:transparent;border:1.5px solid var(--st-plan)}
+
+/* Reader */
+.reader{min-width:0;display:grid;gap:22px}
+.empty{border:1px dashed var(--hairline);border-radius:8px;padding:40px 28px;display:grid;gap:10px;color:var(--muted)}
+.empty h2{color:var(--ink);font-size:26px}
+.cover{width:100%;aspect-ratio:16/9;max-width:100%;object-fit:cover;border-radius:6px;background:var(--panel);display:block}
+.cover-ph{width:100%;aspect-ratio:16/9;max-width:100%;border-radius:6px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font-size:14px;text-align:center;padding:16px}
+.credit{font-size:12px;color:var(--muted);text-align:right;margin-top:-14px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:6px;overflow:hidden}
+.meta div{background:var(--surface);padding:10px 14px;display:grid;gap:2px;min-width:0}
+.meta dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:0;font-size:14px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.worker-note{background:var(--panel);border-radius:6px;padding:14px 16px;font-size:15px;display:grid;gap:4px}
+.worker-note b{font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terracotta)}
+
+.langs{display:flex;gap:0;border-bottom:1px solid var(--hairline)}
+.langs button{background:transparent;border:0;border-bottom:2px solid transparent;padding:8px 16px;cursor:pointer;color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.langs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--forest)}
+.serp{border:1px solid var(--hairline);border-radius:6px;padding:14px 16px;display:grid;gap:2px;max-width:640px}
+.serp .u{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.serp .h{font-size:18px;color:var(--link);line-height:1.3}
+.serp .d{font-size:14px;color:var(--muted)}
+.serp .len{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.serp .len[data-bad]{color:var(--st-changes)}
+
+.article{max-width:720px;font-size:17px;line-height:1.65;overflow-wrap:break-word}
+.article h1{font-size:clamp(28px,4vw,38px);margin-bottom:10px}
+.article .lede{color:var(--muted);font-size:19px;margin:0 0 18px}
+.article h2{font-size:26px;margin:34px 0 10px}
+.article h3{font-size:20px;margin:24px 0 8px}
+.article p,.article ul,.article ol,.article table,.article blockquote{margin:0 0 14px}
+.article ul,.article ol{padding-left:1.3em}
+.article li+li{margin-top:5px}
+.article blockquote{border-left:2px solid var(--forest);padding-left:16px;color:var(--muted)}
+.article table{border-collapse:collapse;display:block;overflow-x:auto;font-size:14px}
+.article th,.article td{border-bottom:1px solid var(--hairline);padding:8px 10px;text-align:left;vertical-align:top}
+.article code{font-family:var(--mono);font-size:.9em}
+
+/* Review box */
+.review{border-top:1px solid var(--hairline);padding-top:20px;display:grid;gap:14px;max-width:720px}
+.review h2{font-size:24px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--forest);background:var(--forest);color:var(--on-forest);border-radius:4px;padding:10px 18px;cursor:pointer;font-size:15px}
+.btn.ghost{background:transparent;color:var(--forest)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--hairline);border-radius:4px;padding:12px;background:var(--surface);line-height:1.5}
+.hint{font-size:13px;color:var(--muted)}
+.thread{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.thread li{border-left:2px solid var(--hairline);padding:2px 0 2px 14px;display:grid;gap:4px;font-size:15px}
+.thread li[data-kind="approve"]{border-left-color:var(--st-ok)}
+.thread li[data-kind="changes"]{border-left-color:var(--st-changes)}
+.thread .when{font-size:12px;color:var(--muted)}
+.thread .reply{color:var(--muted)}
+.thread .reply::before{content:"Worker: ";color:var(--forest)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--forest);color:var(--on-forest);padding:10px 18px;border-radius:4px;font-size:14px}
+@media (prefers-reduced-motion:no-preference){.item{transition:background .15s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">mexisol.world · blog</div>
+      <h1>Mesa de revisión</h1>
+    </div>
+    <div class="tally" id="tally" aria-live="polite">
+      <span class="hot"><b id="n-review">0</b>para revisar</span>
+      <span><b id="n-changes">0</b>con cambios</span>
+      <span><b id="n-sched">0</b>programados</span>
+      <span><b id="n-live">0</b>publicados</span>
+    </div>
+  </header>
+  <p class="notice" id="notice">Cargando artículos…</p>
+
+  <div class="desk">
+    <nav class="rail" aria-label="Artículos">
+      <div class="filters" role="group" aria-label="Filtrar">
+        <button type="button" data-f="all" aria-pressed="true">Todos</button>
+        <button type="button" data-f="todo" aria-pressed="false">Por revisar</button>
+        <button type="button" data-f="sched" aria-pressed="false">Programados</button>
+        <button type="button" data-f="live" aria-pressed="false">Publicados</button>
+      </div>
+      <div id="list"></div>
+    </nav>
+
+    <main class="reader" id="reader">
+      <div class="empty">
+        <h2>Aquí aparece cada artículo</h2>
+        <p>El worker escribe los artículos antes de su fecha y los deja aquí. Elige uno de la lista para leerlo en inglés o en español, aprobarlo o pedir cambios.</p>
+        <p>Al aprobarlo queda programado y se publica solo el día que le toca.</p>
+      </div>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script>
+const STATUS = {
+  planned:{l:'Planeado'}, writing:{l:'Escribiendo'}, review:{l:'Para revisar'}, changes:{l:'Cambios pedidos'},
+  revising:{l:'Corrigiendo'}, approved:{l:'Aprobado'}, scheduled:{l:'Programado'}, published:{l:'Publicado'}
+};
+const FILTERS = { all:()=>true, todo:s=>['review','changes','revising'].includes(s), sched:s=>['approved','scheduled'].includes(s), live:s=>s==='published' };
+const DOW = ['dom','lun','mar','mié','jue','vie','sáb'];
+const MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+let db = null, user = null, canWrite = null;
+let posts = [], requests = [], current = null, lang = 'en', filter = 'all';
+try { filter = localStorage.getItem('desk-filter') || 'all'; } catch {}
+try { lang = localStorage.getItem('desk-lang') || 'en'; } catch {}
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const parseDay = (d) => { const [y,m,dd] = String(d).split('-').map(Number); return new Date(Date.UTC(y, m-1, dd)); };
+const longDate = (d) => { const x = parseDay(d); return `${DOW[x.getUTCDay()]} ${x.getUTCDate()} de ${MONTHS[x.getUTCMonth()]}`; };
+const stamp = (iso) => { try { return new Date(iso).toLocaleString('es-MX', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}); } catch { return iso; } };
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.hidden=false; clearTimeout(toast.h); toast.h=setTimeout(()=>t.hidden=true, 2600); }
+function md(src){ const html = window.marked ? marked.parse(src || '') : `<pre>${esc(src)}</pre>`; return window.DOMPurify ? DOMPurify.sanitize(html) : esc(src); }
+function weekKey(d){ const x = parseDay(d); const mon = new Date(x); mon.setUTCDate(x.getUTCDate() - ((x.getUTCDay()+6)%7)); return mon.toISOString().slice(0,10); }
+
+function renderTally(){
+  const c = (fn) => posts.filter((p) => fn(p.status)).length;
+  $('n-review').textContent = c((s) => s==='review');
+  $('n-changes').textContent = c((s) => s==='changes' || s==='revising');
+  $('n-sched').textContent = c((s) => s==='approved' || s==='scheduled');
+  $('n-live').textContent = c((s) => s==='published');
+}
+
+function renderList(){
+  document.querySelectorAll('.filters button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.f === filter)));
+  const shown = posts.filter((p) => FILTERS[filter](p.status || 'planned'));
+  const list = $('list');
+  if (!shown.length) { list.innerHTML = `<p class="hint">${posts.length ? 'Nada en este filtro.' : 'Todavía no hay artículos. El worker los agrega con el plan del mes.'}</p>`; return; }
+  const weeks = new Map();
+  for (const p of shown) { const k = weekKey(p.date); if (!weeks.has(k)) weeks.set(k, []); weeks.get(k).push(p); }
+  list.innerHTML = [...weeks].map(([k, items]) => `
+    <section class="week"><h3>Semana del ${parseDay(k).getUTCDate()} de ${MONTHS[parseDay(k).getUTCMonth()]}</h3>
+      ${items.map((p) => { const x = parseDay(p.date); const s = p.status || 'planned'; return `
+        <button type="button" class="item" data-slug="${esc(p.slug)}" aria-current="${p.slug === current}">
+          <span class="day"><b>${x.getUTCDate()}</b><span>${DOW[x.getUTCDay()]}</span></span>
+          <span><span class="t">${esc(p.title)}</span>
+            <span class="m"><span class="chip" data-s="${s}">${STATUS[s]?.l ?? esc(s)}</span><span>${esc(p.profile || '')}</span></span></span>
+        </button>`; }).join('')}
+    </section>`).join('');
+}
+
+function serp(p, es){
+  const t = es ? (p.titleEs || '') : (p.title || '');
+  const d = es ? (p.descriptionEs || '') : (p.description || '');
+  const path = es ? `mexisol.world › es › blog › ${p.slugEs || ''}` : `mexisol.world › blog › ${p.slug}`;
+  return `<div class="serp" aria-label="Vista previa en Google">
+    <span class="u">${esc(path)}</span><span class="h">${esc(t)}</span><span class="d">${esc(d)}</span>
+    <span class="len" ${t.length>60?'data-bad':''}>título ${t.length}/60</span>
+    <span class="len" ${(d.length<120||d.length>160)?'data-bad':''}>descripción ${d.length}/120–160</span></div>`;
+}
+
+function renderReader(){
+  const p = posts.find((x) => x.slug === current);
+  const r = $('reader');
+  if (!p) return;
+  const s = p.status || 'planned';
+  const es = lang === 'es';
+  const body = es ? p.bodyEs : p.bodyEn;
+  const src = p.sources || {};
+  const mine = requests.filter((q) => q.slug === p.slug).sort((a, b) => String(a.at).localeCompare(String(b.at)));
+  const reviewable = ['review','changes','revising'].includes(s);
+  const writable = canWrite !== false;
+
+  r.innerHTML = `
+    ${p.coverUrl ? `<img class="cover" src="${esc(p.coverUrl)}" alt="${esc(p.imageAlt || '')}">` : `<div class="cover-ph">${s==='planned' ? 'La foto de portada llega con el borrador.' : 'Sin foto todavía.'}</div>`}
+    ${p.imageCredit ? `<p class="credit">Foto: ${p.imageCreditUrl ? `<a href="${esc(p.imageCreditUrl)}" target="_blank" rel="noopener">${esc(p.imageCredit)}</a>` : esc(p.imageCredit)}</p>` : ''}
+    <dl class="meta">
+      <div><dt>Estado</dt><dd><span class="chip" data-s="${s}">${STATUS[s]?.l ?? esc(s)}</span></dd></div>
+      <div><dt>Se publica</dt><dd>${longDate(p.date)}</dd></div>
+      <div><dt>Perfil</dt><dd>${esc(p.profile || '')}</dd></div>
+      <div><dt>Palabra clave</dt><dd>${esc(es ? (p.keywordEs || '') : (p.keyword || ''))}</dd></div>
+      <div><dt>Palabras</dt><dd>${p.words ? `${p.words.en ?? '–'} EN · ${p.words.es ?? '–'} ES` : '–'}</dd></div>
+      <div><dt>Fuentes</dt><dd>${src.total ? `${src.total}: ${src.academic||0} académicas, ${src.media||0} medios, ${src.video||0} video` : '–'}</dd></div>
+    </dl>
+    ${p.workerNote ? `<div class="worker-note"><b>Nota del worker</b><span>${esc(p.workerNote)}</span></div>` : ''}
+    ${p.liveUrl && s==='published' ? `<p><a href="${esc(es ? (p.liveUrlEs || p.liveUrl) : p.liveUrl)}" target="_blank" rel="noopener">Ver en el sitio</a></p>` : ''}
+    <div class="langs" role="tablist" aria-label="Idioma">
+      <button type="button" role="tab" data-lang="en" aria-selected="${!es}">English</button>
+      <button type="button" role="tab" data-lang="es" aria-selected="${es}">Español</button>
+    </div>
+    ${body ? serp(p, es) : ''}
+    <article class="article">
+      ${body ? `<h1>${esc(es ? p.titleEs : p.title)}</h1><p class="lede">${esc(es ? p.descriptionEs : p.description)}</p>${md(body)}`
+             : `<h1>${esc(es ? (p.titleEs || p.title) : p.title)}</h1><p class="lede">${s==='planned' ? 'Planeado. El worker lo escribe unos días antes de la fecha.' : 'El texto todavía no está listo.'}</p>
+                ${p.angle ? `<p><b>Enfoque:</b> ${esc(p.angle)}</p>` : ''}
+                ${p.outline?.length ? `<p><b>Secciones:</b></p><ol>${p.outline.map((o)=>`<li>${esc(o)}</li>`).join('')}</ol>` : ''}`}
+    </article>
+    <section class="review" aria-labelledby="rv-h">
+      <h2 id="rv-h">Revisión</h2>
+      ${mine.length ? `<ul class="thread">${mine.map((q) => `
+        <li data-kind="${esc(q.kind)}"><span class="when">${q.kind==='approve' ? 'Aprobado' : 'Cambios pedidos'} · ${stamp(q.at)}${q.state==='done' ? ' · atendido' : ' · pendiente'}</span>
+          ${q.text ? `<span>${esc(q.text)}</span>` : ''}${q.reply ? `<span class="reply">${esc(q.reply)}</span>` : ''}</li>`).join('')}</ul>` : ''}
+      ${reviewable && writable ? `
+        <label for="req-text" class="hint">¿Qué quieres cambiar? Escribe en inglés o español; aplica a las dos versiones salvo que digas lo contrario.</label>
+        <textarea id="req-text" placeholder="Ej.: El segundo párrafo es muy técnico. Menciona que el retiro incluye temazcal. Cambia la foto por algo con montañas."></textarea>
+        <div class="actions">
+          <button type="button" class="btn" id="approve" ${s!=='review'?'disabled':''}>Aprobar y programar</button>
+          <button type="button" class="btn ghost" id="ask">Pedir cambios</button>
+        </div>
+        <p class="hint">${s==='review' ? `Al aprobar, el worker lo programa y se publica solo el ${longDate(p.date)}.` : 'El worker está aplicando tus cambios. Lo verás aquí otra vez para revisar.'}</p>`
+      : `<p class="hint">${s==='planned'||s==='writing' ? 'Podrás revisarlo cuando el borrador esté listo.' : s==='published' ? 'Ya está publicado. Si quieres un cambio, pídelo en el chat.' : ['approved','scheduled'].includes(s) ? `Aprobado. Se publica el ${longDate(p.date)}.` : 'Solo lectura.'}</p>`}
+    </section>`;
+}
+
+function selectPost(slug){
+  current = slug; renderList(); renderReader();
+  if (window.matchMedia('(max-width:860px)').matches) $('reader').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+async function sendRequest(kind){
+  const p = posts.find((x) => x.slug === current); if (!p || !db) return;
+  const text = ($('req-text')?.value || '').trim();
+  if (kind === 'changes' && !text) { toast('Escribe qué quieres cambiar.'); $('req-text')?.focus(); return; }
+  const btns = document.querySelectorAll('.review .btn'); btns.forEach((b) => b.disabled = true);
+  try {
+    const by = user ? await user.id() : null;
+    await db.collection('requests').add({ slug: p.slug, kind, text, at: new Date().toISOString(), by, state: 'open' });
+    await db.doc('posts/' + p.slug).update({ status: kind === 'approve' ? 'approved' : 'changes', statusAt: new Date().toISOString() });
+    toast(kind === 'approve' ? 'Aprobado. Se programará en la próxima ronda del worker.' : 'Cambios enviados al worker.');
+  } catch (e) {
+    if (e?.code === 'invalid_argument') { canWrite = false; renderReader(); toast('Tu acceso a esta página es de solo lectura.'); }
+    else toast('No se pudo guardar. Inténtalo de nuevo en un momento.');
+    btns.forEach((b) => b.disabled = false);
+  }
+}
+
+document.addEventListener('click', (e) => {
+  const item = e.target.closest('.item'); if (item) return selectPost(item.dataset.slug);
+  const f = e.target.closest('.filters button'); if (f) { filter = f.dataset.f; try { localStorage.setItem('desk-filter', filter); } catch {} return renderList(); }
+  const l = e.target.closest('.langs button'); if (l) { lang = l.dataset.lang; try { localStorage.setItem('desk-lang', lang); } catch {} return renderReader(); }
+  if (e.target.id === 'approve') return sendRequest('approve');
+  if (e.target.id === 'ask') return sendRequest('changes');
+});
+
+(async () => {
+  renderList();
+  db = await claude.use('db');
+  user = await claude.use('user');
+  if (!db) { $('notice').textContent = 'No se pudo conectar con los datos de esta página. Ábrela con tu cuenta de Claude.'; $('notice').dataset.tone = 'warn'; return; }
+  if (user) { try { canWrite = await user.can('data.write'); } catch {} }
+  const slow = setTimeout(() => { $('notice').textContent = 'Los datos tardan en llegar. Puede que lo que ves no esté al día.'; $('notice').dataset.tone = 'warn'; }, 10000);
+  db.collection('posts').orderBy('date').onSnapshot((snap) => {
+    if (!snap.metadata.fromCache) { clearTimeout(slow); $('notice').dataset.tone = ''; }
+    posts = snap.docs.map((d) => ({ slug: d.id, ...d.data() }));
+    const next = posts.find((p) => p.status === 'review');
+    $('notice').textContent = posts.length ? (next ? `Siguiente para revisar: ${next.title} (${longDate(next.date)}).` : 'Nada pendiente de revisión.') : 'Todavía no hay artículos. El worker los agrega con el plan del mes.';
+    if (!current && posts.length) current = (next || posts.find((p) => p.status !== 'published') || posts[0]).slug;
+    renderTally(); renderList(); renderReader();
+  }, () => { clearTimeout(slow); $('notice').textContent = 'Se perdió la conexión con los datos. Recarga la página.'; $('notice').dataset.tone = 'warn'; });
+  db.collection('requests').onSnapshot((snap) => { requests = snap.docs.map((d) => ({ id: d.id, ...d.data() })); renderReader(); }, () => {});
+})();
+</script>

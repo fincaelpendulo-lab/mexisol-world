@@ -1,0 +1,32 @@
+name: Publish scheduled blog posts
+
+# Approved posts are merged ahead of time with a future date, and the site leaves them out until that date.
+# Hostinger only rebuilds on a push to main, so on a day when a post is due this pushes an empty commit
+# at 06:30 in Mexico (12:30 UTC) and Hostinger rebuilds with the post in it.
+on:
+  schedule:
+    - cron: '30 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find posts dated today
+        id: due
+        run: |
+          today=$(date -u +%Y-%m-%d)
+          due=$(grep -l "^date: ${today}\s*$" src/content/blog/en/*.md src/content/blog/es/*.md 2>/dev/null | xargs -r -n1 basename | sed 's/\.md$//' | tr '\n' ' ')
+          echo "slugs=${due}" >> "$GITHUB_OUTPUT"
+          echo "Due today (${today}): ${due:-none}"
+      - name: Trigger a rebuild
+        if: steps.due.outputs.slugs != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Publish scheduled posts: ${{ steps.due.outputs.slugs }}"
+          git push origin main

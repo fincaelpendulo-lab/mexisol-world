@@ -110,6 +110,8 @@ Save `blog/plans/YYYY-MM.json`:
   End commit messages with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` and PR bodies with
   `🤖 Generated with [Claude Code](https://claude.com/claude-code)`. Never push to main.
 
+After the PR, the daily blog run (`blog/WORKER.md`) adds the planned posts to the review dashboard on its own.
+
 ## Report (in Spanish)
 
 A few lines: the month, how many posts, the split by profile, the 3 topics you expect to do best and why, and
