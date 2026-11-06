@@ -17,7 +17,7 @@ Ayahuasca and SSRIs cannot be taken together. Ayahuasca contains MAO inhibitors,
 
 That is the short answer. The longer one matters too, because the weeks before a retreat are where people get hurt: stopping too fast, guessing at a waiting time from a forum, or not telling anyone. This guide explains what is going on in the body, why the waiting time is different for each drug, and how we handle it with you.
 
-**Never stop or change an antidepressant on your own.** Any change is planned with the doctor who prescribed it. Medical screening is required before any retreat at Finca El Péndulo.
+**Never stop or change an antidepressant on your own.** Any change is planned with the doctor who prescribed it. At MexiSol World, medical screening is required before any retreat. Our retreats take place at Finca El Péndulo, in Jalisco.
 
 ## Why ayahuasca and SSRIs cannot be combined
 
@@ -93,7 +93,7 @@ None of this is meant to scare you. It is meant to help you plan. Leave more tim
 
 ## How we review antidepressants on the intake call
 
-At Finca El Péndulo, nothing is confirmed until we have reviewed your health. Our medical screening has three parts:
+At MexiSol World, nothing is confirmed until we have reviewed your health. Our medical screening has three parts:
 
 1. **Your medications, and any taper,** which is always done with your prescribing doctor.
 2. **Why you are coming,** so we understand what you hope for.

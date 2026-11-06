@@ -17,7 +17,7 @@ Ayahuasca y antidepresivos ISRS: no se pueden tomar juntos. La ayahuasca contien
 
 Esa es la respuesta corta. La larga también importa, porque las semanas antes del retiro son donde la gente se lastima: dejar el medicamento de golpe, sacar un tiempo de espera de un foro o no decirle a nadie. Aquí te explicamos qué pasa en el cuerpo, por qué la espera cambia con cada fármaco y cómo lo revisamos contigo.
 
-**Nunca suspendas ni cambies un antidepresivo por tu cuenta.** Cualquier cambio se planea con el médico que te lo recetó. La evaluación médica es obligatoria antes de cualquier retiro en Finca El Péndulo.
+**Nunca suspendas ni cambies un antidepresivo por tu cuenta.** Cualquier cambio se planea con el médico que te lo recetó. En MexiSol World la evaluación médica es obligatoria antes de cualquier retiro. Nuestros retiros se realizan en Finca El Péndulo, en Jalisco.
 
 ## Por qué la ayahuasca y los antidepresivos no se combinan
 
@@ -91,7 +91,7 @@ Nada de esto es para asustarte. Es para que planees. Date más tiempo del que cr
 
 ## Cómo revisamos los antidepresivos en la llamada de evaluación
 
-En Finca El Péndulo nada se confirma hasta que revisamos tu salud. Nuestra evaluación médica tiene tres partes:
+En MexiSol World nada se confirma hasta que revisamos tu salud. Nuestra evaluación médica tiene tres partes:
 
 1. **Tus medicamentos y, si aplica, la reducción,** que siempre se hace con el médico que te los recetó.
 2. **Por qué vienes,** para entender qué esperas.
