@@ -77,6 +77,9 @@ const schema = [{
 
     <div class="wrap post__photo">
       <Photo name={d.image} alt={d.imageAlt} sizes="(max-width: 1200px) 100vw, 1200px" priority class="ratio-16-9" />
+      {d.imageCredit && (
+        <p class="t-caption muted post__credit">{es ? 'Foto' : 'Photo'}: {d.imageCreditUrl ? <a href={d.imageCreditUrl} rel="nofollow noopener" target="_blank">{d.imageCredit}</a> : d.imageCredit}</p>
+      )}
     </div>
 
     <div class="wrap post__narrow post__body">
@@ -132,6 +135,8 @@ const schema = [{
   .post__crumbs a { color: var(--ink-muted); }
   .post__meta > * + *::before { content: ' · '; }
   .post__photo { margin-bottom: var(--space-8); }
+  .post__credit { margin-top: var(--space-2); text-align: right; }
+  .post__credit a { color: inherit; }
   .ratio-16-9 { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   .post__body { padding-bottom: var(--space-9); }
   .post__toc { border: 1px solid var(--hairline); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-8); }

@@ -17,6 +17,12 @@ const blog = defineCollection({
     /** A photo from src/assets/photos, by file name without .jpg. */
     image: z.string(),
     imageAlt: z.string(),
+    /** Credit for a stock photo, e.g. "Jane Doe / Pexels", shown under the photo. */
+    imageCredit: z.string().optional(),
+    imageCreditUrl: z.string().url().optional(),
+    /** Main search keyword and the guest profile it targets (blog/guest-profiles.md). Used by the blog worker. */
+    keyword: z.string().optional(),
+    profile: z.string().optional(),
     /** One of the images in public/og (home, finca, ayahuasca, psilocybin, prepare, medical, about...). */
     ogImage: z.string().default('home'),
     tags: z.array(z.string()).default([]),

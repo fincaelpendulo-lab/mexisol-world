@@ -8,3 +8,4 @@ dist/
 .wrangler/
 .lighthouseci/
 worker/.dev.vars
+blog/.photo-candidates/
