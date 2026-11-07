@@ -101,421 +101,434 @@
       "profile": "Healing Seeker",
       "slug": "ayahuasca-retreat-medical-screening",
       "slugEs": "evaluacion-medica-retiro-de-ayahuasca",
-      "title": "How our medical screening for ayahuasca works, step by step",
-      "titleEs": "Cómo funciona nuestra evaluación médica para la ayahuasca, paso a paso",
+      "title": "How our screening for ayahuasca works: your medications, your reasons, your commitment",
+      "titleEs": "Cómo es nuestra evaluación para la ayahuasca: tus medicamentos, tus razones, tu compromiso",
       "keyword": "ayahuasca retreat medical screening",
       "keywordEs": "evaluación médica para retiro de ayahuasca",
       "secondary": [
-        "ayahuasca retreat with medical screening",
-        "ayahuasca health questionnaire",
+        "ayahuasca intake call",
+        "ayahuasca screening questions",
         "who should not take ayahuasca",
-        "ayahuasca contraindications",
-        "ayahuasca intake call"
+        "ayahuasca retreat with medical screening"
       ],
       "intent": "informational",
-      "searcherQuestion": "What does a retreat check before letting me drink ayahuasca, and what happens if something comes up?",
-      "angle": "Results are a retreat's own promo pages and a quiz site; nobody shows the whole process. We publish ours: the form, the intake call, medication and heart review, mental health history, what leads to 'not now', and what happens on arrival. The safe-retreat checklist tells people what to ask any centre; this shows exactly what we do.",
+      "searcherQuestion": "What will they ask me before I can join, and why does it matter beyond the medical part?",
+      "angle": "Cornerstone guide 4 (the only cornerstone still missing) and one of the month's three practical posts. Top results are retreat FAQ pages with a list of contraindications. We describe the three parts Carlos confirmed: medications and the taper (always with the prescriber), an honest look at why you are coming, and your commitment to a process of transformation. The second and third parts are the bridge to the new focus: screening as the first step of the inner work, not only a safety filter.",
       "outline": [
-        "Why screening comes before payment",
-        "Your medications: why tapering comes first, always with your doctor",
-        "Why you are coming: the intention conversation",
-        "Your commitment to the process",
-        "When the answer is 'not now', and what happens next",
-        "How to prepare for the screening call",
+        "Why we screen every guest",
+        "Part one: your medications, reviewed with your own doctor",
+        "Part two: why you are coming",
+        "Part three: your commitment to the process",
+        "What happens on the intake call",
+        "When we say not now, and why",
         "FAQ"
       ],
       "internalLinks": [
         "/medical",
-        "/blog/how-to-choose-a-safe-ayahuasca-retreat",
         "/blog/medications-unsafe-with-ayahuasca",
         "/blog/ayahuasca-and-ssris",
-        "/prepare",
+        "/blog/is-ayahuasca-right-for-me",
+        "/blog/how-to-choose-a-safe-ayahuasca-retreat",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Our own /medical page and intake form (check current wording with Carlos)",
-        "Bouso et al. 2022, PLOS Global Public Health, adverse effects of ayahuasca (n>10,000)",
-        "Dos Santos et al. 2017, review of ayahuasca safety, Expert Opin Drug Saf"
+        "Our /medical page (only steps stated there or in house-facts)",
+        "ICEERS Ayahuasca Technical Report and its harm-reduction guides",
+        "Michael Pollan, How to Change Your Mind (2018), chapter on set and setting",
+        "Published guest testimonials on review sites about the value of the intake call"
       ],
       "cta": "book-a-call",
-      "notes": "Cornerstone guide 4. Carlos (2026-11-06): screening = (1) review of medications and the taper, done with the prescribing doctor; (2) an evaluation of why the person is coming; (3) their commitment to transformation. Do not add steps beyond these and what src/pages/medical states. No diagnosis or medical instructions, no taper schedules."
+      "notes": "Practical post (1 of 3 with SSRIs and Mexico vs Peru). Describe only the three screening parts in house-facts; never invent steps. No taper schedules."
     },
     {
       "date": "2026-11-12",
       "profile": "Psilocybin-Curious Woman",
-      "slug": "psilocybin-retreat-solo-female-travelers",
-      "slugEs": "retiro-para-mujeres-que-viajan-solas",
-      "title": "Going to a psilocybin retreat alone as a woman: how to feel safe",
-      "titleEs": "Ir sola a un retiro de psilocibina: cómo sentirte segura",
-      "keyword": "psilocybin retreat for solo female travelers",
-      "keywordEs": "retiro para mujeres que viajan solas",
+      "slug": "womens-psilocybin-retreat",
+      "slugEs": "retiro-de-hongos-para-mujeres",
+      "title": "Women's psilocybin retreat: intuition, the body and the feminine in ceremony",
+      "titleEs": "Retiro de hongos para mujeres: intuición, cuerpo y lo femenino en ceremonia",
+      "keyword": "women's psilocybin retreat",
+      "keywordEs": "retiro de hongos para mujeres",
       "secondary": [
-        "women's psilocybin retreat",
-        "safe retreat for solo women travelers",
-        "is Mexico safe for solo female travelers retreat",
-        "women only psilocybin retreat",
-        "same gender support psilocybin"
+        "psilocybin and intuition",
+        "divine feminine psilocybin",
+        "women's plant medicine circle",
+        "psilocybin women only retreat",
+        "sacred feminine mushroom ceremony"
       ],
-      "intent": "informational",
-      "searcherQuestion": "I want to go to a mushroom retreat on my own. How do I know I will be safe as a woman?",
-      "angle": "Results are listing pages for women-only retreats with no practical safety detail. We cover what actually matters: airport pickup and transport, rooms, who is in the room during ceremony, consent and touch rules, female staff and same-gender support, and questions to ask. Mention the women's retreat with Araisis (Nov 23 to 29) and the February psilocybin retreat with Krista.",
+      "intent": "commercial investigation",
+      "searcherQuestion": "What actually happens at a women-only mushroom retreat, and why would I want a women's space for this?",
+      "angle": "Page one is only booking listings (Retreat Guru, BookRetreats) with 'goddess' copy and no explanation. We write the informational guide: why women seek a women's circle, intuition and the body as themes, the long line of women healers (María Sabina), what a held week looks like. Our own facts: most of our team are women and our integration coach is a woman. Timely: the Araisis women's retreat at the Finca, Nov 23 to 29 (in Spanish).",
       "outline": [
-        "What women ask us before they book",
-        "Getting there: pickup from Guadalajara airport",
-        "Where you sleep and who you share with",
-        "A team that is mostly women",
-        "Your integration coach is a woman",
-        "Questions to ask any retreat",
+        "Why some women want a women-only ceremony",
+        "Intuition and the body: what women describe",
+        "A lineage of women healers, from María Sabina to today",
+        "What a held week looks like, beyond the ceremony",
+        "Who holds the space with you",
+        "Our women's retreat this November",
         "FAQ"
       ],
       "internalLinks": [
-        "/psilocybin-retreat",
         "/es/retiro-de-mujeres",
-        "/blog/getting-to-finca-el-pendulo",
+        "/psilocybin-retreat",
+        "/blog/ayahuasca-or-psilocybin",
         "/blog/psilocybin-retreat-mexico",
-        "/finca-el-pendulo",
+        "/blog/psilocybin-myths",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Psychedelic Society UK piece on women in psychedelic spaces and consent",
-        "'Women and Psychedelic Retreats: Promise and Potential Problems' (2023)",
-        "US State Department travel advisory for Jalisco (current level, quote carefully)",
-        "Our transport and room details from /finca-el-pendulo"
+        "Women and Psychedelics: Uncovering Invisible Voices (Chacruna anthology, ed. Erika Dyck, Beatriz Caiuby Labate et al., Synergetic Press 2024; Spanish ed. Lunaria 2022)",
+        "Chacruna Institute's Women and Psychedelics Forum talks",
+        "Clarissa Pinkola Estés, Women Who Run With the Wolves (on intuition)",
+        "Ayelet Waldman, A Really Good Day (2017), a woman's published first-person account",
+        "Álvaro Estrada, Vida de María Sabina (1977)"
       ],
       "cta": "book-a-call",
-      "notes": "Carlos (2026-11-06): our integration coach is a woman and most of the team are women. He did not give a consent/touch policy: do not invent one or describe rules. Do not name the integration coach unless she is one of Humberto, Krista, Marina on the site. Do not overstate safety of the region; be factual."
+      "notes": "The Araisis retreat is Araisis's program in Spanish: describe it only with what /es/retiro-de-mujeres says (two ceremonies with niños santos, cacao, voice, temazcal, etc.). Keep the post informational so it does not compete with that event page. No claims about menopause, PMDD or hormones."
     },
     {
       "date": "2026-11-14",
       "profile": "Local Seeker",
-      "slug": "ayahuasca-ceremony-near-guadalajara",
-      "slugEs": "ceremonia-de-ayahuasca-cerca-de-guadalajara",
-      "title": "Ayahuasca ceremony near Guadalajara: what to look for",
-      "titleEs": "Ceremonia de ayahuasca cerca de Guadalajara: qué buscar",
-      "keyword": "ayahuasca ceremony near Guadalajara",
-      "keywordEs": "ceremonia de ayahuasca en Guadalajara",
+      "slug": "maria-sabina-mushroom-velada",
+      "slugEs": "maria-sabina-y-la-velada-de-hongos",
+      "title": "María Sabina and the mushroom velada: the Mexican roots of psilocybin ceremony",
+      "titleEs": "María Sabina y la velada de hongos: las raíces mexicanas de la ceremonia",
+      "keyword": "María Sabina mushroom ceremony",
+      "keywordEs": "qué es una velada de hongos",
       "secondary": [
-        "retiro de ayahuasca en Jalisco",
-        "ayahuasca Ajijic",
-        "ceremonia de ayahuasca precio en pesos",
-        "ayahuasca en español Jalisco",
-        "retiro de ayahuasca cerca de mí"
+        "niños santos hongos",
+        "María Sabina historia",
+        "ceremonia mazateca de hongos",
+        "hongos sagrados México tradición",
+        "Huautla de Jiménez hongos"
       ],
-      "intent": "commercial investigation",
-      "searcherQuestion": "Vivo en Guadalajara: ¿dónde puedo tomar ayahuasca cerca, de forma segura y en español, y cuánto cuesta en pesos?",
-      "angle": "Written Spanish-first. The Spanish results are only directory listings (BookRetreats) in English or machine Spanish. We write for someone in Guadalajara, Ajijic or Chapala: one hour by car, ceremonies in Spanish, prices in MXN, WhatsApp, and how to tell a one-night ceremony in a house from a held retreat with screening. Different from the national 'retiro de ayahuasca en México' post, which targets travellers.",
+      "intent": "informational",
+      "searcherQuestion": "¿Quién fue María Sabina y qué es una velada con niños santos? ¿Qué tiene que ver con las ceremonias de hoy?",
+      "angle": "Written Spanish-first. Spanish results are Wikipedia, México Desconocido, an opinion column and UNAM theses: rich but scattered, and none links the tradition to how a seeker today can approach it with respect. We tell the story (Huautla, the veladas, Wasson 1955 and Life 1957, what tourism did to Huautla), what the Mazatec tradition asks (preparation, need, not curiosity), and what we take from it into a held ceremony, without claiming any Mazatec lineage.",
       "outline": [
-        "Una ceremonia o un retiro: la diferencia",
-        "Qué revisar antes de ir a cualquier ceremonia",
-        "Finca El Péndulo: a una hora de Guadalajara",
-        "En español y con precios en pesos",
-        "Cómo es la semana y qué incluye",
-        "Cómo apartar tu lugar por WhatsApp",
+        "Quién fue María Sabina",
+        "Qué es una velada y por qué es de noche",
+        "Los niños santos: no se toman por curiosidad",
+        "Wasson, la revista Life y lo que cambió en Huautla",
+        "Qué aprendemos hoy de esa tradición",
+        "Cómo honramos la medicina en nuestros retiros",
         "Preguntas frecuentes"
       ],
       "internalLinks": [
-        "/es/retiro-de-ayahuasca",
-        "/es/blog/retiro-de-ayahuasca-en-mexico",
-        "/es/blog/como-elegir-un-retiro-de-ayahuasca-seguro",
-        "/es/blog/como-llegar-a-finca-el-pendulo",
+        "/es/retiro-de-psilocibina",
+        "/es/blog/retiro-de-psilocibina-en-mexico",
+        "/es/blog/que-es-un-temazcal",
+        "/es/blog/mitos-de-la-psilocibina",
         "/es/proximos-retiros",
         "/es/agenda-una-llamada"
       ],
       "sourceLeads": [
-        "BookRetreats Guadalajara/Jalisco listings (what competitors offer)",
-        "Our MXN prices from /es/retiro-de-ayahuasca"
+        "Álvaro Estrada, Vida de María Sabina: la sabia de los hongos (Siglo XXI, 1977)",
+        "R. Gordon Wasson, 'Seeking the Magic Mushroom', Life magazine, 13 May 1957",
+        "Documentary María Sabina, mujer espíritu (Nicolás Echevarría, 1979)",
+        "México Desconocido, 'María Sabina, la sabia de los hongos'",
+        "Benjamin Feinberg, The Devil's Book of Culture (on Huautla and tourism)",
+        "Revista Andamios (UACM) article on Mazatec ritual healing"
       ],
       "cta": "book-a-call",
-      "notes": "Local Seeker: write in Spanish first, then English. Carlos (2026-11-06): there are NO weekend or single-ceremony options; the full retreat week is the format. Say so plainly and explain why a held week differs from a one-night ceremony. No legal claims."
+      "notes": "Local Seeker: write in Spanish first. No weekend or single-ceremony options (full week only). Never claim our guides belong to the Mazatec lineage. No legal claims."
     },
     {
       "date": "2026-11-16",
       "profile": "Healing Seeker",
       "slug": "difficult-ayahuasca-ceremony",
       "slugEs": "ceremonia-de-ayahuasca-dificil",
-      "title": "No bad trips: when an ayahuasca ceremony gets hard",
-      "titleEs": "No hay malos viajes: cuando la ceremonia de ayahuasca se pone difícil",
+      "title": "No bad trips: what a hard ayahuasca night can teach about surrender",
+      "titleEs": "No hay malos viajes: lo que una noche difícil con ayahuasca enseña sobre rendirse",
       "keyword": "bad ayahuasca experience",
       "keywordEs": "mala experiencia con ayahuasca",
       "secondary": [
         "difficult ayahuasca ceremony",
-        "ayahuasca bad trip",
-        "what if I panic during ayahuasca",
+        "surrender ayahuasca",
+        "ayahuasca dark night",
         "scared of ayahuasca",
-        "challenging ayahuasca experience"
+        "challenging psychedelic experience meaning"
       ],
       "intent": "informational",
-      "searcherQuestion": "What if my ayahuasca night is terrifying? What actually happens, and who helps me?",
-      "angle": "Searchers type 'bad ayahuasca experience' out of fear. We meet that search and reframe it with our view: there are no good or bad experiences, only experiences, and tough moments are part of the process. Then the honest detail of what a hard night is like, how the team holds it and how it is integrated afterwards.",
+      "searcherQuestion": "I'm afraid of having a terrible night. What happens if it gets hard, and can a hard night mean something?",
+      "angle": "Same topic as the earlier plan, reframed toward the spiritual side: hard moments as part of the process, surrender instead of control, the 'dark night' in mystical traditions, and what people later say they learned. r/Ayahuasca threads ('I panicked and couldn't surrender, then let go') show the wording. Top results are either horror stories or vague reassurance; we give the inner frame plus how we hold people through it.",
       "outline": [
-        "There is no such thing as a bad trip",
+        "Why we say there are no bad trips",
         "What a hard night can feel like",
-        "Why tough is part of the process",
-        "What our team does when you are struggling",
-        "What helps you in the moment",
-        "Working with a hard night in the days after",
+        "Control versus surrender",
+        "The dark night in spiritual traditions",
+        "How we hold you when it gets hard",
+        "Making meaning of it in the days after",
         "FAQ"
       ],
       "internalLinks": [
         "/blog/first-ayahuasca-ceremony",
         "/blog/after-ayahuasca-integration",
         "/blog/how-to-prepare-for-ayahuasca",
-        "/medical",
+        "/blog/is-ayahuasca-right-for-me",
+        "/ayahuasca-retreat",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "ICEERS, 'Is there such a thing as a bad ayahuasca trip?'",
-        "Frontiers in Psychology 2022 on challenging ayahuasca experiences (PMC9335152)",
-        "Bouso et al. 2022, PLOS Global Public Health, adverse effects of ayahuasca",
-        "Perkins et al. on setting and challenging experiences in ayahuasca survey (n=2,751)"
+        "Stanislav and Christina Grof, Spiritual Emergency (1989) and The Stormy Search for the Self",
+        "St. John of the Cross, Dark Night of the Soul",
+        "Carbonaro et al. 2016, J Psychopharmacol, survey of challenging psilocybin experiences (most later rated them meaningful)",
+        "Michael Pollan, How to Change Your Mind, and his talks on 'letting go'",
+        "r/Ayahuasca first-person threads on fear and surrender (paraphrase only)"
       ],
       "cta": "book-a-call",
-      "notes": "Carlos (2026-11-06), the core message: 'There are not good or bad experiences. There is no such thing as a good or bad trip. There are only experiences. Tough is part of the process.' Use the keyword for search but never call an experience bad in our own voice. No promise that every hard night ends well; still mention screening and support. No invented Humberto quotes."
+      "notes": "House voice: there are no good or bad experiences, only experiences; never call one 'bad' in our voice (the keyword may appear only as what people search). No dosing amounts; dose is decided in conversation and a guest can choose a smaller dose."
     },
     {
       "date": "2026-11-17",
       "profile": "Crossroads",
       "slug": "ayahuasca-and-grief",
       "slugEs": "ayahuasca-y-duelo",
-      "title": "Ayahuasca and grief: what a retreat can and cannot hold",
-      "titleEs": "Ayahuasca y duelo: lo que un retiro puede y no puede sostener",
+      "title": "Ayahuasca and grief: grieving as inner work",
+      "titleEs": "Ayahuasca y duelo: el duelo como trabajo interior",
       "keyword": "ayahuasca and grief",
       "keywordEs": "ayahuasca y duelo",
       "secondary": [
+        "ayahuasca after losing a parent",
         "spiritual retreat for grief",
-        "retreat after losing a parent",
-        "plant medicine grief",
-        "healing retreat after loss",
-        "grief retreat Mexico"
+        "psychedelics for grief",
+        "ayahuasca loss of loved one"
       ],
       "intent": "informational",
-      "searcherQuestion": "I lost someone and I'm stuck. Could a plant medicine retreat help me grieve, and is it the right moment?",
-      "angle": "Top results are retreat marketing and a few personal stories. We bring the one real study (González et al. 2020, a 12-month observational study of bereaved people at a retreat) with its limits, plus what grief can look like in ceremony, when it is too soon, and what support at home matters. Story of one turning point, not about the medicine.",
+      "searcherQuestion": "I lost someone and I'm stuck. Can a ceremony help me grieve, and what is that like?",
+      "angle": "Kept topic, reframed: grief not as a condition to fix but as inner work and a rite of passage. Uses the González 2020 study (acceptance and decentering), published testimonials (Prince Harry on ayahuasca and grief for his mother, in the 2023 talk with Gabor Maté) and grief writers. Top results are news items about Harry and one ICEERS page; nobody joins research, testimony and the spiritual view.",
       "outline": [
-        "Grief that does not move",
-        "What the research says, and its limits",
-        "What grief can look like in ceremony",
-        "Is it too soon? Questions to ask yourself",
-        "What the week holds: ceremony, temazcal, circle",
-        "Coming home: support after the retreat",
+        "Grief as something to go through, not fix",
+        "What people describe feeling in ceremony",
+        "What the research saw: acceptance and decentering",
+        "Published stories of grief and ayahuasca",
+        "Rituals for the dead in Mexico and in ceremony",
+        "Carrying it home",
         "FAQ"
       ],
       "internalLinks": [
-        "/blog/is-ayahuasca-right-for-me",
         "/blog/after-ayahuasca-integration",
+        "/blog/is-ayahuasca-right-for-me",
         "/blog/what-is-a-temazcal",
-        "/ayahuasca-retreat",
+        "/upcoming-retreats",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "González et al. 2020, Psychopharmacology 237:1171-1182, 'Therapeutic potential of ayahuasca in grief' (doi 10.1007/s00213-019-05446-2)",
-        "ICEERS summary of the grief study",
-        "Shear 2015, NEJM, complicated grief (for when grief needs professional care)"
+        "González et al. 2020, Psychopharmacology 237, 'Therapeutic potential of ayahuasca in grief' (ICEERS summary)",
+        "Prince Harry in conversation with Gabor Maté, March 2023 livestream for Spare (press reports)",
+        "Francis Weller, The Wild Edge of Sorrow (2015)",
+        "Stephen Jenkinson, Die Wise and the documentary Griefwalker (NFB, 2008)",
+        "Día de Muertos as a living grief ritual (INAH sources)"
       ],
       "cta": "book-a-call",
-      "notes": "Frame as experience and support, never as grief treatment. Encourage professional grief support alongside."
+      "notes": "No therapy or cure claims; grief is not a disorder to treat. Present Harry's words as his own account from press reports."
     },
     {
       "date": "2026-11-19",
       "profile": "Pattern Breaker",
-      "slug": "ayahuasca-and-alcohol",
-      "slugEs": "ayahuasca-y-alcohol",
-      "title": "Ayahuasca and alcohol: why we ask you to arrive sober",
-      "titleEs": "Ayahuasca y alcohol: por qué te pedimos llegar sin beber",
-      "keyword": "ayahuasca and alcohol",
-      "keywordEs": "ayahuasca y alcohol",
+      "slug": "ayahuasca-for-addiction",
+      "slugEs": "ayahuasca-y-adicciones",
+      "title": "Ayahuasca for addiction: what the stories, the research and the spiritual view say",
+      "titleEs": "Ayahuasca y adicciones: lo que dicen los testimonios, la ciencia y la mirada espiritual",
+      "keyword": "ayahuasca for addiction",
+      "keywordEs": "ayahuasca y adicciones",
       "secondary": [
-        "can you drink alcohol after ayahuasca",
-        "how long no alcohol before ayahuasca",
-        "ayahuasca diet alcohol",
-        "ayahuasca for alcoholism",
-        "drinking before ayahuasca ceremony"
+        "ayahuasca addiction stories",
+        "Gabor Maté ayahuasca",
+        "plant medicine for alcoholism",
+        "spiritus contra spiritum",
+        "ayahuasca vs ibogaine"
       ],
       "intent": "informational",
-      "searcherQuestion": "Do I really have to stop drinking before ayahuasca, for how long, and what if I struggle to stop?",
-      "angle": "Results give conflicting day counts on diet blogs. We explain the why (MAOI effects, a clearer mind in ceremony, the body), our clear rule (arrive alcohol free; we are not a detox centre), why stopping heavy drinking can be medically risky and needs a doctor, and what people who come to look at their drinking tell us about the week and after. Serves both the person and the family member searching for them.",
+      "searcherQuestion": "Can ayahuasca help me break an addiction, what have others lived, and what does it ask of me?",
+      "angle": "Replaces the narrow 'arrive sober' post with the broad, searched topic. Top results are old news on Gabor Maté (2011 to 2014) and retreat sales pages. We bring the spiritual thread (Jung's 1961 letter to Bill W.: 'spiritus contra spiritum'; addiction as a thirst for wholeness), Maté's view of the pain behind the habit, what small studies found, and plain rules: arrive alcohol and drug free, we are not rehab or detox, the change happens in integration.",
       "outline": [
-        "The short answer",
-        "Why alcohol and ayahuasca do not mix",
-        "Before the retreat: our rule and why",
-        "If stopping is hard: talk to a doctor first",
-        "We are a retreat, not a detox or rehab",
-        "After the retreat: alcohol and integration",
-        "For families: how to support someone",
+        "Addiction as a thirst: Jung, Bill W. and the spiritual view",
+        "Gabor Maté: not why the addiction, but why the pain",
+        "What people who broke a pattern describe",
+        "What the research found, and its limits",
+        "Why you must arrive sober, and why we are not rehab",
+        "The real work starts after",
         "FAQ"
       ],
       "internalLinks": [
-        "/blog/how-to-prepare-for-ayahuasca",
+        "/blog/is-ayahuasca-right-for-me",
         "/blog/medications-unsafe-with-ayahuasca",
         "/blog/after-ayahuasca-integration",
         "/medical",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "NIAAA on alcohol withdrawal risks (why a doctor is needed to stop heavy drinking)",
-        "Fernández & Fábregas 2014, ayahuasca and addiction treatment at Takiwasi (as context, not claims)",
-        "Brierley & Davidson 2012, review of ayahuasca in addiction"
+        "Carl Jung, letter to Bill Wilson, 30 January 1961 ('spiritus contra spiritum')",
+        "Gabor Maté, In the Realm of Hungry Ghosts (2008) and his Tim Ferriss podcast interview on trauma, addiction and ayahuasca",
+        "Thomas et al. 2013, Current Drug Abuse Reviews (Maté's 'Working with Addiction and Stress' retreats)",
+        "Fábregas et al. 2010, Drug Alcohol Depend, addiction severity in ritual ayahuasca users",
+        "Johann Hari, TED talk 'Everything you think you know about addiction is wrong' (2015)",
+        "Bogenschutz et al. 2022, JAMA Psychiatry (psilocybin and alcohol, as context)"
       ],
       "cta": "book-a-call",
-      "notes": "WATCH: never position the retreat as rehab or detox; no claims it ends addiction; no withdrawal instructions. Mention r/stopdrinking wording only as how people ask."
+      "notes": "Never position the retreat as rehab or detox; only for people who can arrive alcohol and drug free. No cure claims. Ibogaine only as a short honest comparison (we do not offer it)."
     },
     {
       "date": "2026-11-21",
       "profile": "Returning Journeyer",
-      "slug": "how-many-ayahuasca-ceremonies",
-      "slugEs": "cuantas-ceremonias-de-ayahuasca",
-      "title": "How many ayahuasca ceremonies do you need?",
-      "titleEs": "¿Cuántas ceremonias de ayahuasca necesitas?",
-      "keyword": "how many ayahuasca ceremonies do you need",
-      "keywordEs": "cuántas ceremonias de ayahuasca necesito",
+      "slug": "ayahuasca-ego-death",
+      "slugEs": "muerte-del-ego-ayahuasca",
+      "title": "Ego death and ayahuasca: what dissolving the self really means",
+      "titleEs": "Muerte del ego y ayahuasca: qué significa de verdad disolver el yo",
+      "keyword": "ayahuasca ego death",
+      "keywordEs": "muerte del ego ayahuasca",
       "secondary": [
-        "second ayahuasca retreat",
-        "how often can you do ayahuasca",
-        "ayahuasca retreat again",
-        "time between ayahuasca retreats",
-        "why three ceremonies"
+        "what is ego death",
+        "ego dissolution psychedelics",
+        "ego death experience",
+        "fear of ego death",
+        "ego death vs ego inflation"
       ],
       "intent": "informational",
-      "searcherQuestion": "I've done ayahuasca before. How many ceremonies make sense, how far apart, and what changes the second time?",
-      "angle": "The r/Ayahuasca wiki and retreat sales pages are the only answers. We explain why our week has two ayahuasca nights plus Satori, what returning guests say changes on a second retreat, how much time to leave between retreats for integration, and when more ceremonies is not the answer.",
+      "searcherQuestion": "What is ego death, is it the goal, and what changes in people after it?",
+      "angle": "Expanding consciousness for experienced seekers. Results are a 2023 study write-up (PsyPost), Chacruna and ICEERS essays and Substack posts saying 'ego death is not the goal'. We join the study data (most experienced users report a death-like experience, linked to less fear of death), the contemplative view (Watts, Ram Dass) and the warning about spiritual ego and inflation, plus how to hold it in ceremony.",
       "outline": [
-        "There is no magic number",
-        "Why our week has three ceremonies",
-        "What changes on a second or third retreat",
-        "How much time to leave between retreats",
-        "When more ceremonies is not the answer",
-        "Choosing your next retreat",
+        "What people mean by ego death",
+        "What it feels like, in their own words",
+        "What a 2023 study of experienced drinkers found",
+        "Is it the goal? Ego death versus spiritual ego",
+        "Ego, surrender and the contemplative traditions",
+        "Coming back: integrating a dissolved self",
         "FAQ"
       ],
       "internalLinks": [
         "/blog/what-is-satori",
         "/blog/after-ayahuasca-integration",
-        "/blog/what-is-kambo",
+        "/blog/first-ayahuasca-ceremony",
         "/ayahuasca-retreat",
-        "/upcoming-retreats",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "r/Ayahuasca wiki 'How Many Ceremonies'",
-        "Our retreat structure from /ayahuasca-retreat",
-        "Past returning guests' notes in GHL (anonymised)"
+        "'Ayahuasca-induced personal death experiences', Frontiers in Psychiatry 2023 (ICEERS and PsyPost summaries)",
+        "Alan Watts, The Book: On the Taboo Against Knowing Who You Are (1966) and his recorded lectures",
+        "Ram Dass, Be Here Now (1971) and the documentary Becoming Nobody (2019)",
+        "Chris Letheby, Philosophy of Psychedelics (OUP 2021)",
+        "Chacruna essay 'The Effects of Ayahuasca on the Ego' and ICEERS 'Plant medicine and the ego: a process of reintegration'"
       ],
       "cta": "book-a-call",
-      "notes": "No quote from Humberto available; do not invent one."
+      "notes": "Do not promise ego death or present it as a goal. Mention the risk for people with a history of psychosis (link /medical)."
     },
     {
       "date": "2026-11-23",
       "profile": "Caregiver",
       "slug": "retreat-for-nurses-burnout",
       "slugEs": "retiro-para-personal-de-salud-con-burnout",
-      "title": "A retreat for nurses and healthcare workers with burnout",
-      "titleEs": "Un retiro para enfermeras y personal de salud con burnout",
+      "title": "A retreat for nurses and caregivers: when the one who holds others needs to be held",
+      "titleEs": "Un retiro para enfermeras y cuidadores: cuando quien sostiene necesita ser sostenido",
       "keyword": "retreat for nurses burnout",
       "keywordEs": "retiro para personal de salud con burnout",
       "secondary": [
-        "psychedelic retreat for healthcare workers",
         "compassion fatigue retreat",
         "healing retreat for therapists",
-        "psilocybin burnout healthcare workers study",
-        "burnout retreat Mexico"
+        "psychedelic retreat for healthcare workers",
+        "self care for caregivers spiritual"
       ],
-      "intent": "informational",
-      "searcherQuestion": "I'm a nurse or therapist running on empty. Is a plant medicine retreat a sensible way to recover, and what does the research say?",
-      "angle": "Few results, mostly US retreat listings. We bring the 2025 University of Utah randomized trial (psilocybin plus therapy in frontline healthcare workers), care-for-the-caregiver framing, the precise medical questions clinicians ask (with a link to our screening post), and practical points: a week off, being cared for instead of caring.",
+      "intent": "commercial investigation",
+      "searcherQuestion": "I give care all day and I'm empty. What would it mean to be cared for for a week?",
+      "angle": "Kept topic, reframed from clinical burnout to the inner side: compassion fatigue, the meaning that brought them to care work, and receiving instead of giving. Top results are CE courses and nurse self-care lists, no retreat content. We add Trauma Stewardship's frame, the 2024 frontline clinicians psilocybin trial as honest context, and what a held week with a mostly women team feels like.",
       "outline": [
-        "When the carer needs care",
-        "Burnout and compassion fatigue: what they are",
-        "What the research says so far",
-        "What clinicians usually ask us",
-        "A week where someone else holds the space",
-        "Planning the time off",
+        "Compassion fatigue: when caring empties you",
+        "Why caregivers find it hard to receive",
+        "Reconnecting with why you chose this work",
+        "What the research on clinicians found, and its limits",
+        "What a week of being held looks like",
+        "Bringing it back to your shifts",
         "FAQ"
       ],
       "internalLinks": [
-        "/blog/ayahuasca-retreat-medical-screening",
-        "/blog/ayahuasca-or-psilocybin",
-        "/psilocybin-retreat",
         "/medical",
+        "/blog/is-ayahuasca-right-for-me",
+        "/blog/psilocybin-neuroplasticity",
         "/upcoming-retreats",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Lewis et al. 2025, PLOS Medicine, psilocybin-assisted therapy for depression and burnout in frontline healthcare workers (University of Utah)",
-        "Maslach Burnout Inventory definitions",
-        "WHO ICD-11 definition of burnout as occupational phenomenon"
+        "Laura van Dernoot Lipsky, Trauma Stewardship (2009) and her TEDx talk 'Beyond the Cliff'",
+        "Back et al. 2024, JAMA Network Open, psilocybin for frontline clinicians (depression improved; burnout change not significant)",
+        "Kristin Neff, Self-Compassion (2011) and her TEDx talk",
+        "Rachel Naomi Remen, Kitchen Table Wisdom (1996)"
       ],
       "cta": "book-a-call",
-      "notes": "Do not address licensing or drug testing (legal, varies by state). No claims it treats burnout or depression."
+      "notes": "No treatment claims for burnout. No advice on licensing or employment rules. Facts we may use: integration coach is a woman, most of the team are women."
     },
     {
       "date": "2026-11-24",
       "profile": "Psilocybin-Curious Woman",
       "slug": "microdosing-vs-macrodosing",
       "slugEs": "microdosis-o-dosis-completa",
-      "title": "Microdosing vs macrodosing: what changes at a full-dose ceremony",
-      "titleEs": "Microdosis o dosis completa: qué cambia en una ceremonia",
+      "title": "Microdosing vs a full ceremony: from a better day to a wider awareness",
+      "titleEs": "Microdosis o ceremonia completa: de un día mejor a una consciencia más amplia",
       "keyword": "microdosing vs macrodosing",
       "keywordEs": "microdosis vs macrodosis",
       "secondary": [
-        "microdose to macrodose",
+        "microdosing to macrodosing",
         "first macrodose psilocybin",
-        "psilocybin retreat after microdosing",
-        "is microdosing enough",
-        "macrodose psilocybin retreat"
+        "microdosing placebo study",
+        "is microdosing spiritual",
+        "full dose mushroom ceremony"
       ],
       "intent": "informational",
-      "searcherQuestion": "I've been microdosing at home. What is a full ceremony dose like, and why would I do it at a retreat?",
-      "angle": "Top results are vendor blogs with conflicting gram numbers. We avoid dose figures and explain the difference in experience, what the research covers (most trials are full-dose; microdosing evidence is weaker, Szigeti et al. 2021 self-blinding study), why a first full dose is better held by guides, how Krista decides the dose with each guest, and microdosing after a retreat.",
+      "searcherQuestion": "I microdose at home. What is different about a full ceremony, and am I ready?",
+      "angle": "Kept topic, reframed toward consciousness: a microdose is a daily tool, a ceremony is an encounter. Top results are dosage-chart pages. We give no grams (house rule) and instead explain how dose is decided in conversation and in the moment, that a guest can start smaller and ask for more, the placebo findings on microdosing, and what women describe as the shift from mood to meaning.",
       "outline": [
-        "Two very different things",
-        "What a microdose is and is not",
-        "What a full dose is like",
-        "What the research says about each",
-        "Why a first full dose belongs in a held space",
-        "How dose is decided at our retreat: a conversation, in the moment",
+        "Two different ways of meeting the mushroom",
+        "What microdosers report, and what the placebo studies found",
+        "What changes in a full ceremony",
+        "How dose is decided with us: conversation, not charts",
+        "Set, setting and being held",
+        "Are you ready to move from micro to ceremony?",
         "FAQ"
       ],
       "internalLinks": [
-        "/blog/psilocybin-retreat-mexico",
-        "/blog/psilocybin-myths",
-        "/blog/ayahuasca-or-psilocybin",
         "/psilocybin-retreat",
+        "/blog/psilocybin-myths",
+        "/blog/psilocybin-neuroplasticity",
+        "/blog/ayahuasca-or-psilocybin",
+        "/blog/psilocybin-retreat-mexico",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Szigeti et al. 2021, eLife, self-blinding microdose trial",
-        "Davis et al. 2021, JAMA Psychiatry, psilocybin full-dose trial for MDD",
-        "Goodwin et al. 2022, NEJM, psilocybin in TRD (already cited on the blog)"
+        "Ayelet Waldman, A Really Good Day (2017)",
+        "James Fadiman, The Psychedelic Explorer's Guide (2011)",
+        "Szigeti et al. 2021, eLife, self-blinding microdosing study",
+        "Paul Stamets's talks on microdosing (e.g. Psychedelic Science 2017)",
+        "Michael Pollan, How to Change Your Mind (psilocybin chapters)"
       ],
       "cta": "book-a-call",
-      "notes": "Carlos (2026-11-06): dose is decided through conversation and in the moment; guests can choose a smaller dose and ask for more medicine. No gram amounts or home-use instructions. No invented Krista quotes."
+      "notes": "Never give gram amounts. Dose is decided in conversation and in the moment; a guest can choose a smaller dose and ask for more."
     },
     {
       "date": "2026-11-26",
       "profile": "Crossroads",
       "slug": "spiritual-new-year",
       "slugEs": "recibir-el-ano-nuevo-con-intencion",
-      "title": "A different New Year: how to welcome the year with intention",
-      "titleEs": "Un Año Nuevo distinto: cómo recibir el año con intención",
+      "title": "A spiritual New Year: release, intention and ceremony",
+      "titleEs": "Un Año Nuevo espiritual: soltar, intención y ceremonia",
       "keyword": "spiritual way to celebrate new year",
       "keywordEs": "cómo recibir el año nuevo de forma espiritual",
       "secondary": [
-        "new year retreat Mexico",
         "new year intention ritual",
-        "new year without alcohol",
-        "new year reset retreat",
-        "rituales de año nuevo"
+        "burning bowl ceremony",
+        "new year retreat Mexico",
+        "letting go ritual new year",
+        "new year reset retreat"
       ],
       "intent": "informational",
-      "searcherQuestion": "I don't want another New Year's party. How can I start the year with something that means something?",
-      "angle": "The commercial term 'new year retreat Mexico' belongs to the /new-year-retreat page, so this post takes the informational intent: rituals for closing a year (letting go, intention, fire, temazcal, silence), why a January reset matters, and a soft path to our New Year at Finca El Péndulo (Dec 28 to Jan 2). Results for the commercial term are only listings; the ritual angle has generic lifestyle content we can beat with lived detail. Published on US Thanksgiving, as people plan the holidays.",
+      "searcherQuestion": "I don't want another party or resolutions I'll drop. How can I close this year and start the next with meaning?",
+      "angle": "Kept topic, deeper spiritual angle: release rituals (burning bowl, fire), Mexican year-end customs, intention versus resolution, and why change sticks better from inner clarity. Results are church pages and listicles; we add a seasonal, honest invitation to the New Year at the Finca (Dec 28 to Jan 2).",
       "outline": [
-        "Why so many people want a quieter New Year",
-        "Closing the year: letting go of what is done",
-        "Setting an intention that lasts past January",
-        "Rituals: fire, temazcal, silence, circle",
-        "New Year at Finca El Péndulo",
-        "Planning it: dates and time off",
+        "Why resolutions fade and intentions last",
+        "Closing the year: what to let go of",
+        "Release rituals: fire, writing, water",
+        "Mexican ways of receiving the year",
+        "Welcoming the year in ceremony",
+        "A simple ritual you can do at home",
         "FAQ"
       ],
       "internalLinks": [
@@ -526,100 +539,106 @@
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Our New Year 2027 packages from /new-year-retreat",
-        "Mexican New Year traditions (12 uvas etc.) for the Spanish version"
+        "Unity's burning bowl ceremony guide",
+        "Kripalu, 'Rituals for the New Year'",
+        "Pema Chödrön, When Things Fall Apart (1997)",
+        "Brené Brown, TEDxHouston talk 'The power of vulnerability' (2010)",
+        "Mexican Año Nuevo customs (12 uvas, limpias) from INAH or México Desconocido"
       ],
       "cta": "book-a-call",
-      "notes": "Seasonal. Must not compete with /new-year-retreat for the commercial keyword; link to it prominently. Spanish CTA can be WhatsApp booking."
+      "notes": "Describe the New Year program only as /new-year-retreat states it (retreat, ceremony or celebration). Ask Carlos if he wants the post to name what happens on Dec 31 at the Finca."
     },
     {
       "date": "2026-11-28",
-      "profile": "Local Seeker",
-      "slug": "what-is-ayahuasca",
-      "slugEs": "que-es-la-ayahuasca",
-      "title": "What is ayahuasca? A clear guide without the hype",
-      "titleEs": "¿Qué es la ayahuasca? Una guía clara, sin mitos",
-      "keyword": "what is ayahuasca",
-      "keywordEs": "qué es la ayahuasca",
-      "secondary": [
-        "ayahuasca qué es y para qué sirve",
-        "efectos de la ayahuasca",
-        "ayahuasca es una droga",
-        "de dónde viene la ayahuasca",
-        "ayahuasca riesgos"
-      ],
-      "intent": "informational",
-      "searcherQuestion": "¿Qué es realmente la ayahuasca, de dónde viene, qué hace y es peligrosa?",
-      "angle": "Written Spanish-first for Mexican readers facing family and religious stigma. The Spanish results are news sites calling it a 'droga' with sensational risks, and a few health portals. We give a calm, sourced basics page from practitioners: the two plants, origin and traditions, how it acts (DMT plus MAOI), what a ceremony is, real risks and who should not take it, and how to talk about it with family. The blog has no basics page yet; it becomes the hub for the other ayahuasca posts.",
-      "outline": [
-        "Qué es la ayahuasca: dos plantas",
-        "De dónde viene y quién la usa",
-        "Cómo actúa en el cuerpo",
-        "Qué pasa en una ceremonia",
-        "Riesgos reales y quién no debe tomarla",
-        "Cómo hablarlo con tu familia",
-        "Preguntas frecuentes"
-      ],
-      "internalLinks": [
-        "/es/blog/primera-ceremonia-de-ayahuasca",
-        "/es/blog/medicamentos-y-ayahuasca",
-        "/es/blog/es-la-ayahuasca-para-mi",
-        "/es/blog/ayahuasca-o-psilocibina",
-        "/es/informacion-medica",
-        "/es/agenda-una-llamada"
-      ],
-      "sourceLeads": [
-        "Hamill et al. 2019, Curr Neuropharmacol, ayahuasca psychological and physiological effects review",
-        "McKenna 2004, Pharmacol Ther, pharmacology of ayahuasca",
-        "Labate & Cavnar on traditional and religious use",
-        "Bouso et al. 2022 adverse effects survey"
-      ],
-      "cta": "book-a-call",
-      "notes": "Spanish-first. Do not state Mexico's legal status unless sourced and accurate; leave legality out if unsure. Avoid 'droga' framing but do not dismiss the risks."
-    },
-    {
-      "date": "2026-11-30",
       "profile": "Healing Seeker",
-      "slug": "ayahuasca-depression-research",
-      "slugEs": "ayahuasca-y-depresion-estudios",
-      "title": "Ayahuasca and depression: what the research shows, and what it doesn't",
-      "titleEs": "Ayahuasca y depresión: lo que muestran los estudios y lo que no",
-      "keyword": "ayahuasca for depression",
-      "keywordEs": "ayahuasca para la depresión",
+      "slug": "what-ayahuasca-teaches",
+      "slugEs": "lo-que-ensena-la-ayahuasca",
+      "title": "What does ayahuasca teach? The lessons people bring home",
+      "titleEs": "¿Qué enseña la ayahuasca? Las lecciones que la gente se lleva a casa",
+      "keyword": "what does ayahuasca teach you",
+      "keywordEs": "qué te enseña la ayahuasca",
       "secondary": [
-        "ayahuasca treatment resistant depression study",
-        "ayahuasca depression research",
-        "ayahuasca vs antidepressants",
-        "does ayahuasca help depression",
-        "ayahuasca clinical trial"
+        "ayahuasca spiritual awakening",
+        "lessons from ayahuasca",
+        "what ayahuasca taught me",
+        "ayahuasca meaning of life",
+        "ayahuasca as a teacher plant"
       ],
       "intent": "informational",
-      "searcherQuestion": "Does ayahuasca actually help depression, and how strong is the evidence?",
-      "angle": "Many results overclaim. We give an honest research review: the 2019 Palhano-Fontes randomized trial (29 patients, one week), earlier open-label work, observational studies, what the limits are (small, short, blinding), how it compares to the psilocybin evidence, and what this means for someone deciding. Pairs with the SSRI guide from Nov 7.",
+      "searcherQuestion": "People say ayahuasca is a teacher. What does it actually teach, and could it give me back a sense of meaning?",
+      "angle": "Meaning and inner work for the Healing Seeker, without medical framing. Results are scattered Medium and Substack testimonials. We gather the recurring lessons from published accounts (humility, self-love, boundaries, forgiveness, connection) and from the 'plant teacher' idea in Amazonian tradition, and say honestly that the lesson only matters if lived.",
       "outline": [
-        "The short answer",
-        "The 2019 randomized trial in treatment-resistant depression",
-        "Earlier and observational studies",
-        "What the studies cannot tell us yet",
-        "How this compares with psilocybin research",
-        "What this means if you live with depression",
+        "Why ayahuasca is called a teacher plant",
+        "Lesson one: you are not your story",
+        "Forgiveness and self-love",
+        "Connection: to people, nature and something larger",
+        "Humility: the questions you did not know to ask",
+        "A lesson is only real when you live it",
         "FAQ"
       ],
       "internalLinks": [
-        "/blog/ayahuasca-and-ssris",
-        "/blog/psilocybin-neuroplasticity",
+        "/blog/first-ayahuasca-ceremony",
+        "/blog/after-ayahuasca-integration",
         "/blog/is-ayahuasca-right-for-me",
-        "/medical",
+        "/ayahuasca-retreat",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Palhano-Fontes et al. 2019, Psychological Medicine 49(4):655-663",
-        "Osório et al. 2015, Rev Bras Psiquiatr, open-label ayahuasca in recurrent depression",
-        "Sanches et al. 2016, J Clin Psychopharmacol, SPECT study",
-        "Goodwin et al. 2022, NEJM, psilocybin in TRD (comparison)"
+        "Jeremy Narby, The Cosmic Serpent (1998)",
+        "Stephan V. Beyer, Singing to the Plants (2009), on plant teachers",
+        "Will Smith, Will (2021), his published account of ayahuasca ceremonies",
+        "Rak Razam, Aya Awakenings (book and documentary)",
+        "First-person accounts on Medium, Substack and Spirituality & Health (paraphrased, credited)"
       ],
       "cta": "book-a-call",
-      "notes": "High YMYL. No cure or treatment claims; say clearly it does not replace care. Keep the title honest."
+      "notes": "No cure or 'heals depression' claims. Quote testimonials only from published sources, credited; never invent guest or team quotes."
+    },
+    {
+      "date": "2026-11-30",
+      "profile": "Pattern Breaker",
+      "slug": "change-habits-after-retreat",
+      "slugEs": "cambiar-habitos-despues-de-un-retiro",
+      "title": "How to change habits after a retreat, before the afterglow fades",
+      "titleEs": "Cómo cambiar hábitos después de un retiro, antes de que pase el brillo",
+      "keyword": "how to change habits after a psychedelic experience",
+      "keywordEs": "cómo cambiar hábitos después de un retiro",
+      "secondary": [
+        "psychedelic afterglow fades",
+        "integration after ayahuasca habits",
+        "keep changes after a retreat",
+        "old patterns after ayahuasca",
+        "daily practice after retreat"
+      ],
+      "intent": "informational",
+      "searcherQuestion": "I felt changed at the retreat. How do I keep the new habits once I'm back in my old life?",
+      "angle": "Habit change, the month's closing post. Different intent from /blog/after-ayahuasca-integration (the first days and how you feel); this is about the weeks and months and building new habits. Spanish results are generic retreat tips with no plant-medicine context, so the Spanish version is very winnable. We join habit science (small steps, cue and reward, identity) with integration practice and the pull of old patterns.",
+      "outline": [
+        "The afterglow is a window, not the change",
+        "Why old patterns pull you back",
+        "Start with one or two small habits",
+        "Change who you are, not only what you do",
+        "Community, people and places",
+        "When you slip",
+        "FAQ"
+      ],
+      "internalLinks": [
+        "/blog/after-ayahuasca-integration",
+        "/blog/how-to-prepare-for-ayahuasca",
+        "/blog/psilocybin-neuroplasticity",
+        "/prepare",
+        "/book-a-call"
+      ],
+      "sourceLeads": [
+        "James Clear, Atomic Habits (2018), identity-based habits",
+        "Judson Brewer, TED talk 'A simple way to break a bad habit' (2016) and The Craving Mind",
+        "Johnson et al. 2014, J Psychopharmacol, psilocybin and smoking (lasting change built with a support program)",
+        "MAPS integration guides on practices after a psychedelic experience",
+        "Robin Carhart-Harris lab talk 'Losing the glow'"
+      ],
+      "cta": "book-a-call",
+      "notes": "Not rehab advice. Describe our integration support only as the site states it (integration coach is a woman)."
     }
-  ]
+  ],
+  "updatedAt": "2026-11-06",
+  "focusNote": "Re-planned Nov 10-30 on 2026-11-06 for the new focus: spiritual growth, consciousness, addiction and habit change; at most 1 in 4 medical or practical."
 }
