@@ -249,6 +249,7 @@ function renderReader(){
     </dl>
     ${p.workerNote ? `<div class="worker-note"><b>Nota del worker</b><span>${esc(p.workerNote)}</span></div>` : ''}
     ${p.liveUrl && s==='published' ? `<p><a href="${esc(es ? (p.liveUrlEs || p.liveUrl) : p.liveUrl)}" target="_blank" rel="noopener">Ver en el sitio</a></p>` : ''}
+    ${p.facebookAt ? `<p class="muted">Publicado en Facebook el ${esc(String(p.facebookAt).slice(0,10))}${p.facebookUrl ? ` · <a href="${esc(p.facebookUrl)}" target="_blank" rel="noopener">ver post</a>` : ''}</p>` : ''}
     <div class="langs" role="tablist" aria-label="Idioma">
       <button type="button" role="tab" data-lang="en" aria-selected="${!es}">English</button>
       <button type="button" role="tab" data-lang="es" aria-selected="${es}">Español</button>

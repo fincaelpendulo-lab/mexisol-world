@@ -47,6 +47,25 @@ For records with `status: "scheduled"` and `date` ≤ today (Mexico time): check
 Not yet after 10:00 → mention it in the report (the morning rebuild may have failed; the fix is
 `gh workflow run publish-scheduled-posts.yml`).
 
+## 2b. Share on Facebook (every run)
+
+Carlos (2026-11-07): every published post goes to the MexiSol World Facebook page, in English, on its own (no
+review). For each record with `status: "published"` and no `facebookAt`:
+
+1. `node scripts/blog/facebook-post.mjs <slug>`. It exits 1 if the page is not live; then skip it this run.
+2. Write the caption in English from the post (read `src/content/blog/en/<slug>.md` on `origin/main` or the record's
+   `bodyEn`): 40 to 90 words, speaking as MexiSol World ("we"). A hook from the searcher's real question, one or two
+   lines on what the post covers, then `Read it here: <link>` on its own line. Same rules as the blog: no em dashes,
+   no hype, no cure or sobriety promises, never the Finca as organizer, no invented quotes. At most 2 hashtags.
+3. Load `mcp__ghl__social-media-posting_create-post` with ToolSearch and call it with:
+   - `body_accountIds`: `["6aef86b13f522d982fc72837_1GTkgzMK72UpOBKUvrNi_1344848472055707_page"]` (page "MexiSol World";
+     if GHL rejects it, list accounts with `social-media-posting_get-account` and use the Facebook page)
+   - `body_userId`: `fM6mwsk0GnRVkkDD3Ljr` (Carlos), `body_type`: `post`, `body_status`: `published`
+   - `body_summary`: the caption; `body_media`: `[{"url": "<imageUrl>", "type": "image/jpeg"}]`
+4. Update the record: `facebookAt` (now, ISO), `facebookPostId` (the result's `_id`), `facebookCaption`.
+   If GHL fails, don't retry in the same run; say why in the report. If the error says the Facebook connection
+   expired, tell Carlos to reconnect the page in GHL → Marketing → Social Planner (it expires about every 60 days).
+
 ## 3. Write ahead (07:00 run only)
 
 Goal: every post is in the dashboard for review at least 7 days before its date.
