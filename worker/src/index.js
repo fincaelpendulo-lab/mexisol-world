@@ -1,8 +1,11 @@
 // Receives the MexiSol World registration form, checks it again on the server
 // (fields, honeypot, time to submit, Cloudflare Turnstile) and saves the lead in
-// GoHighLevel through its API (no premium workflow trigger needed): the contact is
-// created or updated with the tag "website-registration", and the retreat and
-// message are added as a note. Secrets live in Cloudflare, never in the repo.
+// GoHighLevel through its API: the contact is created or updated with the retreat
+// details, a first lead score and a temperature tag, then tagged
+// "website-registration", which starts the "Request info" workflow in GoHighLevel.
+// The message is also added as a note. Secrets live in Cloudflare, never in the repo.
+
+import { idFromLabel, retreatInfo, upcoming, score, temperature, TEMPERATURE_TAGS } from './leads.js';
 
 const GHL = 'https://services.leadconnectorhq.com';
 const GHL_HEADERS = (token) => ({
@@ -18,7 +21,18 @@ const MIN_SECONDS = 3;
 
 // Custom fields for the retreat and the message. Found by name, created if missing,
 // and remembered while the Worker stays warm.
-const FIELDS = { retreat: { name: 'Retiro de interés', dataType: 'TEXT' }, message: { name: 'Mensaje del sitio web', dataType: 'LARGE_TEXT' } };
+const FIELDS = {
+  retreat: { name: 'Retiro de interés', dataType: 'TEXT' },
+  message: { name: 'Mensaje del sitio web', dataType: 'LARGE_TEXT' },
+  retreatName: { name: 'Retreat name', dataType: 'TEXT' },
+  retreatDates: { name: 'Retreat dates', dataType: 'TEXT' },
+  retreatGuide: { name: 'Retreat guide', dataType: 'TEXT' },
+  retreatSummary: { name: 'Retreat summary', dataType: 'LARGE_TEXT' },
+  retreatPage: { name: 'Retreat page', dataType: 'TEXT' },
+  retreatBooking: { name: 'Retreat booking link', dataType: 'TEXT' },
+  upcoming: { name: 'Upcoming retreats', dataType: 'LARGE_TEXT' },
+  score: { name: 'Lead score', dataType: 'NUMERICAL' },
+};
 let fieldIds = null;
 async function ensureFields(env) {
   if (fieldIds) return fieldIds;
@@ -33,12 +47,13 @@ async function ensureFields(env) {
       .then((r) => (r.ok ? r.json() : null)).catch(() => null);
     if (made?.customField?.id) ids[key] = made.customField.id;
   }
-  fieldIds = ids;
+  // Only remember a complete set, so a field that failed to save is tried again next time.
+  if (Object.keys(ids).length === Object.keys(FIELDS).length) fieldIds = ids;
   return ids;
 }
 
 const LISTS = {
-  newsletter: { tag: 'newsletter-10off', source: 'mexisol.world newsletter (10% off)' },
+  newsletter: { tag: 'newsletter-100usd', source: 'mexisol.world newsletter ($100 USD off)' },
   calendar: { tag: 'calendar-2027', source: 'mexisol.world 2027 calendar request' },
 };
 
@@ -59,11 +74,19 @@ async function subscribe(form, env, headers) {
       email,
       ...(firstName ? { firstName, lastName: rest.join(' ') } : {}),
       source: list.source,
-      tags: [list.tag],
     }),
-  }).catch(() => null);
-  if (!res || !res.ok) return reply({ ok: false, error: 'crm' }, 502, headers);
+  }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const contactId = res?.contact?.id;
+  if (!contactId) return reply({ ok: false, error: 'crm' }, 502, headers);
+  await tags(env, contactId, 'POST', [list.tag]);
   return reply({ ok: true }, 200, headers);
+}
+
+// Upsert would replace every tag on the contact, so tags go through their own endpoint.
+function tags(env, contactId, method, list) {
+  return fetch(`${GHL}/contacts/${contactId}/tags`, { method, headers: GHL_HEADERS(env.GHL_TOKEN), body: JSON.stringify({ tags: list }) })
+    .then((r) => r.ok)
+    .catch(() => false);
 }
 
 function cors(origin, allowed) {
@@ -109,6 +132,7 @@ export default {
       email: get('email', 160),
       phone: get('phone', 24),
       retreat: get('retreat', 120),
+      retreatId: get('retreat_id', 40),
       message: get('message', 2000),
     };
     const errors = {};
@@ -126,10 +150,23 @@ export default {
 
     const [firstName, ...rest] = lead.name.split(/\s+/);
     const ids = (await ensureFields(env)) || {};
-    const customFields = [
-      ...(ids.retreat && lead.retreat ? [{ id: ids.retreat, field_value: lead.retreat }] : []),
-      ...(ids.message && lead.message ? [{ id: ids.message, field_value: lead.message }] : []),
-    ];
+    const info = retreatInfo(lead.retreatId || idFromLabel(lead.retreat));
+    const points = score({ info, phone: lead.phone, message: lead.message });
+    const values = {
+      retreat: lead.retreat,
+      message: lead.message,
+      retreatName: info.name,
+      retreatDates: info.dates,
+      retreatGuide: info.guide,
+      retreatSummary: info.summary,
+      retreatPage: info.page,
+      retreatBooking: info.booking,
+      upcoming: upcoming(),
+      score: points,
+    };
+    const customFields = Object.entries(values)
+      .filter(([key, value]) => ids[key] && value !== '' && value != null)
+      .map(([key, value]) => ({ id: ids[key], field_value: value }));
     const upsert = await fetch(`${GHL}/contacts/upsert`, {
       method: 'POST',
       headers: GHL_HEADERS(env.GHL_TOKEN),
@@ -142,16 +179,22 @@ export default {
         ...(lead.phone ? { phone: lead.phone } : {}),
         source: 'mexisol.world registration form',
         ...(customFields.length ? { customFields } : {}),
-        // Tag per retreat so contacts can be filtered (e.g. "retiro: Ayahuasca, January 16-22").
-        tags: ['website-registration', ...(lead.retreat ? [`retiro: ${lead.retreat}`] : [])],
       }),
     }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     const contactId = upsert?.contact?.id;
     if (!contactId) return reply({ ok: false, error: 'crm' }, 502, headers);
 
+    // Fields are saved first, then the tags. Removing "website-registration" before
+    // adding it again makes the workflow start for repeat requests too.
+    const temp = temperature(points);
+    await tags(env, contactId, 'DELETE', ['website-registration', ...TEMPERATURE_TAGS.filter((t) => t !== temp)]);
+    await tags(env, contactId, 'POST', [temp, ...(lead.retreat ? [`retiro: ${lead.retreat}`] : [])]);
+    await tags(env, contactId, 'POST', ['website-registration']);
+
     const note = [
       `Website registration (${new Date().toISOString().slice(0, 10)})`,
       `Retreat: ${lead.retreat || 'not chosen'}`,
+      `Lead score: ${points} (${temp})`,
       `WhatsApp: ${lead.phone || 'not given'}`,
       '',
       lead.message || '(no message)',

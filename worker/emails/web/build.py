@@ -214,7 +214,8 @@ templates['06-followup-day10'] = ('Still thinking it over? That is fine',
   + section(p(f'If the dates you looked at do not work, there are retreats almost every month in {YEAR}.', mb=12) + f'<p style="margin:0 0 24px;font-size:15px;"><a href="{SITE}/upcoming-retreats" style="color:{SLATE};">See all {YEAR} dates</a></p>\n' + p('We will keep you posted with news and new dates from time to time. Whenever you are ready, we will be here.', mb=22) + sign('With care,'))
   + foot())
 
-for name, (subject, html) in templates.items():
-    open(os.path.join(HERE, name + '.html'), 'w').write(html)
-open(os.path.join(HERE, 'subjects.json'), 'w').write(json.dumps({k: v[0] for k, v in templates.items()}, indent=1, ensure_ascii=False))
-print('\n'.join(f'{k}: {len(v[1])} chars, subject: {v[0]}' for k, v in templates.items()))
+if __name__ == '__main__':  # campaigns import the helpers above without rewriting these files
+    for name, (subject, html) in templates.items():
+        open(os.path.join(HERE, name + '.html'), 'w').write(html)
+    open(os.path.join(HERE, 'subjects.json'), 'w').write(json.dumps({k: v[0] for k, v in templates.items()}, indent=1, ensure_ascii=False))
+    print('\n'.join(f'{k}: {len(v[1])} chars, subject: {v[0]}' for k, v in templates.items()))

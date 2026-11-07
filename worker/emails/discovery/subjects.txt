@@ -1,0 +1,5 @@
+1-confirmation: Your call with MexiSol World is confirmed
+2-reminder: Reminder: your MexiSol World call, {{appointment.start_time}}
+3-reschedule: Your call with MexiSol World has a new time
+4-cancellation: Your call with MexiSol World is cancelled
+5-follow-up: Thank you for the call, {{contact.first_name}}

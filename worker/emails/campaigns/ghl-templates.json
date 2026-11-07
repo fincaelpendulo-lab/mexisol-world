@@ -1,0 +1,49 @@
+{
+ "2026-11-new-year-and-dates": {
+  "id": "6ae4fa1202316e72fda60eb7",
+  "ghl_name": "Campaign - New Year 2027 and upcoming dates",
+  "subject": "Ring in 2027 at Finca El Péndulo"
+ },
+ "profile-01-healing-seeker": {
+  "id": "6aee680ec69aecb00434ee49",
+  "ghl_name": "Newsletter - Profile 1 Healing Seeker",
+  "subject": "Healing is not a straight line",
+  "tag": "profile_healing_seeker"
+ },
+ "profile-02-crossroads": {
+  "id": "6aee681043b86ff0260ecf72",
+  "ghl_name": "Newsletter - Profile 2 Crossroads",
+  "subject": "When one chapter closes",
+  "tag": "profile_crossroads"
+ },
+ "profile-03-pattern-breaker": {
+  "id": "6aee681100fc232949690022",
+  "ghl_name": "Newsletter - Profile 3 Pattern Breaker",
+  "subject": "Small choices, new paths",
+  "tag": "profile_pattern_breaker"
+ },
+ "profile-04-returning-journeyer": {
+  "id": "6aee6812e8023fcc2af1a8cd",
+  "ghl_name": "Newsletter - Profile 4 Returning Journeyer",
+  "subject": "The path keeps opening",
+  "tag": "profile_returning_journeyer"
+ },
+ "profile-05-caregiver": {
+  "id": "6aee6813def163a4d228109b",
+  "ghl_name": "Newsletter - Profile 5 Caregiver",
+  "subject": "Who takes care of you?",
+  "tag": "profile_caregiver"
+ },
+ "profile-06-psilocybin-curious": {
+  "id": "6aee68150b23de9dcfc27fb6",
+  "ghl_name": "Newsletter - Profile 6 Psilocybin Curious",
+  "subject": "A softer way in",
+  "tag": "profile_psilocybin_curious"
+ },
+ "profile-07-local-seeker": {
+  "id": "6aee68170316bb3fbb38950d",
+  "ghl_name": "Newsletter - Perfil 7 Local Seeker (ES)",
+  "subject": "Tu lugar está cerca",
+  "tag": "profile_local_seeker"
+ }
+}
