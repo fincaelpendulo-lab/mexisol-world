@@ -9,6 +9,11 @@ the finca must come from the site (src/data, src/pages, existing posts). Add new
 - Finca El Péndulo is only the venue: MexiSol World hires the Finca's services to host the retreats. Never present
   the Finca as the organizer, or as the one that screens, guides, decides or confirms anything.
 
+## Blog focus (2026-11-06, Carlos)
+
+- Center the blog on spiritual growth, expanding consciousness, overcoming addictions and changing habits.
+  Medical content is fine but should not dominate. Use testimonials, books, talks and conferences as sources.
+
 ## 2026-11-06
 
 - **Medical screening** consists of: (1) reviewing the guest's medications and the taper, which is always done

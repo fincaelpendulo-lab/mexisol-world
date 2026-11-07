@@ -245,7 +245,7 @@ function renderReader(){
       <div><dt>Perfil</dt><dd>${esc(p.profile || '')}</dd></div>
       <div><dt>Palabra clave</dt><dd>${esc(es ? (p.keywordEs || '') : (p.keyword || ''))}</dd></div>
       <div><dt>Palabras</dt><dd>${p.words ? `${p.words.en ?? '–'} EN · ${p.words.es ?? '–'} ES` : '–'}</dd></div>
-      <div><dt>Fuentes</dt><dd>${src.total ? `${src.total}: ${src.academic||0} académicas, ${src.media||0} medios, ${src.video||0} video` : '–'}</dd></div>
+      <div><dt>Fuentes</dt><dd>${src.total ? `${src.total}: ` + [['academic','académicas'],['books','libros'],['video','charlas/video'],['testimonials','testimonios'],['media','medios']].filter(([k])=>src[k]).map(([k,l])=>`${src[k]} ${l}`).join(', ') : '–'}</dd></div>
     </dl>
     ${p.workerNote ? `<div class="worker-note"><b>Nota del worker</b><span>${esc(p.workerNote)}</span></div>` : ''}
     ${p.liveUrl && s==='published' ? `<p><a href="${esc(es ? (p.liveUrlEs || p.liveUrl) : p.liveUrl)}" target="_blank" rel="noopener">Ver en el sitio</a></p>` : ''}

@@ -15,12 +15,19 @@ at Finca El Péndulo, Jalisco, Mexico (a venue it hires; posts always speak as M
   Otherwise read `blog/guest-profiles.md`, the working copy.
 - Before planning, write down for yourself, per profile: who they are, the share of guests, what they want, what
   stops them, and their keywords. Every post must serve one profile's real question.
-- Weight the month roughly by share and by how much the blog matters for that profile:
-  Healing Seeker 30%, Psilocybin-Curious Woman 15%, Returning Journeyer 15%, Pattern Breaker 10%,
-  Crossroads 10%, Caregiver 10%, Local Seeker 10% (Local Seeker posts are written Spanish-first).
-- If the five cornerstone guides from the profiles doc are not on the blog yet (SSRIs and ayahuasca, Mexico vs
-  Peru, psilocybin vs ayahuasca, how our screening works, what to expect in your first ceremony), plan the missing
-  ones first.
+- **Focus (Carlos, 2026-11-06): spiritual growth, expanding consciousness, overcoming addictions and changing
+  habits.** At least 3 of every 4 posts are about these themes: meaning and purpose, intention, ego and surrender,
+  what plant medicines teach, integration into daily life, rituals and traditions, breaking patterns, habits
+  after a retreat, grief and transitions as inner work, consciousness and perception. At most 1 in 4 is
+  medical or practical (safety, screening, medications, logistics); the cornerstone medical guides already exist.
+- Every profile can be reached through these themes: the Healing Seeker through meaning and inner work, the
+  Pattern Breaker through addiction and habits, the Crossroads through purpose, the Returning Journeyer through
+  depth and tradition, the Caregiver through being held, the Psilocybin-Curious Woman through the feminine and
+  intuition, the Local Seeker through Mexican traditions (in Spanish). Spread the month across all seven.
+- Keyword research still decides each topic: pick spiritual and habit-change searches people really make
+  ("ayahuasca spiritual awakening", "what ayahuasca teaches", "ego death", "how to integrate a psychedelic
+  experience", "ayahuasca for addiction stories", "cómo cambiar hábitos después de un retiro").
+- `sourceLeads` should name books, talks, conferences and published testimonials, not only studies.
 
 ## 2. Know what already exists
 

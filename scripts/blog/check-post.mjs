@@ -67,7 +67,7 @@ function checkLang(lang, slug) {
   const sources = srcIdx < 0 ? [] : [...post.body.slice(srcIdx).matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]);
   if (srcIdx >= 0 && sources.length < 5) errors.push(`${tag}: ${sources.length} sources (minimum 5)`);
   const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov/;
-  if (srcIdx >= 0 && !sources.some((u) => academic.test(u))) errors.push(`${tag}: no academic source (journal, DOI or PubMed)`);
+  if (srcIdx >= 0 && !sources.some((u) => academic.test(u))) warnings.push(`${tag}: no research source; fine if the post makes no claim about effects`);
 
   if (d.image && !existsSync(join(root, 'src/assets/photos', `${d.image}.jpg`))) errors.push(`${tag}: photo src/assets/photos/${d.image}.jpg is missing`);
 

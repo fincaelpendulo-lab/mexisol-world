@@ -23,17 +23,29 @@ You run in one of two modes, given in your task: **write** (a new post, steps 0 
 
 ## 1. Research (the most important step)
 
-Collect **at least 8 sources**, all opened and read with WebFetch (a search snippet is never a source):
-- **3 or more academic**: peer-reviewed papers, systematic reviews, clinical trials, university or government
-  health bodies (PubMed, journals, NIH, WHO, NHS, Mexican government). Prefer reviews and recent work (last 10
-  years) unless a classic study is the point. Link the DOI (`https://doi.org/...`) or PubMed page when there is one.
-- **2 or more news or long-form media** with editorial standards: e.g. The New York Times, The Guardian, BBC,
-  Reuters, AP, NPR, The Atlantic, Scientific American, Nature News, STAT, Wired, El País, Animal Político,
-  Milenio, El Universal. No content farms, no press releases dressed as news.
-- **1 or more YouTube videos or creators**: talks, lectures, interviews or documentaries from identifiable,
-  credible people or institutions (universities, researchers, MAPS, recognized clinicians, established
-  podcasters/journalists). Note the channel and why it is credible. Creators' blogs or newsletters count when the
-  author is a named expert.
+The blog's focus (Carlos, 2026-11-06): **spiritual growth, expanding consciousness, overcoming addictions and
+changing habits**. Medical and scientific content stays, but only where safety needs it or a study adds weight;
+it is not the center of the post. Write about meaning, inner work, intention, surrender, integration into daily
+life, what people find in ceremony and how they change after.
+
+Collect **at least 8 sources**, all opened and read with WebFetch (a search snippet is never a source), mixing:
+- **Books (2 or more where the topic allows)**: by recognized authors on plant medicine, consciousness,
+  spirituality, addiction and habit change (e.g. Michael Pollan, Gabor Maté, Stanislav Grof, Ram Dass, Terence
+  McKenna, María Sabina's recorded words, Dennis McKenna, Bruce Lipton, James Clear on habits, Joe Dispenza only
+  with care). Link the publisher's page, Google Books or the author's site; cite author, title, year. Quote at most
+  one short line per book.
+- **Talks, conferences and interviews (2 or more)**: TED/TEDx, Psychedelic Science (MAPS), Breaking Convention,
+  Harvard Divinity School, Esalen, university lectures, and long-form podcasts with named guests (Tim Ferriss, Rich
+  Roll, Lex Fridman, Aubrey Marcus, Duncan Trussell...). YouTube links are checked automatically. Note the speaker
+  and why they are credible.
+- **Testimonials (1 or more)**: published first-person accounts you can link: interviews in credible media,
+  documentaries, memoirs, recorded talks by people about their own experience, and MexiSol's own public reviews on
+  BookRetreats and Retreat Guru (quote them word for word, with the reviewer's name exactly as shown there and a
+  link). Never invent, merge or paraphrase a testimonial into a quote.
+- **Credible media or creators (1 or more)**: long-form journalism (NYT, Guardian, BBC, El País, The Atlantic,
+  Vice, Rolling Stone...) or named experts' newsletters and blogs (Chacruna, Psychedelics Today, Lucid News).
+- **Research (1 or more when the post makes a factual claim about effects)**: a study, review or university
+  source, linked by DOI or PubMed. Qualitative studies of people's experiences fit this blog well.
 - Never use: competitor retreat centers as evidence, anonymous sites, AI-generated pages, forums as facts
   (Reddit is fine for understanding questions, not as a source), affiliate listicles.
 
@@ -97,6 +109,8 @@ Voice (Carlos's brand rules):
   "En MexiSol World nada se confirma..." is right). Mention the Finca only as the place ("our retreats take place
   at Finca El Péndulo, near Tepatitlán").
 - Staff are named only as Humberto (ayahuasca), Krista (psilocybin) and Marina. Never name anyone else on staff.
+- Addiction and habits: write about people's experiences, insight and the work of changing a pattern, with the
+  support around it. Never promise sobriety or present the retreat as rehab or detox.
 - Health: never say the medicine cures, treats or heals a condition. Say what research found, what people report
   and what we offer (screening, support, integration). Always say medical screening is required and that changes
   to prescribed medication are made only with the prescribing doctor. Never give a taper schedule or dose.

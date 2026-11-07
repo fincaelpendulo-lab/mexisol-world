@@ -30,8 +30,10 @@ function countSources(body) {
   const urls = i < 0 ? [] : [...body.slice(i).matchAll(/\]\((https?:(?:[^()\s]|\([^()\s]*\))+)\)/g)].map((m) => m[1]);
   const academic = /doi\.org|pubmed|ncbi\.nlm\.nih\.gov|nature\.com|sciencedirect|springer|wiley|tandfonline|jamanetwork|thelancet|nejm|frontiersin|plos|bmj|sagepub|cambridge\.org|oup\.com|apa\.org|clinicaltrials\.gov|who\.int|\.gov\b|\.gov\.|\.gob\b|\.gob\.|gov\.uk|\.edu\b|\.ac\.uk/;
   const video = /youtube\.com|youtu\.be|vimeo\.com|ted\.com/;
-  const c = { academic: 0, media: 0, video: 0, total: urls.length };
-  for (const u of urls) c[academic.test(u) ? 'academic' : video.test(u) ? 'video' : 'media']++;
+  const books = /books\.google|penguinrandomhouse|harpercollins|simonandschuster|macmillan|hachette|innertraditions|soundstrue|hayhouse|goodreads|openlibrary|worldcat|planetadelibros|isbn/;
+  const reviews = /bookretreats\.com|retreat\.guru|tripadvisor|google\.com\/maps/;
+  const c = { academic: 0, books: 0, video: 0, testimonials: 0, media: 0, total: urls.length };
+  for (const u of urls) c[academic.test(u) ? 'academic' : video.test(u) ? 'video' : books.test(u) ? 'books' : reviews.test(u) ? 'testimonials' : 'media']++;
   return c;
 }
 
