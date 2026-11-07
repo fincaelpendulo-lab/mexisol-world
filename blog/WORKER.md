@@ -62,7 +62,11 @@ review). For each record with `status: "published"` and no `facebookAt`:
      if GHL rejects it, list accounts with `social-media-posting_get-account` and use the Facebook page)
    - `body_userId`: `fM6mwsk0GnRVkkDD3Ljr` (Carlos), `body_type`: `post`, `body_status`: `published`
    - `body_summary`: the caption; `body_media`: `[{"url": "<imageUrl>", "type": "image/jpeg"}]`
-4. Update the record: `facebookAt` (now, ISO), `facebookPostId` (the result's `_id`), `facebookCaption`.
+4. The create result has no id. Find the post with `social-media-posting_get-posts` (today's range, type all):
+   the Facebook one whose summary is your caption; when its `status` is `published` it has a `previewLink`.
+   Update the record: `facebookAt` (its `publishedAt`), `facebookPostId` (`_id`), `facebookUrl` (`previewLink`),
+   `facebookCaption`. Never call `edit-post` on a draft: on 2026-11-07 setting a draft to `deleted` published it.
+   Never make test posts; Carlos removes unwanted posts on Facebook himself.
    If GHL fails, don't retry in the same run; say why in the report. If the error says the Facebook connection
    expired, tell Carlos to reconnect the page in GHL → Marketing → Social Planner (it expires about every 60 days).
 
