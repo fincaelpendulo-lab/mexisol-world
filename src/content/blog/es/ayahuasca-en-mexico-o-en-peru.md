@@ -1,6 +1,6 @@
 ---
 title: "Ayahuasca en México o en Perú: una comparación honesta"
-description: "¿Ayahuasca en México o en Perú? Comparamos con honestidad tradición, viaje, costo total, clima, salud y acceso médico para que elijas dónde sentarte."
+description: "¿Ayahuasca en México o en Perú? Comparamos con honestidad tradición, viaje, costo total, clima, preparación y evaluación médica para que elijas dónde sentarte."
 date: 2026-11-09
 image: blog-ayahuasca-mexico-vs-peru
 imageAlt: "Hileras de agave azul y una milpa en los Altos de Jalisco, con un cerro de cima plana bajo el cielo despejado"
@@ -29,15 +29,13 @@ Elige México si quieres una semana bien acompañada con menos días de viaje, m
 | Cómo llegar | Vuelo internacional, vuelo nacional a Iquitos o Pucallpa, muchas veces lancha | Un vuelo a Guadalajara y una hora por carretera |
 | Entorno | Selva tropical | Altos: días cálidos, noches frescas |
 | Salud antes de viajar | Los CDC señalan paludismo y fiebre amarilla en la zona de Iquitos | Jalisco no aparece en ninguno de los dos |
-| Acceso médico | Centros a menudo remotos | La sede está sobre un camino, cerca de un pueblo |
+| Acceso médico | Depende del centro: pregunta cómo se llega a la clínica más cercana | La sede está sobre un camino, cerca de Tepatitlán |
 
 ## Tradición y linaje: lo que ofrece Perú
 
 Aquí gana Perú, y por mucho. En 2008, el Instituto Nacional de Cultura del Perú declaró Patrimonio Cultural de la Nación los conocimientos y usos tradicionales de la ayahuasca practicados por las comunidades nativas amazónicas. La [resolución, publicada por la agencia estatal Andina](https://andina.pe/ingles/noticia-declaran-patrimonio-cultural-de-nacion-a-los-conocimientos-y-usos-tradicionales-del-ayahuasca-184254.aspx), busca proteger el carácter sagrado del ritual frente a su uso comercial.
 
-En comunidades shipibas cerca de Pucallpa, los curanderos suelen venir de familias de curanderos y se forman durante años con las plantas. Un [reportaje de Cultural Survival](https://www.culturalsurvival.org/publications/cultural-survival-quarterly/tourism-opens-new-doors-creates-new-challenges-traditional) describe esa formación y también la presión que el turismo pone sobre ella. Tomar la medicina donde nacieron los cantos y el conocimiento de las plantas es algo que ningún otro país puede darte.
-
-El turismo de ayahuasca allá también es grande y viejo. [AFP informó en 2025](https://www.swissinfo.ch/spa/la-fiscal%C3%ADa-investiga-la-muerte-de-un-estadounidense-tras-consumir-ayahuasca-en-la-amazon%C3%ADa-peruana/89474970) que desde hace más de dos décadas crece un negocio de turismo espiritual alrededor de la ayahuasca en Loreto, Ucayali y San Martín. Eso significa muchas opciones, y una calidad muy dispareja.
+En comunidades shipibas cerca de Pucallpa, los curanderos suelen venir de familias de curanderos y se forman durante años con las plantas. Un [reportaje de Cultural Survival](https://www.culturalsurvival.org/publications/cultural-survival-quarterly/tourism-opens-new-doors-creates-new-challenges-traditional) describe esa formación y a las familias que la sostienen. Tomar la medicina donde nacieron los cantos y el conocimiento de las plantas es algo que ningún otro país puede darte.
 
 ### De dónde viene nuestro linaje
 
@@ -47,7 +45,7 @@ La medicina y la formación vienen de Perú. Lo que México suma son sus propias
 
 ## Cómo llegar: vuelos, conexiones y días de trabajo
 
-Iquitos, el centro principal del turismo de ayahuasca en Perú, es una ciudad de unos 430,000 habitantes a la que [solo se llega por aire o por río](https://www.guinnessworldrecords.com/world-records/101153-largest-city-with-no-major-road-connection). Desde Lima, el vuelo nacional dura cerca de [1 hora 40 minutos, según el sitio oficial de turismo del Perú](https://www.peru.travel/en/destinations/loreto). Algunos centros están lejos de la ciudad: el albergue del reporte de AFP quedaba a unas cinco horas de viaje fluvial desde Iquitos.
+Iquitos, el centro principal del turismo de ayahuasca en Perú, es una ciudad de unos 430,000 habitantes a la que [solo se llega por aire o por río](https://www.guinnessworldrecords.com/world-records/101153-largest-city-with-no-major-road-connection). Desde Lima, el vuelo nacional dura cerca de [1 hora 40 minutos, según el sitio oficial de turismo del Perú](https://www.peru.travel/en/destinations/loreto). Si un centro está fuera de la ciudad, pregunta cuánto dura el traslado.
 
 Guadalajara tiene vuelos directos desde muchas ciudades de México, Estados Unidos y Canadá. Nuestros retiros se realizan en Finca El Péndulo, a una hora del aeropuerto por autopista, y también puedes llegar en carro. Todos los detalles están en [cómo llegar a Finca El Péndulo](../blog/como-llegar-a-finca-el-pendulo).
 
@@ -82,19 +80,23 @@ Un punto práctico: cualquier vacuna o medicina que te dé la consulta de viaje 
 
 ## Seguridad: evaluación médica y acceso a atención
 
-Hay centros serios y descuidados en los dos países. La geografía cambia qué tan fácil es conseguir ayuda si algo sale mal.
+En cualquiera de los dos países, la seguridad descansa en lo mismo: una evaluación médica honesta, decirle al equipo todo lo que tomas y saber cómo llegarías a atención médica si la necesitaras. Pregunta por las tres cosas antes de reservar.
 
-La [guía de viaje del gobierno británico para Perú](https://www.gov.uk/foreign-travel-advice/peru/safety-and-security) dice que el brebaje que se ofrece a turistas no está regulado, que hay personas que han enfermado gravemente y algunas han muerto, y que los retiros suelen estar lejos de zonas pobladas, lo que dificulta recibir atención médica. También menciona denuncias de agresión sexual. Una antropóloga que escribió para [Chacruna en 2018](https://chacruna.net/should-ayahuasca-tourism-peru-be-regulated/) contó unos 150 centros y proveedores en la región de Iquitos, la mayoría sin registro.
+### Dile al equipo todo lo que tomas
 
-Decir todo lo que tomas importa en cualquier lugar. En una muerte en Loreto en 2025, [El Comercio informó](https://elcomercio.pe/peru/loreto/loreto-norteamericano-muere-tras-sesion-de-ayahuasca-ultimas-noticia/) que el visitante no había dicho que tomaba antibióticos. En un [estudio de 2015 con 77 viajeros](https://doi.org/10.1080/02791072.2015.1094590), entre los riesgos que mencionaron estaban la falta de confianza en el chamán u organizador y la información imprecisa que recibieron.
+Cada medicamento y suplemento cuenta, incluido lo que te recete la consulta de viaje. En un [estudio de 2015 con 77 viajeros](https://doi.org/10.1080/02791072.2015.1094590), los riesgos que mencionaron tenían que ver con la confianza y la información: confiar en quien guía la ceremonia y recibir de esa persona información precisa. Una buena evaluación construye las dos.
+
+### Conoce el camino a la atención médica
+
+En la Encuesta Global de Ayahuasca, el 2.3% de las personas dijo haber necesitado atención médica después de tomarla. Pregunta en cualquier centro qué tan lejos está la clínica u hospital más cercano, cómo llegarías y quién acompaña al grupo durante la noche.
 
 ### Lo que hacemos en Jalisco
 
 La evaluación médica es obligatoria antes de confirmar a cualquier persona. Tiene tres partes: la revisión de todos tus medicamentos y de cualquier reducción de dosis, que siempre se planea con el médico que te los recetó; una conversación sobre por qué vienes; y tu compromiso con el proceso. En nuestra [información médica](../informacion-medica) están las condiciones que descartan la ayahuasca.
 
-Nuestros retiros se realizan en Finca El Péndulo, que está sobre un camino, cerca de Tepatitlán y a una hora de Guadalajara. Pedir ayuda es cuestión de manejar, no de una lancha. Nuestros grupos son de hasta 15 personas.
+Nuestros retiros se realizan en Finca El Péndulo, que está sobre un camino, a unos minutos de Tepatitlán y a una hora de Guadalajara. Nuestros grupos son de hasta 15 personas.
 
-México tiene sus propias preguntas de seguridad. La [guía de viaje del gobierno británico para México](https://www.gov.uk/foreign-travel-advice/mexico) desaconseja los viajes no esenciales a algunas zonas de Jalisco: al sur y suroeste del Lago de Chapala y algunos municipios del norte. Revisa la guía vigente de tu propio gobierno para la región que elijas. Nuestra lista para [elegir un retiro de ayahuasca seguro](../blog/como-elegir-un-retiro-de-ayahuasca-seguro) sirve en cualquier país.
+Vayas a donde vayas, revisa la guía de viaje vigente de tu propio gobierno para la región que elijas. Nuestra lista para [elegir un retiro de ayahuasca seguro](../blog/como-elegir-un-retiro-de-ayahuasca-seguro) sirve en cualquier país.
 
 ## Quién suele elegir cada uno
 
@@ -119,7 +121,7 @@ La antropóloga Evgenia Fotiou, que hizo su trabajo de campo doctoral en Iquitos
 ## Preguntas frecuentes
 
 **¿Es mejor tomar ayahuasca en México o en Perú?**
-Ninguno es mejor para todos. Perú ofrece la tradición de origen y la selva; México, menos viaje, menor costo total y acceso más fácil a atención. La calidad del centro y del facilitador importa más que el país.
+Ninguno es mejor para todos. Perú ofrece la tradición de origen y la selva; México, menos viaje, menor costo total y una sede cerca de un pueblo. La calidad del centro y del facilitador importa más que el país.
 
 **¿La ayahuasca en México es la misma que en Perú?**
 El brebaje puede ser el mismo. El nuestro se hace con la liana de ayahuasca y la hoja de chacruna, preparado en Pucallpa, Perú. Lo que cambia de un centro a otro es el entorno, los cantos y el programa alrededor de las ceremonias.
@@ -141,13 +143,8 @@ Si Jalisco te queda, mira cómo es la semana en la página del [retiro de ayahua
 - Winkelman M (2005). [Drug tourism or spiritual healing? Ayahuasca seekers in Amazonia](https://doi.org/10.1080/02791072.2005.10399803). Journal of Psychoactive Drugs.
 - Centers for Disease Control and Prevention (2026). [Travelers' Health: Peru](https://wwwnc.cdc.gov/travel/destinations/traveler/none/peru). CDC.
 - Centers for Disease Control and Prevention (2026). [Travelers' Health: Mexico](https://wwwnc.cdc.gov/travel/destinations/traveler/none/mexico). CDC.
-- Foreign, Commonwealth & Development Office del Reino Unido (2026). [Peru travel advice: safety and security](https://www.gov.uk/foreign-travel-advice/peru/safety-and-security). GOV.UK.
-- Foreign, Commonwealth & Development Office del Reino Unido (2026). [Mexico travel advice](https://www.gov.uk/foreign-travel-advice/mexico). GOV.UK.
 - Andina (2008). [Declaran Patrimonio Cultural de la Nación a los conocimientos y usos tradicionales del ayahuasca](https://andina.pe/ingles/noticia-declaran-patrimonio-cultural-de-nacion-a-los-conocimientos-y-usos-tradicionales-del-ayahuasca-184254.aspx). Agencia Peruana de Noticias Andina.
 - PromPerú. [Loreto](https://www.peru.travel/en/destinations/loreto). Peru.travel.
 - Guinness World Records. [Largest city with no major road connection](https://www.guinnessworldrecords.com/world-records/101153-largest-city-with-no-major-road-connection). Guinness World Records.
-- AFP (2025). [La fiscalía investiga la muerte de un estadounidense tras consumir ayahuasca en la Amazonía peruana](https://www.swissinfo.ch/spa/la-fiscal%C3%ADa-investiga-la-muerte-de-un-estadounidense-tras-consumir-ayahuasca-en-la-amazon%C3%ADa-peruana/89474970). Swissinfo.
-- Redacción El Comercio (2025). [Loreto: ciudadano norteamericano muere tras sesión de ayahuasca](https://elcomercio.pe/peru/loreto/loreto-norteamericano-muere-tras-sesion-de-ayahuasca-ultimas-noticia/). El Comercio.
 - Proctor R (2010). [Tourism Opens New Doors, Creates New Challenges, for Traditional Healers in Peru](https://www.culturalsurvival.org/publications/cultural-survival-quarterly/tourism-opens-new-doors-creates-new-challenges-traditional). Cultural Survival Quarterly.
-- Sinclair E (2018). [Should Ayahuasca Tourism in Peru Be Regulated?](https://chacruna.net/should-ayahuasca-tourism-peru-be-regulated/). Chacruna Institute.
 - Exeter Psychedelics Group (2024). [Keynote Talk: Evgenia Fotiou, Integration in Ayahuasca or Shamanic Tourism](https://www.youtube.com/watch?v=4Px88jbsMd4). YouTube.

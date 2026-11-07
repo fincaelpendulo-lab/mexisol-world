@@ -90,20 +90,14 @@ where WebFetch timed out).
 | Claim in the post | Source |
 |---|---|
 | Peru declared traditional knowledge and uses of ayahuasca by native Amazonian communities national heritage in 2008, to protect traditional, sacred use apart from commercial use | 8 |
-| Spiritual tourism around ayahuasca has grown for more than two decades in Loreto, Ucayali and San Martín | 11 |
 | Shipibo healers near Pucallpa come from families of healers and train through long periods with the plant | 13 |
 | Iquitos reachable only by air and river; ~430,000 people | 10 |
 | Lima to Iquitos flight about 1 h 40 min | 9 |
-| Some lodges are hours by river from Iquitos (one about five hours) | 11 |
-| Retreats usually far from populated areas, hard to get medical attention; brew not regulated; serious illness, some deaths, sexual assault reports | 6 |
-| ~150 centres around Iquitos (2018), most unregistered; anyone can set one up | 14 |
 | CDC: yellow fever vaccine recommended for low areas of Loreto; malaria prophylaxis for Iquitos | 4 |
 | CDC: Jalisco not a malaria area; yellow fever vaccine not recommended in Mexico | 5 |
-| UK FCDO Jalisco advice names areas south/south-west of Lake Chapala and northern municipalities | 7 |
-| 69.9% physical effects, 62% vomiting/nausea, 2.3% needed medical attention; physical conditions linked to more adverse effects | 1 |
-| Travellers named lack of trust in the organizer and inaccurate information as risks (N = 77) | 2 |
+| 69.9% physical effects, 62% vomiting/nausea, 2.3% needed medical attention (cited in safety section); physical conditions linked to more adverse effects | 1 |
+| Travellers' named risks came down to trust in the guide/organizer and accurate information (N = 77) | 2 |
 | Seekers in Amazonia came mainly for spiritual and emotional reasons (classic interview study) | 3 |
-| Undisclosed medication (antibiotics) reported as a possible factor in a 2025 death in Loreto | 12 |
 | Retreats now offered "in Peru and beyond"; framing by facilitators supports integration | 15 |
 | MexiSol: 7 days/6 nights, up to 15 guests, 2 ayahuasca + 1 Satori, prices $1,850 to $2,775 USD, pickup $60/$110, about one hour from GDL, ayahuasca prepared in Pucallpa, Humberto trained in Peru through master plant dietas, born in Tepatitlán | src/pages/ayahuasca-retreat.astro, src/data/rooms.json, existing posts |
 | Screening: medication review and taper with prescribing doctor; why you are coming; commitment | blog/house-facts.md |
@@ -114,3 +108,16 @@ where WebFetch timed out).
 Per blog/house-facts.md: MexiSol World organizes the retreats and speaks in first person; Finca El Péndulo is only
 the venue MexiSol World hires to host them. The comparison is "a MexiSol World retreat (held at Finca El Péndulo)"
 vs Peru.
+
+## Revision 2026-11-07 (Carlos: remove negative mentions of either country or any centre)
+
+Carlos asked to remove every negative mention about either country or any centre or provider. Removed from both
+languages: the UK FCDO Peru advice (unregulated brew, illness and deaths, sexual assault), the Chacruna count of
+unregistered centres, the El Comercio Loreto case, the AFP report (its subject is a death; also dropped the "wide
+range of quality" line and the "five hours by river" lodge), the UK FCDO Mexico advice on parts of Jalisco, the
+"good and careless centres" line, "the pressure tourism puts on" tradition, and comparisons such as "a drive, not a
+boat ride". The safety section now gives neutral guidance for any country: screening, disclosing every medication,
+and asking about the route to care.
+
+Sources dropped from the post (no longer back any claim): 6, 7, 11, 12, 14. They stay listed above only as a
+record of the original research.
