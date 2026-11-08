@@ -21,7 +21,7 @@ Las mujeres lo eligen por seguridad, por lo fácil que resulta soltarse entre pe
 
 La ceremonia te deja expuesta. Con los hongos puedes llorar, reír, temblar, necesitar el baño o pasar una hora acurrucada en un tapete. Muchas mujeres nos dicen que antes de aceptar eso quieren saber quién va a estar en el cuarto.
 
-En parte se trata de seguridad, y la preocupación tiene fundamento. En 2019 el Instituto Chacruna publicó una [guía comunitaria sobre el abuso sexual en ceremonia](https://maps.org/?p=11043), escrita por Emily Sinclair y Beatriz Labate. Describe abuso y acoso en espacios de ayahuasca y de sanación chamánica, muchas veces en "sanaciones" privadas, y se pregunta si alguien puede consentir de verdad bajo los efectos de una medicina. Se escribió sobre la ayahuasca, pero la lección vale para cualquier ceremonia: quien guía tiene poder sobre ti, y los límites deben estar claros antes de que llegues.
+En parte se trata de sentirse lo bastante segura para soltar. En un círculo de mujeres a muchas les resulta más fácil aflojar, hacer ruido, dejarse ver en un momento crudo sin pensar en cómo se ven. En un espacio guiado por mujeres, quienes te sostienen y te acompañan durante la noche conocen esa sensación desde dentro.
 
 En parte se trata de ser escuchadas. Una [revisión de alcance de 2025 en el International Journal of Drug Policy](https://doi.org/10.1016/j.drugpo.2025.104960) analizó 75 estudios en humanos sobre psicodélicos para problemas con el alcohol o las drogas. Como [explicó en Chacruna](https://chacruna.net/?p=130786) su autora principal, Alexandra Nigri, nueve estudios no incluyeron a ninguna mujer y solo 11 revisaron si los resultados eran distintos en ellas. Las mujeres, resume, estuvieron poco representadas, casi nunca se analizaron por separado y casi nunca se discutieron.
 
@@ -121,7 +121,7 @@ Las reservas las gestiona Araisis, y su equipo agenda una llamada breve contigo 
 ## Preguntas frecuentes
 
 **¿Un retiro de hongos para mujeres es más seguro que uno mixto?**
-No por sí mismo. La seguridad viene de la evaluación previa, de reglas claras sobre el contacto físico y la conducta, de guías con experiencia y de un acompañamiento real después. Pregúntale a cualquier retiro cómo maneja esas cuatro cosas, sea quien sea el grupo.
+No por sí mismo. La seguridad viene de la evaluación previa, de acuerdos claros que se comparten antes de que llegues, de guías con experiencia y de un acompañamiento real después. Pregúntale a cualquier retiro cómo maneja esas cuatro cosas, sea quien sea el grupo.
 
 **Solo he microdosificado en casa. ¿Una ceremonia es demasiado?**
 Muchas de nuestras huéspedes vienen de microdosificar. Una ceremonia completa es otra experiencia, por eso la dosis se acuerda con Krista y puedes empezar con menos y pedir más. Si estás entre hongos y ayahuasca, lee [ayahuasca o psilocibina](../blog/ayahuasca-o-psilocibina).
@@ -148,7 +148,6 @@ Si algo en ti está pidiendo una semana así, empieza con una conversación. [Ag
 - Han, M. (2025). [Revisiting Nicolás Echevarría's María Sabina, mujer espíritu](https://brooklynrail.org/2025/11/film/revisiting-nicolas-echevarria-maria-sabina-mujer-espiritu/). The Brooklyn Rail.
 - González Romero, O. S. (2021). [María Sabina, mushrooms, and colonial extractivism](https://chacruna.net/maria-sabina-mushrooms-and-colonial-extractivism/). Chacruna.
 - Nigri, A. (2026). [A call for women's representation in psychedelic research](https://chacruna.net/?p=130786). Chacruna.
-- Sinclair, E. y Labate, B. C. (2019). [Ayahuasca community guide for the awareness of sexual abuse](https://maps.org/?p=11043). MAPS Bulletin.
 - Watts, R., Day, C., Krzanowski, J., Nutt, D. y Carhart-Harris, R. (2017). [Patients' accounts of increased "connectedness" and "acceptance" after psilocybin for treatment-resistant depression](https://doi.org/10.1177/0022167817709585). Journal of Humanistic Psychology.
 - Belser, A. B. et al. (2017). [Patient experiences of psilocybin-assisted psychotherapy: an interpretative phenomenological analysis](https://doi.org/10.1177/0022167817706884). Journal of Humanistic Psychology.
 - Wojdyslawski Nigri, A. et al. (2025). [Psychedelics for substance use disorders: are women being addressed? A scoping review](https://doi.org/10.1016/j.drugpo.2025.104960). International Journal of Drug Policy.

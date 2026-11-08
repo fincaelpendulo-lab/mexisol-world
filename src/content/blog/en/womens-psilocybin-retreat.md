@@ -21,7 +21,7 @@ Women choose it for safety, for the ease of letting go among people who share th
 
 Ceremony is vulnerable. On mushrooms you may weep, laugh, shake, need the bathroom, or lie curled on a mat for an hour. Many women tell us they want to know who will be in the room before they agree to that.
 
-Part of this is about safety, and the concern is real. In 2019 the Chacruna Institute published a [community guide on sexual abuse in ceremony](https://maps.org/?p=11043), written by Emily Sinclair and Beatriz Labate. It describes abuse and harassment in ayahuasca and shamanic healing settings, often in private "healings", and asks whether anyone can truly consent while under a medicine. It was written about ayahuasca, but the lesson holds for any ceremony: the guide's power over you is real, and boundaries must be clear before you arrive.
+Part of this is about feeling safe enough to let go. In a circle of women, many find it easier to soften, to make noise, to be seen in a raw moment without thinking about how they look. In a women-led space, the people holding you and checking on you through the night know that feeling from the inside.
 
 Part of it is about being heard. A [2025 scoping review in the International Journal of Drug Policy](https://doi.org/10.1016/j.drugpo.2025.104960) looked at 75 human studies of psychedelics for problems with alcohol or drugs. As its lead author, Alexandra Nigri, [wrote for Chacruna](https://chacruna.net/?p=130786), nine studies included no women at all and only 11 checked whether results differed for women. "Women were consistently underrepresented, rarely analyzed, and almost never discussed."
 
@@ -121,7 +121,7 @@ Bookings are handled by Araisis, and their team schedules a short call with you 
 ## Frequently asked questions
 
 **Is a women's psilocybin retreat safer than a mixed one?**
-Not automatically. Safety comes from screening, clear rules about touch and conduct, experienced guides and real aftercare. Ask any retreat how it handles all four, whoever is in the group.
+Not automatically. Safety comes from careful screening, clear agreements shared before you arrive, experienced guides and real aftercare. Ask any retreat how it handles all four, whoever is in the group.
 
 **I have only microdosed at home. Is a ceremony too much?**
 Many of our guests come from microdosing. A full ceremony is a different experience, which is why the dose is agreed with Krista and you can start smaller and ask for more. If you are weighing mushrooms against ayahuasca, read [ayahuasca or psilocybin](../blog/ayahuasca-or-psilocybin).
@@ -148,7 +148,6 @@ If something in you is asking for this kind of week, start with a conversation. 
 - Han, M. (2025). [Revisiting Nicolás Echevarría's María Sabina, mujer espíritu](https://brooklynrail.org/2025/11/film/revisiting-nicolas-echevarria-maria-sabina-mujer-espiritu/). The Brooklyn Rail.
 - González Romero, O. S. (2021). [María Sabina, mushrooms, and colonial extractivism](https://chacruna.net/maria-sabina-mushrooms-and-colonial-extractivism/). Chacruna.
 - Nigri, A. (2026). [A call for women's representation in psychedelic research](https://chacruna.net/?p=130786). Chacruna.
-- Sinclair, E. and Labate, B. C. (2019). [Ayahuasca community guide for the awareness of sexual abuse](https://maps.org/?p=11043). MAPS Bulletin.
 - Watts, R., Day, C., Krzanowski, J., Nutt, D. and Carhart-Harris, R. (2017). [Patients' accounts of increased "connectedness" and "acceptance" after psilocybin for treatment-resistant depression](https://doi.org/10.1177/0022167817709585). Journal of Humanistic Psychology.
 - Belser, A. B. et al. (2017). [Patient experiences of psilocybin-assisted psychotherapy: an interpretative phenomenological analysis](https://doi.org/10.1177/0022167817706884). Journal of Humanistic Psychology.
 - Wojdyslawski Nigri, A. et al. (2025). [Psychedelics for substance use disorders: are women being addressed? A scoping review](https://doi.org/10.1016/j.drugpo.2025.104960). International Journal of Drug Policy.

@@ -80,12 +80,6 @@ Publish date 2026-11-12. Spanish slug: retiro-de-hongos-para-mujeres.
     report sex, 11 analyzed sex differences, none discussed sex or gender. "Women were consistently
     underrepresented, rarely analyzed, and almost never discussed."
 
-11. **Ayahuasca Community Guide for the Awareness of Sexual Abuse.** Emily Sinclair and Beatriz Labate, MAPS Bulletin
-    vol. 29 no. 1, Spring 2019 (Chacruna Institute). https://maps.org/?p=11043 Type: community guide.
-    Sexual abuse and harassment occur in ayahuasca and shamanic healing settings; individual healings are a common
-    setting; power imbalance and the medicine's effects raise doubts about consent. Learn the guidelines before
-    attending; it is the healer's responsibility not to enter relationships with participants.
-
 ### Research
 
 12. **Patients' Accounts of Increased "Connectedness" and "Acceptance" After Psilocybin for Treatment-Resistant
@@ -123,7 +117,6 @@ Publish date 2026-11-12. Spanish slug: retiro-de-hongos-para-mujeres.
 
 | Claim | Source |
 |---|---|
-| Chacruna guide: abuse and harassment happen in ceremonial settings; individual healings common; consent doubtful under the medicine | 11 |
 | 75 studies; 9 no women; 11 analyzed differences; none discussed sex or gender; quote | 10, 14 |
 | Marie's quote about feminine energy in the staff, group mostly men | 7 |
 | Estés description quote "Within every woman..." | 2 |
