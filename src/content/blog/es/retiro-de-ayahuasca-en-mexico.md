@@ -25,7 +25,7 @@ Mucha gente imagina la ayahuasca en lo profundo de la Amazonía. Cada vez más p
 
 Nuestros retiros de ayahuasca duran siete días y seis noches, con hasta 15 personas.
 
-- **Tres ceremonias nocturnas** en la Choza Osho: dos con ayahuasca y una con [Satori](que-es-satori).
+- **Tres ceremonias** en la Choza Osho: dos noches de ayahuasca y una ceremonia de [Satori](que-es-satori) de día.
 - **Dos sesiones de kambó,** además de ceremonias de rapé y cacao.
 - **Temazcal y círculo de fuego.**
 - **Integración en grupo e individual** con Humberto, quien guía las ceremonias.

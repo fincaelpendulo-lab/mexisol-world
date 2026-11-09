@@ -25,7 +25,7 @@ Most people picture ayahuasca deep in the Amazon. More and more people sit with 
 
 Our ayahuasca retreats last seven days and six nights, with up to 15 guests.
 
-- **Three night ceremonies** in the Osho Hut: two with ayahuasca and one with [Satori](what-is-satori).
+- **Three ceremonies** in the Osho Hut: two ayahuasca nights and one [Satori](what-is-satori) ceremony by day.
 - **Two Kambo sessions,** plus hapé and cacao ceremonies.
 - **Temazcal and fire circle.**
 - **Group and one-on-one integration** with Humberto, who leads the ceremonies.
