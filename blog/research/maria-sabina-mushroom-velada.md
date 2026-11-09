@@ -142,3 +142,6 @@ asks (preparation, need, not curiosity), and what we take from it, without claim
 - MexiSol facts (full week only, 2 psilocybin + 1 Satori ceremonies, dose agreed with Krista, Krista learned in Oaxaca,
   mushrooms from Mexico, temazcal, cacao, integration, medical screening): house-facts, src/pages/es/retiro-de-psilocibina.astro,
   existing post psilocybin-retreat-mexico.
+- Krista studied in the Mazatec mountains of Oaxaca directly with descendants of María Sabina, learning to share the
+  tradition with respect, care and honor: confirmed by Carlos (review dashboard change request, 2026-11-09). House fact,
+  no external source; no quote from Krista is used.

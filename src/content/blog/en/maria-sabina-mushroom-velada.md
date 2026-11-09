@@ -78,6 +78,8 @@ Huautla became a Pueblo Mágico in 2015. The Cuicuilco study documents veladas f
 
 We are not Mazatec and we do not carry their lineage. We say this clearly, because one of the community's own complaints is outsiders selling "veladas" in their name. What we can do is listen to what the tradition teaches and apply it honestly.
 
+Krista, who guides our mushroom ceremonies, studied in the Mazatec mountains of Oaxaca directly with descendants of María Sabina. There she learned how to share this tradition with respect, care and honor for where it comes from. That learning shapes how she holds every ceremony with us.
+
 ### Come with a question, not curiosity
 
 A velada begins with a need. So before any ceremony, we ask you for an intention: what brings you, what you want to look at, what pattern or habit you are ready to let go of. It does not have to be perfect. It has to be yours.
@@ -94,7 +96,7 @@ The four days of care after a velada have a modern echo: integration. What you s
 
 At MexiSol World we run full-week psilocybin retreats at Finca El Péndulo, near Tepatitlán in Jalisco. There are no weekend or single-ceremony options: the week is the format, even if you live in Guadalajara.
 
-- **Two mushroom ceremonies and one with [Satori](../blog/what-is-satori),** guided by Krista, who learned to work with mushrooms in Oaxaca.
+- **Two mushroom ceremonies and one with [Satori](../blog/what-is-satori),** guided by Krista, who studied with descendants of María Sabina in the Sierra Mazateca.
 - **Your dose is agreed with you** before each ceremony. You can start smaller and ask for more.
 - **The mushrooms come from Mexico.**
 - **Cacao, temazcal, a fire circle** and meditation around the ceremonies. New to the sweat lodge? Read [what a temazcal is](../blog/what-is-a-temazcal).

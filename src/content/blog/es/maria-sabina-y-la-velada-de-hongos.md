@@ -78,6 +78,8 @@ Huautla es Pueblo Mágico desde 2015. El estudio de Cuicuilco documenta veladas 
 
 No somos mazatecos ni heredamos su linaje. Lo decimos claro, porque una de las quejas de la propia comunidad es la gente de fuera que vende "veladas" a su nombre. Lo que sí podemos hacer es escuchar lo que la tradición enseña y aplicarlo con honestidad.
 
+Krista, quien guía nuestras ceremonias de hongos, estudió en la Sierra Mazateca de Oaxaca directamente con descendientes de María Sabina. Ahí aprendió a compartir esta tradición con respeto, cuidado y honra hacia su origen. Ese aprendizaje marca la forma en que sostiene cada ceremonia con nosotros.
+
 ### Llegar con una pregunta, no con curiosidad
 
 La velada empieza con una necesidad. Por eso, antes de cualquier ceremonia, te pedimos una intención: qué te trae, qué quieres mirar, qué patrón quieres soltar. No tiene que ser perfecta. Tiene que ser tuya.
@@ -94,7 +96,7 @@ Los cuatro días de cuidado después de la velada tienen un eco moderno: la inte
 
 En MexiSol World organizamos retiros de psilocibina de una semana completa en Finca El Péndulo, cerca de Tepatitlán, en Jalisco. No ofrecemos fines de semana ni ceremonias sueltas: la semana es el formato, también si vives en Guadalajara.
 
-- **Dos ceremonias con hongos y una con [Satori](../blog/que-es-satori),** guiadas por Krista, que aprendió a trabajar con hongos en Oaxaca.
+- **Dos ceremonias con hongos y una con [Satori](../blog/que-es-satori),** guiadas por Krista, que estudió con descendientes de María Sabina en la Sierra Mazateca.
 - **La dosis se acuerda contigo** antes de cada ceremonia. Puedes empezar con menos y pedir más.
 - **Los hongos vienen de México.**
 - **Cacao, temazcal, círculo de fuego** y meditación alrededor de las ceremonias. Si nunca has entrado a uno, lee [qué es un temazcal](../blog/que-es-un-temazcal).
