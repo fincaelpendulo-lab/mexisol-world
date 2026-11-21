@@ -3,9 +3,9 @@ title: "A retreat for nurses, burnout and all: a week of being held"
 description: "A retreat for nurses, burnout and all: why caregivers find it hard to receive care, what research on clinicians found, and what a held week offers."
 date: 2026-11-23
 image: blog-retreat-for-nurses-burnout
-imageAlt: "An empty woven hammock on a thatched terrace looking out over the turquoise Bacalar lagoon, Mexico"
-imageCredit: "David Cabrera / CC BY-SA 2.0"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Hamaca_-_Bacalar,_QR_2009.jpg"
+imageAlt: "A massage table made up with white towels and a robe in a treatment room at Finca El Péndulo"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: prepare
 tags: [burnout, caregivers, integration, choosing a retreat]
 keyword: "retreat for nurses burnout"

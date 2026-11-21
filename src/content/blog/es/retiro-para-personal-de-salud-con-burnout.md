@@ -3,9 +3,9 @@ title: "Retiro para personal de salud con burnout: dejarte sostener"
 description: "Un retiro para personal de salud con burnout y fatiga por compasión: por qué a quien cuida le cuesta recibir, qué encontró la investigación y cómo es la semana."
 date: 2026-11-23
 image: blog-retreat-for-nurses-burnout
-imageAlt: "Una hamaca tejida vacía en una terraza con techo de palma, frente a la laguna turquesa de Bacalar, México"
-imageCredit: "David Cabrera / CC BY-SA 2.0"
-imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Hamaca_-_Bacalar,_QR_2009.jpg"
+imageAlt: "Una camilla de masaje preparada con toallas blancas y una bata en Finca El Péndulo"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: prepare
 tags: [burnout, cuidadores, integración, elegir un retiro]
 keyword: "retiro para personal de salud con burnout"
