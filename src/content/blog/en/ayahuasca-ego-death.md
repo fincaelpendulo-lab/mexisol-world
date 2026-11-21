@@ -3,9 +3,9 @@ title: "Ayahuasca ego death: what dissolving the self means"
 description: "Ayahuasca ego death explained: what it feels like, what a 2023 study of experienced drinkers found, why it is not the goal, and how to integrate it."
 date: 2026-11-21
 image: blog-ayahuasca-ego-death
-imageAlt: "A single lit candle with a bright flame against a dark, softly blurred background"
-imageCredit: "domdomegg / BY 4.0"
-imageCreditUrl: "https://commons.wikimedia.org/w/index.php?curid=45980204"
+imageAlt: "Smoke and soft light inside the dark ceremony hut at Finca El Péndulo, under a stained-glass window"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: ayahuasca
 tags: [ayahuasca, consciousness, spirituality, integration]
 keyword: "ayahuasca ego death"

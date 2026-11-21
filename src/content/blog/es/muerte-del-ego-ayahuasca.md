@@ -3,9 +3,9 @@ title: "Muerte del ego, ayahuasca y lo que significa disolver el yo"
 description: "Muerte del ego, ayahuasca y disolución del yo: cómo se vive, qué encontró un estudio de 2023, por qué no es la meta y cómo integrarla después."
 date: 2026-11-21
 image: blog-ayahuasca-ego-death
-imageAlt: "Una vela encendida con la flama brillante sobre un fondo oscuro y desenfocado"
-imageCredit: "domdomegg / BY 4.0"
-imageCreditUrl: "https://commons.wikimedia.org/w/index.php?curid=45980204"
+imageAlt: "Humo y luz tenue dentro de la choza de ceremonias en Finca El Péndulo, bajo un vitral"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: ayahuasca
 tags: [ayahuasca, consciencia, espiritualidad, integración]
 keyword: "muerte del ego ayahuasca"

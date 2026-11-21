@@ -1,6 +1,6 @@
 ---
 name: blog-writer
-description: Researches, writes and submits a blog post from the monthly plan (blog/plans/YYYY-MM.json) for mexisol.world ahead of its publish date, in English and Spanish, with verified academic, news, YouTube and creator sources, SEO structure and a stock cover photo, as a pull request. Also revises a post's PR when Carlos asks for changes in the review dashboard. Use it when the daily blog run (blog/WORKER.md) needs a new post written or a post revised. Reports in Spanish.
+description: Researches, writes and submits a blog post from the monthly plan (blog/plans/YYYY-MM.json) for mexisol.world ahead of its publish date, in English and Spanish, with verified academic, news, YouTube and creator sources, SEO structure and a cover with a headline (also used on Facebook), as a pull request. Also revises a post's PR when Carlos asks for changes in the review dashboard. Use it when the daily blog run (blog/WORKER.md) needs a new post written or a post revised. Reports in Spanish.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 model: opus
 ---
@@ -128,17 +128,32 @@ Spanish names (`../informacion-medica`, `../agenda-una-llamada`, `../retiro-de-a
 `../blog/<slug-es>`; the full list is in `src/lib/i18n.ts` and `src/pages/es/`). Prefer
 Spanish-language sources where good ones exist, keep the academic ones. "Choza Osho" for the Osho Hut.
 
-## 4. Cover photo (stock)
+## 4. Cover: photo plus headline (Carlos approved the design, 2026-11-21)
 
-```bash
-node scripts/blog/stock-photo.mjs search "<2 to 4 concrete words>" --slug <slug>
-```
-- Open the previews with Read and choose the one that fits the subject and the site's look: natural light,
-  Mexican landscapes, plants, nature, ceremony details, calm interiors. Try 2 or 3 queries if nothing fits.
-- Avoid: faces of identifiable people as the subject, drug paraphernalia, pills close-ups, clichéd "trippy"
-  graphics, text in the image, anything that looks like a real MexiSol guest, other retreat centers' branding.
-- Then `node scripts/blog/stock-photo.mjs save <slug> <number>` and copy `image`, `imageCredit` and
-  `imageCreditUrl` into both posts' frontmatter. Look at the saved file once more.
+The cover is also the image of the post's Facebook post, so it carries a short headline. Look:
+`blog/cover-samples/portadas-proximas.jpg`. Brand rules in `marketing/rules.md`: all text white, no orange text.
+
+1. **Photo that matches what the post talks about.** First look for one of ours in `src/assets/photos/` (the
+   Finca, ceremony spaces, altars, fire circles, temazcal, nature, groups); open candidates with Read. Women's
+   photos only for women's topics; no close portraits of one recognizable person; never Ruger. If none fits, use
+   stock: `node scripts/blog/stock-photo.mjs search "<2 to 4 concrete words>" --slug <slug>`, open the previews,
+   then `node scripts/blog/stock-photo.mjs save <slug> <number>` and use `src/assets/photos/blog-<slug>.jpg` as
+   the photo. Avoid drug paraphernalia, pill close-ups, "trippy" graphics, text in the photo, other centers'
+   branding. Don't reuse a photo another upcoming post uses.
+2. **Headline: 2 to 6 words, a hook taken from what the post says**, not the SEO title repeated ("There is no
+   bad trip", "Who cares for the carer?", "You are not your story"). A subtitle of 3 to 7 words that names the
+   topic ("Ayahuasca ego death, explained"). English only; the Spanish post uses the same cover. Same voice rules:
+   no cure promises, no hype.
+3. Make it:
+   ```bash
+   node scripts/blog/cover.mjs <slug> --photo <photo file> --title "<headline>" --sub "<subtitle>" --focus left|center|right
+   ```
+   `--focus` keeps the photo's subject visible on the right (the text sits on the left). It writes
+   `src/assets/photos/blog-<slug>.jpg` and keeps the clean photo in `blog/covers/<slug>.jpg`. Open the cover with
+   Read: the headline must be readable, at most 3 lines, and the subject not hidden.
+4. Frontmatter in both posts: `image: blog-<slug>`, `imageAlt` describing the photo (in each language),
+   `imageCredit`/`imageCreditUrl` from stock-photo.mjs, or `"MexiSol World"` / `"https://mexisol.world"` for our
+   own photos.
 
 ## 5. Check, build, submit
 
@@ -151,6 +166,7 @@ ln -s "$PWD/node_modules" ../mexisol-blog-<slug>/node_modules
 cp src/content/blog/en/<slug>.md ../mexisol-blog-<slug>/src/content/blog/en/
 cp src/content/blog/es/<slugEs>.md ../mexisol-blog-<slug>/src/content/blog/es/
 cp src/assets/photos/blog-<slug>.jpg ../mexisol-blog-<slug>/src/assets/photos/
+mkdir -p ../mexisol-blog-<slug>/blog/covers && cp blog/covers/<slug>.jpg ../mexisol-blog-<slug>/blog/covers/
 mkdir -p ../mexisol-blog-<slug>/blog/research && cp blog/research/<slug>.md ../mexisol-blog-<slug>/blog/research/
 cd ../mexisol-blog-<slug>
 node scripts/blog/check-post.mjs <slug>
@@ -161,7 +177,7 @@ npm run build
   live, and prints their real titles. Read those titles: each must match what the post says it is. Fix every
   ERROR, think about every warning, run again until it passes. Replace sources that do not load.
 - `npm run build` must pass.
-- Commit only those four files, push the branch and open a PR:
+- Commit only those five files (two posts, cover, clean photo, research), push the branch and open a PR:
   - Title: `Blog: <English title>`
   - Body in Spanish for Carlos: profile, keyword (EN/ES), one-paragraph summary, the source list grouped by type
     (académicas, medios, YouTube/creadores), the photo credit, anything he should confirm (a claim about the
@@ -169,7 +185,7 @@ npm run build
   - End the commit message with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` and the PR body with
     `🤖 Generated with [Claude Code](https://claude.com/claude-code)`.
 - Then `cd` back, `git worktree remove ../mexisol-blog-<slug>` and delete the copies you made in this checkout
-  (the two posts, the photo, the research file and `blog/.photo-candidates/<slug>`), so they only live in the PR.
+  (the two posts, the cover, `blog/covers/<slug>.jpg`, the research file and `blog/.photo-candidates/<slug>`), so they only live in the PR.
 - Never push to `main`, never merge, never force-push.
 
 ## Report (in Spanish)
@@ -190,8 +206,8 @@ cd ../mexisol-blog-<slug>
 ```
 
 - Apply the change to both languages unless he says only one. New facts need new verified sources (add them to
-  `## Sources` / `## Fuentes` and to `blog/research/<slug>.md`). A new photo: run `stock-photo.mjs` again and
-  overwrite `src/assets/photos/blog-<slug>.jpg`.
+  `## Sources` / `## Fuentes` and to `blog/research/<slug>.md`). A new photo or headline: redo step 4 with
+  `cover.mjs` (without `--photo` it reuses `blog/covers/<slug>.jpg`).
 - Add `updated:` only if the post is already published.
 - Run `node scripts/blog/check-post.mjs <slug>` and `npm run build` until both pass.
 - Commit ("Blog: revise <slug>: <short summary>", with the Co-Authored-By line), push the branch (never force),
