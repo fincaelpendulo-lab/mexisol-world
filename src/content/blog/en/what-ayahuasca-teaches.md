@@ -3,9 +3,9 @@ title: "What does ayahuasca teach you? Lessons people bring home"
 description: "What does ayahuasca teach you? The lessons people report most often, from self-acceptance to forgiveness and humility, and how to live them at home."
 date: 2026-11-28
 image: blog-what-ayahuasca-teaches
-imageAlt: "Small leaves on a thin branch lit by warm low sunlight against a dark background with soft points of light"
-imageCredit: "Unknown / CC0 1.0"
-imageCreditUrl: "https://www.rawpixel.com/image/3283964/free-photo-image-autumn-autumnal-cc0"
+imageAlt: "Candles, flowers and cups on the altar of the Osho Hut before a ceremony"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: ayahuasca
 tags: [ayahuasca, spirituality, integration, ceremony]
 keyword: "what does ayahuasca teach you"

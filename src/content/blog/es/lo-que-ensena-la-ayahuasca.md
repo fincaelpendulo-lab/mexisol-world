@@ -3,9 +3,9 @@ title: "¿Qué te enseña la ayahuasca? Lo que la gente se lleva a casa"
 description: "¿Qué te enseña la ayahuasca? Las lecciones que más cuentan quienes la toman, de la aceptación al perdón y la humildad, y cómo vivirlas al volver a casa."
 date: 2026-11-28
 image: blog-what-ayahuasca-teaches
-imageAlt: "Hojas pequeñas en una rama delgada iluminadas por la luz cálida del sol bajo, sobre un fondo oscuro con puntos de luz suaves"
-imageCredit: "Unknown / CC0 1.0"
-imageCreditUrl: "https://www.rawpixel.com/image/3283964/free-photo-image-autumn-autumnal-cc0"
+imageAlt: "Velas, flores y vasos en el altar de la Choza Osho antes de una ceremonia"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: ayahuasca
 tags: [ayahuasca, espiritualidad, integración, ceremonia]
 keyword: "qué te enseña la ayahuasca"
