@@ -52,7 +52,10 @@ Not yet after 10:00 → mention it in the report (the morning rebuild may have f
 Carlos (2026-11-07): every published post goes to the MexiSol World Facebook page, in English, on its own (no
 review). For each record with `status: "published"` and no `facebookAt`:
 
-1. `node scripts/blog/facebook-post.mjs <slug>`. It exits 1 if the page is not live; then skip it this run.
+1. Run exactly `node scripts/blog/facebook-post.mjs <slug>` as its own Bash command: no `cd`, no `&&`, no pipes,
+   no absolute path. Carlos allowed that exact form and the three `mcp__ghl__social-media-posting_*` calls in
+   `.claude/settings.local.json` (2026-11-10), so this step is authorized; any other form gets blocked. The script
+   only reads the public page. It exits 1 if the page is not live; then skip it this run.
 2. Write the caption in English from the post (read `src/content/blog/en/<slug>.md` on `origin/main` or the record's
    `bodyEn`): 40 to 90 words, speaking as MexiSol World ("we"). A hook from the searcher's real question, one or two
    lines on what the post covers, then `Read it here: <link>` on its own line. Same rules as the blog: no em dashes,
