@@ -3,9 +3,9 @@ title: "Cómo recibir el año nuevo de forma espiritual, con intención"
 description: "Cómo recibir el año nuevo de forma espiritual: por qué la intención dura más que el propósito, rituales para soltar, tradiciones mexicanas y un ritual en casa."
 date: 2026-11-26
 image: blog-spiritual-new-year
-imageAlt: "Una vela encendida en primer plano sobre un fondo oscuro con luces doradas difuminadas"
-imageCredit: "domdomegg / BY 4.0"
-imageCreditUrl: "https://commons.wikimedia.org/w/index.php?curid=45980204"
+imageAlt: "Personas sentadas alrededor de un círculo de fuego de noche en Finca El Péndulo"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: finca
 tags: [año nuevo, intención, ritual, ceremonia, méxico]
 keyword: "cómo recibir el año nuevo de forma espiritual"

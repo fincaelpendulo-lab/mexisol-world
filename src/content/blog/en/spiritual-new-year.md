@@ -3,9 +3,9 @@ title: "A spiritual way to celebrate New Year: release and intention"
 description: "A spiritual way to celebrate New Year: why intentions outlast resolutions, release rituals with fire and water, Mexican customs and a ritual to do at home."
 date: 2026-11-26
 image: blog-spiritual-new-year
-imageAlt: "A lit candle in close-up against a dark background with soft golden lights"
-imageCredit: "domdomegg / BY 4.0"
-imageCreditUrl: "https://commons.wikimedia.org/w/index.php?curid=45980204"
+imageAlt: "Guests sitting around a fire circle at night at Finca El Péndulo"
+imageCredit: "MexiSol World"
+imageCreditUrl: "https://mexisol.world"
 ogImage: finca
 tags: [new year, intention, ritual, ceremony, mexico]
 keyword: "spiritual way to celebrate new year"
