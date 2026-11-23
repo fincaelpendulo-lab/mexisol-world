@@ -121,3 +121,41 @@ House rule: no gram amounts anywhere. Dose is decided in conversation and in the
   next dates Feb 13 to 19, 2027 (src/data/retreats.json); dose decided in conversation and in the moment, start smaller
   and ask for more, no grams, no good or bad experiences, screening contents, women on team (house-facts);
   bipolar/psychosis exclusion and Satori MAOI list (existing post womens-psilocybin-retreat).
+
+## Revision 2026-11-23 (Carlos: "We need to have a positive opinion on microdosing, we can not say it is due to placebo")
+
+Removed from the post: Szigeti et al. 2021 (eLife), Cavanna et al. 2022 (Translational Psychiatry), the Szigeti
+podcast (source 5) and the Szigeti AP quote, and the "everybody will recognize" line. The post no longer attributes
+microdosing effects to placebo. Limits are stated neutrally (observational designs, self-selected samples, long-term
+effects not studied, de Wit "some people and not others", reported challenges).
+
+### New research sources (read via PMC / PLOS / Europe PMC)
+
+16. **Rootman J. M. et al. (2022). Psilocybin microdosers demonstrate greater observed improvements in mood and mental
+    health at one month relative to non-microdosing controls. Scientific Reports 12:11091. PMID 35773270, PMC9246852.**
+    https://doi.org/10.1038/s41598-022-14512-3 Type: naturalistic observational study. 953 psilocybin microdosers vs
+    180 non-microdosers, about 30 days. "small- to medium-sized improvements in mood and mental health"; DASS-21
+    depression, anxiety and stress reduced; depression reduction largest with baseline mental health concerns;
+    psychomotor gains in older adults only. Limits: self-selection, participants knew their status, no placebo,
+    recruitment through favorable venues, dose not examined.
+
+17. **Polito V., Stevenson R. J. (2019). A systematic study of microdosing psychedelics. PLOS ONE 14(2):e0211023.**
+    https://doi.org/10.1371/journal.pone.0211023 Type: observational, six weeks, 98 daily-ratings participants
+    (63 pre/post), Macquarie University. Daily ratings (connectedness, contemplation, creativity, focus, happiness,
+    productiveness, wellbeing) rose on dosing days; reductions in depression and stress, less mind wandering, more
+    absorption; slight increase in neuroticism. Study Two (263): "the effects believed most likely to change were
+    unrelated to the observed pattern of reported outcomes." Limits: self-report, recruited from positive forums.
+
+18. **Anderson T. et al. (2019). Psychedelic microdosing benefits and challenges: an empirical codebook. Harm
+    Reduction Journal 16:43. PMID 31288862, PMC6617883.** https://doi.org/10.1186/s12954-019-0308-4 Type: qualitative
+    codebook, 278 microdosers. Benefits: improved mood 26.6%, focus 14.8%, creativity 12.9%, self-efficacy 11.3%,
+    energy 10.5%. Challenges: physiological discomfort 18.0%, increased anxiety 6.7% (illegality 29.5%).
+
+### Claims added
+- 953 vs 180, about a month, small to medium mood and mental health gains, lower depression/anxiety/stress, larger in
+  those with baseline concerns: (16).
+- 98 people, six weeks, daily ratings up on dosing days, less depression and stress, less mind wandering, more
+  absorption, expectation quote: (17).
+- 278 microdosers, mood 26.6%, focus 14.8%, creativity, self-efficacy, energy; discomfort 18.0%, anxiety 6.7%: (18).
+- Observational, participants knew, recruited from favorable communities: (16), (17).
+- Fadiman reviewed data and reports on mood, pain, productivity, withdrawal: (4). De Wit and long-term: (10).

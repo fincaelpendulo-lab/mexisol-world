@@ -1,6 +1,6 @@
 ---
 title: "Microdosis vs macrodosis: de un día mejor a la ceremonia"
-description: "Microdosis vs macrodosis de psilocibina: qué encontraron los estudios con placebo, qué cambia en una ceremonia completa y cómo saber si estás lista."
+description: "Microdosis vs macrodosis de psilocibina: los beneficios que se reportan, qué dice la investigación, qué cambia en ceremonia y cómo saber si estás lista."
 date: 2026-11-24
 image: blog-microdosing-vs-macrodosing
 imageAlt: "Pequeños hongos cafés que crecen del musgo en el suelo de un bosque, con otros desenfocados detrás"
@@ -15,7 +15,7 @@ translation: microdosing-vs-macrodosing
 
 Microdosis vs macrodosis no es una cuestión de tomar más o menos de lo mismo. Una microdosis es una cantidad pequeña que se toma como parte de la rutina, para que casi no se note. Una dosis completa en ceremonia es una experiencia para la que apartas el día entero: horas en las que tu forma habitual de ser tú se afloja y algo más encuentra espacio para hablar.
 
-Muchas mujeres que nos escriben ya hacen microdosis en casa y se preguntan qué les daría una ceremonia y si están listas. En esta guía te contamos qué dicen quienes microdosifican, qué encontraron los estudios con placebo, qué cambia en una ceremonia completa y cómo decidimos la dosis contigo. No damos cantidades en gramos, ni aquí ni en ningún lado.
+Muchas mujeres que nos escriben ya hacen microdosis en casa y se preguntan qué les daría una ceremonia y si están listas. En esta guía te contamos qué beneficios cuentan quienes microdosifican, qué ha encontrado la investigación hasta ahora, qué cambia en una ceremonia completa y cómo decidimos la dosis contigo. No damos cantidades en gramos, ni aquí ni en ningún lado.
 
 ## Microdosis vs macrodosis: dos formas de encontrarse con el hongo
 
@@ -33,25 +33,29 @@ Ese mapa ayuda. La microdosis está pensada para quedarse al fondo de un día no
 
 Ninguna es la versión "verdadera" de la otra. Son dos relaciones distintas con la misma medicina.
 
-## Qué cuentan quienes hacen microdosis y qué encontraron los estudios con placebo
+## Qué cuentan quienes hacen microdosis y qué ha encontrado la investigación
 
 El libro que acercó la microdosis a muchas mujeres es la memoria de Ayelet Waldman, *[A Really Good Day](https://www.penguinrandomhouse.com/books/545767/a-really-good-day-by-ayelet-waldman/)* (2017). Su estado de ánimo se había vuelto inmanejable y ella lo atribuye a la perimenopausia. Llevó un diario de un mes de microdosis. Usó LSD, no hongos, y el título viene de lo que los microdosificadores le contaban a Fadiman: que había sido "un día realmente bueno".
 
 Quienes microdosifican hongos describen cosas parecidas. Aubrie Gates, de Colorado, le dijo a [Associated Press en 2025](https://www.kunc.org/news/2025-04-20/believers-say-microdosing-psychedelics-helps-them-scientists-are-trying-to-measure-the-claims) que la microdosis le hace sentir en el cuerpo, de forma visceral, "una nueva manera de ser, una manera más sana de ser" (traducción nuestra).
 
-### Los estudios de microdosis con placebo
+### Lo que encontraron los estudios de microdosis
 
-Los investigadores han intentado poner a prueba esos relatos, y los resultados invitan a la humildad. En un [estudio de 2021 en la revista eLife](https://doi.org/10.7554/eLife.62878), Balázs Szigeti y su equipo del Imperial College de Londres pidieron a 191 personas que ya hacían microdosis que prepararan sus propias cápsulas de placebo junto a las reales, para que nadie supiera qué tomaba cada día. A las cuatro semanas, ambos grupos habían mejorado, sin diferencia significativa entre ellos. Los autores concluyeron que los beneficios anecdóticos de la microdosis pueden explicarse por el efecto placebo.
+La investigación ya empezó a medir esos relatos, y lo que encuentra va en una dirección esperanzadora. El estudio más grande hasta ahora, [publicado en Scientific Reports en 2022](https://doi.org/10.1038/s41598-022-14512-3), siguió durante cerca de un mes a 953 personas que microdosificaban psilocibina y a 180 que no lo hacían. Quienes microdosificaban mostraron mejoras pequeñas a moderadas en el ánimo y la salud mental, con puntuaciones más bajas de depresión, ansiedad y estrés. La baja en depresión fue mayor entre quienes empezaron con alguna preocupación de salud mental.
 
-Un [ensayo doble ciego de 2022 en Translational Psychiatry](https://doi.org/10.1038/s41398-022-02039-0), con 34 personas que empezaban a microdosificar hongos con psilocibina, encontró el mismo patrón. Los efectos se sentían más fuertes con la dosis activa solo entre quienes adivinaban en qué semana estaban, y no hubo beneficio en bienestar, creatividad ni funciones cognitivas. Según los autores, la expectativa explica al menos parte de los beneficios que se cuentan. Los dos estudios son pequeños y con voluntarios sanos, así que zanjan menos de lo que dicen los titulares.
+En un [estudio de 2019 en PLOS ONE](https://doi.org/10.1371/journal.pone.0211023), Vince Polito y Richard Stevenson, de la Universidad Macquarie en Australia, siguieron a 98 personas durante seis semanas. Los días de microdosis subieron sus calificaciones de felicidad, enfoque, conexión, creatividad y bienestar, y al cabo de las seis semanas reportaron menos depresión y estrés, menos divagación mental y más capacidad de absorción. Los autores también preguntaron a otras personas qué esperaban que cambiara, y vieron que lo que más se esperaba no coincidía con lo que de verdad se observó.
 
-El propio Fadiman, en [Psychedelic Science 2025](https://virtualtrip.maps.org/video/microdosing-why-is-it-so-popular-and-how-much-of-what-is-believed-is-true/), dejó la pregunta abierta: ¿la microdosis es placebo, panacea o algo intermedio? Szigeti tampoco la descarta. En el [Psychedelic Medicine Podcast](https://plantmedicinepodcast.libsyn.com/microdosing-and-the-placebo-effect-with-balzs-szigeti-phd) dijo que los resultados fueron mixtos. Más tarde declaró a [la agencia AP](https://www.kunc.org/news/2025-04-20/believers-say-microdosing-psychedelics-helps-them-scientists-are-trying-to-measure-the-claims) que el efecto "es como una profecía autocumplida", y la neurocientífica Harriet de Wit añadió que "puede que solo funcione en algunas personas y no en otras" (traducciones nuestras). La misma nota recuerda que los efectos a largo plazo no se han estudiado en humanos.
+Un [estudio de 2019 en Harm Reduction Journal](https://doi.org/10.1186/s12954-019-0308-4) pidió a 278 personas que describieran con sus propias palabras qué les daba la microdosis y qué les costaba. Los beneficios más mencionados fueron mejor ánimo (26.6 %) y más enfoque (14.8 %), seguidos de creatividad, confianza en sí mismas y energía. También conviene conocer los retos: malestar físico (18.0 %) y más ansiedad (6.7 %) en algunas personas.
 
-Lo que esto nos dice es suave: la intención y la expectativa tienen fuerza. Una microdosis puede ser una forma de elegir, cada pocos días, ponerte atención. Eso importa. Solo que no es lo mismo que lo que pasa en ceremonia.
+### Lo que todavía no sabemos
+
+Estos estudios son observacionales. Las personas sabían que estaban microdosificando y en su mayoría llegaron desde comunidades que ya la valoraban, algo que los propios autores señalan. En [Psychedelic Science 2025](https://virtualtrip.maps.org/video/microdosing-why-is-it-so-popular-and-how-much-of-what-is-believed-is-true/), Fadiman repasó datos nuevos y relatos de todo el mundo sobre ánimo, dolor, productividad y abstinencia, y dónde la evidencia todavía es escasa. La neurocientífica Harriet de Wit dijo a [la agencia AP](https://www.kunc.org/news/2025-04-20/believers-say-microdosing-psychedelics-helps-them-scientists-are-trying-to-measure-the-claims) que "puede que solo funcione en algunas personas y no en otras" (traducción nuestra), y la misma nota recuerda que los efectos a largo plazo no se han estudiado en humanos.
+
+Lo que esto nos dice es alentador. Muchas personas encuentran en la microdosis un ánimo más estable, más enfoque y una forma de elegir, cada pocos días, ponerse atención. Eso importa. Solo que es algo distinto de lo que pasa en ceremonia.
 
 ## Qué cambia en una ceremonia completa
 
-Con una dosis completa, la medicina no es sutil. Szigeti señala que en los estudios con dosis altas todo el mundo reconoce cuándo recibió la sustancia activa. No te quedas preguntando si está funcionando.
+Con una dosis completa, la medicina no es sutil. Durante horas, tu percepción, tus emociones y tu sentido de quién eres pueden moverse con fuerza. No te quedas preguntando si está funcionando.
 
 Michael Pollan, autor de *[Cómo cambiar tu mente](https://www.penguinrandomhouse.com/books/607616/como-cambiar-tu-mente--how-to-change-your-mind-by-michael-pollan)* (Debate, 2019), contó a [Longreads](https://longreads.com/2018/05/30/michael-pollan-on-why-its-a-good-idea-to-lose-your-self/) su propia sesión guiada con una dosis alta de psilocibina. Sintió que su sentido del yo "se desmoronaba". Lo que le quedó fue un descubrimiento: no era necesariamente idéntico a su ego, como siempre había supuesto.
 
@@ -100,8 +104,8 @@ Un retiro no es terapia ni un tratamiento. Es un espacio para el trabajo interio
 
 ## Preguntas frecuentes
 
-**¿La microdosis es solo placebo?**
-Dos estudios controlados con placebo, de 2021 y 2022, encontraron que los beneficios reportados se explicaban en gran parte por la expectativa. Los dos fueron pequeños y con voluntarios sanos. La expectativa y la intención son fuerzas reales, pero no son lo mismo que los efectos de una dosis completa.
+**¿Qué beneficios tiene la microdosis de psilocibina?**
+En los estudios, quienes microdosifican reportan sobre todo mejor ánimo y más enfoque, además de creatividad y energía. Un estudio de 2022 con 953 personas que microdosificaban psilocibina encontró mejoras pequeñas a moderadas en el ánimo y la salud mental después de un mes. Son estudios observacionales, los efectos a largo plazo no se han estudiado y algunas personas reportan malestar o ansiedad.
 
 **¿La microdosis es espiritual?**
 Puede ser parte de una práctica espiritual si la usas como un momento de atención. Aun así, Fadiman asocia el uso espiritual con dosis altas, y el sentido que describen los estudios viene de experiencias con dosis completas en un espacio cuidado.
@@ -125,13 +129,13 @@ Si tu práctica de microdosis te trajo al borde de una pregunta más grande, emp
 - Waldman, A. (2017). [A Really Good Day: How Microdosing Made a Mega Difference in My Mood, My Marriage, and My Life](https://www.penguinrandomhouse.com/books/545767/a-really-good-day-by-ayelet-waldman/). Knopf.
 - Pollan, M. (2019). [Cómo cambiar tu mente](https://www.penguinrandomhouse.com/books/607616/como-cambiar-tu-mente--how-to-change-your-mind-by-michael-pollan). Debate.
 - Fadiman, J. y Justice, C. (2025). [Microdosing: why is it so popular, and how much of what is believed is true?](https://virtualtrip.maps.org/video/microdosing-why-is-it-so-popular-and-how-much-of-what-is-believed-is-true/). Psychedelic Science 2025, MAPS.
-- Morski, L. M. (2022). [Microdosing and the Placebo Effect with Balázs Szigeti, PhD](https://plantmedicinepodcast.libsyn.com/microdosing-and-the-placebo-effect-with-balzs-szigeti-phd). Psychedelic Medicine Podcast.
 - Griffiths, R. (2015). [The science of psilocybin and its use to relieve suffering](https://www.tedmed.com/talk/the-science-of-psilocybin-and-its-use-to-relieve-suffering/). TEDMED.
 - Reese, H. (2018). [Michael Pollan on why it's a good idea to lose your self](https://longreads.com/2018/05/30/michael-pollan-on-why-its-a-good-idea-to-lose-your-self/). Longreads.
 - Duncan (2025). [Psilocybin with Purpose: My Journey at MexiSoul Retreat](https://retreat.guru/centers/1747-1/mexisoul-retreats#reviews). Reseña de participante, Retreat Guru.
 - Johnson, C. K. (2025). [Believers say microdosing psychedelics helps them. Scientists are trying to measure the claims](https://www.kunc.org/news/2025-04-20/believers-say-microdosing-psychedelics-helps-them-scientists-are-trying-to-measure-the-claims). Associated Press, vía KUNC.
 - Biello, D. (2008). [Long trip: magic mushrooms' transcendent effect lingers](https://www.scientificamerican.com/article/long-trip-magic-mushrooms/). Scientific American.
-- Szigeti, B. et al. (2021). [Self-blinding citizen science to explore psychedelic microdosing](https://doi.org/10.7554/eLife.62878). eLife.
-- Cavanna, F. et al. (2022). [Microdosing with psilocybin mushrooms: a double-blind placebo-controlled study](https://doi.org/10.1038/s41398-022-02039-0). Translational Psychiatry.
+- Rootman, J. M. et al. (2022). [Psilocybin microdosers demonstrate greater observed improvements in mood and mental health at one month relative to non-microdosing controls](https://doi.org/10.1038/s41598-022-14512-3). Scientific Reports.
+- Polito, V. y Stevenson, R. J. (2019). [A systematic study of microdosing psychedelics](https://doi.org/10.1371/journal.pone.0211023). PLOS ONE.
+- Anderson, T. et al. (2019). [Psychedelic microdosing benefits and challenges: an empirical codebook](https://doi.org/10.1186/s12954-019-0308-4). Harm Reduction Journal.
 - Griffiths, R. R., Richards, W. A., McCann, U. y Jesse, R. (2006). [Psilocybin can occasion mystical-type experiences having substantial and sustained personal meaning and spiritual significance](https://doi.org/10.1007/s00213-006-0457-5). Psychopharmacology.
 - Griffiths, R. R., Richards, W. A., Johnson, M. W., McCann, U. D. y Jesse, R. (2008). [Mystical-type experiences occasioned by psilocybin mediate the attribution of personal meaning and spiritual significance 14 months later](https://doi.org/10.1177/0269881108094300). Journal of Psychopharmacology.
