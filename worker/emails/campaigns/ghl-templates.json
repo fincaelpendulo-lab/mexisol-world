@@ -2,7 +2,7 @@
  "2026-11-new-year-and-dates": {
   "id": "6ae4fa1202316e72fda60eb7",
   "ghl_name": "Campaign - New Year 2027 and upcoming dates",
-  "subject": "Ring in 2027 at Finca El Péndulo"
+  "subject": "Ring in 2027 at Finca El P\u00e9ndulo"
  },
  "profile-01-healing-seeker": {
   "id": "6aee680ec69aecb00434ee49",
@@ -43,7 +43,42 @@
  "profile-07-local-seeker": {
   "id": "6aee68170316bb3fbb38950d",
   "ghl_name": "Newsletter - Perfil 7 Local Seeker (ES)",
-  "subject": "Tu lugar está cerca",
+  "subject": "Tu lugar est\u00e1 cerca",
   "tag": "profile_local_seeker"
+ },
+ "blog-01-healing-seeker": {
+  "id": "6b07174211efeb79125fe91d",
+  "tag": "profile_healing_seeker",
+  "subject": "What do we do with what we carry?"
+ },
+ "blog-02-crossroads": {
+  "id": "6b0717435d417ca676676fea",
+  "tag": "profile_crossroads",
+  "subject": "The opening of consciousness"
+ },
+ "blog-03-pattern-breaker": {
+  "id": "6b071744ad3a0d9624b151f2",
+  "tag": "profile_pattern_breaker",
+  "subject": "Behind every pattern, a thirst"
+ },
+ "blog-04-returning-journeyer": {
+  "id": "6b071746bd1219633d3f7748",
+  "tag": "profile_returning_journeyer",
+  "subject": "When the self dissolves"
+ },
+ "blog-05-caregiver": {
+  "id": "6b0717471ece1b137f757fd7",
+  "tag": "profile_caregiver",
+  "subject": "A week of being held"
+ },
+ "blog-06-psilocybin-curious": {
+  "id": "6b0717482c0b56ab334df6cf",
+  "tag": "profile_psilocybin_curious",
+  "subject": "Where the mushroom ceremony began"
+ },
+ "blog-07-local-seeker": {
+  "id": "6b0717491ece1b137f758025",
+  "tag": "profile_local_seeker",
+  "subject": "Las fechas de 2027 en la Finca"
  }
 }
