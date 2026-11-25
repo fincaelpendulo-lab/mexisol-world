@@ -16,7 +16,7 @@ const b = site.booking;
     title={es ? 'Calendario para agendar una llamada con MexiSol World' : 'Calendar to book a call with MexiSol World'}
     allow="payment"
     scrolling="no"
-    style="width:100%;border:none;overflow:hidden"
+    style="width:1px;min-width:100%;border:none;overflow:hidden"
   ></iframe>
   <p class="t-caption muted booking-widget__fallback">
     {es ? '¿No ves el calendario?' : "Can't see the calendar?"} <a href={b.url} data-track="book_call">{es ? 'Ábrelo en una página nueva' : 'Open it in a new page'}</a>.
@@ -24,7 +24,8 @@ const b = site.booking;
 </div>
 
 <style is:global>
-  .booking-widget { background: var(--white); color: var(--ink); border: 1px solid var(--hairline); padding: var(--space-3); }
+  /* iPhone Safari sizes an iframe to its content; width 1px + min-width 100% and the clip keep it inside the page. */
+  .booking-widget { max-width: 100%; overflow: hidden; background: var(--white); color: var(--ink); border: 1px solid var(--hairline); padding: var(--space-3); }
   .booking-widget iframe { display: block; min-height: 720px; }
   .no-js .booking-widget iframe { display: none; }
   .booking-widget__fallback { padding: var(--space-3) var(--space-2) 0; }

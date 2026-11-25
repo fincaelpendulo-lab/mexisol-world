@@ -22,6 +22,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-height) + var(--space-3)); }
 body { margin: 0; background: var(--surface); color: var(--ink); font: var(--text-body); overflow-wrap: break-word; }
 img, video, svg { max-width: 100%; }
@@ -182,6 +183,7 @@ h1, h2, h3, p { margin: 0; }
 /* Forms */
 .field { display: flex; flex-direction: column; gap: var(--space-2); }
 .field label, .field legend { font: var(--text-label); letter-spacing: 0.08em; color: var(--label-ink); text-transform: uppercase; }
+.field select { max-width: 100%; min-width: 0; text-overflow: ellipsis; }
 .field input, .field select, .field textarea { font: var(--text-body); color: var(--ink); background: var(--surface); border: 1px solid var(--ink); border-radius: 0; padding: 12px 16px; min-height: 48px; width: 100%; }
 .field textarea { resize: vertical; }
 .field [aria-invalid="true"] { border-width: 2px; }
