@@ -17,14 +17,16 @@ const to = (path: string) => href(localize(path, lang));
 
 const upcoming = [
   { label: n.allDates, href: to('/upcoming-retreats') },
+  { label: n.ayahuasca, href: to('/ayahuasca-retreat') },
+  { label: n.psilocybin, href: to('/psilocybin-retreat') },
   { label: n.finca, href: to('/finca-el-pendulo') },
   { label: n.international, href: to('/international-retreats') },
 ];
 const resources = [
-  { label: n.ayahuasca, href: to('/ayahuasca-retreat') },
-  { label: n.psilocybin, href: to('/psilocybin-retreat') },
+  { label: n.bookCall, href: to('/book-a-call') },
   { label: n.prepare, href: to('/prepare') },
   { label: n.medical, href: to('/medical') },
+  { label: n.faq, href: to('/#faq') },
 ];
 const about = [
   { label: n.story, href: to('/about#story') },

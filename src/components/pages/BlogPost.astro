@@ -75,14 +75,14 @@ const schema = [{
       </div>
     </header>
 
-    <div class="wrap post__photo">
+    <div class="gutter"><div class="wrap post__photo">
       <Photo name={d.image} alt={d.imageAlt} sizes="(max-width: 1200px) 100vw, 1200px" priority class="ratio-16-9" />
       {d.imageCredit && (
         <p class="t-caption muted post__credit">{es ? 'Foto' : 'Photo'}: {d.imageCreditUrl ? <a href={d.imageCreditUrl} rel="nofollow noopener" target="_blank">{d.imageCredit}</a> : d.imageCredit}</p>
       )}
-    </div>
+    </div></div>
 
-    <div class="wrap post__narrow post__body">
+    <div class="gutter"><div class="wrap post__narrow post__body">
       {toc.length >= 3 && (
         <nav class="post__toc" aria-labelledby="toc-title">
           <p id="toc-title" class="label label--tight">{t.toc}</p>
@@ -90,7 +90,7 @@ const schema = [{
         </nav>
       )}
       <div class="prose"><Content /></div>
-    </div>
+    </div></div>
   </article>
 
   <section class="section deep">
@@ -144,7 +144,8 @@ const schema = [{
   .post-link { color: var(--ink); text-decoration: none; }
   .post-link:hover { color: var(--accent-text); text-decoration: underline; }
   .post-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-8) var(--space-6); }
-  .prose { font: var(--text-body); }
+  .prose { font: var(--text-body); overflow-wrap: break-word; }
+  .prose img, .prose iframe, .prose video { max-width: 100%; height: auto; }
   .prose > * + * { margin-top: var(--space-5); }
   .prose h2 { font: var(--text-heading); margin-top: var(--space-8); scroll-margin-top: calc(var(--header-height) + 16px); }
   .prose h3 { font: var(--text-title); margin-top: var(--space-7); scroll-margin-top: calc(var(--header-height) + 16px); }

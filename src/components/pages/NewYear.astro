@@ -278,9 +278,11 @@ const schema = packages.map((p) => ({
   .ny-table thead th { font: var(--text-caption); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); border-bottom-color: var(--ink); }
   .ny-table tbody th { font-weight: 400; white-space: nowrap; }
   .ny-table--prices td { white-space: nowrap; }
+  .ny-table--deep tbody th { white-space: normal; }
   .ny-table--deep th, .ny-table--deep td { border-bottom-color: rgba(255, 255, 255, 0.32); }
   .ny-table--deep thead th { color: var(--on-deep); border-bottom-color: var(--white); }
-  .ny-prices .table-scroll { overflow-x: auto; }
+  .ny-prices > * { min-width: 0; }
+  .ny-prices .table-scroll { overflow-x: auto; position: relative; }
   .ny-prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: var(--space-8) var(--space-7); }
   @media (max-width: 900px) {
     .ny-package { grid-template-columns: 1fr; gap: var(--space-5); }

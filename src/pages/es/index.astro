@@ -303,7 +303,7 @@ const faq = [
         {booking.length > 0 && (
           <div class="stack" style="--stack:var(--space-2)">
             <p class="t-caption muted">¿Ya lo decidiste? Reserva directamente la próxima fecha:</p>
-            {booking.map((r) => <a href={r.bookingUrl} data-track="booking">{tr(r.title, 'es')}, {dateRange(r.start, r.end, false, 'es')}</a>)}
+            {booking.map((r) => <a href={r.bookingUrl} class="tap-link" data-track="booking">{tr(r.title, 'es')}, {dateRange(r.start, r.end, false, 'es')}</a>)}
           </div>
         )}
         <div style="margin-top:var(--space-6)"><Seal size={120} /></div>

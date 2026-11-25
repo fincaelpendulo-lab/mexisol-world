@@ -1,10 +1,8 @@
 // English is the default at /; Spanish pages live under /es/ with Spanish slugs.
 // Every English page with a Spanish counterpart is listed here, so the language
 // switch and the hreflang tags always point at the matching page.
-import retreats from '../data/retreats.json';
 
 export type Lang = 'en' | 'es';
-const year = retreats.year;
 
 export const esRoutes: Record<string, string> = {
   '/': '/es',
@@ -55,7 +53,7 @@ export const ui = {
     nav: {
       home: 'MexiSol',
       upcoming: 'Retreats',
-      allDates: `${year} Calendar`,
+      allDates: 'Upcoming retreats',
       finca: 'Finca El Péndulo retreats',
       international: 'International retreats',
       resources: 'Resources',
@@ -70,6 +68,7 @@ export const ui = {
       youtube: 'Finca El Péndulo on YouTube',
       register: 'Register',
       bookCall: 'Book a call',
+      faq: 'FAQ',
     },
     switchLabel: 'ES',
     switchLong: 'Leer en español',
@@ -80,7 +79,7 @@ export const ui = {
       retreats: 'Retreats',
       finca: 'Finca El Péndulo',
       international: 'International',
-      calendar: `${year} Calendar`,
+      calendar: 'Upcoming retreats',
       contact: 'Contact',
       legal: 'Every guest is screened before confirming. Our retreats are not a substitute for medical or psychological care.',
       privacy: 'Privacy',
@@ -95,7 +94,7 @@ export const ui = {
     nav: {
       home: 'MexiSol',
       upcoming: 'Retiros',
-      allDates: `Calendario ${year}`,
+      allDates: 'Próximos retiros',
       finca: 'Retiros en Finca El Péndulo',
       international: 'Retiros internacionales',
       resources: 'Recursos',
@@ -110,6 +109,7 @@ export const ui = {
       youtube: 'Finca El Péndulo en YouTube',
       register: 'Regístrate',
       bookCall: 'Agenda una llamada',
+      faq: 'Preguntas frecuentes',
     },
     switchLabel: 'EN',
     switchLong: 'Read in English',
@@ -120,7 +120,7 @@ export const ui = {
       retreats: 'Retiros',
       finca: 'Finca El Péndulo',
       international: 'Internacionales',
-      calendar: `Calendario ${year}`,
+      calendar: 'Próximos retiros',
       contact: 'Contacto',
       legal: 'Cada participante pasa por una evaluación antes de confirmar. Nuestros retiros no sustituyen la atención médica ni psicológica.',
       privacy: 'Privacidad',
