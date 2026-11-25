@@ -10,3 +10,29 @@ dist/
 worker/.dev.vars
 blog/.photo-candidates/
 blog/.review/
+
+# social media team
+marketing/.env
+marketing/hub/dist/
+marketing/hub/files.json
+marketing/content/**/*.mp4
+marketing/content/**/*.mov
+marketing/content/**/*.jpg
+marketing/content/**/*.png
+marketing/content/**/*.mp3
+marketing/content/**/*.wav
+marketing/content/_catalog/
+marketing/design/vetoed/
+
+# rendering intermediates (large video files)
+marketing/design/video/intermediates/
+marketing/hub/previews/
+.DS_Store
+marketing/**/*.mp4
+marketing/**/*.mov
+marketing/**/*.m4a
+marketing/**/*.mp3
+marketing/**/*.wav
+
+# social media team works only locally (not in the public repo)
+marketing/

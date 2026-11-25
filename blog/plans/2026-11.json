@@ -98,47 +98,49 @@
     },
     {
       "date": "2026-11-10",
-      "profile": "Healing Seeker",
-      "slug": "ayahuasca-retreat-medical-screening",
-      "slugEs": "evaluacion-medica-retiro-de-ayahuasca",
-      "title": "How our screening for ayahuasca works: your medications, your reasons, your commitment",
-      "titleEs": "Cómo es nuestra evaluación para la ayahuasca: tus medicamentos, tus razones, tu compromiso",
-      "keyword": "ayahuasca retreat medical screening",
-      "keywordEs": "evaluación médica para retiro de ayahuasca",
+      "profile": "Returning Journeyer",
+      "slug": "ayahuasca-and-spirituality",
+      "slugEs": "ayahuasca-y-espiritualidad",
+      "title": "Ayahuasca and spirituality: the opening of consciousness",
+      "titleEs": "Ayahuasca y espiritualidad: la apertura de la consciencia",
+      "keyword": "ayahuasca and spirituality",
+      "keywordEs": "ayahuasca y espiritualidad",
       "secondary": [
-        "ayahuasca intake call",
-        "ayahuasca screening questions",
-        "who should not take ayahuasca",
-        "ayahuasca retreat with medical screening"
+        "ayahuasca spiritual awakening",
+        "ayahuasca and consciousness",
+        "ayahuasca spiritual experience",
+        "expanded consciousness"
       ],
       "intent": "informational",
-      "searcherQuestion": "What will they ask me before I can join, and why does it matter beyond the medical part?",
-      "angle": "Cornerstone guide 4 (the only cornerstone still missing) and one of the month's three practical posts. Top results are retreat FAQ pages with a list of contraindications. We describe the three parts Carlos confirmed: medications and the taper (always with the prescriber), an honest look at why you are coming, and your commitment to a process of transformation. The second and third parts are the bridge to the new focus: screening as the first step of the inner work, not only a safety filter.",
+      "searcherQuestion": "Is ayahuasca a spiritual experience, and what does it mean that it opens consciousness?",
+      "angle": "Carlos replaced the screening post with this one (2026-11-07). Ayahuasca as a spiritual teacher in Amazonian and syncretic traditions (vegetalismo, Santo Daime, União do Vegetal), what people describe as an opening of consciousness (unity, connection with nature, meaning, the sense of the sacred), how thinkers have framed it, and how that opening becomes a daily spiritual practice. Speak as MexiSol World; experiences, not cures.",
       "outline": [
-        "Why we screen every guest",
-        "Part one: your medications, reviewed with your own doctor",
-        "Part two: why you are coming",
-        "Part three: your commitment to the process",
-        "What happens on the intake call",
-        "When we say not now, and why",
+        "Why people call ayahuasca a spiritual teacher",
+        "Ayahuasca in Amazonian and syncretic traditions",
+        "What the opening of consciousness feels like",
+        "How thinkers and researchers describe it",
+        "Intention, surrender and the ceremony as a sacred space",
+        "Bringing the opening home: integration as spiritual practice",
         "FAQ"
       ],
       "internalLinks": [
-        "/medical",
-        "/blog/medications-unsafe-with-ayahuasca",
-        "/blog/ayahuasca-and-ssris",
-        "/blog/is-ayahuasca-right-for-me",
-        "/blog/how-to-choose-a-safe-ayahuasca-retreat",
+        "/ayahuasca-retreat",
+        "/blog/after-ayahuasca-integration",
+        "/blog/first-ayahuasca-ceremony",
         "/book-a-call"
       ],
       "sourceLeads": [
-        "Our /medical page (only steps stated there or in house-facts)",
-        "ICEERS Ayahuasca Technical Report and its harm-reduction guides",
-        "Michael Pollan, How to Change Your Mind (2018), chapter on set and setting",
-        "Published guest testimonials on review sites about the value of the intake call"
+        "Luis Eduardo Luna, Vegetalismo (1986) and talks",
+        "Benny Shanon, The Antipodes of the Mind (2002)",
+        "Stanislav Grof, The Way of the Psychonaut / talks",
+        "Michael Pollan, How to Change Your Mind (2018) and Netflix series",
+        "William James, The Varieties of Religious Experience (1902) on mystical states",
+        "Griffiths et al. on mystical-type experiences; Mystical Experience Questionnaire",
+        "Published first-person accounts and MexiSol public reviews (BookRetreats, Retreat Guru)",
+        "Talks at Psychedelic Science / Breaking Convention on ayahuasca and spirituality"
       ],
       "cta": "book-a-call",
-      "notes": "Practical post (1 of 3 with SSRIs and Mexico vs Peru). Describe only the three screening parts in house-facts; never invent steps. No taper schedules."
+      "notes": "Replaces ayahuasca-retreat-medical-screening (dropped by Carlos 2026-11-07, PR #5 closed). Focus on spirituality, not medicine."
     },
     {
       "date": "2026-11-12",
