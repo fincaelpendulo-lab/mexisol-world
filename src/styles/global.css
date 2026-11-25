@@ -202,7 +202,9 @@ h1, h2, h3, p { margin: 0; }
 .yt-consent { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: var(--space-4); padding: var(--space-6); background: var(--surface-deep); color: var(--on-deep); text-align: left; }
 
 /* Standalone links get a 44px tap target; links inside running text keep their line height. */
-p > a:only-child, div > a:only-child, li > a:only-child { display: inline-flex; align-items: center; min-height: 44px; }
+p > a:only-child, div > a:only-child, li > a:only-child { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; overflow-wrap: anywhere; }
+/* Links inside running text stay inline, so long titles wrap like the words around them. */
+.prose p > a, .prose li > a { display: inline; min-height: 0; }
 
 /* Shared page pieces */
 .ratio-4-3 { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
@@ -263,4 +265,4 @@ strong, b, th { font-weight: 400; color: var(--ink); }
 .calendar-ask .t-title { margin-bottom: var(--space-2); }
 
 /* Stand-alone text links get a full-size tap target on phones. */
-.tap-link { display: inline-flex; align-items: center; min-height: 44px; }
+.tap-link { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
