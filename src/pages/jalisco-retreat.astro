@@ -1,0 +1,976 @@
+---
+// Landing page for paid ads (Google Search). It describes the week, the place,
+// the people and the dates without naming any substance, and has no site menu,
+// so it never links to the medicine pages. Hidden from search (noindex).
+import '../styles/tokens.css';
+import '../styles/global.css';
+import calSans from '../assets/fonts/CalSans-Regular.woff2?url';
+import tenorSans from '../assets/fonts/TenorSans-Regular.woff2?url';
+import lockup from '../assets/brand/lockup-white.png';
+import { Image, Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Photo from '../components/Photo.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import site from '../data/site.json';
+import rooms from '../data/rooms.json';
+import retreats from '../data/retreats.json';
+import { href, whatsappUrl } from '../lib/url';
+
+const title = 'A 7-Day Retreat in the Highlands of Jalisco, Mexico | MexiSol World';
+const description = 'Seven days on a ranch an hour from Guadalajara: evening ceremonies with live music, temazcal, fire circle, horses and every meal. Up to 15 guests, from $1,850 USD all-inclusive.';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const v = Date.now().toString(36);
+const call = site.booking.url;
+const from = Math.min(...rooms.rooms.map((r) => r.priceUsd));
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`;
+
+const today = new Date().toISOString().slice(0, 10);
+const guideOf: Record<string, string> = { ayahuasca: 'Humberto', psilocybin: 'Krista' };
+const dates = retreats.finca
+  .filter((r) => guideOf[r.medicine] && r.start > today)
+  .slice(0, 8)
+  .map((r) => {
+    const s = new Date(`${r.start}T12:00:00`);
+    const e = new Date(`${r.end}T12:00:00`);
+    const month = s.toLocaleString('en-US', { month: 'short' });
+    const endMonth = e.toLocaleString('en-US', { month: 'short' });
+    return {
+      id: r.id,
+      guide: guideOf[r.medicine],
+      when: month === endMonth ? `${month} ${s.getDate()} to ${e.getDate()}` : `${month} ${s.getDate()} to ${endMonth} ${e.getDate()}`,
+      mon: s.toLocaleString('en-US', { month: 'long' }),
+      range: month === endMonth ? `${s.getDate()}–${e.getDate()}` : `${s.getDate()} ${month} – ${e.getDate()} ${endMonth}`,
+      year: s.getFullYear(),
+    };
+  });
+
+// The ten things every week holds. Each card is a video loop or a photo.
+const week = [
+  { video: 'osho-hut', n: '3', title: 'Three ceremonies', text: 'Three ceremonies in the Osho Hut, a round temple of stone and palm, held by your guide with live music from start to finish.' },
+  { photo: 'finca-ceremonia-circulo', title: 'Integration sessions', text: 'Group circles after every ceremony and one-on-one time with an integration coach, so what you lived turns into what you keep.' },
+  { photo: 'finca-kambo-ceremonia', title: 'Kambo', text: 'A traditional Amazonian cleansing ceremony, held in the morning by our facilitators. We explain it in detail on your call.' },
+  { photo: 'finca-grupo-yoga-oraculo', title: 'Yoga', text: 'Yoga flow between the onyx pillars of the Oracle, in the soft light of the morning.' },
+  { photo: 'finca-ceremonia-cacao', title: 'Cacao ceremony', text: 'Warm ceremonial cacao, songs and intentions in the Osho Hut on the last afternoon.' },
+  { video: 'fire-circle', title: 'Fire circle', text: 'A night around the fire to say what the week has opened, and to let some of it go.' },
+  { photo: 'finca-esp-temazcal-3', title: 'Temazcal', text: 'The traditional sweat lodge: heat, steam, herbs and songs, then cold water under the open sky.' },
+  { photo: 'finca-cocina-comida', title: 'Every meal, on the retreat diet', text: 'Cooked here from whole ingredients, many from the Gaia greenhouse. Mostly plant-based, with no alcohol, refined sugar or processed food. Vegan and gluten-free covered.' },
+  { video: 'wolf', title: 'Meet the wolves', text: 'Two rescued wolf brothers live on the land. Meet them with their keeper, calmly and with respect.' },
+  { video: 'riders-agave', title: 'Horses and free time', text: 'Ride through the agave with the Finca’s nine horses, or take the afternoon: pool, jacuzzi, gym, massages, the lake.' },
+];
+
+// Spaces of the Finca (photos and names from fincaelpendulo.com.mx/espacios)
+const spaces = [
+  { photo: 'finca-esp-osho-hut-3', name: 'Osho Hut', tag: 'Ceremonial temple', text: 'The heart of the Finca: a round stone temple with a palm roof and a marble floor. Every ceremony happens here.', big: true },
+  { photo: 'finca-esp-oraculo-2', name: 'The Oracle', tag: 'Open-air circle', text: 'Sixteen onyx pillars from Jalisco, each carved with a rune. Morning yoga and the fire circle.' },
+  { photo: 'finca-esp-temazcal-3', name: 'Temazcal', tag: 'Sweat lodge', text: 'A traditional dome of heat and steam, with cold-water tubs outside.' },
+  { photo: 'finca-esp-lago-1', name: 'Lake Avalon', tag: 'Nature', text: 'Koi, turtles, loungers in the sun and paths for evening walks.', tall: true },
+  { photo: 'finca-card-sammasati', name: 'Sammasati', tag: 'Common area', text: 'A long wooden table for 25, an eight-person jacuzzi and a fire pit.' },
+  { photo: 'finca-invernadero-mesa', name: 'El 27', tag: 'Greenhouse dining room', text: 'A long table among hanging plants, lit by clay lamps at night.' },
+  { photo: 'finca-esp-terraza-ambu-1', name: 'Terraza Ambú', tag: 'Terrace', text: 'Views over the agave fields. The celebration dinner on the last night.', big: true },
+  { photo: 'finca-esp-caballerizas-1', name: 'The stables', tag: 'Nine horses', text: 'Five of the horses were born here. Ride, groom, or simply be with them.' },
+  { photo: 'finca-esp-lobos-1', name: 'The wolves', tag: 'Two rescued brothers', text: 'Met in a guided, respectful visit.' },
+  { photo: 'finca-alberca-01', name: 'Pool', tag: 'Heated all year', text: 'Surrounded by gardens, for slow afternoons.' },
+  { photo: 'finca-card-gaia', name: 'Gaia greenhouse', tag: 'Garden', text: 'Herbs, vegetables, fruit and medicinal plants that end up on your plate.' },
+  { photo: 'finca-taller-ceramica', name: 'Art studio', tag: 'Pottery and painting', text: 'Five pottery wheels. The opening journey starts here.' },
+  { photo: 'finca-card-spa', name: 'Spa', tag: 'Massage', text: 'Massages and treatments by appointment.' },
+  { photo: 'finca-card-gimnasio', name: 'Gym', tag: 'Movement', text: 'Weights, a Pilates reformer, treadmills, ping pong and billiards.' },
+  { photo: 'finca-jardin-rosas', name: 'Rose garden', tag: 'Quiet corner', text: 'Just behind the Osho Hut, for quiet time after ceremony.' },
+];
+
+const forWho = [
+  { title: 'At a crossroads', text: 'A job, a relationship, a city, a decade. Some decisions need more than a long weekend.' },
+  { title: 'Ready to break a pattern', text: 'Same year, same loops. A week to look at them from the outside, with people who get it.' },
+  { title: 'Caring for everyone else', text: 'Nurses, parents, founders, carers. A week where someone else holds the space for you.' },
+  { title: 'Coming back to the work', text: 'You have sat in ceremony before and know it is time to return, somewhere small and personal.' },
+  { title: 'Curious, and careful', text: 'You have read and listened for years. You want to do this once, properly, with a team you trust.' },
+];
+
+const why = [
+  { n: '15', label: 'guests at most', text: 'A small group, so every person is seen.' },
+  { n: '1,000+', label: 'ceremonies held', text: 'In the Osho Hut since the Finca opened in 2017.' },
+  { n: '4.9', label: 'from 236 reviews', text: '5.0 on BookRetreats and 4.92 on Retreat Guru.' },
+  { n: '1 h', label: 'from Guadalajara airport', text: 'Direct flights from most US hubs. Pickup available.' },
+];
+
+// Day by day, from the guest brochure
+const days = [
+  { d: 'Day 1', t: 'Arrival', photo: 'finca-esp-caballerizas-1', items: [['12:00 pm', 'Check in'], ['2:00 pm', 'Lunch'], ['4:00 pm', 'Welcome tour of the Finca and the stables'], ['8:00 pm', 'Dinner']] },
+  { d: 'Day 2', t: 'First ceremony', photo: 'finca-taller-ceramica', items: [['8:00 am', 'Light breakfast'], ['9:00 am', 'Orientation and meeting the team'], ['10:00 am', 'Opening journey in the pottery studio'], ['11:00 am', 'Kambo ceremony'], ['1:00 pm', 'Light lunch'], ['2:00 pm', 'Free time'], ['4:15 pm', 'Integration session'], ['7:00 pm', 'Meditation'], ['7:30 pm', 'First ceremony in the Osho Hut']] },
+  { d: 'Day 3', t: 'Second ceremony', photo: 'finca-cabalgata', items: [['9:00 am', 'Breakfast buffet'], ['10:30 am', 'Horse riding or free time'], ['11:00 am', 'Yoga flow'], ['1:00 pm', 'Second ceremony in the Osho Hut'], ['9:00 pm', 'Dinner at Sammasati']] },
+  { d: 'Day 4', t: 'Third ceremony', photo: 'finca-esp-lobos-1', items: [['9:00 am', 'Kambo ceremony'], ['9:30 am', 'Light snacks'], ['12:00 pm', 'Yoga flow, horse riding, free time'], ['1:00 pm', 'Light lunch'], ['3:00 pm', 'Group integration'], ['5:00 pm', 'Free time, meet the wolves'], ['7:00 pm', 'Third ceremony in the Osho Hut']] },
+  { d: 'Day 5', t: 'Fire', photo: 'finca-vat-meditacion-fogata', items: [['9:00 am', 'Light breakfast'], ['10:30 am', 'Morning in the Osho Hut'], ['1:30 pm', 'Circle of Words'], ['4:30 pm', 'Lunch buffet'], ['5:30 pm', 'Free time'], ['6:30 pm', 'Fire circle ceremony at the Oracle'], ['9:00 pm', 'Dinner']] },
+  { d: 'Day 6', t: 'Closing', photo: 'finca-esp-terraza-ambu-1', items: [['7:00 am', 'Sunrise hike to Cerro de la Campana'], ['9:00 am', 'Breakfast buffet'], ['10:30 am', 'Temazcal'], ['2:00 pm', 'Lunch'], ['3:30 pm', 'Cacao ceremony'], ['6:00 pm', 'Free time'], ['8:00 pm', 'Celebration dinner at Terraza Ambú']] },
+  { d: 'Day 7', t: 'Departure', photo: 'finca-aerea-laguna-palapa', items: [['Morning', 'Breakfast and goodbyes'], ['', 'Ride to Guadalajara airport']] },
+];
+
+// Rooms: cover photo from src/assets/rooms/<folder>/01-*.jpg
+const roomPhotos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/rooms/*/01-*.jpg', { eager: true });
+const roomCover = (folder: string) => Object.entries(roomPhotos).find(([p]) => p.includes(`/rooms/${folder}/`))![1].default;
+const roomInfo: Record<string, { folder: string; who: string; text: string; tag?: string }> = {
+  dorm: { folder: 'dorm', who: 'Shared with up to 3 guests', text: 'In the Hormiguero, the house volunteers built among the banana trees. Good if you are coming on your own and want company.' },
+  'semi-private': { folder: 'villa', who: '1 or 2 guests', text: 'Shared bathroom and privacy curtains, east-facing for sunrise and the horses.' },
+  private: { folder: 'private', who: '1 or 2 guests', text: 'Your own room with a private bathroom.' },
+  deluxe: { folder: 'deluxe', who: 'Up to 3 guests', text: 'Queen bed, sofa bed, private bathroom and its own jacuzzi. Only two of them.' },
+};
+const roomCards = rooms.rooms.map((r) => ({ ...r, ...roomInfo[r.id], cover: roomCover(roomInfo[r.id].folder) }));
+const included = ['6 nights', 'All meals', '3 ceremonies', 'Kambo', 'Integration', 'Temazcal', 'Cacao', 'Fire circle', 'Yoga', 'Horses', 'Sunrise hike'];
+
+const reviews = [
+  { q: 'From the first day, I felt cared for and safe.', n: 'Jay', s: 'BookRetreats' },
+  { q: "One of the best things I've ever done in my life.", n: 'Thibault', s: 'BookRetreats' },
+  { q: 'The location itself is a little magical, with nature, animals, and sacred spaces.', n: 'Jannie', s: 'BookRetreats' },
+  { q: 'A little piece of heaven in Mexico', n: 'Joanne', s: 'Retreat Guru' },
+  { q: 'Had a great experience and felt incredible and cared for throughout the journey.', n: 'Sanjay', s: 'BookRetreats' },
+];
+
+const social = [
+  { name: 'Instagram', handle: '@mexisol.world', url: site.instagram },
+  { name: 'TikTok', handle: '@mexisolworld', url: 'https://www.tiktok.com/@mexisolworld' },
+  { name: 'Facebook', handle: 'MexiSol World', url: 'https://www.facebook.com/profile.php?id=61595985106785' },
+  { name: 'YouTube', handle: 'Finca El Péndulo', url: site.youtube.channel },
+];
+
+const social_tiles = [
+  { video: 'aerial-finca' },
+  { photo: 'finca-ceremonia-cacao' },
+  { photo: 'finca-palapa-sobre-laguna' },
+  { video: 'horse-close' },
+  { photo: 'finca-el-27-noche' },
+  { photo: 'finca-yoga-palapa' },
+  { video: 'flower-mandala' },
+  { photo: 'finca-cena-candiles' },
+];
+
+const faq = [
+  { q: "What's included?", a: `Six nights, all meals, three ceremonies with live music, Kambo, cacao ceremony, temazcal, fire circle, yoga, group and one-on-one integration, the sunrise hike, horses, the wolves, pool and lake. From ${usd(from)} USD per person. Airport pickup is ${usd(rooms.airportPickup.roundTripUsd)} round trip.` },
+  { q: 'Is this right for me?', a: 'Every guest has a free call with our team and fills in a health questionnaire before booking. On that call we explain each ceremony in detail and answer every question, so you decide with all the information.' },
+  { q: 'Can I come on my own?', a: 'Most guests do. The group is small, and by the first dinner nobody feels like a stranger.' },
+  { q: 'How do I get there?', a: 'Fly into Guadalajara (GDL). The Finca is in Tepatitlán, about an hour away. We can pick you up at the airport.' },
+  { q: 'What language is the retreat in?', a: 'English, with a bilingual team. Spanish speakers are welcome too.' },
+  { q: 'How do I book?', a: `Book a free call, then reserve your room with a ${rooms.booking.depositPercent}% deposit. The balance is due ${rooms.booking.balanceDaysBefore} days before arrival.` },
+];
+
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com",
+  "font-src 'self'",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+  "media-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  'upgrade-insecure-requests',
+].join('; ');
+const vid = (n: string) => `${base}/video/lp/${n}`;
+---
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <script is:inline src={`${base}/js/boot.js?v=${v}`} data-ga={site.ga4Id || undefined}></script>
+  {site.ga4Id && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content={csp} />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href={`${site.url}/jalisco-retreat`} />
+  <link rel="preload" href={tenorSans} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={calSans} as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${site.url}/og/home.jpg`} />
+  <link rel="icon" href={`${base}/favicon.ico`} sizes="32x32" />
+  <link rel="icon" href={`${base}/icons/icon.svg`} type="image/svg+xml" />
+  <meta name="theme-color" content="#050a08" />
+</head>
+<body class="lp" data-ga={site.ga4Id || undefined} data-base={base}>
+
+<!-- ============ HERO: 3D walk into a glowing jungle at night ============ -->
+<section class="lp-hero" id="top" aria-label="MexiSol World retreat in Jalisco">
+  <div class="lp-hero__scene" id="scene" aria-hidden="true"></div>
+  <div class="lp-hero__vignette" aria-hidden="true"></div>
+  <div class="lp-ui" id="ui">
+    <header class="lp-head">
+      <a href="#top" class="lp-head__logo" aria-label="MexiSol World">
+        <Image src={lockup} alt="MexiSol World" width={150} densities={[1, 2]} loading="eager" />
+      </a>
+      <nav class="lp-head__nav" aria-label="On this page">
+        <a href="#week">The week</a>
+        <a href="#finca">The Finca</a>
+        <a href="#dates">Dates</a>
+        <a href="#reviews">Reviews</a>
+        <a class="lp-pill" href={call} data-track="book_call">Book a free call</a>
+      </nav>
+    </header>
+    <div class="lp-hero__copy">
+      <p class="lp-eyebrow">Tepatitlán, Jalisco · Mexico</p>
+      <h1 class="lp-hero__title">Come back<br />to yourself.</h1>
+      <p class="lp-hero__cap">Seven days on a ranch in the highlands of Jalisco.<br />Up to 15 guests. All-inclusive from {usd(from)} USD.</p>
+      <a class="lp-go" href="#intro" id="go" aria-label="See the experience">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
+      </a>
+    </div>
+    <div class="lp-corner">
+      <span>Move to wander</span><i></i>
+      <button class="lp-sound" id="sound" type="button" aria-pressed="false" aria-label="Night sounds">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5Z" /><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" /><path class="x" d="m16 10 4 4m0-4-4 4" /></svg>
+      </button>
+    </div>
+  </div>
+  <div class="lp-loader" id="loader" aria-hidden="true"><span></span></div>
+</section>
+
+<main id="main">
+
+<!-- ============ INTRO ============ -->
+<section class="lp-intro" id="intro">
+  <div class="lp-wrap lp-intro__grid">
+    <div data-reveal>
+      <p class="lp-label">The experience</p>
+      <h2 class="lp-h2">A week away from the noise, with room to hear yourself again.</h2>
+    </div>
+    <div data-reveal>
+      <p class="lp-lead">Finca El Péndulo is four hectares of agave, gardens and hand-built spaces, an hour from Guadalajara. For seven days, a group of up to 15 people steps out of ordinary life: ceremonies with live music, the heat of the temazcal, a fire under the stars, horses at sunrise and long dinners at one table.</p>
+      <p class="lp-lead lp-muted">MexiSol World organizes the retreat and stays with you all week, from the airport to the last goodbye.</p>
+      <div class="lp-actions">
+        <a class="lp-btn" href={call} data-track="book_call">Book a free call</a>
+        <a class="lp-btn lp-btn--ghost" href="#week">See the week</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AERIAL VIDEO BAND ============ -->
+<section class="lp-band" aria-label="The Finca from the air">
+  <video class="lp-band__video" data-src={vid('aerial-finca.mp4')} poster={vid('aerial-finca.jpg')} muted loop playsinline preload="none"></video>
+  <div class="lp-band__wash">
+    <p class="lp-band__line" data-reveal>Four hectares. Fifteen spaces built by hand. Nine horses, two wolves and a sky full of stars.</p>
+  </div>
+</section>
+
+<!-- ============ THE WEEK (videos) ============ -->
+<section class="lp-week" id="week">
+  <div class="lp-wrap">
+    <div class="lp-head2" data-reveal>
+      <p class="lp-label">What the week holds</p>
+      <h2 class="lp-h2">Everything is included. All you bring is yourself.</h2>
+    </div>
+    <div class="lp-week__grid">
+      {week.map((w, i) => (
+        <article class={`lp-card${i === 0 || i === 9 ? ' lp-card--hero' : ''}`} data-reveal style={`--d:${(i % 3) * 90}ms`}>
+          <div class="lp-card__media" data-tilt>
+            {w.video
+              ? <video data-src={vid(`${w.video}.mp4`)} poster={vid(`${w.video}.jpg`)} muted loop playsinline preload="none" aria-hidden="true"></video>
+              : <Photo name={w.photo!} alt={w.title} sizes="(max-width: 820px) 100vw, 33vw" widths={[480, 800, 1200]} />}
+            <span class="lp-card__n">{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <h3 class="lp-h3">{w.title}</h3>
+          <p>{w.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section class="lp-who" id="who">
+  <div class="lp-wrap lp-who__grid">
+    <div class="lp-who__intro" data-reveal>
+      <p class="lp-label">Who comes</p>
+      <h2 class="lp-h2">People who feel it is time.</h2>
+      <p class="lp-lead">Close to 400 people have joined us so far, most of them between 30 and 60 and most from the US. Different stories, one thing in common: they wanted a week that was about them.</p>
+      <div class="lp-who__photo" data-tilt><Photo name="guests-gathered-inside-the-osho-hut" alt="Guests gathered in a circle inside the Osho Hut" sizes="(max-width: 820px) 100vw, 40vw" /></div>
+    </div>
+    <ol class="lp-who__list">
+      {forWho.map((f, i) => (
+        <li data-reveal style={`--d:${i * 70}ms`}>
+          <span class="lp-who__n">0{i + 1}</span>
+          <div><h3 class="lp-h3">{f.title}</h3><p>{f.text}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- ============ WHY HERE ============ -->
+<section class="lp-why" id="why">
+  <div class="lp-wrap">
+    <div class="lp-head2" data-reveal>
+      <p class="lp-label">Why MexiSol World</p>
+      <h2 class="lp-h2">Small, personal, and done with care.</h2>
+    </div>
+    <div class="lp-why__grid">
+      {why.map((w, i) => (
+        <div class="lp-stat" data-reveal style={`--d:${i * 80}ms`}>
+          <p class="lp-stat__n" data-count={w.n}>{w.n}</p>
+          <p class="lp-stat__l">{w.label}</p>
+          <p class="lp-muted">{w.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE FINCA (3D gallery) ============ -->
+<section class="lp-finca" id="finca">
+  <div class="lp-wrap lp-head2" data-reveal>
+    <p class="lp-label">The Finca</p>
+    <h2 class="lp-h2">A ranch in the highlands, built by hand since 2017.</h2>
+    <p class="lp-lead">Four hectares in Tepatitlán, an hour from Guadalajara. Fifteen spaces built by hand, each with its own purpose in the week.</p>
+  </div>
+  <div class="lp-wrap">
+    <ul class="lp-spaces">
+      {spaces.map((s, i) => (
+        <li class={`lp-space${s.big ? ' lp-space--big' : ''}${s.tall ? ' lp-space--tall' : ''}`} data-reveal style={`--d:${(i % 4) * 70}ms`} tabindex="0">
+          <Photo name={s.photo} alt={s.name} sizes={s.big ? '(max-width: 820px) 100vw, 50vw' : '(max-width: 820px) 100vw, 25vw'} widths={[480, 800, 1200]} />
+          <div class="lp-space__cap">
+            <span class="lp-space__tag">{s.tag}</span>
+            <h3 class="lp-space__name">{s.name}</h3>
+            <p class="lp-space__text">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="lp-wrap lp-finca__duo">
+    <div class="lp-duo__media" data-tilt><video data-src={vid('aerial-lake.mp4')} poster={vid('aerial-lake.jpg')} muted loop playsinline preload="none" aria-hidden="true"></video></div>
+    <div class="lp-duo__media" data-tilt><video data-src={vid('wolf.mp4')} poster={vid('wolf.jpg')} muted loop playsinline preload="none" aria-hidden="true"></video></div>
+    <div class="lp-duo__media" data-tilt><video data-src={vid('horse-close.mp4')} poster={vid('horse-close.jpg')} muted loop playsinline preload="none" aria-hidden="true"></video></div>
+  </div>
+</section>
+
+<!-- ============ DAY BY DAY ============ -->
+<section class="lp-days" id="days">
+  <div class="lp-wrap">
+    <div class="lp-head2" data-reveal>
+      <p class="lp-label">Day by day</p>
+      <h2 class="lp-h2">Seven days, at the pace of the land.</h2>
+    </div>
+    <div class="lp-days__tabs" role="tablist" aria-label="Days of the retreat" data-reveal>
+      {days.map((d, i) => (
+        <button type="button" role="tab" id={`day-tab-${i}`} aria-controls={`day-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+          <span>{d.d}</span><strong>{d.t}</strong>
+        </button>
+      ))}
+    </div>
+    {days.map((d, i) => (
+      <div class="lp-day" role="tabpanel" id={`day-${i}`} aria-labelledby={`day-tab-${i}`} hidden={i !== 0}>
+        <div class="lp-day__photo"><Photo name={d.photo} alt={`${d.d}: ${d.t}`} sizes="(max-width: 820px) 100vw, 45vw" widths={[480, 800, 1200]} /><span class="lp-day__big">{i + 1}</span></div>
+        <div class="lp-day__body">
+          <p class="lp-label">{d.d}</p>
+          <h3 class="lp-day__title">{d.t}</h3>
+          <ol class="lp-day__list">
+            {d.items.map(([time, what]) => (<li><time>{time}</time><span>{what}</span></li>))}
+          </ol>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ============ GUIDES ============ -->
+<section class="lp-guides">
+  <div class="lp-wrap">
+    <div class="lp-head2" data-reveal>
+      <p class="lp-label">Your guides</p>
+      <h2 class="lp-h2">The same faces, all week.</h2>
+    </div>
+    <div class="lp-guides__grid">
+      <article class="lp-guide" data-reveal>
+        <div class="lp-guide__photo" data-tilt><Photo name="staff-humberto" alt="Humberto playing a frame drum" sizes="(max-width: 820px) 100vw, 45vw" /></div>
+        <h3 class="lp-h3">Humberto</h3>
+        <p>Born in Tepatitlán, a few minutes from the Finca. He has guided ceremonies on several continents. He opens every gathering, sings through the night with the musicians, and is there the next morning to talk it through.</p>
+      </article>
+      <article class="lp-guide" data-reveal style="--d:120ms">
+        <div class="lp-guide__photo" data-tilt><Photo name="staff-krista" alt="Krista with a drum in the Osho Hut" sizes="(max-width: 820px) 100vw, 45vw" /></div>
+        <h3 class="lp-h3">Krista</h3>
+        <p>Born in Mexico City, an engineer by training and a high school principal for 20 years. She came to the Finca as a volunteer and stayed. Her ceremonies are calm, practical and warm, with music, meditation and movement.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATES & PRICES ============ -->
+<section class="lp-dates" id="dates">
+  <div class="lp-wrap">
+    <div class="lp-head2" data-reveal>
+      <p class="lp-label">Prices</p>
+      <h2 class="lp-h2">One price, everything included.</h2>
+      <p class="lp-lead">Per person for the full seven days. Choose where you sleep; the week is the same for everyone.</p>
+    </div>
+    <ul class="lp-rooms">
+      {roomCards.map((r, i) => (
+        <li class={`lp-room${r.tag ? ' lp-room--pick' : ''}`} data-reveal style={`--d:${i * 80}ms`}>
+          <div class="lp-room__photo">
+            <Picture src={r.cover} alt={r.name} formats={['avif', 'webp']} widths={[400, 640, 900]} sizes="(max-width: 820px) 100vw, 25vw" quality={55} loading="lazy" />
+            {r.tag && <span class="lp-room__tag">{r.tag}</span>}
+          </div>
+          <div class="lp-room__body">
+            <h3 class="lp-room__name">{r.name}</h3>
+            <p class="lp-room__who">{r.who}</p>
+            <p class="lp-room__price"><strong>{usd(r.priceUsd)}</strong> <span>USD</span></p>
+            <p class="lp-room__text">{r.text}</p>
+            <a class="lp-room__cta" href={call} data-track="book_call">Book a free call <span aria-hidden="true">→</span></a>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="lp-included" data-reveal>
+      <p class="lp-label">Included in every room</p>
+      <ul>{included.map((x) => <li>{x}</li>)}</ul>
+      <p class="lp-muted lp-small">{rooms.sharedRoomDiscount}% off when two friends share a room. Airport pickup {usd(rooms.airportPickup.oneWayUsd)} one way or {usd(rooms.airportPickup.roundTripUsd)} round trip. Reserve with a {rooms.booking.depositPercent}% deposit; the balance is due {rooms.booking.balanceDaysBefore} days before arrival.</p>
+    </div>
+
+    <div class="lp-head2 lp-dates__head" data-reveal>
+      <p class="lp-label">{dates[0]?.year} dates</p>
+      <h2 class="lp-h2">Pick your week.</h2>
+    </div>
+    <ul class="lp-cal">
+      {dates.map((d, i) => (
+        <li data-reveal style={`--d:${(i % 4) * 60}ms`}>
+          <a href={call} data-track="book_call">
+            <span class="lp-cal__mon">{d.mon}</span>
+            <span class="lp-cal__range">{d.range}</span>
+            <span class="lp-cal__meta">{d.year} · With {d.guide}</span>
+            <span class="lp-cal__go">Book a call →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="lp-actions lp-actions--center"><a class="lp-btn" href={call} data-track="book_call">Book a free call</a><a class="lp-btn lp-btn--ghost" href={whatsappUrl} data-track="whatsapp">WhatsApp us</a></div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="lp-reviews" id="reviews">
+  <div class="lp-reviews__bg" aria-hidden="true">
+    <video class="lp-band__video" data-src={vid('long-dinner.mp4')} poster={vid('long-dinner.jpg')} muted loop playsinline preload="none"></video>
+  </div>
+  <div class="lp-wrap lp-reviews__inner">
+    <div class="lp-reviews__score" data-reveal>
+      <p class="lp-label">In their words</p>
+      <p class="lp-reviews__big">4.9</p>
+      <p class="lp-reviews__stars" aria-label="4.9 out of 5 stars">★★★★★</p>
+      <p>from 236 reviews</p>
+      <ul class="lp-reviews__src">
+        <li><strong>5.0</strong> BookRetreats · 55 reviews</li>
+        <li><strong>4.92</strong> Retreat Guru · 181 reviews</li>
+      </ul>
+      <p class="lp-small lp-reviews__note">Reviews from when we were known as MexiSoul Retreats.</p>
+    </div>
+    <ul class="lp-quotes">
+      {reviews.map((r, i) => (
+        <li data-reveal style={`--d:${i * 70}ms`}><span class="lp-quotes__mark" aria-hidden="true">“</span><blockquote>{r.q}</blockquote><p class="lp-quotes__who"><strong>{r.n}</strong> · {r.s}</p></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section class="lp-social">
+  <div class="lp-wrap">
+    <div class="lp-social__head" data-reveal>
+      <div>
+        <p class="lp-label">Follow along</p>
+        <h2 class="lp-h2">See the Finca every day.</h2>
+      </div>
+      <ul class="lp-social__pills">
+        {social.map((s) => (
+          <li><a href={s.url} rel="noopener" target="_blank"><strong>{s.name}</strong> <span>{s.handle}</span> <span aria-hidden="true">↗</span></a></li>
+        ))}
+      </ul>
+    </div>
+    <a class="lp-mosaic" href={site.instagram} rel="noopener" target="_blank" aria-label="See more on Instagram, @mexisol.world">
+      {social_tiles.map((t, i) => (
+        <span class={`lp-mosaic__tile lp-mosaic__tile--${i}`} data-reveal style={`--d:${i * 50}ms`}>
+          {t.video
+            ? <video data-src={vid(`${t.video}.mp4`)} poster={vid(`${t.video}.jpg`)} muted loop playsinline preload="none" aria-hidden="true"></video>
+            : <Photo name={t.photo!} alt="" sizes="(max-width: 820px) 50vw, 25vw" widths={[400, 800]} />}
+        </span>
+      ))}
+      <span class="lp-mosaic__badge"><strong>@mexisol.world</strong><span>Follow on Instagram ↗</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="lp-faq">
+  <div class="lp-wrap lp-faq__grid">
+    <div class="lp-faq__side" data-reveal>
+      <p class="lp-label">Questions</p>
+      <h2 class="lp-h2">Good to know.</h2>
+      <div class="lp-faq__photo"><Photo name="finca-grupo-osho-hut-circulo" alt="Guests sitting in a circle inside the Osho Hut" sizes="(max-width: 820px) 100vw, 40vw" widths={[480, 800, 1200]} /></div>
+    </div>
+    <div>
+      {faq.map((f) => (
+        <details class="lp-faq__item" data-reveal><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="lp-final">
+  <div class="lp-final__scene" aria-hidden="true">
+    <video class="lp-band__video" data-src={vid('osho-hut.mp4')} poster={vid('osho-hut.jpg')} muted loop playsinline preload="none"></video>
+  </div>
+  <div class="lp-wrap lp-final__inner" data-reveal>
+    <h2 class="lp-final__title">Your week is waiting.</h2>
+    <p class="lp-lead">A free 30-minute call with our team. No pressure, all your questions answered.</p>
+    <div class="lp-actions lp-actions--center"><a class="lp-btn lp-btn--light" href={call} data-track="book_call">Book a free call</a><a class="lp-btn lp-btn--ghost-light" href={whatsappUrl} data-track="whatsapp">WhatsApp {site.whatsapp.display}</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="lp-foot">
+  <div class="lp-wrap lp-foot__inner">
+    <p>© {new Date().getFullYear()} MexiSol World · Finca El Péndulo, Tepatitlán de Morelos, Jalisco, Mexico</p>
+    <p><a href={`mailto:${site.email}`}>{site.email}</a> · <a href={href('/privacy')}>Privacy</a> · <button type="button" class="lp-linkbtn" data-cookie-settings>Cookie settings</button></p>
+  </div>
+</footer>
+
+<a class="lp-sticky" href={call} data-track="book_call">Book a free call</a>
+
+<CookieBanner lang="en" />
+<script is:inline src={`${base}/js/site.js?v=${v}`} defer></script>
+
+<script>
+  import { startHero, createNightSound } from '../scripts/lp-hero';
+
+  document.documentElement.classList.replace('no-js', 'js');
+  const ui = document.getElementById('ui')!;
+  const loader = document.getElementById('loader')!;
+  const scene = document.getElementById('scene')!;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 3D hero (falls back to a plain dark sky without WebGL)
+  let hero: ReturnType<typeof startHero> | null = null;
+  try {
+    hero = startHero(scene, {
+      onLoaded: () => loader.classList.add('gone'),
+      onIntroDone: () => ui.classList.add('on'),
+    });
+  } catch {
+    loader.classList.add('gone');
+    ui.classList.add('on');
+  }
+  setTimeout(() => { loader.classList.add('gone'); ui.classList.add('on'); }, 4500);
+
+  const sound = createNightSound();
+  const soundBtn = document.getElementById('sound')!;
+  soundBtn.addEventListener('click', () => soundBtn.setAttribute('aria-pressed', String(sound.toggle())));
+  const go = document.getElementById('go')!;
+  go.addEventListener('pointerenter', () => { hero?.startHoverTransition(); sound.muffle(true); });
+  go.addEventListener('pointerleave', () => { hero?.stopHoverTransition(); sound.muffle(false); });
+
+  // Videos load and play only while on screen
+  const vids = document.querySelectorAll<HTMLVideoElement>('video[data-src]');
+  const vo = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      const v = e.target as HTMLVideoElement;
+      if (e.isIntersecting) {
+        if (!v.src) v.src = v.dataset.src!;
+        if (!reduced) v.play().catch(() => {});
+      } else if (!v.paused) v.pause();
+    }
+  }, { rootMargin: '200px 0px' });
+  vids.forEach((v) => vo.observe(v));
+
+  // Reveal on scroll
+  const ro = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('[data-reveal]').forEach((el) => ro.observe(el));
+
+  // 3D tilt on cards and media
+  if (!reduced && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-tilt]').forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  // Day by day: tabs (click or arrow keys)
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.lp-days__tabs [role=tab]'));
+  function selectDay(i: number, focus = false) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls')!)!;
+      panel.hidden = !on;
+      if (on) panel.classList.remove('lp-day--in'), void panel.offsetWidth, panel.classList.add('lp-day--in');
+    });
+    if (focus) tabs[i].focus();
+    tabs[i].scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced ? 'auto' : 'smooth' });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectDay(i));
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); selectDay((i + 1) % tabs.length, true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); selectDay((i - 1 + tabs.length) % tabs.length, true); }
+    });
+  });
+
+  // Sticky button appears after the hero
+  const sticky = document.querySelector('.lp-sticky')!;
+  new IntersectionObserver(([e]) => sticky.classList.toggle('on', !e.isIntersecting)).observe(document.getElementById('top')!);
+</script>
+
+<style is:global>
+  .lp { --night: #050a08; --cream: #f5efe2; --u: min(calc(100vw / 1600), calc(100vh / 900)); background: var(--surface); }
+  .lp a { color: inherit; }
+  .lp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 56px); }
+
+  /* Hero */
+  .lp-hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; background: var(--night); color: var(--cream); overflow: hidden; }
+  .lp-hero__scene { position: absolute; inset: 0; }
+  .lp-hero__scene canvas { display: block; width: 100% !important; height: 100% !important; }
+  .lp-hero__vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0,0,0,.55) 100%), linear-gradient(to bottom, rgba(5,10,8,.5), transparent 25%, transparent 70%, rgba(5,10,8,.7)); }
+  .lp-ui { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 1.6s ease; }
+  .lp-ui.on { opacity: 1; }
+  .lp-ui a, .lp-ui button { pointer-events: auto; }
+  .lp-head { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: calc(26 * var(--u)) calc(44 * var(--u)) 0; }
+  .lp-head__logo img { width: calc(150 * var(--u)); min-width: 110px; height: auto; display: block; }
+  .lp-head__nav { display: flex; align-items: center; gap: calc(40 * var(--u)); font: 500 calc(14 * var(--u)) / 1 var(--font-text); letter-spacing: .16em; text-transform: uppercase; }
+  .lp-head__nav a { text-decoration: none; transition: opacity .2s; }
+  .lp-head__nav a:not(.lp-pill):hover { opacity: .6; }
+  .lp-pill { display: inline-flex; align-items: center; height: calc(46 * var(--u)); min-height: 38px; padding: 0 calc(26 * var(--u)); border-radius: 99px; background: var(--cream); color: #151510 !important; letter-spacing: .08em; transition: transform .25s; }
+  .lp-pill:hover { transform: translateY(-1px); }
+  .lp-hero__copy { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-46%); display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; }
+  .lp-eyebrow { font: 500 calc(13 * var(--u)) / 1 var(--font-text); letter-spacing: .3em; text-transform: uppercase; opacity: .8; margin-bottom: calc(28 * var(--u)); }
+  .lp-hero__title { font: 400 calc(150 * var(--u)) / .92 var(--font-display); letter-spacing: -.02em; text-shadow: 0 2px 40px rgba(0,0,0,.45); }
+  .lp-hero__cap { margin-top: calc(40 * var(--u)); font: 400 calc(20 * var(--u)) / 1.4 var(--font-text); text-shadow: 0 1px 18px rgba(0,0,0,.9), 0 0 4px rgba(0,0,0,.8); }
+  .lp-hero__copy::before { content: ''; position: absolute; inset: -10% 10%; z-index: -1; background: radial-gradient(ellipse at center, rgba(5,10,8,.55), transparent 70%); pointer-events: none; }
+  .lp-go { display: grid; place-items: center; margin-top: calc(34 * var(--u)); width: calc(62 * var(--u)); height: calc(62 * var(--u)); min-width: 48px; min-height: 48px; border: 1.5px solid var(--cream); border-radius: 50%; transition: background .3s, color .3s; }
+  .lp-go:hover { background: var(--cream); color: #151510; }
+  .lp-go svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .lp-corner { position: absolute; right: calc(44 * var(--u)); bottom: calc(44 * var(--u)); display: flex; align-items: center; gap: 18px; font: 500 calc(12.5 * var(--u)) / 1 var(--font-text); letter-spacing: .16em; text-transform: uppercase; }
+  .lp-corner i { width: 1px; height: 26px; background: rgba(245,239,226,.45); }
+  .lp-sound { display: grid; place-items: center; width: 32px; height: 32px; background: none; border: 0; color: inherit; cursor: pointer; }
+  .lp-sound svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .lp-sound .w { transition: opacity .3s; }
+  .lp-sound[aria-pressed=false] .w { opacity: 0; }
+  .lp-sound[aria-pressed=true] .x { opacity: 0; }
+  .lp-loader { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; background: var(--night); transition: opacity 1s ease; pointer-events: none; }
+  .lp-loader.gone { opacity: 0; }
+  .lp-loader span { width: 9px; height: 9px; border-radius: 50%; background: var(--brand-ochre); animation: lp-pulse 1.2s ease-in-out infinite; }
+  @keyframes lp-pulse { 50% { transform: scale(.4); opacity: .4; } }
+
+  /* Type */
+  .lp-label { font: 500 13px/1 var(--font-text); letter-spacing: .32em; text-transform: uppercase; color: var(--label-ink); margin-bottom: 20px; }
+  .lp-h2 { font: 400 clamp(36px, 4.4vw, 64px) / 1.02 var(--font-display); letter-spacing: -.01em; max-width: 18ch; }
+  .lp-h3 { font: 400 24px/1.15 var(--font-display); margin: 18px 0 8px; }
+  .lp-lead { font: 400 clamp(18px, 1.5vw, 21px) / 1.5 var(--font-text); max-width: 60ch; margin-top: 20px; }
+  .lp-muted { color: var(--ink-muted); }
+  .lp-small { font-size: 15px; margin-top: 16px; }
+  .lp-head2 { margin-bottom: clamp(36px, 5vw, 64px); }
+  section { scroll-margin-top: 20px; }
+
+  /* Buttons */
+  .lp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .lp-actions--center { justify-content: center; }
+  .lp-btn { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: var(--brand-forest); color: #fff !important; text-decoration: none; font: 400 16px/1 var(--font-text); letter-spacing: .06em; border: 1px solid var(--brand-forest); transition: background .25s, transform .25s; }
+  .lp-btn:hover { background: #000; transform: translateY(-2px); }
+  .lp-btn--ghost { background: transparent; color: var(--ink) !important; border-color: var(--ink); }
+  .lp-btn--ghost:hover { background: var(--ink); color: #fff !important; }
+  .lp-btn--light { background: var(--cream); color: #151510 !important; border-color: var(--cream); }
+  .lp-btn--light:hover { background: #fff; }
+  .lp-btn--ghost-light { background: transparent; border-color: var(--cream); }
+  .lp-btn--ghost-light:hover { background: var(--cream); color: #151510 !important; }
+
+  /* Reveal */
+  .js [data-reveal] { opacity: 0; transform: translateY(36px); transition: opacity 1s ease var(--d, 0ms), transform 1s cubic-bezier(.2,.7,.2,1) var(--d, 0ms); }
+  .js [data-reveal].in { opacity: 1; transform: none; }
+  [data-tilt] { transition: transform .5s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; will-change: transform; }
+
+  /* Intro */
+  .lp-intro { padding: clamp(80px, 10vw, 140px) 0; }
+  .lp-intro__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+
+  /* Video bands */
+  .lp-band { position: relative; height: 78vh; min-height: 420px; overflow: hidden; background: var(--night); }
+  .lp-band--short { height: 46vh; min-height: 300px; }
+  .lp-band__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .lp-band__wash { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; background: linear-gradient(to top, rgba(49,74,52,.65), rgba(49,74,52,.15)); }
+  .lp-band__line { max-width: 22ch; text-align: center; color: #fff; font: 400 clamp(30px, 4vw, 58px) / 1.06 var(--font-display); text-shadow: 0 2px 30px rgba(0,0,0,.35); }
+
+  /* Week */
+  .lp-week { padding: clamp(80px, 10vw, 140px) 0; background: #f7f4ec; }
+  .lp-week__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 36px); }
+  .lp-card__media { aspect-ratio: 4 / 5; overflow: hidden; background: #1a2a1e; }
+  .lp-card__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lp-card p { color: var(--ink-muted); }
+
+  /* Who */
+  .lp-who { padding: clamp(80px, 10vw, 140px) 0; background: var(--brand-forest); color: #fff; }
+  .lp-who .lp-label { color: var(--brand-ochre); }
+  .lp-who .lp-lead { color: rgba(255,255,255,.88); }
+  .lp-who__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); }
+  .lp-who__photo { margin-top: 36px; aspect-ratio: 4 / 3; overflow: hidden; }
+  .lp-who__photo img, .lp-guide__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lp-who__list { list-style: none; padding: 0; margin: 0; align-self: center; }
+  .lp-who__list li { display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 28px 0; border-top: 1px solid rgba(255,255,255,.22); }
+  .lp-who__list li:last-child { border-bottom: 1px solid rgba(255,255,255,.22); }
+  .lp-who__list .lp-h3 { margin-top: 0; }
+  .lp-who__list p { color: rgba(255,255,255,.8); }
+  .lp-who__n { font: 400 15px/1.6 var(--font-text); color: var(--brand-ochre); letter-spacing: .1em; }
+
+  /* Why */
+  .lp-why { padding: clamp(80px, 10vw, 140px) 0; }
+  .lp-why__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .lp-stat { border-top: 1px solid var(--ink); padding-top: 24px; }
+  .lp-stat__n { font: 400 clamp(48px, 5.6vw, 84px) / 1 var(--font-display); color: var(--brand-forest); }
+  .lp-stat__l { font: 500 13px/1.3 var(--font-text); letter-spacing: .2em; text-transform: uppercase; margin: 12px 0 10px; }
+
+  /* Finca rail */
+  .lp-finca { padding: clamp(80px, 10vw, 140px) 0; background: #0b130f; color: #fff; overflow: hidden; }
+  .lp-finca .lp-label { color: var(--brand-ochre); }
+  .lp-finca .lp-lead { color: rgba(255,255,255,.85); }
+  .lp-finca__duo { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 22px; margin-top: 40px; }
+  .lp-duo__media { aspect-ratio: 4 / 5; overflow: hidden; background: #1a2a1e; }
+  .lp-duo__media:first-child { aspect-ratio: auto; }
+  .lp-duo__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Days */
+  .lp-days { padding: clamp(80px, 10vw, 140px) 0; background: #f7f4ec; }
+
+  /* Guides */
+  .lp-guides { padding: clamp(80px, 10vw, 140px) 0; }
+  .lp-guides__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px); }
+  .lp-guide__photo { aspect-ratio: 4 / 3; overflow: hidden; }
+  .lp-guide p { color: var(--ink-muted); max-width: 54ch; }
+
+  /* Dates */
+  .lp-dates { padding: clamp(80px, 10vw, 140px) 0; background: var(--brand-forest); color: #fff; }
+  .lp-dates .lp-label { color: var(--brand-ochre); }
+  .lp-dates .lp-muted { color: rgba(255,255,255,.75); }
+  .lp-dates .lp-btn { background: var(--brand-ochre); color: #000 !important; border-color: var(--brand-ochre); }
+  .lp-dates .lp-btn--ghost { background: transparent; color: #fff !important; border-color: #fff; }
+
+  /* Reviews */
+
+  /* Social */
+  .lp-social { padding: 0 0 clamp(80px, 10vw, 130px); }
+
+  /* FAQ */
+  .lp-faq { padding: clamp(80px, 10vw, 130px) 0; background: #f7f4ec; }
+  .lp-faq__item { border-top: 1px solid var(--hairline); padding: 22px 0; }
+  .lp-faq__item:last-child { border-bottom: 1px solid var(--hairline); }
+  .lp-faq__item summary { cursor: pointer; font: 400 22px/1.25 var(--font-display); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .lp-faq__item summary::after { content: '+'; font-family: var(--font-text); transition: transform .3s; }
+  .lp-faq__item[open] summary::after { transform: rotate(45deg); }
+  .lp-faq__item p { margin-top: 14px; color: var(--ink-muted); max-width: 62ch; }
+
+  /* Final */
+  .lp-final { position: relative; min-height: 80vh; display: grid; place-items: center; color: #fff; text-align: center; overflow: hidden; background: var(--night); }
+  .lp-final__scene { position: absolute; inset: 0; }
+  .lp-final__scene::after { content: ''; position: absolute; inset: 0; background: rgba(5,10,8,.55); }
+  .lp-final__inner { position: relative; z-index: 1; padding: 100px 20px; }
+  .lp-final__title { font: 400 clamp(48px, 7vw, 112px) / .95 var(--font-display); }
+  .lp-final .lp-lead { margin: 24px auto 0; color: rgba(255,255,255,.9); }
+
+  /* Footer */
+  .lp-foot { background: #050a08; color: rgba(245,239,226,.7); font-size: 14px; }
+  .lp-foot__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 28px; padding-bottom: 28px; }
+  .lp-foot a { color: inherit; }
+  .lp-linkbtn { background: none; border: 0; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
+
+  /* Sticky call button */
+  .lp-sticky { position: fixed; right: 20px; bottom: 20px; z-index: 50; display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; background: var(--brand-ochre); color: #000 !important; text-decoration: none; letter-spacing: .06em; box-shadow: 0 10px 30px rgba(0,0,0,.25); transform: translateY(120px); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .lp-sticky.on { transform: none; }
+  body.banner-open .lp-sticky { display: none; }
+
+  a:focus-visible, button:focus-visible, summary:focus-visible, .lp-rail:focus-visible { outline: 2px solid var(--brand-slate); outline-offset: 3px; }
+
+
+  /* Week cards: number badge, photos fill the frame */
+  .lp-card__media { position: relative; }
+  .lp-card__media img, .lp-card__media picture { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lp-card__n { position: absolute; left: 16px; top: 14px; font: 400 15px/1 var(--font-display); color: #fff; letter-spacing: .08em; text-shadow: 0 1px 10px rgba(0,0,0,.6); }
+  .lp-card--hero { grid-column: span 2; }
+  .lp-card--hero .lp-card__media { aspect-ratio: 16 / 9.6; }
+  .lp-week__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Spaces: bento grid with captions over the photos */
+  .lp-spaces { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(200px, 19vw, 290px); grid-auto-flow: dense; gap: 14px; }
+  .lp-space { position: relative; overflow: hidden; border-radius: 6px; background: #1a2a1e; outline: none; }
+  .lp-space--big { grid-column: span 2; grid-row: span 2; }
+  .lp-space--tall { grid-row: span 2; }
+  .lp-space picture, .lp-space img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .lp-space::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,12,9,.92) 0%, rgba(3,12,9,.35) 45%, transparent 70%); transition: background .5s; }
+  .lp-space__cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 18px 20px; }
+  .lp-space__tag { font: 500 11px/1 var(--font-text); letter-spacing: .2em; text-transform: uppercase; color: var(--brand-ochre); }
+  .lp-space__name { font: 400 clamp(22px, 2vw, 30px)/1.05 var(--font-display); margin: 8px 0 0; color: #fff; }
+  .lp-space--big .lp-space__name { font-size: clamp(30px, 3.2vw, 48px); }
+  .lp-space__text { margin: 8px 0 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.85); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s, opacity .5s; }
+  .lp-space--big .lp-space__text { max-height: 6em; opacity: 1; }
+  .lp-space:hover img, .lp-space:focus-visible img { transform: scale(1.06); }
+  .lp-space:hover .lp-space__text, .lp-space:focus-visible .lp-space__text { max-height: 6em; opacity: 1; }
+  .lp-space:hover::after { background: linear-gradient(to top, rgba(3,12,9,.95) 0%, rgba(3,12,9,.5) 60%, rgba(3,12,9,.1)); }
+  .lp-finca__duo { margin-top: 14px; }
+
+  /* Day by day: tabs + photo panel */
+  .lp-days__tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; margin-bottom: 28px; }
+  .lp-days__tabs::-webkit-scrollbar { display: none; }
+  .lp-days__tabs button { flex: 1 0 auto; min-width: 128px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; border: 1px solid var(--hairline); border-radius: 6px; background: #fff; cursor: pointer; text-align: left; color: var(--ink); transition: background .3s, color .3s, border-color .3s; }
+  .lp-days__tabs button span { font: 500 11px/1 var(--font-text); letter-spacing: .2em; text-transform: uppercase; color: var(--brand-slate); }
+  .lp-days__tabs button strong { font: 400 18px/1.1 var(--font-display); }
+  .lp-days__tabs button:hover { border-color: var(--brand-forest); }
+  .lp-days__tabs button[aria-selected=true] { background: var(--brand-forest); border-color: var(--brand-forest); color: #fff; }
+  .lp-days__tabs button[aria-selected=true] span { color: var(--brand-ochre); }
+  .lp-day { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: stretch; }
+  .lp-day--in .lp-day__photo, .lp-day--in .lp-day__body { animation: lp-dayin .7s cubic-bezier(.2,.7,.2,1) both; }
+  .lp-day--in .lp-day__body { animation-delay: .08s; }
+  @keyframes lp-dayin { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .lp-day__photo { position: relative; min-height: 420px; border-radius: 6px; overflow: hidden; }
+  .lp-day__photo picture, .lp-day__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .lp-day__big { position: absolute; right: 18px; bottom: -0.12em; font: 400 clamp(140px, 16vw, 240px)/1 var(--font-display); color: rgba(255,255,255,.88); text-shadow: 0 8px 40px rgba(0,0,0,.35); }
+  .lp-day__title { font: 400 clamp(32px, 3.4vw, 52px)/1 var(--font-display); margin: 10px 0 24px; }
+  .lp-day__list { list-style: none; padding: 0; margin: 0; }
+  .lp-day__list li { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 13px 0; border-top: 1px solid var(--hairline); font-size: 17px; }
+  .lp-day__list li:last-child { border-bottom: 1px solid var(--hairline); }
+  .lp-day__list time { font: 500 13px/1.6 var(--font-text); letter-spacing: .06em; color: var(--brand-terracotta); white-space: nowrap; }
+
+  /* Prices: room cards */
+  .lp-dates .lp-lead { color: rgba(255,255,255,.85); }
+  .lp-rooms { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .lp-room { display: flex; flex-direction: column; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 8px; overflow: hidden; transition: transform .4s, background .4s; }
+  .lp-room:hover { transform: translateY(-6px); background: rgba(255,255,255,.1); }
+  .lp-room--pick { border-color: var(--brand-ochre); box-shadow: 0 0 0 1px var(--brand-ochre); }
+  .lp-room__photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .lp-room__photo picture, .lp-room__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lp-room__tag { position: absolute; top: 12px; left: 12px; padding: 7px 12px; border-radius: 99px; background: var(--brand-ochre); color: #000; font: 500 11px/1 var(--font-text); letter-spacing: .14em; text-transform: uppercase; }
+  .lp-room__body { display: flex; flex-direction: column; flex: 1; padding: 22px 22px 24px; }
+  .lp-room__name { font: 400 24px/1.1 var(--font-display); margin: 0; }
+  .lp-room__who { margin: 6px 0 0; font-size: 14px; letter-spacing: .04em; color: rgba(255,255,255,.65); }
+  .lp-room__price { margin: 18px 0 0; }
+  .lp-room__price strong { font: 400 46px/1 var(--font-display); color: #fff; }
+  .lp-room__price span { font-size: 14px; letter-spacing: .12em; color: var(--brand-ochre); }
+  .lp-room__text { margin: 14px 0 20px; font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.78); flex: 1; }
+  .lp-room__cta { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-ochre) !important; text-decoration: none; }
+  .lp-room__cta:hover { text-decoration: underline; }
+  .lp-included { margin-top: 36px; padding: 28px 30px; border-radius: 8px; background: rgba(0,0,0,.18); }
+  .lp-included ul { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .lp-included li { padding: 8px 14px; border-radius: 99px; border: 1px solid rgba(255,255,255,.3); font-size: 14px; }
+  .lp-included li::before { content: '✓ '; color: var(--brand-ochre); }
+  .lp-dates__head { margin-top: clamp(64px, 8vw, 110px); }
+  .lp-cal { list-style: none; padding: 0; margin: 0 0 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .lp-cal li { display: flex; }
+  .lp-cal a { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 22px 22px 20px; border-radius: 8px; background: #f5efe2; color: #151510 !important; text-decoration: none; transition: transform .35s, background .35s; }
+  .lp-cal a:hover { transform: translateY(-5px); background: var(--brand-ochre); }
+  .lp-cal__mon { font: 500 12px/1 var(--font-text); letter-spacing: .22em; text-transform: uppercase; color: var(--brand-terracotta); }
+  .lp-cal a:hover .lp-cal__mon { color: #151510; }
+  .lp-cal__range { font: 400 36px/1.05 var(--font-display); }
+  .lp-cal__meta { font-size: 14px; color: rgba(21,21,16,.65); }
+  .lp-cal__go { margin-top: 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+
+  /* Reviews over the dinner video */
+  .lp-reviews { position: relative; color: #fff; background: var(--night); overflow: hidden; }
+  .lp-reviews__bg { position: absolute; inset: 0; }
+  .lp-reviews__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,12,9,.92) 0%, rgba(4,12,9,.7) 50%, rgba(4,12,9,.55)); }
+  .lp-reviews__inner { position: relative; z-index: 1; display: grid; grid-template-columns: 0.8fr 1.6fr; gap: clamp(32px, 5vw, 80px); align-items: center; padding-top: clamp(80px, 10vw, 140px); padding-bottom: clamp(80px, 10vw, 140px); }
+  .lp-reviews .lp-label { color: var(--brand-ochre); }
+  .lp-reviews__big { font: 400 clamp(110px, 13vw, 190px)/.9 var(--font-display); margin: 10px 0 0; }
+  .lp-reviews__stars { color: var(--brand-ochre); font-size: 26px; letter-spacing: .14em; margin: 8px 0 4px; }
+  .lp-reviews__src { list-style: none; padding: 0; margin: 22px 0 0; }
+  .lp-reviews__src li { padding: 10px 0; border-top: 1px solid rgba(255,255,255,.2); font-size: 15px; }
+  .lp-reviews__src strong { font: 400 20px/1 var(--font-display); margin-right: 8px; }
+  .lp-reviews__note { color: rgba(255,255,255,.6); }
+  .lp-quotes { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 18px; }
+  .lp-quotes li { position: relative; break-inside: avoid; margin-bottom: 18px; padding: 30px 28px 24px; border-radius: 8px; background: rgba(245,239,226,.1); border: 1px solid rgba(245,239,226,.18); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .lp-quotes li:nth-child(3n+1) { background: rgba(245,239,226,.94); color: #151510; }
+  .lp-quotes__mark { position: absolute; top: 6px; right: 18px; font: 400 80px/1 var(--font-display); color: var(--brand-ochre); opacity: .8; }
+  .lp-quotes blockquote { font: 400 23px/1.3 var(--font-display); margin: 0 0 16px; }
+  .lp-quotes__who { font-size: 14px; letter-spacing: .04em; opacity: .9; margin: 0; }
+
+  /* Social: pills + photo/video mosaic */
+  .lp-social { padding: clamp(80px, 10vw, 130px) 0; }
+  .lp-social__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; margin-bottom: 32px; }
+  .lp-social__pills { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .lp-social__pills a { display: inline-flex; gap: 8px; align-items: baseline; padding: 12px 18px; border-radius: 99px; border: 1px solid var(--ink); text-decoration: none; font-size: 15px; transition: background .3s, color .3s; }
+  .lp-social__pills a span { color: var(--ink-muted); }
+  .lp-social__pills a:hover { background: var(--brand-forest); color: #fff; border-color: var(--brand-forest); }
+  .lp-social__pills a:hover span { color: rgba(255,255,255,.8); }
+  .lp-mosaic { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 15vw, 230px); gap: 10px; text-decoration: none; }
+  .lp-mosaic__tile { position: relative; overflow: hidden; border-radius: 6px; background: #1a2a1e; }
+  .lp-mosaic__tile--0 { grid-column: span 2; grid-row: span 2; }
+  .lp-mosaic__tile--3 { grid-row: span 2; }
+  .lp-mosaic__tile video, .lp-mosaic__tile picture, .lp-mosaic__tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1s; }
+  .lp-mosaic:hover .lp-mosaic__tile img, .lp-mosaic:hover .lp-mosaic__tile video { transform: scale(1.04); }
+  .lp-mosaic__badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 30px; border-radius: 10px; background: rgba(245,239,226,.95); color: #151510; box-shadow: 0 20px 50px rgba(0,0,0,.3); text-align: center; }
+  .lp-mosaic__badge strong { font: 400 26px/1 var(--font-display); }
+  .lp-mosaic__badge span { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-terracotta); }
+
+  /* FAQ with a photo */
+  .lp-faq__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .lp-faq__side { position: sticky; top: 40px; }
+  .lp-faq__photo { margin-top: 28px; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; }
+  .lp-faq__photo picture, .lp-faq__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  @media (max-width: 1100px) {
+    .lp-rooms { grid-template-columns: repeat(2, 1fr); }
+    .lp-cal { grid-template-columns: repeat(2, 1fr); }
+    .lp-spaces { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 820px) {
+    .lp-week__grid { grid-template-columns: 1fr; }
+    .lp-card--hero { grid-column: auto; }
+    .lp-card__media, .lp-card--hero .lp-card__media { aspect-ratio: 16 / 11; }
+    .lp-spaces { grid-template-columns: 1fr 1fr; grid-auto-rows: 210px; gap: 10px; }
+    .lp-space--big { grid-column: 1 / -1; grid-row: span 2; }
+    .lp-space__name { font-size: 20px; }
+    .lp-space__cap { padding: 12px 14px; }
+    .lp-day { grid-template-columns: 1fr; }
+    .lp-day__photo { min-height: 260px; }
+    .lp-day__list li { grid-template-columns: 78px 1fr; font-size: 16px; }
+    .lp-days__tabs button { min-width: 112px; }
+    .lp-rooms { grid-template-columns: 1fr; }
+    .lp-room__photo { aspect-ratio: 16 / 9; }
+    .lp-cal { grid-template-columns: 1fr 1fr; }
+    .lp-cal__range { font-size: 28px; }
+    .lp-reviews__inner { grid-template-columns: 1fr; }
+    .lp-quotes { columns: 1; }
+    .lp-mosaic { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+    .lp-mosaic__tile--3 { grid-row: auto; }
+    .lp-mosaic__tile:nth-child(n+7) { display: none; }
+    .lp-faq__grid { grid-template-columns: 1fr; }
+    .lp-faq__side { position: static; }
+    .lp-faq__photo { aspect-ratio: 16 / 10; }
+  }
+
+  @media (max-width: 1100px) {
+    .lp-why__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 820px) {
+    .lp { --u: 1px; }
+    .lp-head { padding: 18px 18px 0; }
+    .lp-head__nav a:not(.lp-pill) { display: none; }
+    .lp-pill { height: 40px; padding: 0 16px; font-size: 12px; }
+    .lp-eyebrow { font-size: 11px; }
+    .lp-hero__title { font-size: clamp(56px, 16vw, 92px); }
+    .lp-hero__cap { font-size: 16px; }
+    .lp-corner { left: 20px; right: 20px; bottom: 28px; justify-content: center; font-size: 11px; }
+    .lp-intro__grid, .lp-who__grid, .lp-guides__grid, .lp-dates__grid, .lp-faq__grid { grid-template-columns: 1fr; }
+    .lp-week__grid { grid-template-columns: 1fr; }
+    .lp-finca__duo { grid-template-columns: 1fr 1fr; }
+    .lp-duo__media:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+    .lp-sticky { left: 16px; right: 16px; bottom: 16px; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+    .lp-loader span { animation: none; }
+  }
+</style>
+</body>
+</html>
