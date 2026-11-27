@@ -636,18 +636,21 @@ export function startHero(container: HTMLElement, opts: { onLoaded: () => void; 
   // ---------- Input ----------
   const mouseTarget = new THREE.Vector2(9, 9);
   const tilt = new THREE.Vector2(0, 0);
-  container.parentElement?.addEventListener('pointermove', (e) => {
-    const r = container.getBoundingClientRect();
-    mouseTarget.set(((e.clientX - r.left) / r.width) * 2 - 1, -(((e.clientY - r.top) / r.height) * 2 - 1));
-  });
-  container.parentElement?.addEventListener('pointerleave', () => mouseTarget.set(9, 9));
+  // The scene is a fixed backdrop for the whole page, so the glow follows the pointer everywhere
+  window.addEventListener('pointermove', (e) => {
+    mouseTarget.set((e.clientX / window.innerWidth) * 2 - 1, -((e.clientY / window.innerHeight) * 2 - 1));
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', () => mouseTarget.set(9, 9));
 
   let boost = 0;
+  let scrollWalk = 0;
   let lastScroll = window.scrollY;
   window.addEventListener('scroll', () => {
     const d = window.scrollY - lastScroll;
     lastScroll = window.scrollY;
     boost = Math.min(boost + Math.abs(d) * 0.02, 3);
+    // parallax: scrolling down walks deeper into the jungle, scrolling up walks back
+    scrollWalk += d * 0.01;
   }, { passive: true });
 
   let disperseTarget = 0;
@@ -682,6 +685,10 @@ export function startHero(container: HTMLElement, opts: { onLoaded: () => void; 
     const targetSpeed = reduced ? 0 : (0.7 + boost) * (1 - uniforms.uDisperse.value * 0.9);
     speed += (targetSpeed - speed) * Math.min(dt * 1.5, 1);
     uniforms.uTravel.value += speed * dt;
+    // ease the scroll walk in so it glides instead of jumping
+    const step = scrollWalk * Math.min(dt * 4, 1);
+    scrollWalk -= step;
+    uniforms.uTravel.value += step;
     uniforms.uTime.value = clock.t;
 
     const m = uniforms.uMouse.value;
